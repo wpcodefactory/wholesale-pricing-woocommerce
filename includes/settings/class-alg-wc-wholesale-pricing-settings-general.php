@@ -2,7 +2,7 @@
 /**
  * Wholesale Pricing for WooCommerce - General Section Settings
  *
- * @version 2.8.0
+ * @version 2.8.2
  * @since   1.0.0
  *
  * @author  Algoritmika Ltd.
@@ -29,9 +29,10 @@ class Alg_WC_Wholesale_Pricing_Settings_General extends Alg_WC_Wholesale_Pricing
 	/**
 	 * get_settings.
 	 *
-	 * @version 2.8.0
+	 * @version 2.8.2
 	 * @since   1.0.0
 	 *
+	 * @todo    [now] [!!!] (dev) `alg_wc_wholesale_pricing_add_order_discount`: better desc
 	 * @todo    [next] (dev) `alg_wc_wholesale_pricing_lumise_enabled`: remove? (or at least default to `yes`)
 	 * @todo    [next] (dev) `alg_wc_wholesale_pricing_round`: default to `no`
 	 * @todo    [next] (feature) `alg_wc_wholesale_pricing_round`: custom precision
@@ -205,6 +206,14 @@ class Alg_WC_Wholesale_Pricing_Settings_General extends Alg_WC_Wholesale_Pricing
 				'type'     => 'checkbox',
 				'show_if_checked' => 'yes',
 				'checkboxgroup'   => 'end',
+			),
+			array(
+				'title'    => __( 'Add order discount', 'wholesale-pricing-woocommerce' ),
+				'desc'     => __( 'Enable', 'wholesale-pricing-woocommerce' ),
+				'desc_tip' => __( 'Will add order discount line.', 'wholesale-pricing-woocommerce' ),
+				'id'       => 'alg_wc_wholesale_pricing_add_order_discount',
+				'default'  => 'no',
+				'type'     => 'checkbox',
 			),
 			array(
 				'type'     => 'sectionend',

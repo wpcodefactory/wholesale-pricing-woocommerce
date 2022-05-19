@@ -48,7 +48,8 @@ With [Wholesale Pricing for WooCommerce Pro](https://wpfactory.com/item/wholesal
 
 == Changelog ==
 
-= 2.8.2 - 21/04/2022 =
+= 2.8.2 - 12/05/2022 =
+* Dev - General - "Add order discount" option added (defaults to `no`).
 * Dev - Info - "Cart & Checkout Totals" options added.
 * Dev - Info - Admin settings descriptions updated.
 * Dev - Info - Code refactoring.
