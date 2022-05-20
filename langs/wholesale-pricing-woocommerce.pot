@@ -1,3 +1,39 @@
+# Copyright (C) 2022 Algoritmika Ltd
+# This file is distributed under the same license as the Wholesale Pricing for WooCommerce plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Wholesale Pricing for WooCommerce 2.8.2-dev\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wholesale-pricing-woocommerce\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2022-05-20T14:42:01+02:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.4.0\n"
+"X-Domain: wholesale-pricing-woocommerce\n"
+
+#. Plugin Name of the plugin
+msgid "Wholesale Pricing for WooCommerce"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://wpfactory.com/item/wholesale-pricing-woocommerce/"
+msgstr ""
+
+#. Description of the plugin
+msgid "Set WooCommerce wholesale pricing depending on product quantity in cart."
+msgstr ""
+
+#. Author of the plugin
+msgid "Algoritmika Ltd"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://algoritmika.com"
+msgstr ""
+
 #: includes/class-alg-wc-wholesale-pricing-admin.php:45
 msgid "Nonce verification failed. Please try again."
 msgstr ""
@@ -9,7 +45,6 @@ msgstr ""
 
 #: includes/class-alg-wc-wholesale-pricing-admin.php:76
 #: includes/class-alg-wc-wholesale-pricing-admin.php:152
-#: includes/pro/settings/class-alg-wc-wholesale-pricing-settings-per-term.php:46
 #: includes/settings/class-alg-wc-settings-wholesale-pricing.php:25
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:49
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:54
@@ -35,25 +70,19 @@ msgstr ""
 #: includes/class-alg-wc-wholesale-pricing-frontend.php:109
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:63
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:82
-#, php-format
 msgid "%s for %s pcs."
 msgstr ""
 
 #: includes/class-alg-wc-wholesale-pricing-frontend.php:107
 #: includes/class-alg-wc-wholesale-pricing-frontend.php:208
-#: includes/pro/class-alg-wc-wholesale-pricing-pro-frontend.php:176
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:79
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:98
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:83
-#, php-format
 msgid "You save: %s"
 msgstr ""
 
 #: includes/class-alg-wc-wholesale-pricing-shortcodes.php:57
 #: includes/class-alg-wc-wholesale-pricing-shortcodes.php:132
-#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:90
-#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:249
-#, php-format
 msgid "from %s pcs."
 msgstr ""
 
@@ -67,53 +96,11 @@ msgid "Per product category and per product tag"
 msgstr ""
 
 #: includes/class-alg-wc-wholesale-pricing-tools.php:39
-#, php-format
 msgid "%s wholesale pricing settings: %d records deleted."
-msgstr ""
-
-#: includes/class-alg-wc-wholesale-pricing.php:129
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:68
-msgid "Settings"
 msgstr ""
 
 #: includes/class-alg-wc-wholesale-pricing.php:132
 msgid "Go Pro"
-msgstr ""
-
-#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:86
-#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:253
-msgid "SKU"
-msgstr ""
-
-#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:87
-#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:254
-msgid "Name"
-msgstr ""
-
-#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:88
-#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:255
-msgid "Category"
-msgstr ""
-
-#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:89
-#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:256
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-item.php:82
-msgid "Price"
-msgstr ""
-
-#: includes/pro/templates/global/quantity-input.php:23
-#, php-format
-msgid "%s quantity"
-msgstr ""
-
-#: includes/pro/templates/global/quantity-input.php:23
-msgid "Quantity"
-msgstr ""
-
-#: includes/pro/templates/global/quantity-input.php:42
-#: includes/pro/templates/global/quantity-input.php:59
-msgctxt "Product quantity input tooltip"
-msgid "Qty"
 msgstr ""
 
 #: includes/settings/class-alg-wc-settings-wholesale-pricing.php:49
@@ -143,7 +130,6 @@ msgid "All Products"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-all-products.php:48
-#, php-format
 msgid "You can exclude selected products in \"%s\" section below."
 msgstr ""
 
@@ -234,7 +220,6 @@ msgstr ""
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:206
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:216
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:264
-#, php-format
 msgid "E.g.: %s"
 msgstr ""
 
@@ -251,7 +236,6 @@ msgid "Discount"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-all-products.php:122
-#, php-format
 msgid "Product #%d"
 msgstr ""
 
@@ -262,11 +246,6 @@ msgstr ""
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-all-products.php:133
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-user-roles.php:55
 msgid "Ignored if empty."
-msgstr ""
-
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-all-products.php:140
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-all-products.php:152
-msgid "Search for a product&hellip;"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-all-products.php:145
@@ -282,14 +261,11 @@ msgid "Quantity Dropdown"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-dropdown.php:44
-msgid ""
-"This section allows you to replace standard quantity input with a dropdown."
+msgid "This section allows you to replace standard quantity input with a dropdown."
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-dropdown.php:45
-msgid ""
-"Dropdown values will be equal to the min quantities of the wholesale pricing "
-"levels."
+msgid "Dropdown values will be equal to the min quantities of the wholesale pricing levels."
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-dropdown.php:50
@@ -305,7 +281,6 @@ msgid "Dropdown class"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-dropdown.php:80
-#, php-format
 msgid "HTML class for the %s element."
 msgstr ""
 
@@ -314,7 +289,6 @@ msgid "Dropdown style"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-dropdown.php:87
-#, php-format
 msgid "HTML style for the %s element."
 msgstr ""
 
@@ -323,7 +297,6 @@ msgid "HTML before"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-dropdown.php:95
-#, php-format
 msgid "Optional HTML outputted before the %s element."
 msgstr ""
 
@@ -332,7 +305,6 @@ msgid "HTML after"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-dropdown.php:103
-#, php-format
 msgid "Optional HTML outputted after the %s element."
 msgstr ""
 
@@ -353,13 +325,15 @@ msgstr ""
 msgid "Enable plugin"
 msgstr ""
 
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:68
+msgid "Settings"
+msgstr ""
+
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:71
-msgid ""
-"Here you choose at which level you want to set wholesale discount options."
+msgid "Here you choose at which level you want to set wholesale discount options."
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:76
-#, php-format
 msgid "Settings are in the %s section."
 msgstr ""
 
@@ -372,9 +346,7 @@ msgid "Per variation"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:94
-msgid ""
-"Enable this if you want to set options for each variation of a variable "
-"product separately."
+msgid "Enable this if you want to set options for each variation of a variable product separately."
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:105
@@ -398,10 +370,7 @@ msgid "Rounding"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:142
-#, php-format
-msgid ""
-"Round calculated product wholesale price according to the \"%s\" option (i."
-"e. %s)."
+msgid "Round calculated product wholesale price according to the \"%s\" option (i.e. %s)."
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:143
@@ -455,9 +424,7 @@ msgid "Formula and shortcodes"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:178
-msgid ""
-"Process formula and shortcodes in discount table values (i.e. in \"Min "
-"quantity #X\" and \"Discount #X\" fields)."
+msgid "Process formula and shortcodes in discount table values (i.e. in \"Min quantity #X\" and \"Discount #X\" fields)."
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:185
@@ -582,10 +549,7 @@ msgid "Show discount pricing table on single product and shop pages."
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:153
-#, php-format
-msgid ""
-"You can also display wholesale pricing info anywhere on your site with %s <a "
-"target=\"_blank\" href=\"%s\">shortcodes</a>."
+msgid "You can also display wholesale pricing info anywhere on your site with %s <a target=\"_blank\" href=\"%s\">shortcodes</a>."
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:164
@@ -642,7 +606,6 @@ msgid "Template for <strong>variations</strong>"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:215
-#, php-format
 msgid "Available placeholders: %s."
 msgstr ""
 
@@ -651,9 +614,7 @@ msgid "Hide main variable table on visible variation"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:225
-msgid ""
-"Will automatically hide main variable product pricing table, when variation "
-"table becomes visible."
+msgid "Will automatically hide main variable product pricing table, when variation table becomes visible."
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:231
@@ -686,10 +647,7 @@ msgid "Replace Price"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:277
-#, php-format
-msgid ""
-"Replace standard product price display (for example: %s) to a discounted one "
-"(for example: %s)"
+msgid "Replace standard product price display (for example: %s) to a discounted one (for example: %s)"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:278
@@ -718,9 +676,7 @@ msgid "Price directly"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-per-item.php:42
-msgid ""
-"UPDATE product after you change this option - new settings fields will be "
-"displayed."
+msgid "UPDATE product after you change this option - new settings fields will be displayed."
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-per-item.php:43
@@ -733,6 +689,10 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-per-item.php:53
 msgid "No"
+msgstr ""
+
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-item.php:82
+msgid "Price"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:69
@@ -758,14 +718,11 @@ msgid "Copy variation"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:410
-msgid ""
-"This will copy all wholesale settings fields from the current variation to "
-"all other variations."
+msgid "This will copy all wholesale settings fields from the current variation to all other variations."
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:411
-msgid ""
-"Please note that you need to UPDATE the product before copying the variation."
+msgid "Please note that you need to UPDATE the product before copying the variation."
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:412
@@ -773,13 +730,10 @@ msgid "Reset variation"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:413
-msgid ""
-"This will reset all wholesale settings fields for the current variation to "
-"their default values."
+msgid "This will reset all wholesale settings fields for the current variation to their default values."
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:415
-#, php-format
 msgid "Regular pricing: %s"
 msgstr ""
 
@@ -792,9 +746,7 @@ msgid "Price Display by Quantity"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:43
-msgid ""
-"This section allows you to display product price by quantity in real time, i."
-"e. when customer changes product quantity on single product page."
+msgid "This section allows you to display product price by quantity in real time, i.e. when customer changes product quantity on single product page."
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:48
@@ -834,9 +786,7 @@ msgid "Apply to all products"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:103
-msgid ""
-"Apply to all products vs. only to products with the enabled wholesale "
-"pricing."
+msgid "Apply to all products vs. only to products with the enabled wholesale pricing."
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:109
@@ -860,8 +810,7 @@ msgid "Will display price by quantity in variation price section."
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:119
-msgid ""
-"Ignored if it's not a variable product, or if variation prices are the same."
+msgid "Ignored if it's not a variable product, or if variation prices are the same."
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:125
@@ -869,9 +818,7 @@ msgid "Force standard quantity input"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:127
-msgid ""
-"Enable this if you are using non-standard quantity input (e.g. dropdown), "
-"and having issues with the price display by quantity."
+msgid "Enable this if you are using non-standard quantity input (e.g. dropdown), and having issues with the price display by quantity."
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-reports.php:25
@@ -899,13 +846,10 @@ msgid "Item Settings Reports"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-section.php:46
-msgid ""
-"\"Save changes\" after you change this option - new settings fields will be "
-"displayed."
+msgid "\"Save changes\" after you change this option - new settings fields will be displayed."
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-section.php:68
-#, php-format
 msgid "Available placeholders: %s"
 msgstr ""
 
@@ -933,7 +877,6 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:47
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:56
-#, php-format
 msgid "Will delete all %s wholesale pricing settings."
 msgstr ""
 
@@ -946,7 +889,6 @@ msgid "Delete per term settings"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:57
-#, php-format
 msgid "%s and %s"
 msgstr ""
 
@@ -967,9 +909,7 @@ msgid "Additional User Roles"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-user-roles.php:43
-msgid ""
-"If you want to set different wholesale pricing options for different user "
-"roles, fill this section."
+msgid "If you want to set different wholesale pricing options for different user roles, fill this section."
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-user-roles.php:47

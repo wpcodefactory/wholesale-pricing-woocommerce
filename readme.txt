@@ -48,12 +48,13 @@ With [Wholesale Pricing for WooCommerce Pro](https://wpfactory.com/item/wholesal
 
 == Changelog ==
 
-= 2.8.2 - 12/05/2022 =
+= 2.8.2 - 20/05/2022 =
 * Dev - General - "Add order discount" option added (defaults to `no`).
 * Dev - Info - "Cart & Checkout Totals" options added.
 * Dev - Info - Admin settings descriptions updated.
 * Dev - Info - Code refactoring.
 * Dev - Developers - `alg_wc_product_wholesale_pricing` filter added.
+* Dev - Add deploy script.
 
 = 2.8.1 - 19/04/2022 =
 * Fix - Info - Cart Page - Item subtotal - "Undefined property: Alg_WC_Wholesale_Pricing_Pro_Frontend::$core" notice fixed.
