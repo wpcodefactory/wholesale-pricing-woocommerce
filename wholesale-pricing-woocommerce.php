@@ -3,9 +3,9 @@
 Plugin Name: Product Price by Quantity for WooCommerce
 Plugin URI: https://wpfactory.com/item/wholesale-pricing-woocommerce/
 Description: Set WooCommerce product prices depending on quantity in cart.
-Version: 3.0.0
-Author: Algoritmika Ltd
-Author URI: https://algoritmika.com
+Version: 3.0.1
+Author: WPFactory
+Author URI: https://wpfactory.com
 Text Domain: wholesale-pricing-woocommerce
 Domain Path: /langs
 WC tested up to: 6.5
@@ -29,7 +29,7 @@ if ( 'wholesale-pricing-woocommerce.php' === basename( __FILE__ ) ) {
 	}
 }
 
-defined( 'ALG_WC_WHOLESALE_PRICING_VERSION' ) || define( 'ALG_WC_WHOLESALE_PRICING_VERSION', '3.0.0' );
+defined( 'ALG_WC_WHOLESALE_PRICING_VERSION' ) || define( 'ALG_WC_WHOLESALE_PRICING_VERSION', '3.0.1' );
 
 defined( 'ALG_WC_WHOLESALE_PRICING_FILE' ) || define( 'ALG_WC_WHOLESALE_PRICING_FILE', __FILE__ );
 
