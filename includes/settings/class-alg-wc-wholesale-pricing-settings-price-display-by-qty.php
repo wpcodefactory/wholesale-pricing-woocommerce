@@ -1,8 +1,8 @@
 <?php
 /**
- * Wholesale Pricing for WooCommerce - Price Display by Qty Section Settings
+ * Product Price by Quantity for WooCommerce - Price Display by Qty Section Settings
  *
- * @version 2.6.5
+ * @version 3.0.0
  * @since   1.3.0
  *
  * @author  Algoritmika Ltd.
@@ -29,7 +29,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Price_Display_By_Qty extends Alg_WC_Whol
 	/**
 	 * get_settings.
 	 *
-	 * @version 2.6.5
+	 * @version 3.0.0
 	 * @since   1.3.0
 	 *
 	 * @todo    [maybe] (desc) `alg_wc_wholesale_pricing_price_by_qty_standard_qty_input`: better desc?
@@ -100,7 +100,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Price_Display_By_Qty extends Alg_WC_Whol
 			array(
 				'title'    => __( 'Apply to all products', 'wholesale-pricing-woocommerce' ),
 				'desc'     => __( 'Enable', 'wholesale-pricing-woocommerce' ),
-				'desc_tip' => __( 'Apply to all products vs. only to products with the enabled wholesale pricing.', 'wholesale-pricing-woocommerce' ),
+				'desc_tip' => __( 'Apply to all products vs. only to products with the enabled product price by quantity.', 'wholesale-pricing-woocommerce' ),
 				'id'       => 'alg_wc_wholesale_pricing_price_by_qty_all_products',
 				'default'  => 'yes',
 				'type'     => 'checkbox',

@@ -1,8 +1,8 @@
 <?php
 /**
- * Wholesale Pricing for WooCommerce - Core Class
+ * Product Price by Quantity for WooCommerce - Core Class
  *
- * @version 2.8.0
+ * @version 3.0.0
  * @since   1.0.0
  *
  * @author  Algoritmika Ltd.
@@ -17,7 +17,7 @@ class Alg_WC_Wholesale_Pricing_Core {
 	/**
 	 * Constructor.
 	 *
-	 * @version 2.6.2
+	 * @version 3.0.0
 	 * @since   1.0.0
 	 *
 	 * @todo    [next] user roles: separate "Discount type", and maybe "Enable" ("all products", "per term", "per product")
@@ -46,6 +46,7 @@ class Alg_WC_Wholesale_Pricing_Core {
 			$this->product_id_for_formula = false;
 			if ( $this->do_process_formula ) {
 				add_shortcode( 'alg_wc_wh_pr_product_meta', array( $this, 'product_meta_shortcode' ) );
+				add_shortcode( 'alg_wc_ppq_product_meta',   array( $this, 'product_meta_shortcode' ) );
 			}
 
 			// Per product settings

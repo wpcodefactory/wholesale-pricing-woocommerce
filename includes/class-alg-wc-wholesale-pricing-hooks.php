@@ -1,8 +1,8 @@
 <?php
 /**
- * Wholesale Pricing for WooCommerce - Hooks Class
+ * Product Price by Quantity for WooCommerce - Hooks Class
  *
- * @version 2.8.2
+ * @version 3.0.0
  * @since   2.0.0
  *
  * @author  Algoritmika Ltd.
@@ -17,7 +17,7 @@ class Alg_WC_Wholesale_Pricing_Hooks {
 	/**
 	 * Constructor.
 	 *
-	 * @version 2.8.2
+	 * @version 3.0.0
 	 * @since   2.0.0
 	 */
 	function __construct() {
@@ -31,11 +31,11 @@ class Alg_WC_Wholesale_Pricing_Hooks {
 	/**
 	 * set_order_item_subtotals.
 	 *
-	 * @version 2.8.2
-	 * @since   2.8.2
+	 * @version 3.0.0
+	 * @since   3.0.0
 	 *
-	 * @todo    [now] [!!!] (dev) test with "prices inclusive of tax" and "prices exclusive of tax" (i.e. `$product->get_price()`)
-	 * @todo    [now] [!!!] (dev) make this enabled by default?
+	 * @todo    [next] [!!] (dev) use `$product->get_price()` instead of `wc_get_price_excluding_tax()`?
+	 * @todo    [next] [!!] (dev) make this enabled by default?
 	 */
 	function set_order_item_subtotals( $order_id, $posted_data, $order ) {
 		if ( 'yes' === get_option( 'alg_wc_wholesale_pricing_add_order_discount', 'no' ) ) {
@@ -44,7 +44,7 @@ class Alg_WC_Wholesale_Pricing_Hooks {
 				if (
 					( is_callable( array( $item, 'set_subtotal' ) ) && is_callable( array( $item, 'get_total' ) ) ) &&
 					( $product = wc_get_product( ( ! empty( $item['variation_id'] ) ? $item['variation_id'] : $item['product_id'] ) ) ) &&
-					( ( $original_total = $product->get_price() * $item['quantity'] ) != $item->get_total() )
+					( ( $original_total = wc_get_price_excluding_tax( $product, array( 'qty' => $item['quantity'] ) ) ) != $item->get_total() )
 				) {
 					$item->set_subtotal( $original_total );
 					$item->save();
@@ -86,7 +86,7 @@ class Alg_WC_Wholesale_Pricing_Hooks {
 	/**
 	 * calculate_totals.
 	 *
-	 * @version 2.8.2
+	 * @version 3.0.0
 	 * @since   1.0.0
 	 */
 	function calculate_totals( $cart ) {

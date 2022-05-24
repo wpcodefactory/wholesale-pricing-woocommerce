@@ -1,8 +1,8 @@
 <?php
 /**
- * Wholesale Pricing for WooCommerce - Tools Class
+ * Product Price by Quantity for WooCommerce - Tools Class
  *
- * @version 2.6.0
+ * @version 3.0.0
  * @since   2.6.0
  *
  * @author  Algoritmika Ltd.
@@ -27,7 +27,7 @@ class Alg_WC_Wholesale_Pricing_Tools {
 	/**
 	 * delete_meta.
 	 *
-	 * @version 2.6.0
+	 * @version 3.0.0
 	 * @since   2.6.0
 	 */
 	function delete_meta( $product_or_term ) {
@@ -36,7 +36,7 @@ class Alg_WC_Wholesale_Pricing_Tools {
 		$res   = $wpdb->query( "DELETE FROM {$table} WHERE meta_key LIKE '_alg_wc_wholesale_pricing%'" );
 		if ( method_exists( 'WC_Admin_Settings', 'add_message' ) ) {
 			$title = ( 'product' === $product_or_term ? __( 'Per product', 'wholesale-pricing-woocommerce' ) : __( 'Per product category and per product tag', 'wholesale-pricing-woocommerce' ) );
-			WC_Admin_Settings::add_message( sprintf( __( '%s wholesale pricing settings: %d records deleted.', 'wholesale-pricing-woocommerce' ), $title, $res ) );
+			WC_Admin_Settings::add_message( sprintf( __( '%s product price by quantity settings: %d records deleted.', 'wholesale-pricing-woocommerce' ), $title, $res ) );
 		}
 	}
 

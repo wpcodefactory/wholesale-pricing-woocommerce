@@ -1,8 +1,8 @@
 <?php
 /**
- * Wholesale Pricing for WooCommerce - All Products Section Settings
+ * Product Price by Quantity for WooCommerce - All Products Section Settings
  *
- * @version 2.8.0
+ * @version 3.0.0
  * @since   1.2.0
  *
  * @author  Algoritmika Ltd.
@@ -29,7 +29,7 @@ class Alg_WC_Wholesale_Pricing_Settings_All_Products extends Alg_WC_Wholesale_Pr
 	/**
 	 * get_settings.
 	 *
-	 * @version 2.8.0
+	 * @version 3.0.0
 	 * @since   1.2.0
 	 *
 	 * @todo    [next] save settings (levels data?) in array, i.e. `alg_wc_wholesale_pricing_level_min_qty[$i]` etc. (and same for "user roles" options, and "per product" and "per term" meta?)
@@ -84,7 +84,7 @@ class Alg_WC_Wholesale_Pricing_Settings_All_Products extends Alg_WC_Wholesale_Pr
 					'desc_tip' => __( 'Minimum quantity to apply discount.', 'wholesale-pricing-woocommerce' ),
 					'desc'     => __( 'Min quantity', 'wholesale-pricing-woocommerce' ) .
 						( ! $do_process_formula ? '' : '<br>' . sprintf( __( 'E.g.: %s', 'wholesale-pricing-woocommerce' ),
-							'<code>10+[alg_wc_wh_pr_product_meta key="your_custom_qty_field_key"]</code>' ) ),
+							'<code>10+[alg_wc_ppq_product_meta key="your_custom_qty_field_key"]</code>' ) ),
 					'id'       => 'alg_wc_wholesale_pricing_level_min_qty_' . $i,
 					'default'  => 0,
 					'type'     => $option_type,
@@ -95,7 +95,7 @@ class Alg_WC_Wholesale_Pricing_Settings_All_Products extends Alg_WC_Wholesale_Pr
 					'desc_tip' => __( 'To set fee instead of discount - enter negative number.', 'wholesale-pricing-woocommerce' ),
 					'desc'     => __( 'Discount', 'wholesale-pricing-woocommerce' ) .
 						( ! $do_process_formula ? '' : '<br>' . sprintf( __( 'E.g.: %s', 'wholesale-pricing-woocommerce' ),
-							'<code>[alg_wc_wh_pr_product_meta key="_price"]+[alg_wc_wh_pr_product_meta key="your_custom_discount_field_key"]</code>' ) ),
+							'<code>[alg_wc_ppq_product_meta key="_price"]+[alg_wc_ppq_product_meta key="your_custom_discount_field_key"]</code>' ) ),
 					'id'       => 'alg_wc_wholesale_pricing_level_discount_' . $i,
 					'default'  => 0,
 					'type'     => $option_type,

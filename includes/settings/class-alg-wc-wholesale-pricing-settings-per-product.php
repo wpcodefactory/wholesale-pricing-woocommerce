@@ -1,8 +1,8 @@
 <?php
 /**
- * Wholesale Pricing for WooCommerce - Per Product Settings
+ * Product Price by Quantity for WooCommerce - Per Product Settings
  *
- * @version 2.2.5
+ * @version 3.0.0
  * @since   1.0.0
  *
  * @author  Algoritmika Ltd.
@@ -136,13 +136,13 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 	/**
 	 * add_wholesale_pricing_metabox.
 	 *
-	 * @version 1.0.0
+	 * @version 3.0.0
 	 * @since   1.0.0
 	 */
 	function add_wholesale_pricing_metabox() {
 		add_meta_box(
 			'alg-wholesale-pricing',
-			__( 'Wholesale Pricing', 'wholesale-pricing-woocommerce' ),
+			__( 'Product Price by Quantity', 'wholesale-pricing-woocommerce' ),
 			array( $this, 'display_wholesale_pricing_metabox' ),
 			'product',
 			'normal',
@@ -183,7 +183,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 	/**
 	 * wcfm_wholesale_product_settings.
 	 *
-	 * @version 2.2.5
+	 * @version 3.0.0
 	 * @since   2.2.5
 	 *
 	 * @todo    [next] [!] (dev) customizable tab title
@@ -199,7 +199,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 	function wcfm_wholesale_product_settings( $product_id, $product_type = '', $wcfm_is_translated_product = false, $wcfm_wpml_edit_disable_element = '' ) {
 		$html  = '';
 		$html .= '<div class="page_collapsible products_manage_alg_wc_wh_pr simple variable grouped external booking" id="wcfm_products_manage_form_alg_wc_wh_pr_head">' .
-			'<label class="wcfmfa fa-server"></label>' . __( 'Wholesale Pricing', 'wholesale-pricing-woocommerce' ) . '<span></span>' . '</div>';
+			'<label class="wcfmfa fa-server"></label>' . __( 'Product Price by Quantity', 'wholesale-pricing-woocommerce' ) . '<span></span>' . '</div>';
 		$html .= '<div class="wcfm-container simple variable external grouped booking">' . '<div id="wcfm_products_manage_form_alg_wc_wh_pr_expander" class="wcfm-content">';
 		if ( $product_id ) {
 			$html .= $this->get_options_table( $product_id, '', 'title_only', 'wcfm' );

@@ -1,8 +1,8 @@
 <?php
 /**
- * Wholesale Pricing for WooCommerce - General Section Settings
+ * Product Price by Quantity for WooCommerce - General Section Settings
  *
- * @version 2.8.2
+ * @version 3.0.0
  * @since   1.0.0
  *
  * @author  Algoritmika Ltd.
@@ -29,10 +29,10 @@ class Alg_WC_Wholesale_Pricing_Settings_General extends Alg_WC_Wholesale_Pricing
 	/**
 	 * get_settings.
 	 *
-	 * @version 2.8.2
+	 * @version 3.0.0
 	 * @since   1.0.0
 	 *
-	 * @todo    [now] [!!!] (dev) `alg_wc_wholesale_pricing_add_order_discount`: better desc
+	 * @todo    [next] (desc) `alg_wc_wholesale_pricing_add_order_discount`: better desc
 	 * @todo    [next] (dev) `alg_wc_wholesale_pricing_lumise_enabled`: remove? (or at least default to `yes`)
 	 * @todo    [next] (dev) `alg_wc_wholesale_pricing_round`: default to `no`
 	 * @todo    [next] (feature) `alg_wc_wholesale_pricing_round`: custom precision
@@ -46,12 +46,12 @@ class Alg_WC_Wholesale_Pricing_Settings_General extends Alg_WC_Wholesale_Pricing
 
 		$main_settings = array(
 			array(
-				'title'    => __( 'Wholesale Pricing', 'wholesale-pricing-woocommerce' ),
+				'title'    => __( 'Product Price by Quantity', 'wholesale-pricing-woocommerce' ),
 				'type'     => 'title',
 				'id'       => 'alg_wc_wholesale_pricing_options',
 			),
 			array(
-				'title'    => __( 'Wholesale Pricing', 'wholesale-pricing-woocommerce' ),
+				'title'    => __( 'Product Price by Quantity', 'wholesale-pricing-woocommerce' ),
 				'desc'     => '<strong>' . __( 'Enable plugin', 'wholesale-pricing-woocommerce' ) . '</strong>',
 				'id'       => 'alg_wc_wholesale_pricing_enabled',
 				'default'  => 'yes',
@@ -93,7 +93,7 @@ class Alg_WC_Wholesale_Pricing_Settings_General extends Alg_WC_Wholesale_Pricing
 				'desc'     => __( 'Per variation', 'wholesale-pricing-woocommerce' ),
 				'desc_tip' => __( 'Enable this if you want to set options for each variation of a variable product separately.', 'wholesale-pricing-woocommerce' ) .
 					apply_filters( 'alg_wc_wholesale_pricing_settings', '<br>' . sprintf(
-						'You will need <a target="_blank" href="%s">Wholesale Pricing for WooCommerce Pro</a> plugin to enable this option.',
+						'You will need <a target="_blank" href="%s">Product Price by Quantity for WooCommerce Pro</a> plugin to enable this option.',
 							'https://wpfactory.com/item/wholesale-pricing-woocommerce/' ) ),
 				'id'       => 'alg_wc_wholesale_pricing_product_children',
 				'default'  => 'no',
@@ -106,7 +106,7 @@ class Alg_WC_Wholesale_Pricing_Settings_General extends Alg_WC_Wholesale_Pricing
 				'desc'     => __( 'Enable', 'wholesale-pricing-woocommerce' ),
 				'desc_tip' => __( 'This will add new settings fields to each product category edit page.', 'wholesale-pricing-woocommerce' ) .
 					apply_filters( 'alg_wc_wholesale_pricing_settings', '<br>' . sprintf(
-						'You will need <a target="_blank" href="%s">Wholesale Pricing for WooCommerce Pro</a> plugin to enable this option.',
+						'You will need <a target="_blank" href="%s">Product Price by Quantity for WooCommerce Pro</a> plugin to enable this option.',
 							'https://wpfactory.com/item/wholesale-pricing-woocommerce/' ) ),
 				'id'       => 'alg_wc_wholesale_pricing_per_product_cat_enabled',
 				'default'  => 'no',
@@ -118,7 +118,7 @@ class Alg_WC_Wholesale_Pricing_Settings_General extends Alg_WC_Wholesale_Pricing
 				'desc'     => __( 'Enable', 'wholesale-pricing-woocommerce' ),
 				'desc_tip' => __( 'This will add new settings fields to each product tag edit page.', 'wholesale-pricing-woocommerce' ) .
 					apply_filters( 'alg_wc_wholesale_pricing_settings', '<br>' . sprintf(
-						'You will need <a target="_blank" href="%s">Wholesale Pricing for WooCommerce Pro</a> plugin to enable this option.',
+						'You will need <a target="_blank" href="%s">Product Price by Quantity for WooCommerce Pro</a> plugin to enable this option.',
 							'https://wpfactory.com/item/wholesale-pricing-woocommerce/' ) ),
 				'id'       => 'alg_wc_wholesale_pricing_per_product_tag_enabled',
 				'default'  => 'no',
@@ -161,7 +161,7 @@ class Alg_WC_Wholesale_Pricing_Settings_General extends Alg_WC_Wholesale_Pricing
 					'_product_tag' => __( 'Group by product tag', 'wholesale-pricing-woocommerce' ) . apply_filters( 'alg_wc_wholesale_pricing_settings', ' [' . __( 'Pro only', 'wholesale-pricing-woocommerce' ) . ']' ),
 				),
 				'desc'     => apply_filters( 'alg_wc_wholesale_pricing_settings', sprintf(
-					'For some options (e.g. "%s") you will need <a target="_blank" href="%s">Wholesale Pricing for WooCommerce Pro</a> plugin.',
+					'For some options (e.g. "%s") you will need <a target="_blank" href="%s">Product Price by Quantity for WooCommerce Pro</a> plugin.',
 						__( 'Group by product parent', 'wholesale-pricing-woocommerce' ),
 						'https://wpfactory.com/item/wholesale-pricing-woocommerce/' ) )
 			),
@@ -210,7 +210,7 @@ class Alg_WC_Wholesale_Pricing_Settings_General extends Alg_WC_Wholesale_Pricing
 			array(
 				'title'    => __( 'Add order discount', 'wholesale-pricing-woocommerce' ),
 				'desc'     => __( 'Enable', 'wholesale-pricing-woocommerce' ),
-				'desc_tip' => __( 'Will add order discount line.', 'wholesale-pricing-woocommerce' ),
+				'desc_tip' => __( 'Will replace all product price changes with an order discount.', 'wholesale-pricing-woocommerce' ),
 				'id'       => 'alg_wc_wholesale_pricing_add_order_discount',
 				'default'  => 'no',
 				'type'     => 'checkbox',

@@ -1,8 +1,8 @@
 <?php
 /**
- * Wholesale Pricing for WooCommerce - Settings
+ * Product Price by Quantity for WooCommerce - Settings
  *
- * @version 2.8.0
+ * @version 3.0.0
  * @since   1.0.0
  *
  * @author  Algoritmika Ltd.
@@ -17,12 +17,12 @@ class Alg_WC_Settings_Wholesale_Pricing extends WC_Settings_Page {
 	/**
 	 * Constructor.
 	 *
-	 * @version 2.8.0
+	 * @version 3.0.0
 	 * @since   1.0.0
 	 */
 	function __construct() {
 		$this->id    = 'alg_wc_wholesale_pricing';
-		$this->label = __( 'Wholesale Pricing', 'wholesale-pricing-woocommerce' );
+		$this->label = __( 'Product Price by Quantity', 'wholesale-pricing-woocommerce' );
 		parent::__construct();
 		// Sections
 		require_once( 'class-alg-wc-wholesale-pricing-settings-section.php' );

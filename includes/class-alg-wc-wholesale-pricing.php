@@ -1,6 +1,6 @@
 <?php
 /**
- * Wholesale Pricing for WooCommerce - Main Class
+ * Product Price by Quantity for WooCommerce - Main Class
  *
  * @version 2.5.0
  * @since   1.0.0
@@ -135,7 +135,7 @@ final class Alg_WC_Wholesale_Pricing {
 	}
 
 	/**
-	 * Add Wholesale Pricing settings tab to WooCommerce settings.
+	 * Add "Product Price by Quantity" settings tab to WooCommerce settings.
 	 *
 	 * @version 2.5.0
 	 * @since   1.0.0

@@ -1,6 +1,6 @@
 <?php
 /**
- * Wholesale Pricing for WooCommerce - Frontend Class
+ * Product Price by Quantity for WooCommerce - Frontend Class
  *
  * @version 2.6.5
  * @since   2.0.0

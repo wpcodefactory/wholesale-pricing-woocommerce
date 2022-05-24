@@ -1,8 +1,8 @@
 <?php
 /**
- * Wholesale Pricing for WooCommerce - Shortcodes
+ * Product Price by Quantity for WooCommerce - Shortcodes
  *
- * @version 2.8.1
+ * @version 3.0.0
  * @since   1.0.0
  *
  * @author  Algoritmika Ltd.
@@ -17,16 +17,20 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	/**
 	 * Constructor.
 	 *
-	 * @version 2.0.0
+	 * @version 3.0.0
 	 * @since   2.0.0
 	 *
 	 * @todo    [next] `[alg_wc_term_wholesale_pricing_table]` and `[alg_wc_term_wholesale_pricing_data]`
 	 */
 	function __construct() {
 		add_shortcode( 'alg_wc_wholesale_pricing_table',         array( $this, 'wholesale_pricing_table' ) );
+		add_shortcode( 'alg_wc_ppq_table',                       array( $this, 'wholesale_pricing_table' ) );
 		add_shortcode( 'alg_wc_product_wholesale_pricing_table', array( $this, 'product_wholesale_pricing_table' ) );
+		add_shortcode( 'alg_wc_product_ppq_table',               array( $this, 'product_wholesale_pricing_table' ) );
 		add_shortcode( 'alg_wc_wholesale_pricing_data',          array( $this, 'wholesale_pricing_data' ) );
+		add_shortcode( 'alg_wc_ppq_data',                        array( $this, 'wholesale_pricing_data' ) );
 		add_shortcode( 'alg_wc_product_wholesale_pricing_data',  array( $this, 'product_wholesale_pricing_data' ) );
+		add_shortcode( 'alg_wc_product_ppq_data',                array( $this, 'product_wholesale_pricing_data' ) );
 	}
 
 	/**
@@ -45,9 +49,10 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	/**
 	 * wholesale_pricing_table (global only).
 	 *
-	 * @version 2.7.0
+	 * @version 3.0.0
 	 * @since   1.0.0
 	 *
+	 * @todo    [next] [!!] (dev) `shortcode_atts`: `alg_wc_wholesale_pricing_table` to `alg_wc_ppq_table`?
 	 * @todo    [next] [!] (dev) `alg_wc_wholesale_pricing_discount_type` option + `alg_wc_wholesale_pricing_get_discount_type` filter?
 	 * @todo    [next] add all applicable atts from `product_wholesale_pricing_table()`, e.g. `table_heading_type` etc.
 	 */
@@ -102,7 +107,7 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 		// Get table HTML
 		if ( ! empty( $table_rows ) ) {
 			return $atts['before'] . $this->get_table_html( $table_rows, array(
-				'table_class'        => 'alg_wc_wholesale_pricing_table',
+				'table_class'        => 'alg_wc_ppq_table alg_wc_wholesale_pricing_table',
 				'columns_styles'     => $columns_styles,
 				'table_heading_type' => $atts['table_format'],
 			) ) . $atts['after'];
@@ -114,9 +119,11 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	/**
 	 * product_wholesale_pricing_table.
 	 *
-	 * @version 2.8.1
+	 * @version 3.0.0
 	 * @since   1.0.0
 	 *
+	 * @todo    [next] [!!] (dev) `shortcode_atts`: `alg_wc_product_wholesale_pricing_table` to `alg_wc_product_ppq_table`?
+	 * @todo    [next] [!!] (dev) `apply_filters`: `alg_wc_product_wholesale_pricing_table_heading_format` to `alg_wc_product_ppq_table_heading_format`?
 	 * @todo    [next] [!] (dev) check if price `is_numeric()`?
 	 * @todo    [next] `extra_column_before`, `extra_column_after`
 	 * @todo    [next] `columns_styles`: different styles for different elements, i.e. `explode( '|', $atts['columns_styles'] )`
@@ -319,7 +326,7 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 		if ( ! empty( $table_rows ) ) {
 			return $atts['before'] . $this->get_table_html( $table_rows, array(
 				'table_class'        => implode( ' ', array(
-					'alg_wc_product_wholesale_pricing_table',
+					'alg_wc_product_ppq_table alg_wc_product_wholesale_pricing_table',
 					( 0 != $atts['product_id'] ? 'alg_wc_whpr_with_product_id' : 'alg_wc_whpr_no_product_id' ),
 					$atts['table_class'] ) ),
 				'table_style'        => $atts['table_style'],
@@ -337,6 +344,8 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	 *
 	 * @version 2.7.0
 	 * @since   1.1.2
+	 *
+	 * @todo    [next] [!!] (dev) `shortcode_atts`: `alg_wc_wholesale_pricing_data` to `alg_wc_ppq_data`?
 	 */
 	function wholesale_pricing_data( $atts ) {
 		$atts = shortcode_atts( array(
@@ -356,6 +365,7 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	 * @version 2.7.0
 	 * @since   1.1.2
 	 *
+	 * @todo    [next] [!!] (dev) `shortcode_atts`: `alg_wc_product_wholesale_pricing_data` to `alg_wc_product_ppq_data`?
 	 * @todo    [maybe] `price_for_qty`? (now can be done with `price_format="<del>%old_price_total%</del> %new_price_total%"`)
 	 */
 	function product_wholesale_pricing_data( $atts ) {

@@ -1,6 +1,6 @@
 <?php
 /**
- * Wholesale Pricing for WooCommerce - User Roles Section Settings
+ * Product Price by Quantity for WooCommerce - User Roles Section Settings
  *
  * @version 2.2.4
  * @since   1.2.0
@@ -29,7 +29,7 @@ class Alg_WC_Wholesale_Pricing_Settings_User_Roles extends Alg_WC_Wholesale_Pric
 	/**
 	 * get_settings.
 	 *
-	 * @version 2.2.4
+	 * @version 3.0.0
 	 * @since   1.2.0
 	 *
 	 * @todo    [maybe] `alg_wc_wholesale_pricing_by_user_role_roles`: better description
@@ -40,7 +40,7 @@ class Alg_WC_Wholesale_Pricing_Settings_User_Roles extends Alg_WC_Wholesale_Pric
 			array(
 				'title'    => __( 'Additional User Roles', 'wholesale-pricing-woocommerce' ),
 				'type'     => 'title',
-				'desc'     => __( 'If you want to set different wholesale pricing options for different user roles, fill this section.', 'wholesale-pricing-woocommerce' ),
+				'desc'     => __( 'If you want to set different product price by quantity options for different user roles, fill in this section.', 'wholesale-pricing-woocommerce' ),
 				'id'       => 'alg_wc_wholesale_pricing_by_user_role_options',
 			),
 			array(

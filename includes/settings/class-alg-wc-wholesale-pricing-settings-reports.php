@@ -1,6 +1,6 @@
 <?php
 /**
- * Wholesale Pricing for WooCommerce - Reports Section Settings
+ * Product Price by Quantity for WooCommerce - Reports Section Settings
  *
  * @version 2.6.4
  * @since   2.6.3

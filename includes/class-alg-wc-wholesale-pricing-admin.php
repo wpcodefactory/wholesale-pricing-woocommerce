@@ -1,8 +1,8 @@
 <?php
 /**
- * Wholesale Pricing for WooCommerce - Admin Class
+ * Product Price by Quantity for WooCommerce - Admin Class
  *
- * @version 2.6.2
+ * @version 3.0.0
  * @since   2.6.2
  *
  * @author  Algoritmika Ltd.
@@ -67,13 +67,13 @@ class Alg_WC_Wholesale_Pricing_Admin {
 	/*
 	 * add_order_meta_box.
 	 *
-	 * @version 2.6.2
+	 * @version 3.0.0
 	 * @since   2.6.2
 	 */
 	function add_order_meta_box( $post_type, $post ) {
 		add_meta_box(
 			'alg-wc-wholesale_pricing-meta-box',
-			__( 'Wholesale Pricing', 'wholesale-pricing-woocommerce' ),
+			__( 'Product Price by Quantity', 'wholesale-pricing-woocommerce' ),
 			array( $this, 'create_order_meta_box' ),
 			'shop_order',
 			'side',
@@ -105,7 +105,7 @@ class Alg_WC_Wholesale_Pricing_Admin {
 	/**
 	 * recalculate_order.
 	 *
-	 * @version 2.6.2
+	 * @version 3.0.0
 	 * @since   2.6.2
 	 *
 	 * @todo    [next] (feature) calculate the wholesale price on item insert at once (i.e. instead of going through all items with a button)
@@ -149,7 +149,7 @@ class Alg_WC_Wholesale_Pricing_Admin {
 		// Calculate totals and save order
 		$order->calculate_totals();
 		if ( 'yes' === get_option( 'alg_wc_wholesale_pricing_admin_recalculate_order_note', 'yes' ) ) {
-			$order->add_order_note( __( 'Wholesale Pricing', 'wholesale-pricing-woocommerce' ) . ': ' .
+			$order->add_order_note( __( 'Product Price by Quantity', 'wholesale-pricing-woocommerce' ) . ': ' .
 				__( 'Order recalculated.', 'wholesale-pricing-woocommerce' ) );
 		}
 		$order->save();

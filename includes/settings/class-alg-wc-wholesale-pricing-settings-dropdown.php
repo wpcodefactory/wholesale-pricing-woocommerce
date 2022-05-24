@@ -1,8 +1,8 @@
 <?php
 /**
- * Wholesale Pricing for WooCommerce - Dropdown Section Settings
+ * Product Price by Quantity for WooCommerce - Dropdown Section Settings
  *
- * @version 2.6.3
+ * @version 3.0.0
  * @since   2.4.2
  *
  * @author  Algoritmika Ltd.
@@ -29,7 +29,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Dropdown extends Alg_WC_Wholesale_Pricin
 	/**
 	 * get_settings.
 	 *
-	 * @version 2.6.3
+	 * @version 3.0.0
 	 * @since   2.4.2
 	 *
 	 * @todo    [next] [!] (dev) `alg_wc_wholesale_pricing_dropdown_filter_values`: default to `yes`?
@@ -42,7 +42,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Dropdown extends Alg_WC_Wholesale_Pricin
 			array(
 				'title'    => __( 'Quantity Dropdown', 'wholesale-pricing-woocommerce' ),
 				'desc'     => __( 'This section allows you to replace standard quantity input with a dropdown.', 'wholesale-pricing-woocommerce' ) . ' ' .
-					__( 'Dropdown values will be equal to the min quantities of the wholesale pricing levels.', 'wholesale-pricing-woocommerce' ),
+					__( 'Dropdown values will be equal to the min quantities of the product price by quantity levels.', 'wholesale-pricing-woocommerce' ),
 				'type'     => 'title',
 				'id'       => 'alg_wc_wholesale_pricing_dropdown_options',
 			),
@@ -50,7 +50,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Dropdown extends Alg_WC_Wholesale_Pricin
 				'title'    => __( 'Dropdown', 'wholesale-pricing-woocommerce' ),
 				'desc'     => '<strong>' . __( 'Enable', 'wholesale-pricing-woocommerce' ) . '</strong>',
 				'desc_tip' => apply_filters( 'alg_wc_wholesale_pricing_settings', sprintf(
-					'You will need <a target="_blank" href="%s">Wholesale Pricing for WooCommerce Pro</a> plugin to enable this section.',
+					'You will need <a target="_blank" href="%s">Product Price by Quantity for WooCommerce Pro</a> plugin to enable this section.',
 						'https://wpfactory.com/item/wholesale-pricing-woocommerce/' ) ),
 				'id'       => 'alg_wc_wholesale_pricing_dropdown_enabled',
 				'default'  => 'no',

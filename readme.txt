@@ -1,17 +1,17 @@
-=== Wholesale Pricing for WooCommerce ===
-Contributors: algoritmika, anbinder
-Tags: woocommerce, wholesale pricing, wholesale, buy more pay less, buy more pay more, woo commerce
+=== Product Price by Quantity for WooCommerce ===
+Contributors: wpfactory, algoritmika, anbinder
+Tags: woocommerce, wholesale pricing, wholesale, buy more pay less, buy more pay more, product price by quantity, price by quantity, dynamic product pricing, dynamic pricing, woo commerce
 Requires at least: 4.4
-Tested up to: 5.9
-Stable tag: 2.8.1
+Tested up to: 6.0
+Stable tag: 3.0.0
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Set WooCommerce wholesale pricing depending on product quantity in cart.
+Set WooCommerce product prices depending on quantity in cart.
 
 == Description ==
 
-**Wholesale Pricing for WooCommerce** plugin lets you set WooCommerce product pricing rules, when product price depends on product **quantity in cart**.
+**Product Price by Quantity for WooCommerce** plugin lets you set WooCommerce product pricing rules, when product price depends on product **quantity in cart**.
 
 ### &#9989; Main Features ###
 
@@ -20,15 +20,15 @@ Set WooCommerce wholesale pricing depending on product quantity in cart.
 * You can use **total cart quantity** or **product quantity**.
 * Optionally you can set to apply wholesale discount only **if no other cart discounts were applied**.
 * Discounts can be set as **percent** from the original price, **fixed** discount, or set **price directly** on per product basis.
-* Additionally you can set different wholesale pricing options for different **user roles**.
-* If you want to display prices table on frontend, use `[alg_wc_wholesale_pricing_table]` and/or `[alg_wc_product_wholesale_pricing_table]` **shortcodes**.
+* Additionally you can set different product price by quantity options for different **user roles**.
+* If you want to display prices table on frontend, use `[alg_wc_ppq_table]` and/or `[alg_wc_product_ppq_table]` **shortcodes**.
 * The plugin also has option to **display price by quantity in real time**, i.e. when customer changes product quantity on single product page.
 * You can also optionally use **formulas** and **custom product fields** in level "Min quantity" and "Discount" options.
 * And more...
 
 ### &#127942; Premium Version ###
 
-With [Wholesale Pricing for WooCommerce Pro](https://wpfactory.com/item/wholesale-pricing-woocommerce/) you can:
+With [Product Price by Quantity for WooCommerce Pro](https://wpfactory.com/item/wholesale-pricing-woocommerce/) you can:
 
 * Set pricing rules per **product category**, per **product tag** or per **product variation**.
 * Automatically display **discount pricing table on single product pages**.
@@ -44,17 +44,28 @@ With [Wholesale Pricing for WooCommerce Pro](https://wpfactory.com/item/wholesal
 
 1. Upload the entire plugin folder to the `/wp-content/plugins/` directory.
 2. Activate the plugin through the "Plugins" menu in WordPress.
-3. Start by visiting plugin settings at "WooCommerce > Settings > Wholesale Pricing".
+3. Start by visiting plugin settings at "WooCommerce > Settings > Product Price by Quantity".
 
 == Changelog ==
 
-= 2.8.2 - 20/05/2022 =
+= 3.0.0 - 24/05/2022 =
 * Dev - General - "Add order discount" option added (defaults to `no`).
-* Dev - Info - "Cart & Checkout Totals" options added.
-* Dev - Info - Admin settings descriptions updated.
-* Dev - Info - Code refactoring.
+* Dev - Info:
+    * "Cart & Checkout Totals" options added.
+    * Admin settings descriptions updated.
+    * Code refactoring.
 * Dev - Developers - `alg_wc_product_wholesale_pricing` filter added.
-* Dev - Add deploy script.
+* Dev - Deploy script added.
+* Dev - Plugin renamed from "Wholesale Pricing for WooCommerce" to "Product Price by Quantity for WooCommerce".
+* Dev - Shortcodes renamed (old shortcodes are still functional):
+    * `[alg_wc_wh_pr_product_meta]` to `[alg_wc_ppq_product_meta]`.
+    * `[alg_wc_wholesale_pricing_table]` to `[alg_wc_ppq_table]`.
+    * `[alg_wc_product_wholesale_pricing_table]` to `[alg_wc_product_ppq_table]`.
+    * `[alg_wc_wholesale_pricing_data]` to `[alg_wc_ppq_data]`.
+    * `[alg_wc_product_wholesale_pricing_data]` to `[alg_wc_product_ppq_data]`.
+    * `[alg_wc_wholesale_pricing_products_list]` to `[alg_wc_ppq_products_list]`.
+* Tested up to: 6.0.
+* WC tested up to: 6.5.
 
 = 2.8.1 - 19/04/2022 =
 * Fix - Info - Cart Page - Item subtotal - "Undefined property: Alg_WC_Wholesale_Pricing_Pro_Frontend::$core" notice fixed.
@@ -68,7 +79,7 @@ With [Wholesale Pricing for WooCommerce Pro](https://wpfactory.com/item/wholesal
 * Dev - Code refactoring.
 
 = 2.8.0 - 18/04/2022 =
-* Fix - Per product - Per variation - Now ignoring if wholesale pricing is enabled for the main variable product.
+* Fix - Per product - Per variation - Now ignoring if product price by quantity is enabled for the main variable product.
 * Fix - Shortcodes - `[alg_wc_product_wholesale_pricing_table]` - `add_discount_row` fixed.
 * Dev - Info - Discount Pricing Table - Single product page - "Position" (and "Priority") options added.
 * Dev - Info - Discount Pricing Table - "Shop page" options added.
@@ -248,7 +259,7 @@ With [Wholesale Pricing for WooCommerce Pro](https://wpfactory.com/item/wholesal
 
 = 1.4.1 - 19/06/2020 =
 * Fix - Advanced - Products to exclude - Bug fixed.
-* Dev - Price Display by Quantity - Checking if wholesale pricing is enabled for the product now (e.g. "Products to include/exclude" option).
+* Dev - Price Display by Quantity - Checking if product price by quantity is enabled for the product now (e.g. "Products to include/exclude" option).
 * Dev - Advanced - Products to include/exclude - Product ID info added to the dropdown.
 * Dev - Reset Settings - Description updated.
 * Tested up to: 5.4.

@@ -1,8 +1,8 @@
 <?php
 /**
- * Wholesale Pricing for WooCommerce - Tools Section Settings
+ * Product Price by Quantity for WooCommerce - Tools Section Settings
  *
- * @version 2.6.0
+ * @version 3.0.0
  * @since   2.6.0
  *
  * @author  Algoritmika Ltd.
@@ -29,7 +29,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Tools extends Alg_WC_Wholesale_Pricing_S
 	/**
 	 * get_settings.
 	 *
-	 * @version 2.6.0
+	 * @version 3.0.0
 	 * @since   2.6.0
 	 */
 	function get_settings() {
@@ -44,7 +44,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Tools extends Alg_WC_Wholesale_Pricing_S
 			array(
 				'title'    => __( 'Delete per product settings', 'wholesale-pricing-woocommerce' ),
 				'desc'     => '<strong>' . __( 'Delete', 'wholesale-pricing-woocommerce' ) . '</strong>',
-				'desc_tip' => sprintf( __( 'Will delete all %s wholesale pricing settings.', 'wholesale-pricing-woocommerce' ),
+				'desc_tip' => sprintf( __( 'Will delete all %s product price by quantity settings.', 'wholesale-pricing-woocommerce' ),
 					'<strong>' . __( 'per product', 'wholesale-pricing-woocommerce' ) . '</strong>' ),
 				'id'       => 'alg_wc_wholesale_pricing_tool_delete_product_meta',
 				'default'  => 'no',
@@ -53,7 +53,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Tools extends Alg_WC_Wholesale_Pricing_S
 			array(
 				'title'    => __( 'Delete per term settings', 'wholesale-pricing-woocommerce' ),
 				'desc'     => '<strong>' . __( 'Delete', 'wholesale-pricing-woocommerce' ) . '</strong>',
-				'desc_tip' => sprintf( __( 'Will delete all %s wholesale pricing settings.', 'wholesale-pricing-woocommerce' ),
+				'desc_tip' => sprintf( __( 'Will delete all %s product price by quantity settings.', 'wholesale-pricing-woocommerce' ),
 					sprintf( __( '%s and %s', 'wholesale-pricing-woocommerce' ),
 						'<strong>' . __( 'per product category', 'wholesale-pricing-woocommerce' ) . '</strong>',
 						'<strong>' . __( 'per product tag', 'wholesale-pricing-woocommerce' )      . '</strong>' ) ),

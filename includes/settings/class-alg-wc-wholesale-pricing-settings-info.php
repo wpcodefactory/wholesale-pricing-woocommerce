@@ -1,8 +1,8 @@
 <?php
 /**
- * Wholesale Pricing for WooCommerce - Info Section Settings
+ * Product Price by Quantity for WooCommerce - Info Section Settings
  *
- * @version 2.8.2
+ * @version 3.0.0
  * @since   2.0.0
  *
  * @author  Algoritmika Ltd.
@@ -29,10 +29,9 @@ class Alg_WC_Wholesale_Pricing_Settings_Info extends Alg_WC_Wholesale_Pricing_Se
 	/**
 	 * get_settings.
 	 *
-	 * @version 2.8.2
+	 * @version 3.0.0
 	 * @since   2.0.0
 	 *
-	 * @todo    [now] [!!!] (dev) `alg_wc_wholesale_pricing_info_cart_totals_options`: as an array?
 	 * @todo    [next] (desc) `alg_wc_wholesale_pricing_info_on_single_product_hide_variable`: better desc?
 	 * @todo    [next] (desc) `alg_wc_wholesale_pricing_info_on_single_product_variable`: better desc?
 	 * @todo    [next] (desc) Replace Price: better desc?
@@ -84,7 +83,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Info extends Alg_WC_Wholesale_Pricing_Se
 				'title'    => __( 'Item subtotal', 'wholesale-pricing-woocommerce' ),
 				'desc'     => __( 'Show', 'wholesale-pricing-woocommerce' ),
 				'desc_tip' => apply_filters( 'alg_wc_wholesale_pricing_settings', sprintf(
-					'You will need <a target="_blank" href="%s">Wholesale Pricing for WooCommerce Pro</a> plugin to enable this option.',
+					'You will need <a target="_blank" href="%s">Product Price by Quantity for WooCommerce Pro</a> plugin to enable this option.',
 						'https://wpfactory.com/item/wholesale-pricing-woocommerce/' ) ),
 				'id'       => 'alg_wc_wholesale_pricing_show_info_on_cart_subtotal',
 				'default'  => 'no',
@@ -114,7 +113,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Info extends Alg_WC_Wholesale_Pricing_Se
 				'title'    => __( 'Cart & checkout totals', 'wholesale-pricing-woocommerce' ),
 				'desc'     => __( 'Show', 'wholesale-pricing-woocommerce' ),
 				'desc_tip' => apply_filters( 'alg_wc_wholesale_pricing_settings', sprintf(
-					'You will need <a target="_blank" href="%s">Wholesale Pricing for WooCommerce Pro</a> plugin to enable this option.',
+					'You will need <a target="_blank" href="%s">Product Price by Quantity for WooCommerce Pro</a> plugin to enable this option.',
 						'https://wpfactory.com/item/wholesale-pricing-woocommerce/' ) ),
 				'id'       => 'alg_wc_wholesale_pricing_info_cart_totals_enabled',
 				'default'  => 'no',
@@ -150,12 +149,12 @@ class Alg_WC_Wholesale_Pricing_Settings_Info extends Alg_WC_Wholesale_Pricing_Se
 				'type'     => 'title',
 				'id'       => 'alg_wc_wholesale_pricing_info_options',
 				'desc'     => __( 'Show discount pricing table on single product and shop pages.', 'wholesale-pricing-woocommerce' ) . '<br>' .
-					sprintf( __( 'You can also display wholesale pricing info anywhere on your site with %s <a target="_blank" href="%s">shortcodes</a>.', 'wholesale-pricing-woocommerce' ),
+					sprintf( __( 'You can also display product price by quantity info anywhere on your site with %s <a target="_blank" href="%s">shortcodes</a>.', 'wholesale-pricing-woocommerce' ),
 						'<code>' . implode( '</code>, <code>', array(
-							'[alg_wc_wholesale_pricing_table]',
-							'[alg_wc_product_wholesale_pricing_table]',
-							'[alg_wc_wholesale_pricing_data]',
-							'[alg_wc_product_wholesale_pricing_data]',
+							'[alg_wc_ppq_table]',
+							'[alg_wc_product_ppq_table]',
+							'[alg_wc_ppq_data]',
+							'[alg_wc_product_ppq_data]',
 						) ) . '</code>',
 						'https://wpfactory.com/item/wholesale-pricing-woocommerce/#shortcodes'
 					),
@@ -164,7 +163,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Info extends Alg_WC_Wholesale_Pricing_Se
 				'title'    => __( 'Single product page', 'wholesale-pricing-woocommerce' ),
 				'desc'     => __( 'Show', 'wholesale-pricing-woocommerce' ),
 				'desc_tip' => apply_filters( 'alg_wc_wholesale_pricing_settings', sprintf(
-					'You will need <a target="_blank" href="%s">Wholesale Pricing for WooCommerce Pro</a> plugin to enable this option.',
+					'You will need <a target="_blank" href="%s">Product Price by Quantity for WooCommerce Pro</a> plugin to enable this option.',
 						'https://wpfactory.com/item/wholesale-pricing-woocommerce/' ) ),
 				'id'       => 'alg_wc_wholesale_pricing_show_info_on_single_product_page',
 				'default'  => 'no',
@@ -195,16 +194,16 @@ class Alg_WC_Wholesale_Pricing_Settings_Info extends Alg_WC_Wholesale_Pricing_Se
 			array(
 				'desc'     => __( 'Template for <strong>non-variable products</strong>', 'wholesale-pricing-woocommerce' ) . '<br>' .
 					sprintf( __( 'E.g.: %s', 'wholesale-pricing-woocommerce' ),
-						'<code>' . esc_html( '[alg_wc_product_wholesale_pricing_table table_format="vertical" heading_format="from %level_min_qty% pcs." price_row_format="%new_price_single%"]' ) . '</code>' ),
+						'<code>' . esc_html( '[alg_wc_product_ppq_table table_format="vertical" heading_format="from %level_min_qty% pcs." price_row_format="%new_price_single%"]' ) . '</code>' ),
 				'id'       => 'alg_wc_wholesale_pricing_info_on_single_product',
-				'default'  => '[alg_wc_product_wholesale_pricing_table]',
+				'default'  => '[alg_wc_product_ppq_table]',
 				'type'     => 'textarea',
 				'css'      => 'width:100%;',
 			),
 			array(
 				'desc'     => __( 'Template for <strong>variable products</strong>', 'wholesale-pricing-woocommerce' ) . '<br>' .
 					sprintf( __( 'E.g.: %s', 'wholesale-pricing-woocommerce' ),
-						'<code>' . esc_html( '[alg_wc_product_wholesale_pricing_table table_format="vertical" heading_format="from %level_min_qty% pcs." price_row_format="%new_price_single%"]' ) . '</code>' ),
+						'<code>' . esc_html( '[alg_wc_product_ppq_table table_format="vertical" heading_format="from %level_min_qty% pcs." price_row_format="%new_price_single%"]' ) . '</code>' ),
 				'id'       => 'alg_wc_wholesale_pricing_info_on_single_product_variable',
 				'default'  => '',
 				'type'     => 'textarea',
@@ -214,9 +213,9 @@ class Alg_WC_Wholesale_Pricing_Settings_Info extends Alg_WC_Wholesale_Pricing_Se
 				'desc'     => __( 'Template for <strong>variations</strong>', 'wholesale-pricing-woocommerce' ) . '<br>' .
 					sprintf( __( 'Available placeholders: %s.', 'wholesale-pricing-woocommerce' ), '<code>%variation_id%</code>' ) . '<br>' .
 					sprintf( __( 'E.g.: %s', 'wholesale-pricing-woocommerce' ),
-						'<code>' . esc_html( '[alg_wc_product_wholesale_pricing_table product_id="%variation_id%" table_format="horizontal" price_row_format="<del>%old_price_single%</del> %new_price_single%"]' ) . '</code>' ),
+						'<code>' . esc_html( '[alg_wc_product_ppq_table product_id="%variation_id%" table_format="horizontal" price_row_format="<del>%old_price_single%</del> %new_price_single%"]' ) . '</code>' ),
 				'id'       => 'alg_wc_wholesale_pricing_info_on_single_product_variation',
-				'default'  => '[alg_wc_product_wholesale_pricing_table product_id="%variation_id%"]',
+				'default'  => '[alg_wc_product_ppq_table product_id="%variation_id%"]',
 				'type'     => 'textarea',
 				'css'      => 'width:100%;',
 			),
@@ -231,7 +230,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Info extends Alg_WC_Wholesale_Pricing_Se
 				'title'    => __( 'Shop page', 'wholesale-pricing-woocommerce' ),
 				'desc'     => __( 'Show', 'wholesale-pricing-woocommerce' ),
 				'desc_tip' => apply_filters( 'alg_wc_wholesale_pricing_settings', sprintf(
-					'You will need <a target="_blank" href="%s">Wholesale Pricing for WooCommerce Pro</a> plugin to enable this option.',
+					'You will need <a target="_blank" href="%s">Product Price by Quantity for WooCommerce Pro</a> plugin to enable this option.',
 						'https://wpfactory.com/item/wholesale-pricing-woocommerce/' ) ),
 				'id'       => 'alg_wc_wholesale_pricing_show_info_loop',
 				'default'  => 'no',
@@ -262,9 +261,9 @@ class Alg_WC_Wholesale_Pricing_Settings_Info extends Alg_WC_Wholesale_Pricing_Se
 			array(
 				'desc'     => __( 'Template', 'wholesale-pricing-woocommerce' ) . '<br>' .
 					sprintf( __( 'E.g.: %s', 'wholesale-pricing-woocommerce' ),
-						'<code>' . esc_html( '[alg_wc_product_wholesale_pricing_table table_format="vertical" heading_format="from %level_min_qty% pcs." price_row_format="%new_price_single%"]' ) . '</code>' ),
+						'<code>' . esc_html( '[alg_wc_product_ppq_table table_format="vertical" heading_format="from %level_min_qty% pcs." price_row_format="%new_price_single%"]' ) . '</code>' ),
 				'id'       => 'alg_wc_wholesale_pricing_info_loop',
-				'default'  => '[alg_wc_product_wholesale_pricing_table]',
+				'default'  => '[alg_wc_product_ppq_table]',
 				'type'     => 'textarea',
 				'css'      => 'width:100%;',
 			),
@@ -283,7 +282,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Info extends Alg_WC_Wholesale_Pricing_Se
 				'title'    => __( 'Single product page', 'wholesale-pricing-woocommerce' ),
 				'desc'     => __( 'Replace', 'wholesale-pricing-woocommerce' ),
 				'desc_tip' => apply_filters( 'alg_wc_wholesale_pricing_settings', sprintf(
-					'You will need <a target="_blank" href="%s">Wholesale Pricing for WooCommerce Pro</a> plugin to enable this option.',
+					'You will need <a target="_blank" href="%s">Product Price by Quantity for WooCommerce Pro</a> plugin to enable this option.',
 						'https://wpfactory.com/item/wholesale-pricing-woocommerce/' ) ),
 				'id'       => 'alg_wc_wholesale_pricing_replace_price_on_single_enabled',
 				'default'  => 'no',
@@ -293,7 +292,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Info extends Alg_WC_Wholesale_Pricing_Se
 			array(
 				'desc_tip' => __( 'Template for single product pages.', 'wholesale-pricing-woocommerce' ),
 				'id'       => 'alg_wc_wholesale_pricing_replace_price_on_single_template',
-				'default'  => '[alg_wc_product_wholesale_pricing_data field="price" level_num="1" product_id="%product_id%"]',
+				'default'  => '[alg_wc_product_ppq_data field="price" level_num="1" product_id="%product_id%"]',
 				'type'     => 'textarea',
 				'css'      => 'width:100%;',
 			),
@@ -301,7 +300,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Info extends Alg_WC_Wholesale_Pricing_Se
 				'title'    => __( 'Shop page', 'wholesale-pricing-woocommerce' ),
 				'desc'     => __( 'Replace', 'wholesale-pricing-woocommerce' ),
 				'desc_tip' => apply_filters( 'alg_wc_wholesale_pricing_settings', sprintf(
-					'You will need <a target="_blank" href="%s">Wholesale Pricing for WooCommerce Pro</a> plugin to enable this option.',
+					'You will need <a target="_blank" href="%s">Product Price by Quantity for WooCommerce Pro</a> plugin to enable this option.',
 						'https://wpfactory.com/item/wholesale-pricing-woocommerce/' ) ),
 				'id'       => 'alg_wc_wholesale_pricing_replace_price_on_loop_enabled',
 				'default'  => 'no',
@@ -311,7 +310,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Info extends Alg_WC_Wholesale_Pricing_Se
 			array(
 				'desc_tip' => __( 'Template for shop pages.', 'wholesale-pricing-woocommerce' ),
 				'id'       => 'alg_wc_wholesale_pricing_replace_price_on_loop_template',
-				'default'  => '[alg_wc_product_wholesale_pricing_data field="price" level_num="1" product_id="%product_id%"]',
+				'default'  => '[alg_wc_product_ppq_data field="price" level_num="1" product_id="%product_id%"]',
 				'type'     => 'textarea',
 				'css'      => 'width:100%;',
 			),

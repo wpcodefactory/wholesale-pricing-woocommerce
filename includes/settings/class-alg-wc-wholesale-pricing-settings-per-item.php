@@ -1,8 +1,8 @@
 <?php
 /**
- * Wholesale Pricing for WooCommerce - Per Item Settings
+ * Product Price by Quantity for WooCommerce - Per Item Settings
  *
- * @version 2.0.0
+ * @version 3.0.0
  * @since   2.0.0
  *
  * @author  Algoritmika Ltd.
@@ -27,7 +27,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Item {
 	/**
 	 * get_options.
 	 *
-	 * @version 2.0.0
+	 * @version 3.0.0
 	 * @since   2.0.0
 	 *
 	 * @todo    [next] [maybe] use `get_total_levels()` etc. instead of `get_post_meta()` / `get_term_meta()`
@@ -132,7 +132,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Item {
 							'type'              => 'title',
 							'background-color'  => '#dfdfdf',
 							'title'             => ( 'product' === $term_or_product ?
-								$user_role_title : __( 'Wholesale Pricing', 'wholesale-pricing-woocommerce' ) . ': ' . $user_role_title ),
+								$user_role_title : __( 'Product Price by Quantity', 'wholesale-pricing-woocommerce' ) . ': ' . $user_role_title ),
 						),
 					) );
 					$options = array_merge( $options, array(
