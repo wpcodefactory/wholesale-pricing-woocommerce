@@ -3,7 +3,7 @@ Contributors: wpcodefactory, algoritmika, anbinder
 Tags: woocommerce, wholesale pricing, wholesale, buy more pay less, buy more pay more, product price by quantity, price by quantity, dynamic product pricing, dynamic pricing, woo commerce
 Requires at least: 4.4
 Tested up to: 6.0
-Stable tag: 3.0.1
+Stable tag: 3.1.0
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -47,6 +47,22 @@ With [Product Price by Quantity for WooCommerce Pro](https://wpfactory.com/item/
 3. Start by visiting plugin settings at "WooCommerce > Settings > Product Price by Quantity".
 
 == Changelog ==
+
+= 3.1.0 - 04/08/2022 =
+* Fix - Shortcodes - `[alg_wc_product_ppq_data]` - Possible "Undefined variable $is_enabled..." PHP warning fixed.
+* Fix - Shortcodes - `get_product_price()` - Possible tax display errors in `fixed` and `price_directly` discount types fixed.
+* Dev - Shortcodes - `get_product_price()` - New placeholders added:
+    * `%old_price_single_incl_tax%`,
+    * `%new_price_single_incl_tax%`,
+    * `%old_price_total_incl_tax%`,
+    * `%new_price_total_incl_tax%`,
+    * `%old_price_single_excl_tax%`,
+    * `%new_price_single_excl_tax%`,
+    * `%old_price_total_excl_tax%`,
+    * `%new_price_total_excl_tax%`.
+* Dev - Price Display by Quantity - Advanced Options - "Price identifier" options added.
+* Dev - Price Display by Quantity - Settings rearranged ("Advanced Options" subsection added).
+* WC tested up to: 6.7.
 
 = 3.0.1 - 24/05/2022 =
 * Contributor fixed.

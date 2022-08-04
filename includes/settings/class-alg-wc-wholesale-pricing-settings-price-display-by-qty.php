@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Price Display by Qty Section Settings
  *
- * @version 3.0.0
+ * @version 3.1.0
  * @since   1.3.0
  *
  * @author  Algoritmika Ltd.
@@ -29,9 +29,11 @@ class Alg_WC_Wholesale_Pricing_Settings_Price_Display_By_Qty extends Alg_WC_Whol
 	/**
 	 * get_settings.
 	 *
-	 * @version 3.0.0
+	 * @version 3.1.0
 	 * @since   1.3.0
 	 *
+	 * @todo    [now] (dev) Price identifier: store in array?
+	 * @todo    [now] (desc) Price identifier: add desc
 	 * @todo    [maybe] (desc) `alg_wc_wholesale_pricing_price_by_qty_standard_qty_input`: better desc?
 	 * @todo    [maybe] (desc) output `get_placeholders_desc()` in *section* desc instead
 	 */
@@ -52,17 +54,17 @@ class Alg_WC_Wholesale_Pricing_Settings_Price_Display_By_Qty extends Alg_WC_Whol
 				'type'     => 'checkbox',
 			),
 			array(
-				'title'    => __( 'Template (no discount)', 'wholesale-pricing-woocommerce' ),
-				'desc_tip' => __( 'Price display by quantity template for quantities with no discount.', 'wholesale-pricing-woocommerce' ),
-				'desc'     => $this->get_placeholders_desc( array(
-						'%qty%',
-						'%old_price_single%',
-						'%old_price_total%',
-					) ),
-				'id'       => 'alg_wc_wholesale_pricing_price_by_qty_display_template_zero',
-				'default'  => sprintf( __( '%s for %s pcs.', 'wholesale-pricing-woocommerce' ), '%old_price_total%', '%qty%' ),
-				'type'     => 'textarea',
-				'css'      => 'width:100%;',
+				'title'    => __( 'Position', 'wholesale-pricing-woocommerce' ),
+				'desc_tip' => __( 'Price display by quantity position on the frontend.', 'wholesale-pricing-woocommerce' ),
+				'id'       => 'alg_wc_wholesale_pricing_price_by_qty_display_position',
+				'default'  => 'instead',
+				'type'     => 'select',
+				'class'    => 'chosen_select',
+				'options'  => array(
+					'instead' => __( 'Instead of the price', 'wholesale-pricing-woocommerce' ),
+					'before'  => __( 'Before the price', 'wholesale-pricing-woocommerce' ),
+					'after'   => __( 'After the price', 'wholesale-pricing-woocommerce' ),
+				),
 			),
 			array(
 				'title'    => __( 'Template', 'wholesale-pricing-woocommerce' ),
@@ -85,17 +87,26 @@ class Alg_WC_Wholesale_Pricing_Settings_Price_Display_By_Qty extends Alg_WC_Whol
 				'css'      => 'width:100%;',
 			),
 			array(
-				'title'    => __( 'Position', 'wholesale-pricing-woocommerce' ),
-				'desc_tip' => __( 'Price display by quantity position on the frontend.', 'wholesale-pricing-woocommerce' ),
-				'id'       => 'alg_wc_wholesale_pricing_price_by_qty_display_position',
-				'default'  => 'instead',
-				'type'     => 'select',
-				'class'    => 'chosen_select',
-				'options'  => array(
-					'instead' => __( 'Instead of the price', 'wholesale-pricing-woocommerce' ),
-					'before'  => __( 'Before the price', 'wholesale-pricing-woocommerce' ),
-					'after'   => __( 'After the price', 'wholesale-pricing-woocommerce' ),
-				),
+				'title'    => __( 'Template (no discount)', 'wholesale-pricing-woocommerce' ),
+				'desc_tip' => __( 'Price display by quantity template for quantities with no discount.', 'wholesale-pricing-woocommerce' ),
+				'desc'     => $this->get_placeholders_desc( array(
+						'%qty%',
+						'%old_price_single%',
+						'%old_price_total%',
+					) ),
+				'id'       => 'alg_wc_wholesale_pricing_price_by_qty_display_template_zero',
+				'default'  => sprintf( __( '%s for %s pcs.', 'wholesale-pricing-woocommerce' ), '%old_price_total%', '%qty%' ),
+				'type'     => 'textarea',
+				'css'      => 'width:100%;',
+			),
+			array(
+				'type'     => 'sectionend',
+				'id'       => 'alg_wc_wholesale_pricing_price_by_qty_display_options',
+			),
+			array(
+				'title'    => __( 'Advanced Options', 'wholesale-pricing-woocommerce' ),
+				'type'     => 'title',
+				'id'       => 'alg_wc_wholesale_pricing_price_by_qty_display_advanced_options',
 			),
 			array(
 				'title'    => __( 'Apply to all products', 'wholesale-pricing-woocommerce' ),
@@ -104,13 +115,6 @@ class Alg_WC_Wholesale_Pricing_Settings_Price_Display_By_Qty extends Alg_WC_Whol
 				'id'       => 'alg_wc_wholesale_pricing_price_by_qty_all_products',
 				'default'  => 'yes',
 				'type'     => 'checkbox',
-			),
-			array(
-				'title'    => __( 'Refresh interval', 'wholesale-pricing-woocommerce' ),
-				'desc'     => __( 'milliseconds', 'wholesale-pricing-woocommerce' ),
-				'id'       => 'alg_wc_wholesale_pricing_price_by_qty_display_interval_ms',
-				'default'  => 500,
-				'type'     => 'number',
 			),
 			array(
 				'title'    => __( 'Variable products', 'wholesale-pricing-woocommerce' ),
@@ -130,8 +134,27 @@ class Alg_WC_Wholesale_Pricing_Settings_Price_Display_By_Qty extends Alg_WC_Whol
 				'type'     => 'checkbox',
 			),
 			array(
+				'title'    => __( 'Refresh interval', 'wholesale-pricing-woocommerce' ),
+				'desc'     => __( 'milliseconds', 'wholesale-pricing-woocommerce' ),
+				'id'       => 'alg_wc_wholesale_pricing_price_by_qty_display_interval_ms',
+				'default'  => 500,
+				'type'     => 'number',
+			),
+			array(
+				'title'    => __( 'Price identifier', 'wholesale-pricing-woocommerce' ),
+				'id'       => 'alg_wc_wholesale_pricing_price_by_qty_display_id',
+				'default'  => 'p.price',
+				'type'     => 'text',
+			),
+			array(
+				'desc'     => __( 'Variations', 'wholesale-pricing-woocommerce' ),
+				'id'       => 'alg_wc_wholesale_pricing_price_by_qty_display_id_variation',
+				'default'  => 'div.woocommerce-variation-price span.price',
+				'type'     => 'text',
+			),
+			array(
 				'type'     => 'sectionend',
-				'id'       => 'alg_wc_wholesale_pricing_price_by_qty_display_options',
+				'id'       => 'alg_wc_wholesale_pricing_price_by_qty_display_advanced_options',
 			),
 		);
 

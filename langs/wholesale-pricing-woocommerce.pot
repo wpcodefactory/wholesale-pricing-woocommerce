@@ -33,18 +33,18 @@ msgstr ""
 
 #: includes/class-alg-wc-wholesale-pricing-frontend.php:106
 #: includes/class-alg-wc-wholesale-pricing-frontend.php:109
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:63
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:82
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:84
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:98
 #, php-format
 msgid "%s for %s pcs."
 msgstr ""
 
 #: includes/class-alg-wc-wholesale-pricing-frontend.php:107
-#: includes/class-alg-wc-wholesale-pricing-frontend.php:208
+#: includes/class-alg-wc-wholesale-pricing-frontend.php:210
 #: includes/pro/class-alg-wc-wholesale-pricing-pro-frontend.php:176
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:78
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:97
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:83
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:85
 #, php-format
 msgid "You save: %s"
 msgstr ""
@@ -149,6 +149,7 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-all-products.php:49
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-all-products.php:127
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:107
 msgid "Advanced Options"
 msgstr ""
 
@@ -172,9 +173,9 @@ msgstr ""
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:229
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:242
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-per-item.php:55
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:49
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:102
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:126
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:51
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:113
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:130
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-user-roles.php:48
 msgid "Enable"
 msgstr ""
@@ -533,7 +534,7 @@ msgstr ""
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:94
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:124
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:262
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:68
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:70
 msgid "Template"
 msgstr ""
 
@@ -595,7 +596,7 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:174
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:241
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:88
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:57
 msgid "Position"
 msgstr ""
 
@@ -787,91 +788,99 @@ msgstr ""
 msgid "Price Display by Qty"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:42
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:44
 msgid "Price Display by Quantity"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:43
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:45
 msgid ""
 "This section allows you to display product price by quantity in real time, i."
 "e. when customer changes product quantity on single product page."
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:48
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:50
 msgid "Price display by quantity"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:55
-msgid "Template (no discount)"
-msgstr ""
-
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:56
-msgid "Price display by quantity template for quantities with no discount."
-msgstr ""
-
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:69
-msgid "Price display by quantity template for quantities with discount."
-msgstr ""
-
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:89
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:58
 msgid "Price display by quantity position on the frontend."
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:95
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:64
 msgid "Instead of the price"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:96
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:65
 msgid "Before the price"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:97
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:66
 msgid "After the price"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:101
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:71
+msgid "Price display by quantity template for quantities with discount."
+msgstr ""
+
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:90
+msgid "Template (no discount)"
+msgstr ""
+
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:91
+msgid "Price display by quantity template for quantities with no discount."
+msgstr ""
+
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:112
 msgid "Apply to all products"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:103
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:114
 msgid ""
 "Apply to all products vs. only to products with the enabled product price by "
 "quantity."
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:109
-msgid "Refresh interval"
-msgstr ""
-
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:110
-msgid "milliseconds"
-msgstr ""
-
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:116
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:120
 msgid "Variable products"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:117
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:121
 msgid "Display in variation price"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:118
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:122
 msgid "Will display price by quantity in variation price section."
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:119
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:123
 msgid ""
 "Ignored if it's not a variable product, or if variation prices are the same."
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:125
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:129
 msgid "Force standard quantity input"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:127
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:131
 msgid ""
 "Enable this if you are using non-standard quantity input (e.g. dropdown), "
 "and having issues with the price display by quantity."
+msgstr ""
+
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:137
+msgid "Refresh interval"
+msgstr ""
+
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:138
+msgid "milliseconds"
+msgstr ""
+
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:144
+msgid "Price identifier"
+msgstr ""
+
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:150
+msgid "Variations"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-reports.php:25

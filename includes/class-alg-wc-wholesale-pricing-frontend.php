@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Frontend Class
  *
- * @version 2.6.5
+ * @version 3.1.0
  * @since   2.0.0
  *
  * @author  Algoritmika Ltd.
@@ -117,7 +117,7 @@ class Alg_WC_Wholesale_Pricing_Frontend {
 	/**
 	 * enqueue_scripts_price_display_by_qty.
 	 *
-	 * @version 2.6.5
+	 * @version 3.1.0
 	 * @since   1.3.0
 	 */
 	function enqueue_scripts_price_display_by_qty() {
@@ -143,6 +143,8 @@ class Alg_WC_Wholesale_Pricing_Frontend {
 					'position'                     => get_option( 'alg_wc_wholesale_pricing_price_by_qty_display_position', 'instead' ),
 					'interval_ms'                  => get_option( 'alg_wc_wholesale_pricing_price_by_qty_display_interval_ms', 500 ),
 					'do_force_standard_qty_input'  => ( 'yes' === get_option( 'alg_wc_wholesale_pricing_price_by_qty_standard_qty_input', 'no' ) ),
+					'price_identifier'             => get_option( 'alg_wc_wholesale_pricing_price_by_qty_display_id', 'p.price' ),
+					'price_identifier_variation'   => get_option( 'alg_wc_wholesale_pricing_price_by_qty_display_id_variation', 'div.woocommerce-variation-price span.price' ),
 				)
 			);
 		}

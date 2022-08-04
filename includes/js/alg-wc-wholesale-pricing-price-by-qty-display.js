@@ -1,7 +1,7 @@
 /**
  * alg-wc-wholesale-pricing-price-by-qty-display.js
  *
- * @version 2.4.2
+ * @version 3.1.0
  * @since   1.3.0
  *
  * @author  Algoritmika Ltd.
@@ -12,13 +12,13 @@ jQuery( document ).ready( function() {
 	/**
 	 * vars.
 	 *
-	 * @version 2.4.2
+	 * @version 3.1.0
 	 * @since   1.3.0
 	 */
 	var alg_wc_wh_pr_input_timer;
 	var alg_wc_wh_pr_input_timer_interval_ms = alg_wc_wh_pr_pbqd_obj.interval_ms;
 	var alg_wc_wh_pr_price_identifier = ( 'variable' === alg_wc_wh_pr_pbqd_obj.product_type && alg_wc_wh_pr_pbqd_obj.is_variable_different_prices ?
-		'div.woocommerce-variation-price span.price' : 'p.price' );
+		alg_wc_wh_pr_pbqd_obj.price_identifier_variation : alg_wc_wh_pr_pbqd_obj.price_identifier );
 	var alg_wc_wh_pr_price_display_by_qty_element_id = 'p.alg-wc-wholesale-pricing-price-display-by-qty';
 	var alg_wc_wh_pr_price_display_by_qty_element    = '<p class="alg-wc-wholesale-pricing-price-display-by-qty"></p>';
 

@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Shortcodes
  *
- * @version 3.0.0
+ * @version 3.1.0
  * @since   1.0.0
  *
  * @author  Algoritmika Ltd.
@@ -362,13 +362,15 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	/**
 	 * product_wholesale_pricing_data.
 	 *
-	 * @version 2.7.0
+	 * @version 3.1.0
 	 * @since   1.1.2
 	 *
 	 * @todo    [next] [!!] (dev) `shortcode_atts`: `alg_wc_product_wholesale_pricing_data` to `alg_wc_product_ppq_data`?
 	 * @todo    [maybe] `price_for_qty`? (now can be done with `price_format="<del>%old_price_total%</del> %new_price_total%"`)
 	 */
 	function product_wholesale_pricing_data( $atts ) {
+
+		// Atts
 		$atts = shortcode_atts( array(
 			'product_id'            => 0,
 			'price_format'          => '<del>%old_price_single%</del> %new_price_single%',
@@ -379,24 +381,32 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 			'after'                 => '',
 			'use_variation'         => 'no',
 		), $atts, 'alg_wc_product_wholesale_pricing_data' );
-		$product    = ( 0 != $atts['product_id'] ? wc_get_product( $atts['product_id'] ) : wc_get_product() );
-		$product_id = $this->get_core()->get_product_id( $product );
-		if ( ! $product_id || ! ( $is_enabled = $this->get_core()->is_enabled( $product_id ) ) ) {
+
+		// Get product
+		if (
+			! ( $product    = ( 0 != $atts['product_id'] ? wc_get_product( $atts['product_id'] ) : wc_get_product() ) ) ||
+			! ( $product_id = $this->get_core()->get_product_id( $product ) )
+		) {
+			return '';
+		}
+
+		// If not enabled, try (first) variation
+		if ( ! $this->get_core()->is_enabled( $product_id ) && 'yes' === $atts['use_variation'] && $product->is_type( 'variable' ) ) {
 			$is_variation_found = false;
-			if ( ! $is_enabled && 'yes' === $atts['use_variation'] && $product->is_type( 'variable' ) ) {
-				foreach ( $product->get_children() as $child_id ) {
-					if ( $this->get_core()->is_enabled( $child_id ) ) {
-						$product_id         = $child_id;
-						$product            = wc_get_product( $child_id );
-						$is_variation_found = true;
-						break;
-					}
+			foreach ( $product->get_children() as $child_id ) {
+				if ( $this->get_core()->is_enabled( $child_id ) ) {
+					$product_id         = $child_id;
+					$product            = wc_get_product( $child_id );
+					$is_variation_found = true;
+					break;
 				}
 			}
 			if ( ! $is_variation_found ) {
 				return '';
 			}
 		}
+
+		// Data
 		$price_levels = $this->get_core()->get_levels_data( $product_id, false, 'asc' );
 		$level_num    = ( 'last' === $atts['level_num'] ? count( $price_levels ) : $atts['level_num'] ) - 1;
 		if ( isset( $price_levels[ $level_num ] ) ) {
@@ -413,12 +423,13 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 		} else {
 			return '';
 		}
+
 	}
 
 	/**
 	 * get_product_price.
 	 *
-	 * @version 2.6.0
+	 * @version 3.1.0
 	 * @since   1.1.2
 	 *
 	 * @todo    [next] [!!] (fix) Variable: per variation enabled
@@ -427,72 +438,84 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 		if ( ! $product->get_price() ) {
 			return '';
 		}
-		$do_hide_currency     = ( 'yes' === $hide_currency );
-		$price                = '';
-		$price_original       = '';
-		$price_total          = '';
-		$price_total_original = '';
-		if ( $product->is_type( 'variable' ) ) {
-			// Variable
-			$prices       = $product->get_variation_prices( false );
-			$min_key      = key( $prices['price'] );
-			end( $prices['price'] );
-			$max_key      = key( $prices['price'] );
-			$min_product  = wc_get_product( $min_key );
-			$max_product  = wc_get_product( $max_key );
-			$min          = ( $min_product ? wc_get_price_to_display( $min_product ) : false );
-			$max          = ( $max_product ? wc_get_price_to_display( $max_product ) : false );
-			$min_original = $min;
-			$max_original = $max;
-			switch ( $discount_type ) {
-				case 'price_directly':
-					$min  = $discount;
-					$max  = $discount;
-					break;
-				case 'fixed':
-					$min  = $min - $discount;
-					$max  = $max - $discount;
-					break;
-				default: // 'percent'
-					$coef = 1.0 - ( $discount / 100.0 );
-					$min  = $min * $coef;
-					$max  = $max * $coef;
-					break;
+
+		foreach ( array( '', '_incl_tax', '_excl_tax' ) as $tax_display ) {
+			$price_func           = ( '' === $tax_display ? 'wc_get_price_to_display' : ( '_incl_tax' === $tax_display ? 'wc_get_price_including_tax' : 'wc_get_price_excluding_tax' ) );
+			$do_hide_currency     = ( 'yes' === $hide_currency );
+			$price                = '';
+			$price_original       = '';
+			$price_total          = '';
+			$price_total_original = '';
+			if ( $product->is_type( 'variable' ) ) {
+
+				// Variable
+				$prices       = $product->get_variation_prices( false );
+				$min_key      = key( $prices['price'] );
+				end( $prices['price'] );
+				$max_key      = key( $prices['price'] );
+				$min_product  = wc_get_product( $min_key );
+				$max_product  = wc_get_product( $max_key );
+				$min          = ( $min_product ? $price_func( $min_product ) : false );
+				$max          = ( $max_product ? $price_func( $max_product ) : false );
+				$min_original = $min;
+				$max_original = $max;
+				switch ( $discount_type ) {
+					case 'price_directly':
+						$min  = ( $min_product ? $price_func( $min_product, array( 'price' => $discount ) ) : false );
+						$max  = ( $max_product ? $price_func( $max_product, array( 'price' => $discount ) ) : false );
+						break;
+					case 'fixed':
+						$min  = ( $min_product ? $price_func( $min_product, array( 'price' => ( $min_product->get_price() - $discount ) ) ) : false );
+						$max  = ( $max_product ? $price_func( $max_product, array( 'price' => ( $max_product->get_price() - $discount ) ) ) : false );
+						break;
+					default: // 'percent'
+						$coef = 1.0 - ( $discount / 100.0 );
+						$min  = $min * $coef;
+						$max  = $max * $coef;
+						break;
+				}
+				$price                = $this->format_price_range( $min,                 $max,                 $do_hide_currency );
+				$price_original       = $this->format_price_range( $min_original,        $max_original,        $do_hide_currency );
+				$price_total          = $this->format_price_range( $min          * $qty, $max          * $qty, $do_hide_currency );
+				$price_total_original = $this->format_price_range( $min_original * $qty, $max_original * $qty, $do_hide_currency );
+
+			} else {
+
+				// Simple etc.
+				$_price          = $price_func( $product );
+				$_price_original = $_price;
+				switch ( $discount_type ) {
+					case 'price_directly':
+						$_price = $price_func( $product, array( 'price' => $discount ) );
+						break;
+					case 'fixed':
+						$_price = $price_func( $product, array( 'price' => ( $product->get_price() - $discount ) ) );
+						break;
+					default: // 'percent'
+						$coef   = 1.0 - ( $discount / 100.0 );
+						$_price = $_price * $coef;
+						break;
+				}
+				$price                = $this->format_price( $_price,                 $do_hide_currency );
+				$price_original       = $this->format_price( $_price_original,        $do_hide_currency );
+				$price_total          = $this->format_price( $_price          * $qty, $do_hide_currency );
+				$price_total_original = $this->format_price( $_price_original * $qty, $do_hide_currency );
+
 			}
-			$price                = $this->format_price_range( $min,                 $max,                 $do_hide_currency );
-			$price_original       = $this->format_price_range( $min_original,        $max_original,        $do_hide_currency );
-			$price_total          = $this->format_price_range( $min          * $qty, $max          * $qty, $do_hide_currency );
-			$price_total_original = $this->format_price_range( $min_original * $qty, $max_original * $qty, $do_hide_currency );
-		} else {
-			// Simple etc.
-			$_price          = wc_get_price_to_display( $product );
-			$_price_original = $_price;
-			switch ( $discount_type ) {
-				case 'price_directly':
-					$_price = $discount;
-					break;
-				case 'fixed':
-					$_price = $_price - $discount;
-					break;
-				default: // 'percent'
-					$coef   = 1.0 - ( $discount / 100.0 );
-					$_price = $_price * $coef;
-					break;
-			}
-			$price                = $this->format_price( $_price,                 $do_hide_currency );
-			$price_original       = $this->format_price( $_price_original,        $do_hide_currency );
-			$price_total          = $this->format_price( $_price          * $qty, $do_hide_currency );
-			$price_total_original = $this->format_price( $_price_original * $qty, $do_hide_currency );
+
+			// Placeholders
+			$placeholders = array(
+				'%old_price'        . $tax_display . '%' => $price_original,       // deprecated
+				'%old_price_single' . $tax_display . '%' => $price_original,
+				'%price'            . $tax_display . '%' => $price,                // deprecated
+				'%new_price_single' . $tax_display . '%' => $price,
+				'%old_price_total'  . $tax_display . '%' => $price_total_original,
+				'%new_price_total'  . $tax_display . '%' => $price_total,
+			);
+
+			$price_format = str_replace( array_keys( $placeholders ), $placeholders, $price_format );
 		}
-		$placeholders = array(
-			'%old_price%'        => $price_original,       // deprecated
-			'%old_price_single%' => $price_original,
-			'%price%'            => $price,                // deprecated
-			'%new_price_single%' => $price,
-			'%old_price_total%'  => $price_total_original,
-			'%new_price_total%'  => $price_total,
-		);
-		return str_replace( array_keys( $placeholders ), $placeholders, $price_format );
+		return $price_format;
 	}
 
 	/**
