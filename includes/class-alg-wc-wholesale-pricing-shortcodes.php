@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Shortcodes
  *
- * @version 3.1.0
+ * @version 3.2.0
  * @since   1.0.0
  *
  * @author  Algoritmika Ltd.
@@ -362,7 +362,7 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	/**
 	 * product_wholesale_pricing_data.
 	 *
-	 * @version 3.1.0
+	 * @version 3.2.0
 	 * @since   1.1.2
 	 *
 	 * @todo    [next] [!!] (dev) `shortcode_atts`: `alg_wc_product_wholesale_pricing_data` to `alg_wc_product_ppq_data`?
@@ -380,6 +380,7 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 			'before'                => '',
 			'after'                 => '',
 			'use_variation'         => 'no',
+			'variation_type'        => 'first',
 		), $atts, 'alg_wc_product_wholesale_pricing_data' );
 
 		// Get product
@@ -390,17 +391,40 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 			return '';
 		}
 
-		// If not enabled, try (first) variation
+		// If not enabled, try variation
 		if ( ! $this->get_core()->is_enabled( $product_id ) && 'yes' === $atts['use_variation'] && $product->is_type( 'variable' ) ) {
 			$is_variation_found = false;
-			foreach ( $product->get_children() as $child_id ) {
-				if ( $this->get_core()->is_enabled( $child_id ) ) {
-					$product_id         = $child_id;
-					$product            = wc_get_product( $child_id );
-					$is_variation_found = true;
-					break;
+
+			if ( in_array( $atts['variation_type'], array( 'min', 'max' ) ) ) {
+
+				// 'min', 'max'
+				$prices = $product->get_variation_prices();
+				while ( ! empty( $prices['price'] ) ) {
+					$child_id = ( 'min' === $atts['variation_type'] ? key( $prices['price'] ) : array_key_last( $prices['price'] ) );
+					if ( $this->get_core()->is_enabled( $child_id ) ) {
+						$product_id         = $child_id;
+						$product            = wc_get_product( $child_id );
+						$is_variation_found = true;
+						break;
+					} else {
+						unset( $prices['price'][ $child_id ] );
+					}
 				}
+
+			} else {
+
+				// 'first'
+				foreach ( $product->get_children() as $child_id ) {
+					if ( $this->get_core()->is_enabled( $child_id ) ) {
+						$product_id         = $child_id;
+						$product            = wc_get_product( $child_id );
+						$is_variation_found = true;
+						break;
+					}
+				}
+
 			}
+
 			if ( ! $is_variation_found ) {
 				return '';
 			}
@@ -411,14 +435,17 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 		$level_num    = ( 'last' === $atts['level_num'] ? count( $price_levels ) : $atts['level_num'] ) - 1;
 		if ( isset( $price_levels[ $level_num ] ) ) {
 			switch ( $atts['field'] ) {
+
 				case 'quantity':
 				case 'discount':
 					return ( isset( $price_levels[ $level_num ][ $atts['field'] ] ) ? $atts['before'] . $price_levels[ $level_num ][ $atts['field'] ] . $atts['after'] : '' );
+
 				default: // 'price':
 					$qty   = ( isset( $price_levels[ $level_num ]['quantity'] ) ? $price_levels[ $level_num ]['quantity'] : 1 );
 					$type  = $this->get_core()->get_discount_type( $product_id, $qty );
 					$price = $this->get_product_price( $product, $type, $price_levels[ $level_num ]['discount'], $atts['hide_currency'], $atts['price_format'], $qty );
 					return $atts['before'] . $price . $atts['after'];
+
 			}
 		} else {
 			return '';

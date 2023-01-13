@@ -1,138 +1,162 @@
 /**
  * alg-wc-wholesale-pricing-price-by-qty-display.js
  *
- * @version 3.1.0
+ * @version 3.2.0
  * @since   1.3.0
  *
  * @author  Algoritmika Ltd.
  */
 
-jQuery( document ).ready( function() {
+jQuery( document ).ready( function () {
 
 	/**
 	 * vars.
 	 *
-	 * @version 3.1.0
+	 * @version 3.2.0
 	 * @since   1.3.0
 	 */
-	var alg_wc_wh_pr_input_timer;
-	var alg_wc_wh_pr_input_timer_interval_ms = alg_wc_wh_pr_pbqd_obj.interval_ms;
-	var alg_wc_wh_pr_price_identifier = ( 'variable' === alg_wc_wh_pr_pbqd_obj.product_type && alg_wc_wh_pr_pbqd_obj.is_variable_different_prices ?
-		alg_wc_wh_pr_pbqd_obj.price_identifier_variation : alg_wc_wh_pr_pbqd_obj.price_identifier );
-	var alg_wc_wh_pr_price_display_by_qty_element_id = 'p.alg-wc-wholesale-pricing-price-display-by-qty';
-	var alg_wc_wh_pr_price_display_by_qty_element    = '<p class="alg-wc-wholesale-pricing-price-display-by-qty"></p>';
+
+	var options = alg_wc_wh_pr_pbqd_obj;
+
+	var input_timer;
+	var input_timer_interval_ms = options.interval_ms;
+
+	var is_variation     = ( 'variable' === options.product_type && options.is_variable_different_prices );
+	var price_identifier = ( is_variation ? options.price_identifier_variation : options.price_identifier );
+
+	var ppq_element_id   = 'p.alg-wc-wholesale-pricing-price-display-by-qty';
+	var ppq_element_html = '<p class="alg-wc-wholesale-pricing-price-display-by-qty"></p>';
 
 	/**
-	 * alg_wc_wh_pr_insert_element.
+	 * insert_element.
 	 *
-	 * @version 1.3.0
+	 * @version 3.2.0
 	 * @since   1.3.0
 	 */
-	function alg_wc_wh_pr_insert_element() {
-		switch ( alg_wc_wh_pr_pbqd_obj.position ) {
+	function insert_element() {
+		switch ( options.position ) {
 			case 'before':
-				jQuery( alg_wc_wh_pr_price_identifier ).before( alg_wc_wh_pr_price_display_by_qty_element );
+				jQuery( price_identifier ).before( ppq_element_html );
 				break;
 			case 'after':
-				jQuery( alg_wc_wh_pr_price_identifier ).after( alg_wc_wh_pr_price_display_by_qty_element );
+				jQuery( price_identifier ).after( ppq_element_html );
 				break;
 		}
 	}
 
 	/**
-	 * alg_wc_wh_pr_price_by_qty_display.
+	 * display.
 	 *
-	 * @version 2.4.1
+	 * @version 3.2.0
 	 * @since   1.3.0
-	 *
-	 * @todo    [next] [!] (dev) `jQuery( '[name="' + element_name + '"]' ).val()` instead of passing `qty` param?
 	 */
-	function alg_wc_wh_pr_price_by_qty_display( qty ) {
+	function display( qty ) {
+
 		if ( 'undefined' === typeof qty || null === qty ) {
 			return;
 		}
+
+		var product_id = ( 'variable' === options.product_type ? jQuery( 'input[name="variation_id"]' ).val() : options.product_id );
 		var data = {
 			'action'                      : 'alg_wc_wholesale_pricing_price_by_qty_display',
 			'alg_wc_wholesale_pricing_qty': qty,
-			'alg_wc_wholesale_pricing_id' : ( 'variable' === alg_wc_wh_pr_pbqd_obj.product_type ?
-				jQuery( 'input[name="variation_id"]' ).val() : alg_wc_wh_pr_pbqd_obj.product_id ),
+			'alg_wc_wholesale_pricing_id' : product_id,
 		};
+
 		jQuery.ajax( {
 			type   : 'POST',
-			url    : alg_wc_wh_pr_pbqd_obj.ajax_url,
+			url    : options.ajax_url,
 			data   : data,
-			success: function( response ) {
+			success: function ( response ) {
 				if ( '' != response ) {
-					if ( 'instead' == alg_wc_wh_pr_pbqd_obj.position ) {
-						jQuery( alg_wc_wh_pr_price_identifier ).html( response );
+					if ( 'instead' == options.position ) {
+						jQuery( price_identifier ).html( response );
 					} else {
-						if ( ! jQuery( alg_wc_wh_pr_price_display_by_qty_element_id ).length ) {
-							alg_wc_wh_pr_insert_element();
+						if ( ! jQuery( ppq_element_id ).length ) {
+							insert_element();
 						}
-						jQuery( alg_wc_wh_pr_price_display_by_qty_element_id ).html( response );
+						jQuery( ppq_element_id ).html( response );
 					}
 				}
 			},
 		} );
+
 	}
 
 	/**
-	 * alg_wc_wh_pr_price_by_qty_display_run.
+	 * run.
 	 *
-	 * @version 2.4.2
+	 * @version 3.2.0
 	 * @since   1.3.0
 	 *
 	 * @todo    [next] [!] (dev) Variation hide: before/after: hide instead of setting it to empty string?
 	 * @todo    [next] [!] (dev) use `jQuery( this )` (instead of `jQuery( '[name="' + element_name + '"]' )`) where possible?
 	 * @todo    [next] find better solution for `do_force_standard_qty_input`
 	 * @todo    [maybe] customizable quantity events: `cut copy paste keyup keydown`
-	 * @todo    [maybe] customizable elements (e.g. `quantity_pq_dropdown`)
-	 * @todo    [maybe] `setInterval( alg_wc_wh_pr_price_by_qty_display_all, 1000 );`
+	 * @todo    [maybe] customizable elements (e.g., `quantity_pq_dropdown`)
+	 * @todo    [maybe] `setInterval( display_all, 1000 );`
 	 */
-	function alg_wc_wh_pr_price_by_qty_display_run() {
+	function run() {
 
-		if ( 'instead' != alg_wc_wh_pr_pbqd_obj.position ) {
-			alg_wc_wh_pr_insert_element();
+		// Insert element
+		if ( 'instead' != options.position ) {
+			insert_element();
 		}
 
-		var element_name = ( ! alg_wc_wh_pr_pbqd_obj.do_force_standard_qty_input && jQuery( '[name="quantity_pq_dropdown"]' ).length ? 'quantity_pq_dropdown' : 'quantity' );
-		var do_timer     = ( 'quantity' === element_name );
+		// Vars
+		var is_dropdown  = ( ! options.do_force_standard_qty_input && jQuery( '[name="quantity_pq_dropdown"]' ).length );
+		var do_timer     = ( ! is_dropdown && ! options.is_sticky_add_to_cart );
+		var selector     = ( is_dropdown ? '[name="quantity_pq_dropdown"]' : '[name="quantity"]' );
 
 		// Update on init
-		alg_wc_wh_pr_price_by_qty_display( jQuery( '[name="' + element_name + '"]' ).val() );
+		display( jQuery( selector ).val() );
 
 		// Update on change
 		if ( do_timer ) {
-			// E.g. standard qty input
-			jQuery( '[name="' + element_name + '"]' ).on( 'input change', function() {
-				clearTimeout( alg_wc_wh_pr_input_timer );
-				alg_wc_wh_pr_input_timer = setTimeout( function() {
-					alg_wc_wh_pr_price_by_qty_display( jQuery( '[name="' + element_name + '"]' ).val() );
-				}, alg_wc_wh_pr_input_timer_interval_ms );
+
+			// E.g., standard qty input
+			jQuery( selector ).on( 'input change', function () {
+				clearTimeout( input_timer );
+				input_timer = setTimeout( function () {
+					display( jQuery( selector ).val() );
+				}, input_timer_interval_ms );
 			} );
+
 		} else {
-			// E.g. qty dropdown from "Product Quantity for WooCommerce" plugin
-			jQuery( '[name="' + element_name + '"]' ).on( 'change', function() {
-				alg_wc_wh_pr_price_by_qty_display( jQuery( '[name="' + element_name + '"]' ).val() );
+
+			// E.g., qty dropdown from "Product Quantity for WooCommerce" plugin
+			jQuery( selector ).on( 'input change', function () {
+				display( jQuery( this ).val() );
 			} );
+
+			// "Sticky Add To Cart Bar For WooCommerce" plugin
+			if ( options.is_sticky_add_to_cart ) {
+				jQuery( '.wsc-input-group' ).on( 'click', '.wsc-button-plus', function () {
+					display( jQuery( this ).closest( '.wsc-input-group' ).find( '.wsc-quantity-field' ).val() );
+				} );
+				jQuery( '.wsc-input-group' ).on( 'click', '.wsc-button-minus', function () {
+					display( jQuery( this ).closest( '.wsc-input-group' ).find( '.wsc-quantity-field' ).val() );
+				} );
+			}
+
 		}
 
 		// Variation show
-		jQuery( document.body ).on( 'show_variation', function() {
-			alg_wc_wh_pr_price_by_qty_display( jQuery( '[name="' + element_name + '"]' ).val() );
+		jQuery( document.body ).on( 'show_variation', function () {
+			display( jQuery( selector ).val() );
 		} );
 
 		// Variation hide
-		jQuery( document.body ).on( 'hide_variation', function() {
-			if ( 'instead' == alg_wc_wh_pr_pbqd_obj.position ) {
-				jQuery( alg_wc_wh_pr_price_identifier ).html( alg_wc_wh_pr_pbqd_obj.product_price_default );
+		jQuery( document.body ).on( 'hide_variation', function () {
+			if ( 'instead' == options.position ) {
+				jQuery( price_identifier ).html( options.product_price_default );
 			} else {
-				jQuery( alg_wc_wh_pr_price_display_by_qty_element_id ).html( '' );
+				jQuery( ppq_element_id ).html( '' );
 			}
 		} );
 
 	}
 
-	alg_wc_wh_pr_price_by_qty_display_run();
+	run();
 
 } );

@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Price Display by Qty Section Settings
  *
- * @version 3.1.0
+ * @version 3.2.0
  * @since   1.3.0
  *
  * @author  Algoritmika Ltd.
@@ -29,7 +29,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Price_Display_By_Qty extends Alg_WC_Whol
 	/**
 	 * get_settings.
 	 *
-	 * @version 3.1.0
+	 * @version 3.2.0
 	 * @since   1.3.0
 	 *
 	 * @todo    [now] (dev) Price identifier: store in array?
@@ -155,6 +155,27 @@ class Alg_WC_Wholesale_Pricing_Settings_Price_Display_By_Qty extends Alg_WC_Whol
 			array(
 				'type'     => 'sectionend',
 				'id'       => 'alg_wc_wholesale_pricing_price_by_qty_display_advanced_options',
+			),
+			array(
+				'title'    => __( 'Compatibility Options', 'wholesale-pricing-woocommerce' ),
+				'type'     => 'title',
+				'id'       => 'alg_wc_wholesale_pricing_compatibility_options',
+			),
+			array(
+				'title'    => __( 'Sticky Add To Cart Bar For WooCommerce', 'wholesale-pricing-woocommerce' ),
+				'desc_tip' => sprintf( __( '%s plugin compatibility.', 'wholesale-pricing-woocommerce' ),
+					'<a href="https://wordpress.org/plugins/sticky-add-to-cart-bar-for-wc/" target="_blank">' .
+						__( 'Sticky Add To Cart Bar For WooCommerce', 'wholesale-pricing-woocommerce' ) .
+					'</a>'
+				),
+				'desc'     => __( 'Enable', 'wholesale-pricing-woocommerce' ),
+				'id'       => 'alg_wc_wholesale_pricing_price_by_qty_sitcky_add_to_cart',
+				'default'  => 'no',
+				'type'     => 'checkbox',
+			),
+			array(
+				'type'     => 'sectionend',
+				'id'       => 'alg_wc_wholesale_pricing_compatibility_options',
 			),
 		);
 

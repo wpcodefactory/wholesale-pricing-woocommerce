@@ -40,7 +40,7 @@ msgid "%s for %s pcs."
 msgstr ""
 
 #: includes/class-alg-wc-wholesale-pricing-frontend.php:107
-#: includes/class-alg-wc-wholesale-pricing-frontend.php:210
+#: includes/class-alg-wc-wholesale-pricing-frontend.php:211
 #: includes/pro/class-alg-wc-wholesale-pricing-pro-frontend.php:176
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:78
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:97
@@ -176,6 +176,7 @@ msgstr ""
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:51
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:113
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:130
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:171
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-user-roles.php:48
 msgid "Enable"
 msgstr ""
@@ -486,6 +487,7 @@ msgid "Will replace all product price changes with an order discount."
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:223
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:160
 msgid "Compatibility Options"
 msgstr ""
 
@@ -881,6 +883,16 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:150
 msgid "Variations"
+msgstr ""
+
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:165
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:168
+msgid "Sticky Add To Cart Bar For WooCommerce"
+msgstr ""
+
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:166
+#, php-format
+msgid "%s plugin compatibility."
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-reports.php:25
