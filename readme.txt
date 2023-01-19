@@ -3,7 +3,7 @@ Contributors: wpcodefactory, algoritmika, anbinder
 Tags: woocommerce, wholesale pricing, wholesale, buy more pay less, buy more pay more, product price by quantity, price by quantity, dynamic product pricing, dynamic pricing, woo commerce
 Requires at least: 4.4
 Tested up to: 6.1
-Stable tag: 3.2.0
+Stable tag: 3.2.1
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -48,8 +48,11 @@ With [Product Price by Quantity for WooCommerce Pro](https://wpfactory.com/item/
 
 == Changelog ==
 
+= 3.2.1 - 19/01/2023 =
+* Dev - Price Display by Quantity - JS - Selector improved.
+
 = 3.2.0 - 13/01/2023 =
-* Dev - Price Display by Quantity - "Sticky Add To Cart Bar For WooCommerce" plugin option added (defaults to `no`).
+* Dev - Price Display by Quantity - Compatibility - "Sticky Add To Cart Bar For WooCommerce" plugin option added (defaults to `no`).
 * Dev - Price Display by Quantity - JS - Code refactoring.
 * Dev - Shortcodes - `[alg_wc_product_ppq_data]` - New attribute added - `variation_type`. Defaults to `first`. Other possible values: `min` and `max`. Used only when `use_variation` attribute is set to `yes`.
 * Tested up to: 6.1.

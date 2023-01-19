@@ -1,7 +1,7 @@
 /**
  * alg-wc-wholesale-pricing-price-by-qty-display.js
  *
- * @version 3.2.0
+ * @version 3.2.1
  * @since   1.3.0
  *
  * @author  Algoritmika Ltd.
@@ -86,7 +86,7 @@ jQuery( document ).ready( function () {
 	/**
 	 * run.
 	 *
-	 * @version 3.2.0
+	 * @version 3.2.1
 	 * @since   1.3.0
 	 *
 	 * @todo    [next] [!] (dev) Variation hide: before/after: hide instead of setting it to empty string?
@@ -95,6 +95,7 @@ jQuery( document ).ready( function () {
 	 * @todo    [maybe] customizable quantity events: `cut copy paste keyup keydown`
 	 * @todo    [maybe] customizable elements (e.g., `quantity_pq_dropdown`)
 	 * @todo    [maybe] `setInterval( display_all, 1000 );`
+	 * @todo    [maybe] (dev) Update on init: `jQuery( selector ).each( function () { display( jQuery( this ).val() ); } );`
 	 */
 	function run() {
 
@@ -104,9 +105,9 @@ jQuery( document ).ready( function () {
 		}
 
 		// Vars
-		var is_dropdown  = ( ! options.do_force_standard_qty_input && jQuery( '[name="quantity_pq_dropdown"]' ).length );
-		var do_timer     = ( ! is_dropdown && ! options.is_sticky_add_to_cart );
-		var selector     = ( is_dropdown ? '[name="quantity_pq_dropdown"]' : '[name="quantity"]' );
+		var is_pq_dropdown = ( ! options.do_force_standard_qty_input && jQuery( '[name="quantity_pq_dropdown"]' ).length );
+		var do_timer       = ( ! is_pq_dropdown && ! options.is_sticky_add_to_cart );
+		var selector       = ( is_pq_dropdown ? '[name="quantity_pq_dropdown"]' : '.qty[name="quantity"]' );
 
 		// Update on init
 		display( jQuery( selector ).val() );
