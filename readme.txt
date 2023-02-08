@@ -3,7 +3,7 @@ Contributors: wpcodefactory, algoritmika, anbinder
 Tags: woocommerce, wholesale pricing, wholesale, buy more pay less, buy more pay more, product price by quantity, price by quantity, dynamic product pricing, dynamic pricing, woo commerce
 Requires at least: 4.4
 Tested up to: 6.1
-Stable tag: 3.2.1
+Stable tag: 3.2.2
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -47,6 +47,13 @@ With [Product Price by Quantity for WooCommerce Pro](https://wpfactory.com/item/
 3. Start by visiting plugin settings at "WooCommerce > Settings > Product Price by Quantity".
 
 == Changelog ==
+
+= 3.2.2 - 08/02/2023 =
+* Dev - Shortcodes - `[alg_wc_ppq_products_list]` - New `columns` added: `image`, `image_with_add_to_cart_link`, `image_with_product_link`. New attribute added: `image_size`.
+* Dev - Shortcodes - `[alg_wc_ppq_products_list]` - New attributes added: `orderby`, `order`.
+* Dev - Developers - Shortcodes - `[alg_wc_ppq_products_list]` - `alg_wc_ppq_products_list_query_args` filter added.
+* Dev - Developers - Shortcodes - `[alg_wc_ppq_products_list]` - `alg_wc_ppq_products_list_custom_column` filter added.
+* Dev - Developers - Shortcodes - `[alg_wc_ppq_products_list]` - `alg_wc_ppq_products_list_row` filter added.
 
 = 3.2.1 - 19/01/2023 =
 * Dev - Price Display by Quantity - JS - Selector improved.

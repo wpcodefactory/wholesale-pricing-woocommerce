@@ -51,8 +51,8 @@ msgstr ""
 
 #: includes/class-alg-wc-wholesale-pricing-shortcodes.php:62
 #: includes/class-alg-wc-wholesale-pricing-shortcodes.php:139
-#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:93
-#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:252
+#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:98
+#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:303
 #, php-format
 msgid "from %s pcs."
 msgstr ""
@@ -80,23 +80,23 @@ msgstr ""
 msgid "Go Pro"
 msgstr ""
 
-#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:89
-#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:256
+#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:94
+#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:307
 msgid "SKU"
 msgstr ""
 
-#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:90
-#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:257
+#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:95
+#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:308
 msgid "Name"
 msgstr ""
 
-#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:91
-#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:258
+#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:96
+#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:309
 msgid "Category"
 msgstr ""
 
-#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:92
-#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:259
+#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:97
+#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:310
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-per-item.php:82
 msgid "Price"
 msgstr ""
