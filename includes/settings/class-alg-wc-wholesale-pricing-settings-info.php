@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Info Section Settings
  *
- * @version 3.0.0
+ * @version 3.2.3
  * @since   2.0.0
  *
  * @author  Algoritmika Ltd.
@@ -29,7 +29,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Info extends Alg_WC_Wholesale_Pricing_Se
 	/**
 	 * get_settings.
 	 *
-	 * @version 3.0.0
+	 * @version 3.2.3
 	 * @since   2.0.0
 	 *
 	 * @todo    [next] (desc) `alg_wc_wholesale_pricing_info_on_single_product_hide_variable`: better desc?
@@ -38,6 +38,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Info extends Alg_WC_Wholesale_Pricing_Se
 	 * @todo    [next] (dev) Replace Price: better default values
 	 * @todo    [next] (feature) Replace Price: separate option for variations?
 	 * @todo    [next] (feature) Replace Price: separate option for variable products (i.e. price range)?
+	 * @todo    [next] (feature) `alg_wc_wholesale_pricing_show_info_single_hook`: more positions?
 	 * @todo    [maybe] (fix) Cart: fix cart info, when discount < 0
 	 * @todo    [maybe] (desc) Discount Pricing Table: better title/desc?
 	 * @todo    [maybe] (desc) Discount Pricing Table: add more (shortcodes) examples
@@ -176,13 +177,13 @@ class Alg_WC_Wholesale_Pricing_Settings_Info extends Alg_WC_Wholesale_Pricing_Se
 				'default'  => 'woocommerce_single_product_summary',
 				'type'     => 'select',
 				'class'    => 'chosen_select',
-				'options'  => array(
+				'options'  => apply_filters( 'alg_wc_wholesale_pricing_show_info_single_hook_options', array(
 					'woocommerce_before_single_product'         => __( 'Before product', 'wholesale-pricing-woocommerce' ),
 					'woocommerce_before_single_product_summary' => __( 'Before product summary', 'wholesale-pricing-woocommerce' ),
 					'woocommerce_single_product_summary'        => __( 'Product summary', 'wholesale-pricing-woocommerce' ),
 					'woocommerce_after_single_product_summary'  => __( 'After product summary', 'wholesale-pricing-woocommerce' ),
 					'woocommerce_after_single_product'          => __( 'After product', 'wholesale-pricing-woocommerce' ),
-				),
+				) ),
 			),
 			array(
 				'desc'     => __( 'Priority', 'wholesale-pricing-woocommerce' ),

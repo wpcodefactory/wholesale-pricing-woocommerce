@@ -24,7 +24,7 @@ class Alg_WC_Wholesale_Pricing_Frontend {
 
 		// Cart items: Item price
 		if ( 'yes' === get_option( 'alg_wc_wholesale_pricing_show_info_on_cart', 'no' ) ) {
-			add_filter( 'woocommerce_cart_item_price', array( $this, 'add_discount_info_to_cart_page_item_price' ),    PHP_INT_MAX, 3 );
+			add_filter( 'woocommerce_cart_item_price', array( $this, 'add_discount_info_to_cart_page_item_price' ), PHP_INT_MAX, 3 );
 		}
 
 		// Price display by quantity

@@ -462,17 +462,20 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	 * @todo    [next] [!!] (fix) Variable: per variation enabled
 	 */
 	function get_product_price( $product, $discount_type, $discount, $hide_currency, $price_format, $qty = 1 ) {
+
 		if ( ! $product->get_price() ) {
 			return '';
 		}
 
 		foreach ( array( '', '_incl_tax', '_excl_tax' ) as $tax_display ) {
+
 			$price_func           = ( '' === $tax_display ? 'wc_get_price_to_display' : ( '_incl_tax' === $tax_display ? 'wc_get_price_including_tax' : 'wc_get_price_excluding_tax' ) );
 			$do_hide_currency     = ( 'yes' === $hide_currency );
 			$price                = '';
 			$price_original       = '';
 			$price_total          = '';
 			$price_total_original = '';
+
 			if ( $product->is_type( 'variable' ) ) {
 
 				// Variable
@@ -541,8 +544,11 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 			);
 
 			$price_format = str_replace( array_keys( $placeholders ), $placeholders, $price_format );
+
 		}
+
 		return $price_format;
+
 	}
 
 	/**
