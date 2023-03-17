@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Shortcodes
  *
- * @version 3.3.0
+ * @version 3.3.1
  * @since   1.0.0
  *
  * @author  Algoritmika Ltd.
@@ -576,11 +576,11 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	/**
 	 * format_qty.
 	 *
-	 * @version 3.3.0
+	 * @version 3.3.1
 	 * @since   3.3.0
 	 */
 	function format_qty( $qty, $atts ) {
-		return ( '' != $atts['qty_thousand_sep'] ? number_format( floatval( $qty ), 0, '.', $atts['qty_thousand_sep'] ) : $qty );
+		return ( '' != $atts['qty_thousand_sep'] && is_numeric( $qty ) ? number_format( floatval( $qty ), 0, '.', $atts['qty_thousand_sep'] ) : $qty );
 	}
 
 	/**
