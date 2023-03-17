@@ -1,0 +1,18 @@
+<wpml-config>
+	<admin-texts>
+		<key name="alg_wc_wholesale_pricing_price_by_qty_display_template"/>
+		<key name="alg_wc_wholesale_pricing_price_by_qty_display_template_zero"/>
+		<key name="alg_wc_wholesale_pricing_show_info_on_cart_format"/>
+		<key name="alg_wc_wholesale_pricing_show_info_on_cart_format_subtotal"/>
+		<key name="alg_wc_wholesale_pricing_info_cart_totals_template"/>
+		<key name="alg_wc_wholesale_pricing_info_on_single_product"/>
+		<key name="alg_wc_wholesale_pricing_info_on_single_product_variable"/>
+		<key name="alg_wc_wholesale_pricing_info_on_single_product_variation"/>
+		<key name="alg_wc_wholesale_pricing_info_loop"/>
+		<key name="alg_wc_wholesale_pricing_replace_price_on_single_template"/>
+		<key name="alg_wc_wholesale_pricing_replace_price_on_loop_template"/>
+		<key name="alg_wc_wholesale_pricing_wcfm_new_product_notification"/>
+		<key name="alg_wc_wholesale_pricing_dropdown_before"/>
+		<key name="alg_wc_wholesale_pricing_dropdown_after"/>
+	</admin-texts>
+</wpml-config>

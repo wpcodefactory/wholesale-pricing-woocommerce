@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Shortcodes
  *
- * @version 3.2.0
+ * @version 3.3.0
  * @since   1.0.0
  *
  * @author  Algoritmika Ltd.
@@ -17,7 +17,7 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	/**
 	 * Constructor.
 	 *
-	 * @version 3.0.0
+	 * @version 3.3.0
 	 * @since   2.0.0
 	 *
 	 * @todo    [next] `[alg_wc_term_wholesale_pricing_table]` and `[alg_wc_term_wholesale_pricing_data]`
@@ -31,6 +31,7 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 		add_shortcode( 'alg_wc_ppq_data',                        array( $this, 'wholesale_pricing_data' ) );
 		add_shortcode( 'alg_wc_product_wholesale_pricing_data',  array( $this, 'product_wholesale_pricing_data' ) );
 		add_shortcode( 'alg_wc_product_ppq_data',                array( $this, 'product_wholesale_pricing_data' ) );
+		add_shortcode( 'alg_wc_ppq_translate',                   array( $this, 'translate' ) );
 	}
 
 	/**
@@ -47,9 +48,28 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	}
 
 	/**
+	 * translate.
+	 *
+	 * @version 3.3.0
+	 * @since   3.3.0
+	 */
+	function translate( $atts, $content = '' ) {
+		// E.g.: `[alg_wc_ppq_translate lang="EN,DE" lang_text="Text for EN & DE" not_lang_text="Text for other languages"]`
+		if ( isset( $atts['lang_text'] ) && isset( $atts['not_lang_text'] ) && ! empty( $atts['lang'] ) ) {
+			return ( ! defined( 'ICL_LANGUAGE_CODE' ) || ! in_array( strtolower( ICL_LANGUAGE_CODE ), array_map( 'trim', explode( ',', strtolower( $atts['lang'] ) ) ) ) ) ?
+				$atts['not_lang_text'] : $atts['lang_text'];
+		}
+		// E.g.: `[alg_wc_ppq_translate lang="EN,DE"]Text for EN & DE[/alg_wc_ppq_translate][alg_wc_ppq_translate not_lang="EN,DE"]Text for other languages[/alg_wc_ppq_translate]`
+		return (
+			( ! empty( $atts['lang'] )     && ( ! defined( 'ICL_LANGUAGE_CODE' ) || ! in_array( strtolower( ICL_LANGUAGE_CODE ), array_map( 'trim', explode( ',', strtolower( $atts['lang'] ) ) ) ) ) ) ||
+			( ! empty( $atts['not_lang'] ) &&     defined( 'ICL_LANGUAGE_CODE' ) &&   in_array( strtolower( ICL_LANGUAGE_CODE ), array_map( 'trim', explode( ',', strtolower( $atts['not_lang'] ) ) ) ) )
+		) ? '' : $content;
+	}
+
+	/**
 	 * wholesale_pricing_table (global only).
 	 *
-	 * @version 3.0.0
+	 * @version 3.3.0
 	 * @since   1.0.0
 	 *
 	 * @todo    [next] [!!] (dev) `shortcode_atts`: `alg_wc_wholesale_pricing_table` to `alg_wc_ppq_table`?
@@ -64,6 +84,7 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 			'last_level_max_qty'    => '+',
 			'hide_if_zero_quantity' => 'no',
 			'table_format'          => 'horizontal',
+			'qty_thousand_sep'      => '',
 			'before'                => '',
 			'after'                 => '',
 		), $atts, 'alg_wc_wholesale_pricing_table' );
@@ -83,8 +104,8 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 			$level_max_qty = ( isset( $price_levels[ $i + 1 ]['quantity'] ) ) ?
 				$atts['before_level_max_qty'] . ( $price_levels[ $i + 1 ]['quantity'] - 1 ) : $atts['last_level_max_qty'];
 			$placeholders  = array(
-				'%level_min_qty%' => $price_level['quantity'],
-				'%level_max_qty%' => $level_max_qty,
+				'%level_min_qty%' => $this->format_qty( $price_level['quantity'], $atts ),
+				'%level_max_qty%' => $this->format_qty( $level_max_qty, $atts ),
 			);
 			$data_qty[]    = str_replace( array_keys( $placeholders ), $placeholders, $atts['heading_format'] );
 			// Discount row
@@ -119,7 +140,7 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	/**
 	 * product_wholesale_pricing_table.
 	 *
-	 * @version 3.0.0
+	 * @version 3.3.0
 	 * @since   1.0.0
 	 *
 	 * @todo    [next] [!!] (dev) `shortcode_atts`: `alg_wc_product_wholesale_pricing_table` to `alg_wc_product_ppq_table`?
@@ -142,6 +163,7 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 			'hide_if_zero_quantity'          => 'no',
 			'hide_if_insufficient_quantity'  => 'no',
 			'table_format'                   => 'horizontal',
+			'qty_thousand_sep'               => '',
 			'hide_currency'                  => 'no',
 			'add_price_row'                  => 'yes',
 			'price_row_format'               => '<del>%old_price_single%</del> %new_price_single%',
@@ -244,8 +266,8 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 			$level_max_qty = ( isset( $price_levels[ $i + 1 ]['quantity'] ) ) ?
 				$atts['before_level_max_qty'] . ( $price_levels[ $i + 1 ]['quantity'] - 1 ) : $atts['last_level_max_qty'];
 			$placeholders  = array(
-				'%level_min_qty%'                  => $price_level['quantity'],
-				'%level_max_qty%'                  => $level_max_qty,
+				'%level_min_qty%'                  => $this->format_qty( $price_level['quantity'], $atts ),
+				'%level_max_qty%'                  => $this->format_qty( $level_max_qty, $atts ),
 				'%level_discount%'                 => $price_level['discount'],
 				'%level_discount_amount%'          => $discount_amount,
 				'%level_discount_percent%'         => $discount_percent,
@@ -549,6 +571,16 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 
 		return $price_format;
 
+	}
+
+	/**
+	 * format_qty.
+	 *
+	 * @version 3.3.0
+	 * @since   3.3.0
+	 */
+	function format_qty( $qty, $atts ) {
+		return ( '' != $atts['qty_thousand_sep'] ? number_format( floatval( $qty ), 0, '.', $atts['qty_thousand_sep'] ) : $qty );
 	}
 
 	/**

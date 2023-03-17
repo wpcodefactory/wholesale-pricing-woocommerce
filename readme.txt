@@ -3,7 +3,7 @@ Contributors: wpcodefactory, algoritmika, anbinder
 Tags: woocommerce, wholesale pricing, wholesale, buy more pay less, buy more pay more, product price by quantity, price by quantity, dynamic product pricing, dynamic pricing, woo commerce
 Requires at least: 4.4
 Tested up to: 6.1
-Stable tag: 3.2.4
+Stable tag: 3.3.0
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -47,6 +47,14 @@ With [Product Price by Quantity for WooCommerce Pro](https://wpfactory.com/item/
 3. Start by visiting plugin settings at "WooCommerce > Settings > Product Price by Quantity".
 
 == Changelog ==
+
+= 3.3.0 - 17/03/2023 =
+* Dev - Shortcodes are now processed in "Item price", "Item subtotal", "Cart & checkout totals", "Price display by quantity", "Quantity dropdown" templates.
+* Dev - Shortcodes - `[alg_wc_ppq_table]` and `[alg_wc_product_ppq_table]` - `qty_thousand_sep` shortcode attribute added (defaults to an empty string).
+* Dev - Compatibility - Shortcodes - `[alg_wc_ppq_translate]` shortcode added (for WPML and Polylang plugins).
+* Dev - Compatibility - WPML/Polylang - `wpml-config.xml` file added.
+* Dev - Developers - `alg_wc_ppq_price_display_by_qty_localize_script_args` filter added.
+* WC tested up to: 7.5.
 
 = 3.2.4 - 08/03/2023 =
 * Dev - Shortcodes - `[alg_wc_ppq_products_list]` - `alg_wc_ppq_table` table HTML class removed.

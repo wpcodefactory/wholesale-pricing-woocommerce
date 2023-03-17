@@ -40,8 +40,8 @@ msgid "%s for %s pcs."
 msgstr ""
 
 #: includes/class-alg-wc-wholesale-pricing-frontend.php:107
-#: includes/class-alg-wc-wholesale-pricing-frontend.php:211
-#: includes/pro/class-alg-wc-wholesale-pricing-pro-frontend.php:176
+#: includes/class-alg-wc-wholesale-pricing-frontend.php:212
+#: includes/pro/class-alg-wc-wholesale-pricing-pro-frontend.php:177
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:79
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:98
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:85
@@ -49,8 +49,8 @@ msgstr ""
 msgid "You save: %s"
 msgstr ""
 
-#: includes/class-alg-wc-wholesale-pricing-shortcodes.php:62
-#: includes/class-alg-wc-wholesale-pricing-shortcodes.php:139
+#: includes/class-alg-wc-wholesale-pricing-shortcodes.php:82
+#: includes/class-alg-wc-wholesale-pricing-shortcodes.php:160
 #: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:98
 #: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:303
 #, php-format
