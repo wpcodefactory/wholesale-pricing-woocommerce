@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Dropdown Section Settings
  *
- * @version 3.0.0
+ * @version 3.3.2
  * @since   2.4.2
  *
  * @author  Algoritmika Ltd.
@@ -29,13 +29,13 @@ class Alg_WC_Wholesale_Pricing_Settings_Dropdown extends Alg_WC_Wholesale_Pricin
 	/**
 	 * get_settings.
 	 *
-	 * @version 3.0.0
+	 * @version 3.3.2
 	 * @since   2.4.2
 	 *
-	 * @todo    [next] [!] (dev) `alg_wc_wholesale_pricing_dropdown_filter_values`: default to `yes`?
-	 * @todo    [maybe] (dev) `alg_wc_wholesale_pricing_dropdown_label_template`: add "pcs." to the default value?
-	 * @todo    [maybe] (desc) Before/After: better title/desc?
-	 * @todo    [maybe] (desc) better section desc?
+	 * @todo    [!] (dev) `alg_wc_wholesale_pricing_dropdown_filter_values`: default to `yes`?
+	 * @todo    (dev) `alg_wc_wholesale_pricing_dropdown_label_template`: add "pcs." to the default value?
+	 * @todo    (desc) Before/After: better title/desc?
+	 * @todo    (desc) better section desc?
 	 */
 	function get_settings() {
 		return array(
@@ -70,6 +70,14 @@ class Alg_WC_Wholesale_Pricing_Settings_Dropdown extends Alg_WC_Wholesale_Pricin
 					'%discount_percent%',
 					'%discount_single%',
 					'%discount_total%',
+					'%old_price_single_incl_tax%',
+					'%old_price_single_excl_tax%',
+					'%old_price_total_incl_tax%',
+					'%old_price_total_excl_tax%',
+					'%new_price_single_incl_tax%',
+					'%new_price_single_excl_tax%',
+					'%new_price_total_incl_tax%',
+					'%new_price_total_excl_tax%',
 				) ),
 				'id'       => 'alg_wc_wholesale_pricing_dropdown_label_template',
 				'default'  => '%qty%',

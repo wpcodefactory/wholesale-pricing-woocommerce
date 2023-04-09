@@ -20,7 +20,7 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	 * @version 3.3.0
 	 * @since   2.0.0
 	 *
-	 * @todo    [next] `[alg_wc_term_wholesale_pricing_table]` and `[alg_wc_term_wholesale_pricing_data]`
+	 * @todo    `[alg_wc_term_wholesale_pricing_table]` and `[alg_wc_term_wholesale_pricing_data]`
 	 */
 	function __construct() {
 		add_shortcode( 'alg_wc_wholesale_pricing_table',         array( $this, 'wholesale_pricing_table' ) );
@@ -72,9 +72,9 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	 * @version 3.3.0
 	 * @since   1.0.0
 	 *
-	 * @todo    [next] [!!] (dev) `shortcode_atts`: `alg_wc_wholesale_pricing_table` to `alg_wc_ppq_table`?
-	 * @todo    [next] [!] (dev) `alg_wc_wholesale_pricing_discount_type` option + `alg_wc_wholesale_pricing_get_discount_type` filter?
-	 * @todo    [next] add all applicable atts from `product_wholesale_pricing_table()`, e.g. `table_heading_type` etc.
+	 * @todo    [!!] (dev) `shortcode_atts`: `alg_wc_wholesale_pricing_table` to `alg_wc_ppq_table`?
+	 * @todo    [!] (dev) `alg_wc_wholesale_pricing_discount_type` option + `alg_wc_wholesale_pricing_get_discount_type` filter?
+	 * @todo    add all applicable atts from `product_wholesale_pricing_table()`, e.g. `table_heading_type` etc.
 	 */
 	function wholesale_pricing_table( $atts ) {
 		// Shortcode atts
@@ -143,14 +143,14 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	 * @version 3.3.0
 	 * @since   1.0.0
 	 *
-	 * @todo    [next] [!!] (dev) `shortcode_atts`: `alg_wc_product_wholesale_pricing_table` to `alg_wc_product_ppq_table`?
-	 * @todo    [next] [!!] (dev) `apply_filters`: `alg_wc_product_wholesale_pricing_table_heading_format` to `alg_wc_product_ppq_table_heading_format`?
-	 * @todo    [next] [!] (dev) check if price `is_numeric()`?
-	 * @todo    [next] `extra_column_before`, `extra_column_after`
-	 * @todo    [next] `columns_styles`: different styles for different elements, i.e. `explode( '|', $atts['columns_styles'] )`
-	 * @todo    [next] "add to cart" (min qty) link/button
-	 * @todo    [next] variations (when `product_id` is not set in atts) (same in `product_wholesale_pricing_data()`)
-	 * @todo    [maybe] new atts: `html_before_rows` and `html_after_rows`
+	 * @todo    [!!] (dev) `shortcode_atts`: `alg_wc_product_wholesale_pricing_table` to `alg_wc_product_ppq_table`?
+	 * @todo    [!!] (dev) `apply_filters`: `alg_wc_product_wholesale_pricing_table_heading_format` to `alg_wc_product_ppq_table_heading_format`?
+	 * @todo    [!] (dev) check if price `is_numeric()`?
+	 * @todo    `extra_column_before`, `extra_column_after`
+	 * @todo    `columns_styles`: different styles for different elements, i.e. `explode( '|', $atts['columns_styles'] )`
+	 * @todo    "add to cart" (min qty) link/button
+	 * @todo    variations (when `product_id` is not set in atts) (same in `product_wholesale_pricing_data()`)
+	 * @todo    new atts: `html_before_rows` and `html_after_rows`
 	 */
 	function product_wholesale_pricing_table( $atts ) {
 
@@ -367,7 +367,7 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	 * @version 2.7.0
 	 * @since   1.1.2
 	 *
-	 * @todo    [next] [!!] (dev) `shortcode_atts`: `alg_wc_wholesale_pricing_data` to `alg_wc_ppq_data`?
+	 * @todo    [!!] (dev) `shortcode_atts`: `alg_wc_wholesale_pricing_data` to `alg_wc_ppq_data`?
 	 */
 	function wholesale_pricing_data( $atts ) {
 		$atts = shortcode_atts( array(
@@ -387,8 +387,8 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	 * @version 3.2.0
 	 * @since   1.1.2
 	 *
-	 * @todo    [next] [!!] (dev) `shortcode_atts`: `alg_wc_product_wholesale_pricing_data` to `alg_wc_product_ppq_data`?
-	 * @todo    [maybe] `price_for_qty`? (now can be done with `price_format="<del>%old_price_total%</del> %new_price_total%"`)
+	 * @todo    [!!] (dev) `shortcode_atts`: `alg_wc_product_wholesale_pricing_data` to `alg_wc_product_ppq_data`?
+	 * @todo    `price_for_qty`? (now can be done with `price_format="<del>%old_price_total%</del> %new_price_total%"`)
 	 */
 	function product_wholesale_pricing_data( $atts ) {
 
@@ -481,7 +481,7 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	 * @version 3.1.0
 	 * @since   1.1.2
 	 *
-	 * @todo    [next] [!!] (fix) Variable: per variation enabled
+	 * @todo    [!!] (fix) Variable: per variation enabled
 	 */
 	function get_product_price( $product, $discount_type, $discount, $hide_currency, $price_format, $qty = 1 ) {
 

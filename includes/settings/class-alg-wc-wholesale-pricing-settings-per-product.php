@@ -20,8 +20,8 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 	 * @version 2.2.5
 	 * @since   1.0.0
 	 *
-	 * @todo    [next] [!] (feature) Dokan (check my EAN plugin)
-	 * @todo    [next] [maybe] admin actions: copy (and maybe reset) user role (same in global "User roles" settings)
+	 * @todo    [!] (feature) Dokan (check my EAN plugin)
+	 * @todo    admin actions: copy (and maybe reset) user role (same in global "User roles" settings)
 	 */
 	function __construct() {
 		add_action( 'add_meta_boxes',    array( $this, 'add_wholesale_pricing_metabox' ) );
@@ -60,7 +60,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 	 * @version 2.0.0
 	 * @since   2.0.0
 	 *
-	 * @todo    [next] [maybe] admin notice, e.g. "Options have been reset successfully."
+	 * @todo    admin notice, e.g. "Options have been reset successfully."
 	 */
 	function admin_action_reset() {
 		if ( ! empty( $_GET['alg_wc_wholesale_pricing_reset_variation'] ) || ! empty( $_GET['alg_wc_wholesale_pricing_reset'] ) ) {
@@ -91,8 +91,8 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 	 * @version 2.0.0
 	 * @since   2.0.0
 	 *
-	 * @todo    [next] reset -> copy: zero becomes empty
-	 * @todo    [next] [maybe] admin notice, e.g. "Variation has been copied successfully."
+	 * @todo    reset -> copy: zero becomes empty
+	 * @todo    admin notice, e.g. "Variation has been copied successfully."
 	 */
 	function admin_action_copy_variation() {
 		if ( ! empty( $_GET['alg_wc_wholesale_pricing_copy_variation'] ) ) {
@@ -186,15 +186,15 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 	 * @version 3.0.0
 	 * @since   2.2.5
 	 *
-	 * @todo    [next] [!] (dev) customizable tab title
-	 * @todo    [next] [!] (dev) better icon
-	 * @todo    [next] [!] (dev) new product: better solution
-	 * @todo    [next] [!] (dev) JS (then disable *all* tooltips)
-	 * @todo    [next] [!] (dev) better styling
-	 * @todo    [next] [!] (dev) "reset all", "reset variation", etc.
-	 * @todo    [next] [!] (dev) `wcfm_is_vendor()`?
-	 * @todo    [next] [!] (dev) `'wcmarketplace' === wcfm_is_marketplace()`
-	 * @todo    [next] (feature) translation shortcode?
+	 * @todo    [!] (dev) customizable tab title
+	 * @todo    [!] (dev) better icon
+	 * @todo    [!] (dev) new product: better solution
+	 * @todo    [!] (dev) JS (then disable *all* tooltips)
+	 * @todo    [!] (dev) better styling
+	 * @todo    [!] (dev) "reset all", "reset variation", etc.
+	 * @todo    [!] (dev) `wcfm_is_vendor()`?
+	 * @todo    [!] (dev) `'wcmarketplace' === wcfm_is_marketplace()`
+	 * @todo    (feature) translation shortcode?
 	 */
 	function wcfm_wholesale_product_settings( $product_id, $product_type = '', $wcfm_is_translated_product = false, $wcfm_wpml_edit_disable_element = '' ) {
 		$html  = '';
@@ -216,9 +216,9 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 	 * @version 2.2.5
 	 * @since   2.2.5
 	 *
-	 * @todo    [next] [!] (dev) `alg_wc_wholesale_pricing_save_post`
-	 * @todo    [next] [!] (dev) `global $WCFM`
-	 * @todo    [next] [!] (dev) `'wcmarketplace' === wcfm_is_marketplace()`
+	 * @todo    [!] (dev) `alg_wc_wholesale_pricing_save_post`
+	 * @todo    [!] (dev) `global $WCFM`
+	 * @todo    [!] (dev) `'wcmarketplace' === wcfm_is_marketplace()`
 	 */
 	function wcfm_wholesale_product_settings_update( $new_product_id, $wcfm_products_manage_form_data ) {
 		$this->save_options( $new_product_id, $wcfm_products_manage_form_data );
@@ -251,8 +251,8 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 	 * @version 2.2.5
 	 * @since   2.2.5
 	 *
-	 * @todo    [next] [!] (dev) code refactoring
-	 * @todo    [maybe] (dev) placeholder for textarea
+	 * @todo    [!] (dev) code refactoring
+	 * @todo    (dev) placeholder for textarea
 	 */
 	function get_field_html( $option, $product_id ) {
 		$the_post_id   = ( isset( $option['product_id'] ) ) ? $option['product_id'] : $product_id;
@@ -343,8 +343,8 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 	 * @version 2.2.5
 	 * @since   2.2.5
 	 *
-	 * @todo    [next] `description` and `desc`
-	 * @todo    [next] make settings look the same everywhere
+	 * @todo    `description` and `desc`
+	 * @todo    make settings look the same everywhere
 	 */
 	function get_options_table( $product_id, $table_class = '', $do_add_variation_title = true, $tooltip_type = 'wc' ) {
 		$html  = '';
@@ -378,10 +378,10 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 	 * @version 2.2.5
 	 * @since   1.0.0
 	 *
-	 * @todo    [next] [!] (dev) `$do_add_variation_title`: better solution
-	 * @todo    [next] (dev) per variation: add Pro desc?
-	 * @todo    [maybe] (dev) restyle
-	 * @todo    [maybe] (dev) Copy variation: JS
+	 * @todo    [!] (dev) `$do_add_variation_title`: better solution
+	 * @todo    (dev) per variation: add Pro desc?
+	 * @todo    (dev) restyle
+	 * @todo    (dev) Copy variation: JS
 	 */
 	function get_product_options( $product_id, $do_add_variation_title = true ) {
 		// Get products

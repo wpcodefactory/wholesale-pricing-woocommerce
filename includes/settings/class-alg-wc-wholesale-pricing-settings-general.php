@@ -32,15 +32,15 @@ class Alg_WC_Wholesale_Pricing_Settings_General extends Alg_WC_Wholesale_Pricing
 	 * @version 3.0.0
 	 * @since   1.0.0
 	 *
-	 * @todo    [next] (desc) `alg_wc_wholesale_pricing_add_order_discount`: better desc
-	 * @todo    [next] (dev) `alg_wc_wholesale_pricing_lumise_enabled`: remove? (or at least default to `yes`)
-	 * @todo    [next] (dev) `alg_wc_wholesale_pricing_round`: default to `no`
-	 * @todo    [next] (feature) `alg_wc_wholesale_pricing_round`: custom precision
-	 * @todo    [next] (desc) `alg_wc_wholesale_pricing_process_formula`: better description
-	 * @todo    [next] (dev) sentence capitalization for all section titles (including per term settings etc.)
-	 * @todo    [maybe] (desc) Per variation: better description?
-	 * @todo    [maybe] (dev) `alg_wc_wholesale_pricing_process_formula`: default to `yes`?
-	 * @todo    [maybe] (desc) `alg_wc_wholesale_pricing_enable_options`: better description?
+	 * @todo    (desc) `alg_wc_wholesale_pricing_add_order_discount`: better desc
+	 * @todo    (dev) `alg_wc_wholesale_pricing_lumise_enabled`: remove? (or at least default to `yes`)
+	 * @todo    (dev) `alg_wc_wholesale_pricing_round`: default to `no`
+	 * @todo    (feature) `alg_wc_wholesale_pricing_round`: custom precision
+	 * @todo    (desc) `alg_wc_wholesale_pricing_process_formula`: better description
+	 * @todo    (dev) sentence capitalization for all section titles (including per term settings etc.)
+	 * @todo    (desc) Per variation: better description?
+	 * @todo    (dev) `alg_wc_wholesale_pricing_process_formula`: default to `yes`?
+	 * @todo    (desc) `alg_wc_wholesale_pricing_enable_options`: better description?
 	 */
 	function get_settings() {
 

@@ -32,10 +32,10 @@ class Alg_WC_Wholesale_Pricing_Settings_All_Products extends Alg_WC_Wholesale_Pr
 	 * @version 3.0.0
 	 * @since   1.2.0
 	 *
-	 * @todo    [next] save settings (levels data?) in array, i.e. `alg_wc_wholesale_pricing_level_min_qty[$i]` etc. (and same for "user roles" options, and "per product" and "per term" meta?)
-	 * @todo    [next] [maybe] add link to "User Roles" section
-	 * @todo    [next] [maybe] `alg_wc_wholesale_pricing_all_products_enabled`: better description
-	 * @todo    [next] [maybe] "price directly"
+	 * @todo    save settings (levels data?) in array, i.e. `alg_wc_wholesale_pricing_level_min_qty[$i]` etc. (and same for "user roles" options, and "per product" and "per term" meta?)
+	 * @todo    add link to "User Roles" section
+	 * @todo    `alg_wc_wholesale_pricing_all_products_enabled`: better description
+	 * @todo    "price directly"
 	 */
 	function get_settings() {
 

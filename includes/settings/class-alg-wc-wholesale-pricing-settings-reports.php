@@ -35,12 +35,12 @@ class Alg_WC_Wholesale_Pricing_Settings_Reports extends Alg_WC_Wholesale_Pricing
 	 * @see     https://developer.wordpress.org/reference/functions/get_terms/
 	 * @see     https://github.com/woocommerce/woocommerce/wiki/wc_get_products-and-WC_Product_Query
 	 *
-	 * @todo    [next] (dev) `'orderby' => 'name'`: there is something wrong with `product` ordering then: variations and non-published ordering is wrong for some reason?
-	 * @todo    [later] (feature) editor
-	 * @todo    [later] (feature) export (and import?), print
-	 * @todo    [maybe] (dev) `$header`: better solution?
-	 * @todo    [maybe] (dev) remove `#` column?
-	 * @todo    [maybe] (dev) `product`: remove `$item->get_status()`?
+	 * @todo    (dev) `'orderby' => 'name'`: there is something wrong with `product` ordering then: variations and non-published ordering is wrong for some reason?
+	 * @todo    (feature) editor
+	 * @todo    (feature) export (and import?), print
+	 * @todo    (dev) `$header`: better solution?
+	 * @todo    (dev) remove `#` column?
+	 * @todo    (dev) `product`: remove `$item->get_status()`?
 	 */
 	function get_report( $type ) {
 		$items = array();
@@ -136,7 +136,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Reports extends Alg_WC_Wholesale_Pricing
 	 * @version 2.6.3
 	 * @since   2.6.3
 	 *
-	 * @todo    [maybe] (dev) better styling?
+	 * @todo    (dev) better styling?
 	 */
 	function add_style() {
 		echo '<style>.widefat td, .widefat th { font-size: 12px; } </style>';
@@ -148,7 +148,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Reports extends Alg_WC_Wholesale_Pricing
 	 * @version 2.6.3
 	 * @since   2.6.3
 	 *
-	 * @todo    [maybe] (dev) nonce, `manage_woocommerce`, etc.?
+	 * @todo    (dev) nonce, `manage_woocommerce`, etc.?
 	 */
 	function get_settings() {
 		add_action( 'admin_footer', array( $this, 'add_style' ) );

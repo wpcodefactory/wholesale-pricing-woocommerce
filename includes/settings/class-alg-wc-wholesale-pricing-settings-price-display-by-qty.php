@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Price Display by Qty Section Settings
  *
- * @version 3.2.0
+ * @version 3.3.2
  * @since   1.3.0
  *
  * @author  Algoritmika Ltd.
@@ -29,13 +29,13 @@ class Alg_WC_Wholesale_Pricing_Settings_Price_Display_By_Qty extends Alg_WC_Whol
 	/**
 	 * get_settings.
 	 *
-	 * @version 3.2.0
+	 * @version 3.3.2
 	 * @since   1.3.0
 	 *
-	 * @todo    [now] (dev) Price identifier: store in array?
-	 * @todo    [now] (desc) Price identifier: add desc
-	 * @todo    [maybe] (desc) `alg_wc_wholesale_pricing_price_by_qty_standard_qty_input`: better desc?
-	 * @todo    [maybe] (desc) output `get_placeholders_desc()` in *section* desc instead
+	 * @todo    (dev) Price identifier: store in array?
+	 * @todo    (desc) Price identifier: add desc
+	 * @todo    (desc) `alg_wc_wholesale_pricing_price_by_qty_standard_qty_input`: better desc?
+	 * @todo    (desc) output `get_placeholders_desc()` in *section* desc instead
 	 */
 	function get_settings() {
 
@@ -79,6 +79,14 @@ class Alg_WC_Wholesale_Pricing_Settings_Price_Display_By_Qty extends Alg_WC_Whol
 						'%discount_percent%',
 						'%discount_single%',
 						'%discount_total%',
+						'%old_price_single_incl_tax%',
+						'%old_price_single_excl_tax%',
+						'%old_price_total_incl_tax%',
+						'%old_price_total_excl_tax%',
+						'%new_price_single_incl_tax%',
+						'%new_price_single_excl_tax%',
+						'%new_price_total_incl_tax%',
+						'%new_price_total_excl_tax%',
 					) ),
 				'id'       => 'alg_wc_wholesale_pricing_price_by_qty_display_template',
 				'default'  => sprintf( __( '%s for %s pcs.', 'wholesale-pricing-woocommerce' ), '<del>%old_price_total%</del> %new_price_total%', '%qty%' ) . ' ' .
@@ -93,6 +101,10 @@ class Alg_WC_Wholesale_Pricing_Settings_Price_Display_By_Qty extends Alg_WC_Whol
 						'%qty%',
 						'%old_price_single%',
 						'%old_price_total%',
+						'%old_price_single_incl_tax%',
+						'%old_price_single_excl_tax%',
+						'%old_price_total_incl_tax%',
+						'%old_price_total_excl_tax%',
 					) ),
 				'id'       => 'alg_wc_wholesale_pricing_price_by_qty_display_template_zero',
 				'default'  => sprintf( __( '%s for %s pcs.', 'wholesale-pricing-woocommerce' ), '%old_price_total%', '%qty%' ),

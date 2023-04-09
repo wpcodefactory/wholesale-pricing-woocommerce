@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Frontend Class
  *
- * @version 3.3.0
+ * @version 3.3.2
  * @since   2.0.0
  *
  * @author  Algoritmika Ltd.
@@ -54,14 +54,14 @@ class Alg_WC_Wholesale_Pricing_Frontend {
 	/**
 	 * ajax_price_display_by_qty.
 	 *
-	 * @version 3.3.0
+	 * @version 3.3.2
 	 * @since   1.3.0
 	 *
-	 * @todo    [next] grouped products
-	 * @todo    [next] variable products (range)
-	 * @todo    [next] [maybe] do not display for qty=1
-	 * @todo    [next] [maybe] add option to disable "price by qty" on initial screen (i.e. before qty input was changed)
-	 * @todo    [maybe] other pages (e.g. cart)
+	 * @todo    grouped products
+	 * @todo    variable products (range)
+	 * @todo    do not display for qty=1
+	 * @todo    add option to disable "price by qty" on initial screen (i.e. before qty input was changed)
+	 * @todo    other pages (e.g. cart)
 	 */
 	function ajax_price_display_by_qty() {
 		if ( isset( $_POST['alg_wc_wholesale_pricing_qty'] ) && '' !== $_POST['alg_wc_wholesale_pricing_qty'] && ! empty( $_POST['alg_wc_wholesale_pricing_id'] ) ) {
@@ -94,7 +94,9 @@ class Alg_WC_Wholesale_Pricing_Frontend {
 					$new_price_single,
 					$discount,
 					$discount_type,
-					$quantity
+					$quantity,
+					false,
+					$product
 				);
 				// Handle deprecated placeholders
 				$placeholders['%price_single%'] = $placeholders['%old_price_single%'];
@@ -155,18 +157,20 @@ class Alg_WC_Wholesale_Pricing_Frontend {
 	/**
 	 * get_placeholders.
 	 *
-	 * @version 2.6.1
+	 * @version 3.3.2
 	 * @since   2.0.0
 	 *
-	 * @todo    [next] (dev) params as array
-	 * @todo    [next] [maybe] handle deprecated placeholders here
-	 * @todo    [maybe] list `%quantity%` and `%quantity_total%` in settings?
+	 * @todo    (dev) params as array
+	 * @todo    handle deprecated placeholders here
+	 * @todo    list `%quantity%` and `%quantity_total%` in settings?
 	 */
-	function get_placeholders( $old_price_single, $new_price_single, $discount, $discount_type, $quantity, $total_quantity = false ) {
+	function get_placeholders( $old_price_single, $new_price_single, $discount, $discount_type, $quantity, $total_quantity = false, $product = false ) {
+
 		$discount_single  = ( $old_price_single - $new_price_single );
 		$discount_percent = ( 0 != $old_price_single ? round( ( $discount_single / $old_price_single * 100 ), 2 ) : 0 );
 		$total_quantity   = ( $total_quantity ? $total_quantity : $quantity );
-		return array(
+
+		$placeholders = array(
 			'%old_price_single%'    => wc_price( $old_price_single ),
 			'%old_price_total%'     => wc_price( $old_price_single * $quantity ),
 			'%new_price_single%'    => wc_price( $new_price_single ),
@@ -180,6 +184,22 @@ class Alg_WC_Wholesale_Pricing_Frontend {
 			'%quantity_total%'      => $total_quantity,
 			'%discount_value%'      => $this->get_discount_value_placeholder( $old_price_single, ( false !== $discount ? $discount : 0 ), $discount_type ),
 		);
+
+		if ( $product ) {
+			foreach ( array( '_incl_tax', '_excl_tax' ) as $tax_display ) {
+				$price_func = ( '_incl_tax' === $tax_display ? 'wc_get_price_including_tax' : 'wc_get_price_excluding_tax' );
+
+				$placeholders = array_merge( $placeholders, array(
+					'%old_price_single' . $tax_display . '%' => wc_price( $price_func( $product, array( 'price' => $old_price_single, 'qty' => 1 ) ) ),
+					'%old_price_total'  . $tax_display . '%' => wc_price( $price_func( $product, array( 'price' => $old_price_single, 'qty' => $quantity ) ) ),
+					'%new_price_single' . $tax_display . '%' => wc_price( $price_func( $product, array( 'price' => $new_price_single, 'qty' => 1 ) ) ),
+					'%new_price_total'  . $tax_display . '%' => wc_price( $price_func( $product, array( 'price' => $new_price_single, 'qty' => $quantity ) ) ),
+				) );
+
+			}
+		}
+
+		return $placeholders;
 	}
 
 	/**
@@ -188,7 +208,7 @@ class Alg_WC_Wholesale_Pricing_Frontend {
 	 * @version 2.0.0
 	 * @since   2.0.0
 	 *
-	 * @todo    [maybe] (dev) deprecate?
+	 * @todo    (dev) deprecate?
 	 */
 	function get_discount_value_placeholder( $old_price_single, $discount, $discount_type ) {
 		switch ( $discount_type ) {
@@ -217,7 +237,7 @@ class Alg_WC_Wholesale_Pricing_Frontend {
 	/**
 	 * add_discount_info_to_cart_page.
 	 *
-	 * @version 2.6.1
+	 * @version 3.3.2
 	 * @since   1.0.0
 	 */
 	function add_discount_info_to_cart_page( $price_html, $cart_item, $cart_item_key, $template ) {
@@ -236,7 +256,8 @@ class Alg_WC_Wholesale_Pricing_Frontend {
 						$discount,
 						$this->get_core()->get_discount_type( $product_id, $cart_item['quantity'] ),
 						$cart_item['quantity'],
-						$quantity
+						$quantity,
+						( ! empty( $cart_item['data'] ) ? $cart_item['data'] : false )
 					);
 					// Handle deprecated placeholders
 					$placeholders['%old_price%'] = $placeholders['%old_price_single%'];

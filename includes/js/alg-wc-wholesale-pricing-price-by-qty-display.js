@@ -89,13 +89,13 @@ jQuery( document ).ready( function () {
 	 * @version 3.2.1
 	 * @since   1.3.0
 	 *
-	 * @todo    [next] [!] (dev) Variation hide: before/after: hide instead of setting it to empty string?
-	 * @todo    [next] [!] (dev) use `jQuery( this )` (instead of `jQuery( '[name="' + element_name + '"]' )`) where possible?
-	 * @todo    [next] find better solution for `do_force_standard_qty_input`
-	 * @todo    [maybe] customizable quantity events: `cut copy paste keyup keydown`
-	 * @todo    [maybe] customizable elements (e.g., `quantity_pq_dropdown`)
-	 * @todo    [maybe] `setInterval( display_all, 1000 );`
-	 * @todo    [maybe] (dev) Update on init: `jQuery( selector ).each( function () { display( jQuery( this ).val() ); } );`
+	 * @todo    [!] (dev) Variation hide: before/after: hide instead of setting it to empty string?
+	 * @todo    [!] (dev) use `jQuery( this )` (instead of `jQuery( '[name="' + element_name + '"]' )`) where possible?
+	 * @todo    find better solution for `do_force_standard_qty_input`
+	 * @todo    customizable quantity events: `cut copy paste keyup keydown`
+	 * @todo    customizable elements (e.g., `quantity_pq_dropdown`)
+	 * @todo    `setInterval( display_all, 1000 );`
+	 * @todo    (dev) Update on init: `jQuery( selector ).each( function () { display( jQuery( this ).val() ); } );`
 	 */
 	function run() {
 

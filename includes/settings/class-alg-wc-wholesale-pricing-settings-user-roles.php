@@ -32,7 +32,7 @@ class Alg_WC_Wholesale_Pricing_Settings_User_Roles extends Alg_WC_Wholesale_Pric
 	 * @version 3.0.0
 	 * @since   1.2.0
 	 *
-	 * @todo    [maybe] `alg_wc_wholesale_pricing_by_user_role_roles`: better description
+	 * @todo    `alg_wc_wholesale_pricing_by_user_role_roles`: better description
 	 */
 	function get_settings() {
 		$all_user_roles = alg_wc_wholesale_pricing()->core->get_user_roles_options();

@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Tools Section Settings
  *
- * @version 3.0.0
+ * @version 3.3.2
  * @since   2.6.0
  *
  * @author  Algoritmika Ltd.
@@ -29,7 +29,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Tools extends Alg_WC_Wholesale_Pricing_S
 	/**
 	 * get_settings.
 	 *
-	 * @version 3.0.0
+	 * @version 3.3.2
 	 * @since   2.6.0
 	 */
 	function get_settings() {
@@ -37,7 +37,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Tools extends Alg_WC_Wholesale_Pricing_S
 			array(
 				'title'    => __( 'Tools', 'wholesale-pricing-woocommerce' ),
 				'desc'     => __( 'Check the box and save changes to run the tool.', 'wholesale-pricing-woocommerce' ) . ' ' .
-					'<strong>' . __( 'Please note that there is no undo for this action.', 'wholesale-pricing-woocommerce' ) . '</strong>',
+					'<strong>' . __( 'Please note that there is no undo for these tools.', 'wholesale-pricing-woocommerce' ) . '</strong>',
 				'type'     => 'title',
 				'id'       => 'alg_wc_wholesale_pricing_tools_options',
 			),

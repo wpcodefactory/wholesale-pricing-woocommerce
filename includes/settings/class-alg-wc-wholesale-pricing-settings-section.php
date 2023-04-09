@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Section Settings
  *
- * @version 2.3.0
+ * @version 3.3.2
  * @since   1.0.0
  *
  * @author  Algoritmika Ltd.
@@ -52,7 +52,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Section {
 	 * @version 2.0.0
 	 * @since   2.0.0
 	 *
-	 * @todo    [next] `'max' => '100'` (same in "per-item")
+	 * @todo    `'max' => '100'` (same in "per-item")
 	 */
 	function get_levels_num_custom_atts() {
 		return array( 'step' => '1', 'min' => '1', 'max' => '100' );
@@ -61,11 +61,21 @@ class Alg_WC_Wholesale_Pricing_Settings_Section {
 	/**
 	 * get_placeholders_desc.
 	 *
-	 * @version 2.3.0
+	 * @version 3.3.2
 	 * @since   2.0.0
+	 *
+	 * @todo    (dev) add default value for the `$placeholders`, i.e., `array( '%qty%', '%qty_total%', '%old_price_single%', ... )`
 	 */
 	function get_placeholders_desc( $placeholders ) {
-		return sprintf( __( 'Available placeholders: %s', 'wholesale-pricing-woocommerce' ), '<code>' . implode( '</code>, <code>', $placeholders ) . '</code>' );
+
+		asort( $placeholders );
+		$placeholders_html = '<ul><li><code>' . implode( '</code></li><li><code>', $placeholders ) . '</code></li></ul>';
+
+		$summary_style = 'cursor: pointer; color: #2271b1;';
+		$summary_text  = esc_html__( 'Available placeholders', 'wholesale-pricing-woocommerce' );
+
+		return sprintf( '<details><summary style="%s">%s</summary>%s</details>', $summary_style, $summary_text, $placeholders_html );
+
 	}
 
 }

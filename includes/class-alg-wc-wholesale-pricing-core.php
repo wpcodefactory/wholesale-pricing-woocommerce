@@ -20,13 +20,13 @@ class Alg_WC_Wholesale_Pricing_Core {
 	 * @version 3.0.0
 	 * @since   1.0.0
 	 *
-	 * @todo    [next] user roles: separate "Discount type", and maybe "Enable" ("all products", "per term", "per product")
-	 * @todo    [next] add `[alg_wc_wh_pr_product_qty]` shortcode?
-	 * @todo    [next] [maybe] decimal min quantity?
-	 * @todo    [maybe] remove `$this->is_children`
-	 * @todo    [maybe] remove `$this->do_process_formula`
-	 * @todo    [maybe] `$product->apply_changes()`
-	 * @todo    [maybe] `$this->is_children`: rename to `is_per_variation`?
+	 * @todo    user roles: separate "Discount type", and maybe "Enable" ("all products", "per term", "per product")
+	 * @todo    add `[alg_wc_wh_pr_product_qty]` shortcode?
+	 * @todo    decimal min quantity?
+	 * @todo    remove `$this->is_children`
+	 * @todo    remove `$this->do_process_formula`
+	 * @todo    `$product->apply_changes()`
+	 * @todo    `$this->is_children`: rename to `is_per_variation`?
 	 */
 	function __construct() {
 
@@ -163,8 +163,8 @@ class Alg_WC_Wholesale_Pricing_Core {
 	 * @version 1.4.0
 	 * @since   1.4.0
 	 *
-	 * @todo    [maybe] find/replace instead of `do_shortcode()`
-	 * @todo    [maybe] call `require_once` only once (e.g. in `init` hook)
+	 * @todo    find/replace instead of `do_shortcode()`
+	 * @todo    call `require_once` only once (e.g. in `init` hook)
 	 */
 	function maybe_process_formula( $value ) {
 		if ( $this->do_process_formula ) {
@@ -216,7 +216,7 @@ class Alg_WC_Wholesale_Pricing_Core {
 	 * @version 2.6.1
 	 * @since   1.0.0
 	 *
-	 * @todo    [next] [!] (dev) `if ( '' === $price && 'price_directly' !== $discount_type ) { return $price; }` || `if ( ! is_numeric( $price ) && 'price_directly' !== $discount_type ) { return $price; }`
+	 * @todo    [!] (dev) `if ( '' === $price && 'price_directly' !== $discount_type ) { return $price; }` || `if ( ! is_numeric( $price ) && 'price_directly' !== $discount_type ) { return $price; }`
 	 */
 	function get_wholesale_price( $price, $quantity, $product_id ) {
 		if ( false !== ( $discount = $this->get_discount_by_quantity( $quantity, $product_id ) ) ) {
@@ -240,9 +240,9 @@ class Alg_WC_Wholesale_Pricing_Core {
 	 * @version 2.0.0
 	 * @since   1.0.0
 	 *
-	 * @todo    [next] [!] (dev) in each `enabled_...()` function: check if number of levels > 0?
-	 * @todo    [next] (feature) "wholesale product" product badge
-	 * @todo    [maybe] cache results
+	 * @todo    [!] (dev) in each `enabled_...()` function: check if number of levels > 0?
+	 * @todo    (feature) "wholesale product" product badge
+	 * @todo    cache results
 	 */
 	function is_enabled( $product_id ) {
 		return ( $this->is_enabled_per_product( $product_id ) || $this->is_enabled_per_term( $product_id ) || $this->is_enabled_all_products( $product_id ) );
@@ -254,9 +254,9 @@ class Alg_WC_Wholesale_Pricing_Core {
 	 * @version 2.0.0
 	 * @since   2.0.0
 	 *
-	 * @todo    [maybe] include/exclude: product cats/tags
-	 * @todo    [maybe] include/exclude: variations
-	 * @todo    [maybe] cache results
+	 * @todo    include/exclude: product cats/tags
+	 * @todo    include/exclude: variations
+	 * @todo    cache results
 	 */
 	function is_enabled_all_products( $product_id ) {
 		if ( 'yes' === get_option( 'alg_wc_wholesale_pricing_all_products_enabled', 'yes' ) ) {
@@ -276,8 +276,8 @@ class Alg_WC_Wholesale_Pricing_Core {
 	 * @version 2.8.0
 	 * @since   1.0.0
 	 *
-	 * @todo    [next] (dev) `$this->is_children`: `... && ( $children = get_children( $product_id ) ) && ! empty( $children )`
-	 * @todo    [maybe] cache results
+	 * @todo    (dev) `$this->is_children`: `... && ( $children = get_children( $product_id ) ) && ! empty( $children )`
+	 * @todo    cache results
 	 */
 	function is_enabled_per_product( $product_id ) {
 		if ( 'yes' === get_option( 'alg_wc_wholesale_pricing_per_product_enabled', 'yes' ) ) {
@@ -306,8 +306,8 @@ class Alg_WC_Wholesale_Pricing_Core {
 	 * @param   int $product_id Product ID.
 	 * @param   int|false $quantity Quantity. Optional. Used only for `alg_wc_wholesale_pricing_get_discount_type` filter.
 	 *
-	 * @todo    [maybe] `is_enabled_all_products()` (i.e. for `get_option( $key, 'percent' )`)
-	 * @todo    [maybe] add `$type` as function param (i.e. check if `is_enabled...()` in advance)
+	 * @todo    `is_enabled_all_products()` (i.e. for `get_option( $key, 'percent' )`)
+	 * @todo    add `$type` as function param (i.e. check if `is_enabled...()` in advance)
 	 */
 	function get_discount_type( $product_id, $quantity = false ) {
 		$key = 'alg_wc_wholesale_pricing_discount_type';
@@ -345,8 +345,8 @@ class Alg_WC_Wholesale_Pricing_Core {
 	 * @version 2.6.0
 	 * @since   1.0.0
 	 *
-	 * @todo    [next] recheck: `$term_or_product_id = 0;`
-	 * @todo    [maybe] code refactoring ("Get type and term/product ID")
+	 * @todo    recheck: `$term_or_product_id = 0;`
+	 * @todo    code refactoring ("Get type and term/product ID")
 	 */
 	function get_levels_data( $product_id, $type = false, $sort = 'desc' ) {
 		// Get type and term/product ID
@@ -395,7 +395,7 @@ class Alg_WC_Wholesale_Pricing_Core {
 	 * @version 2.0.0
 	 * @since   2.0.0
 	 *
-	 * @todo    [maybe] rename
+	 * @todo    rename
 	 */
 	function get_levels_data_array( $product_id, $term_or_product_id, $type, $sort ) {
 		$levels_data = array();
@@ -420,8 +420,8 @@ class Alg_WC_Wholesale_Pricing_Core {
 	 * @version 2.0.0
 	 * @since   1.0.0
 	 *
-	 * @todo    [next] `return 1;`?
-	 * @todo    [maybe] merge with `get_level_discount_or_min_qty()`
+	 * @todo    `return 1;`?
+	 * @todo    merge with `get_level_discount_or_min_qty()`
 	 */
 	function get_total_levels( $type, $term_or_product_id = 0, $role_option_name_addon = '' ) {
 		$key = "alg_wc_wholesale_pricing_levels_number{$role_option_name_addon}";
@@ -493,7 +493,7 @@ class Alg_WC_Wholesale_Pricing_Core {
 	 * @version 2.6.2
 	 * @since   2.0.0
 	 *
-	 * @todo    [next] (dev) multiple user roles, i.e. not only the first one
+	 * @todo    (dev) multiple user roles, i.e. not only the first one
 	 */
 	function get_current_user_role( $user = false ) {
 		if ( ! isset( $this->current_user_role ) ) {

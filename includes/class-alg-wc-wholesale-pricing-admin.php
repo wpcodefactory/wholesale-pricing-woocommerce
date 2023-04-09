@@ -20,7 +20,7 @@ class Alg_WC_Wholesale_Pricing_Admin {
 	 * @version 2.6.2
 	 * @since   2.6.2
 	 *
-	 * @todo    [next] (dev) move more admin stuff to this class
+	 * @todo    (dev) move more admin stuff to this class
 	 */
 	function __construct() {
 		// Order "Recalculate" meta box
@@ -37,7 +37,7 @@ class Alg_WC_Wholesale_Pricing_Admin {
 	 * @version 2.6.2
 	 * @since   2.6.2
 	 *
-	 * @todo    [next] (dev) better notices (i.e. errors)
+	 * @todo    (dev) better notices (i.e. errors)
 	 */
 	function recalculate_order_action() {
 		if ( ! empty( $_GET['alg_wc_wholesale_pricing_recalculate_order_id'] ) ) {
@@ -87,7 +87,7 @@ class Alg_WC_Wholesale_Pricing_Admin {
 	 * @version 2.6.2
 	 * @since   2.6.2
 	 *
-	 * @todo    [maybe] (desc) better desc?
+	 * @todo    (desc) better desc?
 	 */
 	function create_order_meta_box( $post ) {
 		$do_confirmation = ( 'yes' === get_option( 'alg_wc_wholesale_pricing_admin_recalculate_order_confirm', 'yes' ) );
@@ -108,9 +108,9 @@ class Alg_WC_Wholesale_Pricing_Admin {
 	 * @version 3.0.0
 	 * @since   2.6.2
 	 *
-	 * @todo    [next] (feature) calculate the wholesale price on item insert at once (i.e. instead of going through all items with a button)
-	 * @todo    [later] (dev) better order note?
-	 * @todo    [maybe] (feature) bulk recalculate?
+	 * @todo    (feature) calculate the wholesale price on item insert at once (i.e. instead of going through all items with a button)
+	 * @todo    (dev) better order note?
+	 * @todo    (feature) bulk recalculate?
 	 */
 	function recalculate_order( $order ) {
 		// Switch user role

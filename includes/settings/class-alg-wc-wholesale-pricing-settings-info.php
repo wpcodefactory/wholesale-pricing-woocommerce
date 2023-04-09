@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Info Section Settings
  *
- * @version 3.2.3
+ * @version 3.3.2
  * @since   2.0.0
  *
  * @author  Algoritmika Ltd.
@@ -29,20 +29,20 @@ class Alg_WC_Wholesale_Pricing_Settings_Info extends Alg_WC_Wholesale_Pricing_Se
 	/**
 	 * get_settings.
 	 *
-	 * @version 3.2.3
+	 * @version 3.3.2
 	 * @since   2.0.0
 	 *
-	 * @todo    [next] (desc) `alg_wc_wholesale_pricing_info_on_single_product_hide_variable`: better desc?
-	 * @todo    [next] (desc) `alg_wc_wholesale_pricing_info_on_single_product_variable`: better desc?
-	 * @todo    [next] (desc) Replace Price: better desc?
-	 * @todo    [next] (dev) Replace Price: better default values
-	 * @todo    [next] (feature) Replace Price: separate option for variations?
-	 * @todo    [next] (feature) Replace Price: separate option for variable products (i.e. price range)?
-	 * @todo    [next] (feature) `alg_wc_wholesale_pricing_show_info_single_hook`: more positions?
-	 * @todo    [maybe] (fix) Cart: fix cart info, when discount < 0
-	 * @todo    [maybe] (desc) Discount Pricing Table: better title/desc?
-	 * @todo    [maybe] (desc) Discount Pricing Table: add more (shortcodes) examples
-	 * @todo    [maybe] (feature) Discount Pricing Table: customizable position(s)
+	 * @todo    (desc) `alg_wc_wholesale_pricing_info_on_single_product_hide_variable`: better desc?
+	 * @todo    (desc) `alg_wc_wholesale_pricing_info_on_single_product_variable`: better desc?
+	 * @todo    (desc) Replace Price: better desc?
+	 * @todo    (dev) Replace Price: better default values
+	 * @todo    (feature) Replace Price: separate option for variations?
+	 * @todo    (feature) Replace Price: separate option for variable products (i.e. price range)?
+	 * @todo    (feature) `alg_wc_wholesale_pricing_show_info_single_hook`: more positions?
+	 * @todo    (fix) Cart: fix cart info, when discount < 0
+	 * @todo    (desc) Discount Pricing Table: better title/desc?
+	 * @todo    (desc) Discount Pricing Table: add more (shortcodes) examples
+	 * @todo    (feature) Discount Pricing Table: customizable position(s)
 	 */
 	function get_settings() {
 		return array(
@@ -62,6 +62,14 @@ class Alg_WC_Wholesale_Pricing_Settings_Info extends Alg_WC_Wholesale_Pricing_Se
 							'%discount_percent%',
 							'%discount_single%',
 							'%discount_total%',
+							'%old_price_single_incl_tax%',
+							'%old_price_single_excl_tax%',
+							'%old_price_total_incl_tax%',
+							'%old_price_total_excl_tax%',
+							'%new_price_single_incl_tax%',
+							'%new_price_single_excl_tax%',
+							'%new_price_total_incl_tax%',
+							'%new_price_total_excl_tax%',
 						)
 					),
 			),
