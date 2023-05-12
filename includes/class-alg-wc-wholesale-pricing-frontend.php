@@ -57,11 +57,11 @@ class Alg_WC_Wholesale_Pricing_Frontend {
 	 * @version 3.3.2
 	 * @since   1.3.0
 	 *
-	 * @todo    grouped products
-	 * @todo    variable products (range)
-	 * @todo    do not display for qty=1
-	 * @todo    add option to disable "price by qty" on initial screen (i.e. before qty input was changed)
-	 * @todo    other pages (e.g. cart)
+	 * @todo    (dev) grouped products
+	 * @todo    (dev) variable products (range)
+	 * @todo    (dev) do not display for qty=1
+	 * @todo    (dev) add option to disable "price by qty" on initial screen (i.e. before qty input was changed)
+	 * @todo    (dev) other pages (e.g. cart)
 	 */
 	function ajax_price_display_by_qty() {
 		if ( isset( $_POST['alg_wc_wholesale_pricing_qty'] ) && '' !== $_POST['alg_wc_wholesale_pricing_qty'] && ! empty( $_POST['alg_wc_wholesale_pricing_id'] ) ) {
@@ -161,8 +161,8 @@ class Alg_WC_Wholesale_Pricing_Frontend {
 	 * @since   2.0.0
 	 *
 	 * @todo    (dev) params as array
-	 * @todo    handle deprecated placeholders here
-	 * @todo    list `%quantity%` and `%quantity_total%` in settings?
+	 * @todo    (dev) handle deprecated placeholders here
+	 * @todo    (dev) list `%quantity%` and `%quantity_total%` in settings?
 	 */
 	function get_placeholders( $old_price_single, $new_price_single, $discount, $discount_type, $quantity, $total_quantity = false, $product = false ) {
 

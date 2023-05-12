@@ -91,10 +91,10 @@ jQuery( document ).ready( function () {
 	 *
 	 * @todo    [!] (dev) Variation hide: before/after: hide instead of setting it to empty string?
 	 * @todo    [!] (dev) use `jQuery( this )` (instead of `jQuery( '[name="' + element_name + '"]' )`) where possible?
-	 * @todo    find better solution for `do_force_standard_qty_input`
-	 * @todo    customizable quantity events: `cut copy paste keyup keydown`
-	 * @todo    customizable elements (e.g., `quantity_pq_dropdown`)
-	 * @todo    `setInterval( display_all, 1000 );`
+	 * @todo    (dev) find better solution for `do_force_standard_qty_input`
+	 * @todo    (dev) customizable quantity events: `cut copy paste keyup keydown`
+	 * @todo    (dev) customizable elements (e.g., `quantity_pq_dropdown`)
+	 * @todo    (dev) `setInterval( display_all, 1000 );`
 	 * @todo    (dev) Update on init: `jQuery( selector ).each( function () { display( jQuery( this ).val() ); } );`
 	 */
 	function run() {

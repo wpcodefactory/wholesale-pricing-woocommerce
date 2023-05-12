@@ -30,7 +30,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Item {
 	 * @version 3.0.0
 	 * @since   2.0.0
 	 *
-	 * @todo    use `get_total_levels()` etc. instead of `get_post_meta()` / `get_term_meta()`
+	 * @todo    (dev) use `get_total_levels()` etc. instead of `get_post_meta()` / `get_term_meta()`
 	 */
 	function get_options( $term_or_product, $term_or_product_id ) {
 		$discount_type_options = array(

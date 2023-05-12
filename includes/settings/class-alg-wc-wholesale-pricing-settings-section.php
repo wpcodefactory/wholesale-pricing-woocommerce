@@ -52,7 +52,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Section {
 	 * @version 2.0.0
 	 * @since   2.0.0
 	 *
-	 * @todo    `'max' => '100'` (same in "per-item")
+	 * @todo    (dev) `'max' => '100'` (same in "per-item")
 	 */
 	function get_levels_num_custom_atts() {
 		return array( 'step' => '1', 'min' => '1', 'max' => '100' );

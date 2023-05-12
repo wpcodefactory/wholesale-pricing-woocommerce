@@ -21,7 +21,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 	 * @since   1.0.0
 	 *
 	 * @todo    [!] (feature) Dokan (check my EAN plugin)
-	 * @todo    admin actions: copy (and maybe reset) user role (same in global "User roles" settings)
+	 * @todo    (dev) admin actions: copy (and maybe reset) user role (same in global "User roles" settings)
 	 */
 	function __construct() {
 		add_action( 'add_meta_boxes',    array( $this, 'add_wholesale_pricing_metabox' ) );
@@ -60,7 +60,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 	 * @version 2.0.0
 	 * @since   2.0.0
 	 *
-	 * @todo    admin notice, e.g. "Options have been reset successfully."
+	 * @todo    (dev) admin notice, e.g. "Options have been reset successfully."
 	 */
 	function admin_action_reset() {
 		if ( ! empty( $_GET['alg_wc_wholesale_pricing_reset_variation'] ) || ! empty( $_GET['alg_wc_wholesale_pricing_reset'] ) ) {
@@ -91,8 +91,8 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 	 * @version 2.0.0
 	 * @since   2.0.0
 	 *
-	 * @todo    reset -> copy: zero becomes empty
-	 * @todo    admin notice, e.g. "Variation has been copied successfully."
+	 * @todo    (dev) reset -> copy: zero becomes empty
+	 * @todo    (dev) admin notice, e.g. "Variation has been copied successfully."
 	 */
 	function admin_action_copy_variation() {
 		if ( ! empty( $_GET['alg_wc_wholesale_pricing_copy_variation'] ) ) {
@@ -343,8 +343,8 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 	 * @version 2.2.5
 	 * @since   2.2.5
 	 *
-	 * @todo    `description` and `desc`
-	 * @todo    make settings look the same everywhere
+	 * @todo    (dev) `description` and `desc`
+	 * @todo    (dev) make settings look the same everywhere
 	 */
 	function get_options_table( $product_id, $table_class = '', $do_add_variation_title = true, $tooltip_type = 'wc' ) {
 		$html  = '';

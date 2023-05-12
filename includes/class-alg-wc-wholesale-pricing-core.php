@@ -20,13 +20,13 @@ class Alg_WC_Wholesale_Pricing_Core {
 	 * @version 3.0.0
 	 * @since   1.0.0
 	 *
-	 * @todo    user roles: separate "Discount type", and maybe "Enable" ("all products", "per term", "per product")
-	 * @todo    add `[alg_wc_wh_pr_product_qty]` shortcode?
-	 * @todo    decimal min quantity?
-	 * @todo    remove `$this->is_children`
-	 * @todo    remove `$this->do_process_formula`
-	 * @todo    `$product->apply_changes()`
-	 * @todo    `$this->is_children`: rename to `is_per_variation`?
+	 * @todo    (dev) user roles: separate "Discount type", and maybe "Enable" ("all products", "per term", "per product")
+	 * @todo    (dev) add `[alg_wc_wh_pr_product_qty]` shortcode?
+	 * @todo    (dev) decimal min quantity?
+	 * @todo    (dev) remove `$this->is_children`
+	 * @todo    (dev) remove `$this->do_process_formula`
+	 * @todo    (dev) `$product->apply_changes()`
+	 * @todo    (dev) `$this->is_children`: rename to `is_per_variation`?
 	 */
 	function __construct() {
 
@@ -163,8 +163,8 @@ class Alg_WC_Wholesale_Pricing_Core {
 	 * @version 1.4.0
 	 * @since   1.4.0
 	 *
-	 * @todo    find/replace instead of `do_shortcode()`
-	 * @todo    call `require_once` only once (e.g. in `init` hook)
+	 * @todo    (dev) find/replace instead of `do_shortcode()`
+	 * @todo    (dev) call `require_once` only once (e.g., in `init` hook)
 	 */
 	function maybe_process_formula( $value ) {
 		if ( $this->do_process_formula ) {
@@ -242,7 +242,7 @@ class Alg_WC_Wholesale_Pricing_Core {
 	 *
 	 * @todo    [!] (dev) in each `enabled_...()` function: check if number of levels > 0?
 	 * @todo    (feature) "wholesale product" product badge
-	 * @todo    cache results
+	 * @todo    (dev) cache results
 	 */
 	function is_enabled( $product_id ) {
 		return ( $this->is_enabled_per_product( $product_id ) || $this->is_enabled_per_term( $product_id ) || $this->is_enabled_all_products( $product_id ) );
@@ -254,9 +254,9 @@ class Alg_WC_Wholesale_Pricing_Core {
 	 * @version 2.0.0
 	 * @since   2.0.0
 	 *
-	 * @todo    include/exclude: product cats/tags
-	 * @todo    include/exclude: variations
-	 * @todo    cache results
+	 * @todo    (dev) include/exclude: product cats/tags
+	 * @todo    (dev) include/exclude: variations
+	 * @todo    (dev) cache results
 	 */
 	function is_enabled_all_products( $product_id ) {
 		if ( 'yes' === get_option( 'alg_wc_wholesale_pricing_all_products_enabled', 'yes' ) ) {
@@ -277,7 +277,7 @@ class Alg_WC_Wholesale_Pricing_Core {
 	 * @since   1.0.0
 	 *
 	 * @todo    (dev) `$this->is_children`: `... && ( $children = get_children( $product_id ) ) && ! empty( $children )`
-	 * @todo    cache results
+	 * @todo    (dev) cache results
 	 */
 	function is_enabled_per_product( $product_id ) {
 		if ( 'yes' === get_option( 'alg_wc_wholesale_pricing_per_product_enabled', 'yes' ) ) {
@@ -306,8 +306,8 @@ class Alg_WC_Wholesale_Pricing_Core {
 	 * @param   int $product_id Product ID.
 	 * @param   int|false $quantity Quantity. Optional. Used only for `alg_wc_wholesale_pricing_get_discount_type` filter.
 	 *
-	 * @todo    `is_enabled_all_products()` (i.e. for `get_option( $key, 'percent' )`)
-	 * @todo    add `$type` as function param (i.e. check if `is_enabled...()` in advance)
+	 * @todo    (dev) `is_enabled_all_products()` (i.e. for `get_option( $key, 'percent' )`)
+	 * @todo    (dev) add `$type` as function param (i.e. check if `is_enabled...()` in advance)
 	 */
 	function get_discount_type( $product_id, $quantity = false ) {
 		$key = 'alg_wc_wholesale_pricing_discount_type';
@@ -345,8 +345,8 @@ class Alg_WC_Wholesale_Pricing_Core {
 	 * @version 2.6.0
 	 * @since   1.0.0
 	 *
-	 * @todo    recheck: `$term_or_product_id = 0;`
-	 * @todo    code refactoring ("Get type and term/product ID")
+	 * @todo    (dev) recheck: `$term_or_product_id = 0;`
+	 * @todo    (dev) code refactoring ("Get type and term/product ID")
 	 */
 	function get_levels_data( $product_id, $type = false, $sort = 'desc' ) {
 		// Get type and term/product ID
@@ -395,7 +395,7 @@ class Alg_WC_Wholesale_Pricing_Core {
 	 * @version 2.0.0
 	 * @since   2.0.0
 	 *
-	 * @todo    rename
+	 * @todo    (dev) rename
 	 */
 	function get_levels_data_array( $product_id, $term_or_product_id, $type, $sort ) {
 		$levels_data = array();
@@ -420,8 +420,8 @@ class Alg_WC_Wholesale_Pricing_Core {
 	 * @version 2.0.0
 	 * @since   1.0.0
 	 *
-	 * @todo    `return 1;`?
-	 * @todo    merge with `get_level_discount_or_min_qty()`
+	 * @todo    (dev) `return 1;`?
+	 * @todo    (dev) merge with `get_level_discount_or_min_qty()`
 	 */
 	function get_total_levels( $type, $term_or_product_id = 0, $role_option_name_addon = '' ) {
 		$key = "alg_wc_wholesale_pricing_levels_number{$role_option_name_addon}";
