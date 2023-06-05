@@ -27,7 +27,7 @@ msgstr ""
 msgid "Recalculate"
 msgstr ""
 
-#: includes/class-alg-wc-wholesale-pricing-core.php:485
+#: includes/class-alg-wc-wholesale-pricing-core.php:501
 msgid "Guest"
 msgstr ""
 
@@ -344,6 +344,21 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-dropdown.php:120
 msgid "Filter dropdown values using product's step, min and max values."
+msgstr ""
+
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-dropdown.php:126
+msgid "Custom dropdown values"
+msgstr ""
+
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-dropdown.php:127
+msgid ""
+"By default, the plugin will automatically add product's level min quantities "
+"to the dropdown, however, you can override it with your own values here."
+msgstr ""
+
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-dropdown.php:128
+#, php-format
+msgid "Comma-separated list of quantities, e.g.: %s"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:25

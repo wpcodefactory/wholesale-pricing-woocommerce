@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Core Class
  *
- * @version 3.0.0
+ * @version 3.4.0
  * @since   1.0.0
  *
  * @author  Algoritmika Ltd.
@@ -235,12 +235,21 @@ class Alg_WC_Wholesale_Pricing_Core {
 	}
 
 	/**
+	 * has_levels.
+	 *
+	 * @version 3.4.0
+	 * @since   3.4.0
+	 */
+	function has_levels( $type, $term_or_product_id = 0 ) {
+		return ( $this->get_total_levels( $type, $term_or_product_id, $this->get_user_role_option_name_addon() ) > 0 );
+	}
+
+	/**
 	 * is_enabled.
 	 *
 	 * @version 2.0.0
 	 * @since   1.0.0
 	 *
-	 * @todo    [!] (dev) in each `enabled_...()` function: check if number of levels > 0?
 	 * @todo    (feature) "wholesale product" product badge
 	 * @todo    (dev) cache results
 	 */
@@ -251,7 +260,7 @@ class Alg_WC_Wholesale_Pricing_Core {
 	/**
 	 * is_enabled_all_products.
 	 *
-	 * @version 2.0.0
+	 * @version 3.4.0
 	 * @since   2.0.0
 	 *
 	 * @todo    (dev) include/exclude: product cats/tags
@@ -259,7 +268,10 @@ class Alg_WC_Wholesale_Pricing_Core {
 	 * @todo    (dev) cache results
 	 */
 	function is_enabled_all_products( $product_id ) {
-		if ( 'yes' === get_option( 'alg_wc_wholesale_pricing_all_products_enabled', 'yes' ) ) {
+		if (
+			'yes' === get_option( 'alg_wc_wholesale_pricing_all_products_enabled', 'yes' ) &&
+			$this->has_levels( 'all', $product_id )
+		) {
 			$products_to_include  = get_option( 'alg_wc_wholesale_pricing_products_to_include', array() );
 			$products_to_exclude  = get_option( 'alg_wc_wholesale_pricing_products_to_exclude', array() );
 			$product_or_parent_id = ( 0 != ( $parent_id = wp_get_post_parent_id( $product_id ) ) ? $parent_id : $product_id );
@@ -273,7 +285,7 @@ class Alg_WC_Wholesale_Pricing_Core {
 	/**
 	 * is_enabled_per_product.
 	 *
-	 * @version 2.8.0
+	 * @version 3.4.0
 	 * @since   1.0.0
 	 *
 	 * @todo    (dev) `$this->is_children`: `... && ( $children = get_children( $product_id ) ) && ! empty( $children )`
@@ -282,7 +294,11 @@ class Alg_WC_Wholesale_Pricing_Core {
 	function is_enabled_per_product( $product_id ) {
 		if ( 'yes' === get_option( 'alg_wc_wholesale_pricing_per_product_enabled', 'yes' ) ) {
 			return ( $this->is_children && ( $product = wc_get_product( $product_id ) ) && $product->is_type( 'variable' ) ? false :
-				( 'yes' === get_post_meta( $product_id, '_' . 'alg_wc_wholesale_pricing_per_product_enabled', true ) ) );
+				(
+					( 'yes' === get_post_meta( $product_id, '_' . 'alg_wc_wholesale_pricing_per_product_enabled', true ) ) &&
+					$this->has_levels( 'per_product', $product_id )
+				)
+			);
 		}
 		return false;
 	}

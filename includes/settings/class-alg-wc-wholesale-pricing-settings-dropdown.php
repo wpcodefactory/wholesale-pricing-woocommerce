@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Dropdown Section Settings
  *
- * @version 3.3.2
+ * @version 3.4.0
  * @since   2.4.2
  *
  * @author  Algoritmika Ltd.
@@ -29,7 +29,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Dropdown extends Alg_WC_Wholesale_Pricin
 	/**
 	 * get_settings.
 	 *
-	 * @version 3.3.2
+	 * @version 3.4.0
 	 * @since   2.4.2
 	 *
 	 * @todo    [!] (dev) `alg_wc_wholesale_pricing_dropdown_filter_values`: default to `yes`?
@@ -121,6 +121,14 @@ class Alg_WC_Wholesale_Pricing_Settings_Dropdown extends Alg_WC_Wholesale_Pricin
 				'id'       => 'alg_wc_wholesale_pricing_dropdown_filter_values',
 				'default'  => 'no',
 				'type'     => 'checkbox',
+			),
+			array(
+				'title'    => __( 'Custom dropdown values', 'wholesale-pricing-woocommerce' ),
+				'desc_tip' => __( 'By default, the plugin will automatically add product\'s level min quantities to the dropdown, however, you can override it with your own values here.', 'wholesale-pricing-woocommerce' ),
+				'desc'     => sprintf( __( 'Comma-separated list of quantities, e.g.: %s', 'wholesale-pricing-woocommerce' ), '<code>1,2,3,5,10,15,20</code>' ),
+				'id'       => 'alg_wc_wholesale_pricing_dropdown_custom_values',
+				'default'  => '',
+				'type'     => 'text',
 			),
 			array(
 				'type'     => 'sectionend',

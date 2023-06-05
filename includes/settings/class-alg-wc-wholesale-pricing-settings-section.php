@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Section Settings
  *
- * @version 3.3.2
+ * @version 3.4.0
  * @since   1.0.0
  *
  * @author  Algoritmika Ltd.
@@ -49,13 +49,13 @@ class Alg_WC_Wholesale_Pricing_Settings_Section {
 	/**
 	 * get_levels_num_custom_atts.
 	 *
-	 * @version 2.0.0
+	 * @version 3.4.0
 	 * @since   2.0.0
 	 *
 	 * @todo    (dev) `'max' => '100'` (same in "per-item")
 	 */
 	function get_levels_num_custom_atts() {
-		return array( 'step' => '1', 'min' => '1', 'max' => '100' );
+		return array( 'step' => '1', 'min' => '0', 'max' => '100' );
 	}
 
 	/**
