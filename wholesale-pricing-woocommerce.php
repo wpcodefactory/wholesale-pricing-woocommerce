@@ -3,12 +3,12 @@
 Plugin Name: Product Price by Quantity for WooCommerce
 Plugin URI: https://wpfactory.com/item/wholesale-pricing-woocommerce/
 Description: Set WooCommerce product prices depending on quantity in cart.
-Version: 3.4.0
+Version: 3.4.1
 Author: WPFactory
 Author URI: https://wpfactory.com
 Text Domain: wholesale-pricing-woocommerce
 Domain Path: /langs
-WC tested up to: 7.7
+WC tested up to: 7.8
 */
 
 defined( 'ABSPATH' ) || exit;
