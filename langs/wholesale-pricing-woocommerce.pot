@@ -40,7 +40,7 @@ msgid "%s for %s pcs."
 msgstr ""
 
 #: includes/class-alg-wc-wholesale-pricing-frontend.php:109
-#: includes/class-alg-wc-wholesale-pricing-frontend.php:232
+#: includes/class-alg-wc-wholesale-pricing-frontend.php:267
 #: includes/pro/class-alg-wc-wholesale-pricing-pro-frontend.php:177
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:87
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:106

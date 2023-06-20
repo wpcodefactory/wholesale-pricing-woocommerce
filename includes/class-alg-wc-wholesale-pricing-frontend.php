@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Frontend Class
  *
- * @version 3.3.2
+ * @version 3.4.2
  * @since   2.0.0
  *
  * @author  Algoritmika Ltd.
@@ -54,7 +54,7 @@ class Alg_WC_Wholesale_Pricing_Frontend {
 	/**
 	 * ajax_price_display_by_qty.
 	 *
-	 * @version 3.3.2
+	 * @version 3.4.2
 	 * @since   1.3.0
 	 *
 	 * @todo    (dev) grouped products
@@ -89,15 +89,15 @@ class Alg_WC_Wholesale_Pricing_Frontend {
 				} else {
 					$new_price_single = $old_price_single;
 				}
-				$placeholders = $this->get_placeholders(
-					$old_price_single,
-					$new_price_single,
-					$discount,
-					$discount_type,
-					$quantity,
-					false,
-					$product
-				);
+				$placeholders = $this->get_placeholders( array(
+					'old_price_single' => $old_price_single,
+					'new_price_single' => $new_price_single,
+					'discount'         => $discount,
+					'discount_type'    => $discount_type,
+					'quantity'         => $quantity,
+					'total_quantity'   => false,
+					'product'          => $product,
+				) );
 				// Handle deprecated placeholders
 				$placeholders['%price_single%'] = $placeholders['%old_price_single%'];
 				$placeholders['%price%']        = $placeholders['%old_price_total%'];
@@ -157,49 +157,84 @@ class Alg_WC_Wholesale_Pricing_Frontend {
 	/**
 	 * get_placeholders.
 	 *
-	 * @version 3.3.2
+	 * @version 3.4.2
 	 * @since   2.0.0
 	 *
-	 * @todo    (dev) params as array
 	 * @todo    (dev) handle deprecated placeholders here
 	 * @todo    (dev) list `%quantity%` and `%quantity_total%` in settings?
 	 */
-	function get_placeholders( $old_price_single, $new_price_single, $discount, $discount_type, $quantity, $total_quantity = false, $product = false ) {
+	function get_placeholders( $args ) {
 
-		$discount_single  = ( $old_price_single - $new_price_single );
-		$discount_percent = ( 0 != $old_price_single ? round( ( $discount_single / $old_price_single * 100 ), 2 ) : 0 );
-		$total_quantity   = ( $total_quantity ? $total_quantity : $quantity );
+		/**
+		 * $args = array(
+		 * 	'old_price_single' => *,     // required
+		 * 	'new_price_single' => *,     // required
+		 * 	'discount'         => *,     // required
+		 * 	'discount_type'    => *,     // required
+		 * 	'quantity'         => *,     // required
+		 * 	'total_quantity'   => false, // optional
+		 * 	'product'          => false, // optional
+		 * )
+		 */
 
+		// Required args
+		if ( ! isset(
+			$args['old_price_single'],
+			$args['new_price_single'],
+			$args['discount'],
+			$args['discount_type'],
+			$args['quantity'] )
+		) {
+			return array();
+		}
+
+		// Optional args
+		$args = array_replace( array(
+			'total_quantity' => false,
+			'product'        => false,
+		), $args );
+
+		// Vars
+		$discount_single  = ( $args['old_price_single'] - $args['new_price_single'] );
+		$discount_percent = ( 0 != $args['old_price_single'] ? round( ( $discount_single / $args['old_price_single'] * 100 ), 2 ) : 0 );
+		$total_quantity   = ( $args['total_quantity'] ? $args['total_quantity'] : $args['quantity'] );
+		$discount         = ( false !== $args['discount'] ? $args['discount'] : 0 );
+
+		// Placeholders
 		$placeholders = array(
-			'%old_price_single%'    => wc_price( $old_price_single ),
-			'%old_price_total%'     => wc_price( $old_price_single * $quantity ),
-			'%new_price_single%'    => wc_price( $new_price_single ),
-			'%new_price_total%'     => wc_price( $new_price_single * $quantity ),
+			'%old_price_single%'    => wc_price( $args['old_price_single'] ),
+			'%old_price_total%'     => wc_price( $args['old_price_single'] * $args['quantity'] ),
+			'%new_price_single%'    => wc_price( $args['new_price_single'] ),
+			'%new_price_total%'     => wc_price( $args['new_price_single'] * $args['quantity'] ),
 			'%discount_percent%'    => $discount_percent,
 			'%discount_single%'     => wc_price( $discount_single ),
-			'%discount_total%'      => wc_price( $discount_single * $quantity ),
-			'%qty%'                 => $quantity,
-			'%quantity%'            => $quantity,
+			'%discount_total%'      => wc_price( $discount_single * $args['quantity'] ),
+			'%qty%'                 => $args['quantity'],
+			'%quantity%'            => $args['quantity'],
 			'%qty_total%'           => $total_quantity,
 			'%quantity_total%'      => $total_quantity,
-			'%discount_value%'      => $this->get_discount_value_placeholder( $old_price_single, ( false !== $discount ? $discount : 0 ), $discount_type ),
+			'%discount_value%'      => $this->get_discount_value_placeholder( $args['old_price_single'], $discount, $args['discount_type'] ),
 		);
 
-		if ( $product ) {
+		// "Tax display" placeholders
+		if ( $args['product'] ) {
 			foreach ( array( '_incl_tax', '_excl_tax' ) as $tax_display ) {
-				$price_func = ( '_incl_tax' === $tax_display ? 'wc_get_price_including_tax' : 'wc_get_price_excluding_tax' );
+				$func = ( '_incl_tax' === $tax_display ? 'wc_get_price_including_tax' : 'wc_get_price_excluding_tax' );
 
+				// Placeholders
 				$placeholders = array_merge( $placeholders, array(
-					'%old_price_single' . $tax_display . '%' => wc_price( $price_func( $product, array( 'price' => $old_price_single, 'qty' => 1 ) ) ),
-					'%old_price_total'  . $tax_display . '%' => wc_price( $price_func( $product, array( 'price' => $old_price_single, 'qty' => $quantity ) ) ),
-					'%new_price_single' . $tax_display . '%' => wc_price( $price_func( $product, array( 'price' => $new_price_single, 'qty' => 1 ) ) ),
-					'%new_price_total'  . $tax_display . '%' => wc_price( $price_func( $product, array( 'price' => $new_price_single, 'qty' => $quantity ) ) ),
+					'%old_price_single' . $tax_display . '%' => wc_price( $func( $args['product'], array( 'price' => $args['old_price_single'], 'qty' => 1 ) ) ),
+					'%old_price_total'  . $tax_display . '%' => wc_price( $func( $args['product'], array( 'price' => $args['old_price_single'], 'qty' => $args['quantity'] ) ) ),
+					'%new_price_single' . $tax_display . '%' => wc_price( $func( $args['product'], array( 'price' => $args['new_price_single'], 'qty' => 1 ) ) ),
+					'%new_price_total'  . $tax_display . '%' => wc_price( $func( $args['product'], array( 'price' => $args['new_price_single'], 'qty' => $args['quantity'] ) ) ),
 				) );
 
 			}
 		}
 
-		return $placeholders;
+		// Filter and return
+		return apply_filters( 'alg_wc_wholesale_pricing_get_placeholders', $placeholders, $args );
+
 	}
 
 	/**
@@ -237,7 +272,7 @@ class Alg_WC_Wholesale_Pricing_Frontend {
 	/**
 	 * add_discount_info_to_cart_page.
 	 *
-	 * @version 3.3.2
+	 * @version 3.4.2
 	 * @since   1.0.0
 	 */
 	function add_discount_info_to_cart_page( $price_html, $cart_item, $cart_item_key, $template ) {
@@ -250,15 +285,15 @@ class Alg_WC_Wholesale_Pricing_Frontend {
 					$cart_item['alg_wc_wholesale_pricing_old'] !== $cart_item['alg_wc_wholesale_pricing']
 				) {
 					// Get placeholders
-					$placeholders = $this->get_placeholders(
-						$cart_item['alg_wc_wholesale_pricing_old'],
-						$cart_item['alg_wc_wholesale_pricing'],
-						$discount,
-						$this->get_core()->get_discount_type( $product_id, $cart_item['quantity'] ),
-						$cart_item['quantity'],
-						$quantity,
-						( ! empty( $cart_item['data'] ) ? $cart_item['data'] : false )
-					);
+					$placeholders = $this->get_placeholders( array(
+						'old_price_single' => $cart_item['alg_wc_wholesale_pricing_old'],
+						'new_price_single' => $cart_item['alg_wc_wholesale_pricing'],
+						'discount'         => $discount,
+						'discount_type'    => $this->get_core()->get_discount_type( $product_id, $cart_item['quantity'] ),
+						'quantity'         => $cart_item['quantity'],
+						'total_quantity'   => $quantity,
+						'product'          => ( ! empty( $cart_item['data'] ) ? $cart_item['data'] : false ),
+					) );
 					// Handle deprecated placeholders
 					$placeholders['%old_price%'] = $placeholders['%old_price_single%'];
 					$placeholders['%price%']     = $placeholders['%new_price_single%'];
