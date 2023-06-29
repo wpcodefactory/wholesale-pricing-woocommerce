@@ -50,23 +50,45 @@ msgid "You save: %s"
 msgstr ""
 
 #: includes/class-alg-wc-wholesale-pricing-shortcodes.php:82
-#: includes/class-alg-wc-wholesale-pricing-shortcodes.php:160
+#: includes/class-alg-wc-wholesale-pricing-shortcodes.php:161
 #: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:98
 #: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:303
 #, php-format
 msgid "from %s pcs."
 msgstr ""
 
-#: includes/class-alg-wc-wholesale-pricing-tools.php:38
+#: includes/class-alg-wc-wholesale-pricing-tools.php:76
+#, php-format
+msgid "Roles removed: %s"
+msgstr ""
+
+#: includes/class-alg-wc-wholesale-pricing-tools.php:107
+#, php-format
+msgid "\"%s\" user role successfully added."
+msgstr ""
+
+#: includes/class-alg-wc-wholesale-pricing-tools.php:110
+msgid "Error: Something went wrong. Check for duplicated role ID."
+msgstr ""
+
+#: includes/class-alg-wc-wholesale-pricing-tools.php:113
+msgid "Error: Customer user role does not exist."
+msgstr ""
+
+#: includes/class-alg-wc-wholesale-pricing-tools.php:116
+msgid "Please fill in the \"Role ID\" and \"Role display name\" options."
+msgstr ""
+
+#: includes/class-alg-wc-wholesale-pricing-tools.php:131
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:84
 msgid "Per product"
 msgstr ""
 
-#: includes/class-alg-wc-wholesale-pricing-tools.php:38
+#: includes/class-alg-wc-wholesale-pricing-tools.php:131
 msgid "Per product category and per product tag"
 msgstr ""
 
-#: includes/class-alg-wc-wholesale-pricing-tools.php:39
+#: includes/class-alg-wc-wholesale-pricing-tools.php:132
 #, php-format
 msgid "%s product price by quantity settings: %d records deleted."
 msgstr ""
@@ -945,52 +967,90 @@ msgid "Available placeholders"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:25
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:38
 msgid "Tools"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:39
-msgid "Check the box and save changes to run the tool."
-msgstr ""
-
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:40
-msgid "Please note that there is no undo for these tools."
-msgstr ""
-
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:45
-msgid "Delete per product settings"
-msgstr ""
-
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:46
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:55
-msgid "Delete"
+msgid "Settings Tools"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:47
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:85
+#, php-format
+msgid "Check the %s box and save changes to run the tool."
+msgstr ""
+
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:49
+msgid "Please note that there is no undo for these tools."
+msgstr ""
+
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:54
+msgid "Delete per product settings"
+msgstr ""
+
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:56
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:66
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:114
+msgid "Delete"
+msgstr ""
+
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:57
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:67
 #, php-format
 msgid "Will delete all %s product price by quantity settings."
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:48
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:58
 msgid "per product"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:54
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:64
 msgid "Delete per term settings"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:57
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:68
 #, php-format
 msgid "%s and %s"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:58
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:69
 msgid "per product category"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:59
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:70
 msgid "per product tag"
+msgstr ""
+
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:84
+msgid "User Role Tools"
+msgstr ""
+
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:91
+msgid "Add role"
+msgstr ""
+
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:93
+msgid "Add"
+msgstr ""
+
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:94
+msgid ""
+"Custom role's capabilities will be the same as WooCommerce \"Customer\" user "
+"role."
+msgstr ""
+
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:100
+#, php-format
+msgid "Role ID, e.g.: %s"
+msgstr ""
+
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:106
+#, php-format
+msgid "Role display name, e.g.: %s"
+msgstr ""
+
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:112
+msgid "Delete roles"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-user-roles.php:25

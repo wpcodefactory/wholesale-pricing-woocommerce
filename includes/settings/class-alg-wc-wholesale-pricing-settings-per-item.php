@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Per Item Settings
  *
- * @version 3.0.0
+ * @version 3.5.0
  * @since   2.0.0
  *
  * @author  Algoritmika Ltd.
@@ -27,7 +27,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Item {
 	/**
 	 * get_options.
 	 *
-	 * @version 3.0.0
+	 * @version 3.5.0
 	 * @since   2.0.0
 	 *
 	 * @todo    (dev) use `get_total_levels()` etc. instead of `get_post_meta()` / `get_term_meta()`
@@ -186,7 +186,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Item {
 				}
 			}
 		}
-		return $options;
+		return apply_filters( 'alg_wc_wholesale_pricing_settings_per_item_get_options', $options, $term_or_product, $term_or_product_id );
 	}
 
 }

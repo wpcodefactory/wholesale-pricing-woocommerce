@@ -143,9 +143,10 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	 * @version 3.3.3
 	 * @since   1.0.0
 	 *
-	 * @todo    [!] (dev) `shortcode_atts`: `alg_wc_product_wholesale_pricing_table` to `alg_wc_product_ppq_table`?
-	 * @todo    [!] (dev) `apply_filters`: `alg_wc_product_wholesale_pricing_table_heading_format` to `alg_wc_product_ppq_table_heading_format`?
-	 * @todo    [!] (dev) check if price `is_numeric()`?
+	 * @todo    (dev) [!] `use_variation`
+	 * @todo    (dev) [!] `shortcode_atts`: `alg_wc_product_wholesale_pricing_table` to `alg_wc_product_ppq_table`?
+	 * @todo    (dev) [!] `apply_filters`: `alg_wc_product_wholesale_pricing_table_heading_format` to `alg_wc_product_ppq_table_heading_format`?
+	 * @todo    (dev) [!] check if price `is_numeric()`?
 	 * @todo    (dev) `extra_column_before`, `extra_column_after`
 	 * @todo    (dev) `columns_styles`: different styles for different elements, i.e. `explode( '|', $atts['columns_styles'] )`
 	 * @todo    (dev) "add to cart" (min qty) link/button
