@@ -86,7 +86,7 @@ class Alg_WC_Wholesale_Pricing_Tools {
 	 *
 	 * @todo    (dev) Role ID: check for duplicates?
 	 * @todo    (dev) Role ID: allow empty (autogenerate from the "Role display name")?
-	 * @todo    (dev) Role ID: sanitize?
+	 * @todo    (dev) [!] Role ID: sanitize?
 	 * @todo    (dev) Role ID and name: limitations, e.g., (leading) numbers, length, etc.?
 	 */
 	function add_role() {
