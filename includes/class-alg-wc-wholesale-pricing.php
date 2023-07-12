@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Main Class
  *
- * @version 2.5.0
+ * @version 3.5.2
  * @since   1.0.0
  *
  * @author  Algoritmika Ltd.
@@ -49,7 +49,7 @@ final class Alg_WC_Wholesale_Pricing {
 	/**
 	 * Alg_WC_Wholesale_Pricing Constructor.
 	 *
-	 * @version 2.5.0
+	 * @version 3.5.2
 	 * @since   1.0.0
 	 *
 	 * @access  public
@@ -63,6 +63,9 @@ final class Alg_WC_Wholesale_Pricing {
 
 		// Set up localisation
 		add_action( 'init', array( $this, 'localize' ) );
+
+		// Declare compatibility with custom order tables for WooCommerce
+		add_action( 'before_woocommerce_init', array( $this, 'wc_declare_compatibility' ) );
 
 		// Pro
 		if ( 'wholesale-pricing-woocommerce-pro.php' === basename( ALG_WC_WHOLESALE_PRICING_FILE ) ) {
@@ -86,6 +89,20 @@ final class Alg_WC_Wholesale_Pricing {
 	 */
 	function localize() {
 		load_plugin_textdomain( 'wholesale-pricing-woocommerce', false, dirname( plugin_basename( ALG_WC_WHOLESALE_PRICING_FILE ) ) . '/langs/' );
+	}
+
+	/**
+	 * wc_declare_compatibility.
+	 *
+	 * @version 3.5.2
+	 * @since   3.5.2
+	 *
+	 * @see     https://github.com/woocommerce/woocommerce/wiki/High-Performance-Order-Storage-Upgrade-Recipe-Book#declaring-extension-incompatibility
+	 */
+	function wc_declare_compatibility() {
+		if ( class_exists( '\Automattic\WooCommerce\Utilities\FeaturesUtil' ) ) {
+			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', ALG_WC_WHOLESALE_PRICING_FILE, true );
+		}
 	}
 
 	/**

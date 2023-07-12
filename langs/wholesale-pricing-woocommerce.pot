@@ -27,7 +27,7 @@ msgstr ""
 msgid "Recalculate"
 msgstr ""
 
-#: includes/class-alg-wc-wholesale-pricing-core.php:501
+#: includes/class-alg-wc-wholesale-pricing-core.php:502
 msgid "Guest"
 msgstr ""
 
@@ -93,12 +93,12 @@ msgstr ""
 msgid "%s product price by quantity settings: %d records deleted."
 msgstr ""
 
-#: includes/class-alg-wc-wholesale-pricing.php:129
+#: includes/class-alg-wc-wholesale-pricing.php:146
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:68
 msgid "Settings"
 msgstr ""
 
-#: includes/class-alg-wc-wholesale-pricing.php:132
+#: includes/class-alg-wc-wholesale-pricing.php:149
 msgid "Go Pro"
 msgstr ""
 

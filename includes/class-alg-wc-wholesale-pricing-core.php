@@ -20,6 +20,7 @@ class Alg_WC_Wholesale_Pricing_Core {
 	 * @version 3.0.0
 	 * @since   1.0.0
 	 *
+	 * @todo    (dev) update link: `https://wpfactory.com/item/wholesale-pricing-woocommerce/`
 	 * @todo    (dev) user roles: separate "Discount type", and maybe "Enable" ("all products", "per term", "per product")
 	 * @todo    (dev) add `[alg_wc_wh_pr_product_qty]` shortcode?
 	 * @todo    (dev) decimal min quantity?
