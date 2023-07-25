@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Shortcodes
  *
- * @version 3.3.3
+ * @version 3.5.3
  * @since   1.0.0
  *
  * @author  Algoritmika Ltd.
@@ -140,7 +140,7 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	/**
 	 * product_wholesale_pricing_table.
 	 *
-	 * @version 3.3.3
+	 * @version 3.5.3
 	 * @since   1.0.0
 	 *
 	 * @todo    (dev) [!] `use_variation`
@@ -282,7 +282,7 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 			// Price row
 			if ( 'yes' === $atts['add_price_row'] ) {
 				$data_price[] = $this->get_product_price( $product,
-					$discount_type, $price_level['discount'], $atts['hide_currency'], $atts['price_row_format'] );
+					$discount_type, $price_level['discount'], $atts['hide_currency'], str_replace( array_keys( $placeholders ), $placeholders, $atts['price_row_format'] ) );
 			}
 
 			// Total min qty price row
