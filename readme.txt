@@ -1,9 +1,9 @@
 === Product Price by Quantity for WooCommerce ===
-Contributors: wpcodefactory, omardabbas, karzin, anbinder, algoritmika, kousikmukherjeeli
+Contributors: wpcodefactory, algoritmika, anbinder, karzin, omardabbas, kousikmukherjeeli
 Tags: woocommerce, wholesale pricing, wholesale, buy more pay less, buy more pay more, product price by quantity, price by quantity, dynamic product pricing, dynamic pricing, woo commerce
 Requires at least: 4.4
 Tested up to: 6.3
-Stable tag: 3.5.4
+Stable tag: 3.5.5
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -49,10 +49,15 @@ With [Product Price by Quantity for WooCommerce Pro](https://wpfactory.com/item/
 
 == Changelog ==
 
+= 3.5.5 - 25/10/2023 =
+* Fix - Declaring HPOS compatibility for the free plugin version, even if the Pro version is activated.
+* Dev - Shortcodes - `[alg_wc_ppq_products_list]` - `columns` - Allowing columns without titles, e.g., `image`.
+* WC tested up to: 8.2.
+
 = 3.5.4 - 25/09/2023 =
 * WC tested up to: 8.1.
 * Tested up to: 6.3.
-* Update plugin icon, banner.
+* Plugin icon, banner updated.
 
 = 3.5.3 - 25/07/2023 =
 * Dev - Shortcodes - `[alg_wc_product_ppq_table]` - `price_row_format` attribute now accepts the `heading_format` placeholders as well, i.e.:

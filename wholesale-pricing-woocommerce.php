@@ -3,12 +3,12 @@
 Plugin Name: Product Price by Quantity for WooCommerce
 Plugin URI: https://wpfactory.com/item/wholesale-pricing-woocommerce/
 Description: Set WooCommerce product prices depending on quantity in cart.
-Version: 3.5.4
+Version: 3.5.5
 Author: WPFactory
 Author URI: https://wpfactory.com
 Text Domain: wholesale-pricing-woocommerce
 Domain Path: /langs
-WC tested up to: 8.1
+WC tested up to: 8.2
 */
 
 defined( 'ABSPATH' ) || exit;
@@ -17,7 +17,7 @@ if ( 'wholesale-pricing-woocommerce.php' === basename( __FILE__ ) ) {
 	/**
 	 * Check if Pro plugin version is activated.
 	 *
-	 * @version 2.5.0
+	 * @version 3.5.5
 	 * @since   2.5.0
 	 */
 	$plugin = 'wholesale-pricing-woocommerce-pro/wholesale-pricing-woocommerce-pro.php';
@@ -25,11 +25,12 @@ if ( 'wholesale-pricing-woocommerce.php' === basename( __FILE__ ) ) {
 		in_array( $plugin, (array) get_option( 'active_plugins', array() ), true ) ||
 		( is_multisite() && array_key_exists( $plugin, (array) get_site_option( 'active_sitewide_plugins', array() ) ) )
 	) {
+		defined( 'ALG_WC_WHOLESALE_PRICING_FILE_FREE' ) || define( 'ALG_WC_WHOLESALE_PRICING_FILE_FREE', __FILE__ );
 		return;
 	}
 }
 
-defined( 'ALG_WC_WHOLESALE_PRICING_VERSION' ) || define( 'ALG_WC_WHOLESALE_PRICING_VERSION', '3.5.4' );
+defined( 'ALG_WC_WHOLESALE_PRICING_VERSION' ) || define( 'ALG_WC_WHOLESALE_PRICING_VERSION', '3.5.5' );
 
 defined( 'ALG_WC_WHOLESALE_PRICING_FILE' ) || define( 'ALG_WC_WHOLESALE_PRICING_FILE', __FILE__ );
 
