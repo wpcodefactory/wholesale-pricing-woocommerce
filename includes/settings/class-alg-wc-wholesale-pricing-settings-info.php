@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Info Section Settings
  *
- * @version 3.3.2
+ * @version 3.6.0
  * @since   2.0.0
  *
  * @author  Algoritmika Ltd.
@@ -27,9 +27,32 @@ class Alg_WC_Wholesale_Pricing_Settings_Info extends Alg_WC_Wholesale_Pricing_Se
 	}
 
 	/**
+	 * get_replace_price_template_desc.
+	 *
+	 * @version 3.6.0
+	 * @since   3.6.0
+	 */
+	function get_replace_price_template_desc() {
+		return $this->get_examples_desc( array( esc_html(
+			'[alg_wc_product_ppq_data field="price" price_format="%new_price_single%" level_num="last" product_id="%product_id%" before="From "]' .
+			'[alg_wc_product_ppq_data field="quantity" level_num="last" product_id="%product_id%" before=" for " after=" pcs."]'
+		) ) );
+	}
+
+	/**
+	 * get_replace_price_template_desc_tip.
+	 *
+	 * @version 3.6.0
+	 * @since   3.6.0
+	 */
+	function get_replace_price_template_desc_tip() {
+		return __( 'The standard product price is displayed if the template (shortcode) output is empty.', 'wholesale-pricing-woocommerce' );
+	}
+
+	/**
 	 * get_settings.
 	 *
-	 * @version 3.3.2
+	 * @version 3.6.0
 	 * @since   2.0.0
 	 *
 	 * @todo    (desc) `alg_wc_wholesale_pricing_info_on_single_product_hide_variable`: better desc?
@@ -37,7 +60,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Info extends Alg_WC_Wholesale_Pricing_Se
 	 * @todo    (desc) Replace Price: better desc?
 	 * @todo    (dev) Replace Price: better default values
 	 * @todo    (feature) Replace Price: separate option for variations?
-	 * @todo    (feature) Replace Price: separate option for variable products (i.e. price range)?
+	 * @todo    (feature) Replace Price: separate option for variable products (i.e., price range)?
 	 * @todo    (feature) `alg_wc_wholesale_pricing_show_info_single_hook`: more positions?
 	 * @todo    (fix) Cart: fix cart info, when discount < 0
 	 * @todo    (desc) Discount Pricing Table: better title/desc?
@@ -299,7 +322,9 @@ class Alg_WC_Wholesale_Pricing_Settings_Info extends Alg_WC_Wholesale_Pricing_Se
 				'custom_attributes' => apply_filters( 'alg_wc_wholesale_pricing_settings', array( 'disabled' => 'disabled' ) ),
 			),
 			array(
-				'desc_tip' => __( 'Template for single product pages.', 'wholesale-pricing-woocommerce' ),
+				'desc_tip' => __( 'Template for single product pages.', 'wholesale-pricing-woocommerce' ) . '<br><br>' .
+					$this->get_replace_price_template_desc_tip(),
+				'desc'     => $this->get_replace_price_template_desc(),
 				'id'       => 'alg_wc_wholesale_pricing_replace_price_on_single_template',
 				'default'  => '[alg_wc_product_ppq_data field="price" level_num="1" product_id="%product_id%"]',
 				'type'     => 'textarea',
@@ -317,7 +342,9 @@ class Alg_WC_Wholesale_Pricing_Settings_Info extends Alg_WC_Wholesale_Pricing_Se
 				'custom_attributes' => apply_filters( 'alg_wc_wholesale_pricing_settings', array( 'disabled' => 'disabled' ) ),
 			),
 			array(
-				'desc_tip' => __( 'Template for shop pages.', 'wholesale-pricing-woocommerce' ),
+				'desc_tip' => __( 'Template for shop pages.', 'wholesale-pricing-woocommerce' ) . '<br><br>' .
+					$this->get_replace_price_template_desc_tip(),
+				'desc'     => $this->get_replace_price_template_desc(),
 				'id'       => 'alg_wc_wholesale_pricing_replace_price_on_loop_template',
 				'default'  => '[alg_wc_product_ppq_data field="price" level_num="1" product_id="%product_id%"]',
 				'type'     => 'textarea',

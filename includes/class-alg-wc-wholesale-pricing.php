@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Main Class
  *
- * @version 3.5.5
+ * @version 3.6.0
  * @since   1.0.0
  *
  * @author  Algoritmika Ltd.
@@ -21,6 +21,22 @@ final class Alg_WC_Wholesale_Pricing {
 	 * @since 1.0.0
 	 */
 	public $version = ALG_WC_WHOLESALE_PRICING_VERSION;
+
+	/**
+	 * core.
+	 *
+	 * @version 3.6.0
+	 * @since   3.6.0
+	 */
+	public $core;
+
+	/**
+	 * pro.
+	 *
+	 * @version 3.6.0
+	 * @since   3.6.0
+	 */
+	public $pro;
 
 	/**
 	 * @var   Alg_WC_Wholesale_Pricing The single instance of the class

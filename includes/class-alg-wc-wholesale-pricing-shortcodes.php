@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Shortcodes
  *
- * @version 3.5.3
+ * @version 3.6.0
  * @since   1.0.0
  *
  * @author  Algoritmika Ltd.
@@ -13,6 +13,14 @@ defined( 'ABSPATH' ) || exit;
 if ( ! class_exists( 'Alg_WC_Wholesale_Pricing_Shortcodes' ) ) :
 
 class Alg_WC_Wholesale_Pricing_Shortcodes {
+
+	/**
+	 * core.
+	 *
+	 * @version 3.6.0
+	 * @since   3.6.0
+	 */
+	public $core;
 
 	/**
 	 * Constructor.

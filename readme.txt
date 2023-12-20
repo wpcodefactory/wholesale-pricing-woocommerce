@@ -2,8 +2,8 @@
 Contributors: wpcodefactory, algoritmika, anbinder, karzin, omardabbas, kousikmukherjeeli
 Tags: woocommerce, wholesale pricing, wholesale, buy more pay less, buy more pay more, product price by quantity, price by quantity, dynamic product pricing, dynamic pricing, woo commerce
 Requires at least: 4.4
-Tested up to: 6.3
-Stable tag: 3.5.5
+Tested up to: 6.4
+Stable tag: 3.6.0
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -48,6 +48,12 @@ With [Product Price by Quantity for WooCommerce Pro](https://wpfactory.com/item/
 3. Start by visiting plugin settings at "WooCommerce > Settings > Product Price by Quantity".
 
 == Changelog ==
+
+= 3.6.0 - 20/12/2023 =
+* Dev - PHP 8.2 compatibility - "Creation of dynamic property is deprecated" notice fixed.
+* Dev - Admin Settings - Info - Replace Price - Descriptions updated.
+* WC tested up to: 8.4.
+* Tested up to: 6.4.
 
 = 3.5.5 - 25/10/2023 =
 * Fix - Declaring HPOS compatibility for the free plugin version, even if the Pro version is activated.

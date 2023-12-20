@@ -27,32 +27,32 @@ msgstr ""
 msgid "Recalculate"
 msgstr ""
 
-#: includes/class-alg-wc-wholesale-pricing-core.php:502
+#: includes/class-alg-wc-wholesale-pricing-core.php:550
 msgid "Guest"
 msgstr ""
 
-#: includes/class-alg-wc-wholesale-pricing-frontend.php:108
-#: includes/class-alg-wc-wholesale-pricing-frontend.php:111
+#: includes/class-alg-wc-wholesale-pricing-frontend.php:118
+#: includes/class-alg-wc-wholesale-pricing-frontend.php:121
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:92
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:110
 #, php-format
 msgid "%s for %s pcs."
 msgstr ""
 
-#: includes/class-alg-wc-wholesale-pricing-frontend.php:109
-#: includes/class-alg-wc-wholesale-pricing-frontend.php:267
-#: includes/pro/class-alg-wc-wholesale-pricing-pro-frontend.php:177
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:87
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:106
+#: includes/class-alg-wc-wholesale-pricing-frontend.php:119
+#: includes/class-alg-wc-wholesale-pricing-frontend.php:277
+#: includes/pro/class-alg-wc-wholesale-pricing-pro-frontend.php:185
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:110
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:129
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:93
 #, php-format
 msgid "You save: %s"
 msgstr ""
 
-#: includes/class-alg-wc-wholesale-pricing-shortcodes.php:82
-#: includes/class-alg-wc-wholesale-pricing-shortcodes.php:161
-#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:99
-#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:312
+#: includes/class-alg-wc-wholesale-pricing-shortcodes.php:90
+#: includes/class-alg-wc-wholesale-pricing-shortcodes.php:169
+#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:107
+#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:320
 #, php-format
 msgid "from %s pcs."
 msgstr ""
@@ -93,32 +93,32 @@ msgstr ""
 msgid "%s product price by quantity settings: %d records deleted."
 msgstr ""
 
-#: includes/class-alg-wc-wholesale-pricing.php:149
+#: includes/class-alg-wc-wholesale-pricing.php:165
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:68
 msgid "Settings"
 msgstr ""
 
-#: includes/class-alg-wc-wholesale-pricing.php:152
+#: includes/class-alg-wc-wholesale-pricing.php:168
 msgid "Go Pro"
 msgstr ""
 
-#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:95
-#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:316
+#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:103
+#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:324
 msgid "SKU"
 msgstr ""
 
-#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:96
-#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:317
+#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:104
+#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:325
 msgid "Name"
 msgstr ""
 
-#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:97
-#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:318
+#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:105
+#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:326
 msgid "Category"
 msgstr ""
 
-#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:98
-#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:319
+#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:106
+#: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:327
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-per-item.php:82
 msgid "Price"
 msgstr ""
@@ -254,10 +254,10 @@ msgstr ""
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-dropdown.php:96
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-dropdown.php:104
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-dropdown.php:112
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:205
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:214
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:224
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:272
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:228
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:237
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:247
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:295
 #, php-format
 msgid "E.g.: %s"
 msgstr ""
@@ -549,207 +549,213 @@ msgstr ""
 msgid "Info"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:50
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:49
+msgid ""
+"The standard product price is displayed if the template (shortcode) output "
+"is empty."
+msgstr ""
+
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:73
 msgid "Cart Items"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:53
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:76
 msgid "Show discount pricing info in cart."
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:77
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:100
 msgid "Item price"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:78
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:93
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:123
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:173
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:240
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:101
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:116
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:146
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:196
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:263
 msgid "Show"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:84
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:103
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:133
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:271
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:107
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:126
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:156
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:294
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:70
 msgid "Template"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:92
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:115
 msgid "Item subtotal"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:115
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:138
 msgid "Cart & Checkout Totals"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:118
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:141
 msgid "Show discount pricing info in cart totals."
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:122
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:145
 msgid "Cart & checkout totals"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:140
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:163
 msgid "Positions"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:146
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:169
 msgid "Cart: Before order total"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:147
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:170
 msgid "Cart: After order total"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:148
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:171
 msgid "Checkout: Before order total"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:149
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:172
 msgid "Checkout: After order total"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:157
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:180
 msgid "Discount Pricing Table"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:160
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:183
 msgid "Show discount pricing table on single product and shop pages."
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:161
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:184
 #, php-format
 msgid ""
 "You can also display product price by quantity info anywhere on your site "
 "with %s <a target=\"_blank\" href=\"%s\">shortcodes</a>."
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:172
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:291
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:195
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:314
 msgid "Single product page"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:183
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:250
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:206
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:273
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:57
 msgid "Position"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:189
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:212
 msgid "Before product"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:190
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:213
 msgid "Before product summary"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:191
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:214
 msgid "Product summary"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:192
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:215
 msgid "After product summary"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:193
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:216
 msgid "After product"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:197
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:264
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:220
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:287
 msgid "Priority"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:198
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:265
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:221
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:288
 msgid "Fine-tunes the position."
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:204
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:227
 msgid "Template for <strong>non-variable products</strong>"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:213
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:236
 msgid "Template for <strong>variable products</strong>"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:222
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:245
 msgid "Template for <strong>variations</strong>"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:223
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:246
 #, php-format
 msgid "Available placeholders: %s."
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:232
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:255
 msgid "Hide main variable table on visible variation"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:233
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:256
 msgid ""
 "Will automatically hide main variable product pricing table, when variation "
 "table becomes visible."
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:239
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:309
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:262
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:334
 msgid "Shop page"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:256
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:279
 msgid "Before item"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:257
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:280
 msgid "Before item title"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:258
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:281
 msgid "Item title"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:259
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:282
 msgid "After item title"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:260
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:283
 msgid "After item"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:284
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:307
 msgid "Replace Price"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:285
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:308
 #, php-format
 msgid ""
 "Replace standard product price display (for example: %s) to a discounted one "
 "(for example: %s)"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:286
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:309
 msgid "$7,00"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:286
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:309
 msgid "From $5,00 for 10 pcs."
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:292
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:310
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:315
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:335
 msgid "Replace"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:302
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:325
 msgid "Template for single product pages."
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:320
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:345
 msgid "Template for shop pages."
 msgstr ""
 
@@ -956,15 +962,23 @@ msgstr ""
 msgid "Item Settings Reports"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-section.php:46
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-section.php:62
 msgid ""
 "\"Save changes\" after you change this option - new settings fields will be "
 "displayed."
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-section.php:75
-msgid "Available placeholders"
-msgstr ""
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-section.php:88
+msgid "Available placeholder"
+msgid_plural "Available placeholders"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-section.php:101
+msgid "Example"
+msgid_plural "Examples"
+msgstr[0] ""
+msgstr[1] ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:25
 msgid "Tools"

@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Frontend Class
  *
- * @version 3.4.2
+ * @version 3.6.0
  * @since   2.0.0
  *
  * @author  Algoritmika Ltd.
@@ -13,6 +13,14 @@ defined( 'ABSPATH' ) || exit;
 if ( ! class_exists( 'Alg_WC_Wholesale_Pricing_Frontend' ) ) :
 
 class Alg_WC_Wholesale_Pricing_Frontend {
+
+	/**
+	 * core.
+	 *
+	 * @version 3.6.0
+	 * @since   3.6.0
+	 */
+	public $core;
 
 	/**
 	 * Constructor.
@@ -43,6 +51,8 @@ class Alg_WC_Wholesale_Pricing_Frontend {
 	 *
 	 * @version 2.0.0
 	 * @since   2.0.0
+	 *
+	 * @todo    (dev) code refactoring: `class Alg_WC_Wholesale_Pricing_Frontend extends Alg_WC_Wholesale_Pricing_Module {}`
 	 */
 	function get_core() {
 		if ( ! isset( $this->core ) ) {

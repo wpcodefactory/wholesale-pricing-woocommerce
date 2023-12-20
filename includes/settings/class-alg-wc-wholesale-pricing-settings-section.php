@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Section Settings
  *
- * @version 3.4.0
+ * @version 3.6.0
  * @since   1.0.0
  *
  * @author  Algoritmika Ltd.
@@ -13,6 +13,22 @@ defined( 'ABSPATH' ) || exit;
 if ( ! class_exists( 'Alg_WC_Wholesale_Pricing_Settings_Section' ) ) :
 
 class Alg_WC_Wholesale_Pricing_Settings_Section {
+
+	/**
+	 * id.
+	 *
+	 * @version 3.6.0
+	 * @since   3.6.0
+	 */
+	public $id;
+
+	/**
+	 * desc.
+	 *
+	 * @version 3.6.0
+	 * @since   3.6.0
+	 */
+	public $desc;
 
 	/**
 	 * Constructor.
@@ -61,21 +77,40 @@ class Alg_WC_Wholesale_Pricing_Settings_Section {
 	/**
 	 * get_placeholders_desc.
 	 *
-	 * @version 3.3.2
+	 * @version 3.6.0
 	 * @since   2.0.0
 	 *
 	 * @todo    (dev) add default value for the `$placeholders`, i.e., `array( '%qty%', '%qty_total%', '%old_price_single%', ... )`
 	 */
 	function get_placeholders_desc( $placeholders ) {
-
 		asort( $placeholders );
-		$placeholders_html = '<ul><li><code>' . implode( '</code></li><li><code>', $placeholders ) . '</code></li></ul>';
+		return $this->get_details_summary(
+			esc_html( _n( 'Available placeholder', 'Available placeholders', count( $placeholders ), 'wholesale-pricing-woocommerce' ) ),
+			'<ul><li><code>' . implode( '</code></li><li><code>', $placeholders ) . '</code></li></ul>'
+		);
+	}
 
-		$summary_style = 'cursor: pointer; color: #2271b1;';
-		$summary_text  = esc_html__( 'Available placeholders', 'wholesale-pricing-woocommerce' );
+	/**
+	 * get_examples_desc.
+	 *
+	 * @version 3.6.0
+	 * @since   3.6.0
+	 */
+	function get_examples_desc( $examples ) {
+		return $this->get_details_summary(
+			esc_html( _n( 'Example', 'Examples', count( $examples ), 'wholesale-pricing-woocommerce' ) ),
+			'<ul><li><code>' . implode( '</code></li><li><code>', $examples ) . '</code></li></ul>'
+		);
+	}
 
-		return sprintf( '<details><summary style="%s">%s</summary>%s</details>', $summary_style, $summary_text, $placeholders_html );
-
+	/**
+	 * get_details_summary.
+	 *
+	 * @version 3.6.0
+	 * @since   3.6.0
+	 */
+	function get_details_summary( $title, $text ) {
+		return sprintf( '<details><summary style="%s">%s</summary>%s</details>', 'cursor: pointer; color: #2271b1;', $title, $text );
 	}
 
 }

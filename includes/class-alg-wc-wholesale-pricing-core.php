@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Core Class
  *
- * @version 3.4.0
+ * @version 3.6.0
  * @since   1.0.0
  *
  * @author  Algoritmika Ltd.
@@ -13,6 +13,54 @@ defined( 'ABSPATH' ) || exit;
 if ( ! class_exists( 'Alg_WC_Wholesale_Pricing_Core' ) ) :
 
 class Alg_WC_Wholesale_Pricing_Core {
+
+	/**
+	 * is_children.
+	 *
+	 * @version 3.6.0
+	 * @since   3.6.0
+	 */
+	public $is_children;
+
+	/**
+	 * shortcodes.
+	 *
+	 * @version 3.6.0
+	 * @since   3.6.0
+	 */
+	public $shortcodes;
+
+	/**
+	 * frontend.
+	 *
+	 * @version 3.6.0
+	 * @since   3.6.0
+	 */
+	public $frontend;
+
+	/**
+	 * do_process_formula.
+	 *
+	 * @version 3.6.0
+	 * @since   3.6.0
+	 */
+	public $do_process_formula;
+
+	/**
+	 * product_id_for_formula.
+	 *
+	 * @version 3.6.0
+	 * @since   3.6.0
+	 */
+	public $product_id_for_formula;
+
+	/**
+	 * current_user_role.
+	 *
+	 * @version 3.6.0
+	 * @since   3.6.0
+	 */
+	public $current_user_role;
 
 	/**
 	 * Constructor.
