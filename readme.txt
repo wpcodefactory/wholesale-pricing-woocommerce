@@ -3,7 +3,7 @@ Contributors: wpcodefactory, algoritmika, anbinder, karzin, omardabbas, kousikmu
 Tags: woocommerce, wholesale pricing, wholesale, buy more pay less, buy more pay more, product price by quantity, price by quantity, dynamic product pricing, dynamic pricing, woo commerce
 Requires at least: 4.4
 Tested up to: 6.4
-Stable tag: 3.6.0
+Stable tag: 3.6.1
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -48,6 +48,15 @@ With [Product Price by Quantity for WooCommerce Pro](https://wpfactory.com/item/
 3. Start by visiting plugin settings at "WooCommerce > Settings > Product Price by Quantity".
 
 == Changelog ==
+
+= 3.6.1 - 05/03/2024 =
+* Dev - Shortcodes - `[alg_wc_product_ppq_table]`:
+    * New attribute - `percent_row_format` (defaults to `-%level_discount_percent%%`).
+    * New attribute - `percent_row_format_rounded` (defaults to `-%level_discount_percent_rounded%%`).
+    * New attribute - `discount_row_format` (defaults to `-%level_discount_amount_price%`).
+    * Developers - `alg_wc_product_ppq_table_placeholders` filter added.
+    * Developers - `alg_wc_product_ppq_table_rows` filter added.
+* WC tested up to: 8.6.
 
 = 3.6.0 - 20/12/2023 =
 * Dev - PHP 8.2 compatibility - "Creation of dynamic property is deprecated" notice fixed.

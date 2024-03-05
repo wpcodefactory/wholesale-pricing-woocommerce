@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Shortcodes
  *
- * @version 3.6.0
+ * @version 3.6.1
  * @since   1.0.0
  *
  * @author  Algoritmika Ltd.
@@ -148,7 +148,7 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	/**
 	 * product_wholesale_pricing_table.
 	 *
-	 * @version 3.5.3
+	 * @version 3.6.1
 	 * @since   1.0.0
 	 *
 	 * @todo    (dev) [!] `use_variation`
@@ -181,7 +181,10 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 			'total_min_qty_price_row_format' => '<del>%old_price_total%</del> %new_price_total%',
 			'add_percent_row'                => 'no',
 			'add_percent_row_rounded'        => 'no',
+			'percent_row_format'             => '-%level_discount_percent%%',
+			'percent_row_format_rounded'     => '-%level_discount_percent_rounded%%',
 			'add_discount_row'               => 'no',
+			'discount_row_format'            => '-%level_discount_amount_price%',
 			'table_heading_type'             => '',
 			'extra_row_before'               => '',
 			'extra_row_after'                => '',
@@ -272,17 +275,18 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 			$discount_percent_rounded = round( ( 'percent' === $discount_type ? $price_level['discount'] :
 				( ! empty( $original_price ) ? ( $discount_amount / $original_price * 100 ) : 0 ) ) );
 
-			// Quantity row
+			// Quantity row & Placeholders
 			$level_max_qty = ( isset( $price_levels[ $i + 1 ]['quantity'] ) ) ?
 				$atts['before_level_max_qty'] . ( $price_levels[ $i + 1 ]['quantity'] - 1 ) : $atts['last_level_max_qty'];
-			$placeholders  = array(
+			$placeholders  = apply_filters( 'alg_wc_product_ppq_table_placeholders', array(
 				'%level_min_qty%'                  => $this->format_qty( $price_level['quantity'], $atts ),
 				'%level_max_qty%'                  => $this->format_qty( $level_max_qty, $atts ),
 				'%level_discount%'                 => $price_level['discount'],
 				'%level_discount_amount%'          => $discount_amount,
+				'%level_discount_amount_price%'    => wc_price( $discount_amount ),
 				'%level_discount_percent%'         => $discount_percent,
 				'%level_discount_percent_rounded%' => $discount_percent_rounded,
-			);
+			), $this, $price_level, $atts );
 			$heading_format = ( '' !== $atts['heading_format_singular'] && 1 == $price_level['quantity'] ? $atts['heading_format_singular'] : $atts['heading_format'] );
 			$heading_format = apply_filters( 'alg_wc_product_wholesale_pricing_table_heading_format', $heading_format, ( $i + 1 ), $product_id, $price_level );
 			$data_qty[] = str_replace( array_keys( $placeholders ), $placeholders, $heading_format );
@@ -301,15 +305,15 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 
 			// Percent rows
 			if ( 'yes' === $atts['add_percent_row'] ) {
-				$data_discount_percent[] = '-' . $discount_percent . '%';
+				$data_discount_percent[] = str_replace( array_keys( $placeholders ), $placeholders, $atts['percent_row_format'] );
 			}
 			if ( 'yes' === $atts['add_percent_row_rounded'] ) {
-				$data_discount_percent_rounded[] = '-' . $discount_percent_rounded . '%';
+				$data_discount_percent_rounded[] = str_replace( array_keys( $placeholders ), $placeholders, $atts['percent_row_format_rounded'] );
 			}
 
 			// Discount row
 			if ( 'yes' === $atts['add_discount_row'] ) {
-				$data_discount_amount[] = '-' . wc_price( $discount_amount );
+				$data_discount_amount[] = str_replace( array_keys( $placeholders ), $placeholders, $atts['discount_row_format'] );
 			}
 
 			// Column style
@@ -355,6 +359,9 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 			$row        = explode( '|', $atts['extra_row_after'] );
 			$table_rows = array_merge( $table_rows, array( $row ) );
 		}
+
+		// Filter table rows
+		$table_rows = apply_filters( 'alg_wc_product_ppq_table_rows', $table_rows, $this, $product );
 
 		// Get table HTML
 		if ( ! empty( $table_rows ) ) {
