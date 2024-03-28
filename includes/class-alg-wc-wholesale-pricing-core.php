@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Core Class
  *
- * @version 3.6.0
+ * @version 3.6.2
  * @since   1.0.0
  *
  * @author  Algoritmika Ltd.
@@ -390,7 +390,7 @@ class Alg_WC_Wholesale_Pricing_Core {
 	/**
 	 * get_discount_by_quantity.
 	 *
-	 * @version 2.6.1
+	 * @version 3.6.2
 	 * @since   1.0.0
 	 *
 	 * @param   float|false discount, or boolean false when no level data was found, or discount was an empty string
@@ -398,7 +398,8 @@ class Alg_WC_Wholesale_Pricing_Core {
 	function get_discount_by_quantity( $quantity, $product_id ) {
 		foreach ( $this->get_levels_data( $product_id ) as $level_data ) {
 			if ( $quantity >= $level_data['quantity'] ) {
-				return ( '' !== $level_data['discount'] ? $level_data['discount'] : false );
+				$discount = ( '' !== $level_data['discount'] ? $level_data['discount'] : false );
+				return apply_filters( 'alg_wc_ppq_discount_by_quantity', $discount, $quantity, $product_id, $level_data );
 			}
 		}
 		return false;

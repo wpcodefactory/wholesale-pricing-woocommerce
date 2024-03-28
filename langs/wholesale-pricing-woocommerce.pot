@@ -27,7 +27,7 @@ msgstr ""
 msgid "Recalculate"
 msgstr ""
 
-#: includes/class-alg-wc-wholesale-pricing-core.php:550
+#: includes/class-alg-wc-wholesale-pricing-core.php:551
 msgid "Guest"
 msgstr ""
 
