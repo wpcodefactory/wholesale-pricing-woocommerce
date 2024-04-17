@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - General Section Settings
  *
- * @version 3.0.0
+ * @version 3.7.0
  * @since   1.0.0
  *
  * @author  Algoritmika Ltd.
@@ -29,7 +29,7 @@ class Alg_WC_Wholesale_Pricing_Settings_General extends Alg_WC_Wholesale_Pricing
 	/**
 	 * get_settings.
 	 *
-	 * @version 3.0.0
+	 * @version 3.7.0
 	 * @since   1.0.0
 	 *
 	 * @todo    (desc) `alg_wc_wholesale_pricing_add_order_discount`: better desc
@@ -218,35 +218,6 @@ class Alg_WC_Wholesale_Pricing_Settings_General extends Alg_WC_Wholesale_Pricing
 			array(
 				'type'     => 'sectionend',
 				'id'       => 'alg_wc_wholesale_pricing_general_options',
-			),
-			array(
-				'title'    => __( 'Compatibility Options', 'wholesale-pricing-woocommerce' ),
-				'type'     => 'title',
-				'id'       => 'alg_wc_wholesale_pricing_compatibility_options',
-			),
-			array(
-				'title'    => __( 'WCFM plugin compatibility', 'wholesale-pricing-woocommerce' ),
-				'desc'     => __( 'Enable', 'wholesale-pricing-woocommerce' ),
-				'id'       => 'alg_wc_wholesale_pricing_wcfm_enabled',
-				'default'  => 'no',
-				'type'     => 'checkbox',
-			),
-			array(
-				'desc'     => __( 'New product notification', 'wholesale-pricing-woocommerce' ),
-				'id'       => 'alg_wc_wholesale_pricing_wcfm_new_product_notification',
-				'default'  => __( 'Please save the product first.', 'wholesale-pricing-woocommerce' ),
-				'type'     => 'textarea',
-			),
-			array(
-				'title'    => __( '"Lumise - Product Designer Tool" plugin compatibility', 'wholesale-pricing-woocommerce' ),
-				'desc'     => __( 'Enable', 'wholesale-pricing-woocommerce' ),
-				'id'       => 'alg_wc_wholesale_pricing_lumise_enabled',
-				'default'  => 'no',
-				'type'     => 'checkbox',
-			),
-			array(
-				'type'     => 'sectionend',
-				'id'       => 'alg_wc_wholesale_pricing_compatibility_options',
 			),
 		);
 

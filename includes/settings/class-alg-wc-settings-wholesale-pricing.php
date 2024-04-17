@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Settings
  *
- * @version 3.0.0
+ * @version 3.7.0
  * @since   1.0.0
  *
  * @author  Algoritmika Ltd.
@@ -17,7 +17,7 @@ class Alg_WC_Settings_Wholesale_Pricing extends WC_Settings_Page {
 	/**
 	 * Constructor.
 	 *
-	 * @version 3.0.0
+	 * @version 3.7.0
 	 * @since   1.0.0
 	 */
 	function __construct() {
@@ -32,6 +32,7 @@ class Alg_WC_Settings_Wholesale_Pricing extends WC_Settings_Page {
 		require_once( 'class-alg-wc-wholesale-pricing-settings-info.php' );
 		require_once( 'class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php' );
 		require_once( 'class-alg-wc-wholesale-pricing-settings-dropdown.php' );
+		require_once( 'class-alg-wc-wholesale-pricing-settings-compatibility.php' );
 		require_once( 'class-alg-wc-wholesale-pricing-settings-tools.php' );
 		require_once( 'class-alg-wc-wholesale-pricing-settings-reports.php' );
 	}

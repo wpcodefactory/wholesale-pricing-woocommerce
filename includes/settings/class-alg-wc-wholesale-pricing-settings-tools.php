@@ -35,6 +35,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Tools extends Alg_WC_Wholesale_Pricing_S
 	 * @todo    (dev) Delete roles: sort roles alphabetically?
 	 * @todo    (dev) remove "Reset Settings"?
 	 * @todo    (dev) rename button to "Run tools"?
+	 * @todo    (dev) `alg_wc_wholesale_pricing_tool_add_role`: `desc_tip`: capabilities: link
 	 */
 	function get_settings() {
 
@@ -91,7 +92,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Tools extends Alg_WC_Wholesale_Pricing_S
 				'title'    => __( 'Add role', 'wholesale-pricing-woocommerce' ),
 				'desc'     => '<span class="dashicons dashicons-admin-generic"></span>' . ' ' .
 					'<strong>' . __( 'Add', 'wholesale-pricing-woocommerce' ) . '</strong>',
-				'desc_tip' => __( 'Custom role\'s capabilities will be the same as WooCommerce "Customer" user role.', 'wholesale-pricing-woocommerce' ), // TODO: capabilities: link
+				'desc_tip' => __( 'Custom role\'s capabilities will be the same as WooCommerce "Customer" user role.', 'wholesale-pricing-woocommerce' ),
 				'id'       => 'alg_wc_wholesale_pricing_tool_add_role',
 				'default'  => 'no',
 				'type'     => 'checkbox',

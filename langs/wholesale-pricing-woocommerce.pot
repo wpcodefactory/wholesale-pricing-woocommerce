@@ -27,20 +27,20 @@ msgstr ""
 msgid "Recalculate"
 msgstr ""
 
-#: includes/class-alg-wc-wholesale-pricing-core.php:551
+#: includes/class-alg-wc-wholesale-pricing-core.php:597
 msgid "Guest"
 msgstr ""
 
-#: includes/class-alg-wc-wholesale-pricing-frontend.php:118
-#: includes/class-alg-wc-wholesale-pricing-frontend.php:121
+#: includes/class-alg-wc-wholesale-pricing-frontend.php:136
+#: includes/class-alg-wc-wholesale-pricing-frontend.php:139
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:92
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:110
 #, php-format
 msgid "%s for %s pcs."
 msgstr ""
 
-#: includes/class-alg-wc-wholesale-pricing-frontend.php:119
-#: includes/class-alg-wc-wholesale-pricing-frontend.php:277
+#: includes/class-alg-wc-wholesale-pricing-frontend.php:137
+#: includes/class-alg-wc-wholesale-pricing-frontend.php:320
 #: includes/pro/class-alg-wc-wholesale-pricing-pro-frontend.php:185
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:110
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:129
@@ -138,23 +138,23 @@ msgctxt "Product quantity input tooltip"
 msgid "Qty"
 msgstr ""
 
-#: includes/settings/class-alg-wc-settings-wholesale-pricing.php:49
+#: includes/settings/class-alg-wc-settings-wholesale-pricing.php:50
 msgid "Reset Settings"
 msgstr ""
 
-#: includes/settings/class-alg-wc-settings-wholesale-pricing.php:54
+#: includes/settings/class-alg-wc-settings-wholesale-pricing.php:55
 msgid "Reset section settings"
 msgstr ""
 
-#: includes/settings/class-alg-wc-settings-wholesale-pricing.php:55
+#: includes/settings/class-alg-wc-settings-wholesale-pricing.php:56
 msgid "Reset"
 msgstr ""
 
-#: includes/settings/class-alg-wc-settings-wholesale-pricing.php:56
+#: includes/settings/class-alg-wc-settings-wholesale-pricing.php:57
 msgid "Check the box and save changes to reset."
 msgstr ""
 
-#: includes/settings/class-alg-wc-settings-wholesale-pricing.php:95
+#: includes/settings/class-alg-wc-settings-wholesale-pricing.php:96
 msgid "Your settings have been reset."
 msgstr ""
 
@@ -181,6 +181,9 @@ msgid "All products"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-all-products.php:55
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:47
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:58
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:71
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-dropdown.php:51
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-dropdown.php:119
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:75
@@ -192,8 +195,6 @@ msgstr ""
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:179
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:187
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:212
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:229
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:242
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-per-item.php:55
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:51
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:125
@@ -295,6 +296,42 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-all-products.php:145
 msgid "Excluded products"
+msgstr ""
+
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:25
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:41
+msgid "Compatibility"
+msgstr ""
+
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:46
+msgid "\"WooCommerce Multilingual\" (WPML) plugin"
+msgstr ""
+
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:48
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:178
+#, php-format
+msgid "%s plugin compatibility."
+msgstr ""
+
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:50
+msgid "\"WooCommerce Multilingual\" (WPML)"
+msgstr ""
+
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:57
+msgid "WCFM plugin"
+msgstr ""
+
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:64
+msgid "New product notification"
+msgstr ""
+
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:66
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:207
+msgid "Please save the product first."
+msgstr ""
+
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:70
+msgid "\"Lumise - Product Designer Tool\" plugin"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-dropdown.php:25
@@ -521,28 +558,6 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:213
 msgid "Will replace all product price changes with an order discount."
-msgstr ""
-
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:223
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:172
-msgid "Compatibility Options"
-msgstr ""
-
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:228
-msgid "WCFM plugin compatibility"
-msgstr ""
-
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:235
-msgid "New product notification"
-msgstr ""
-
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:237
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:207
-msgid "Please save the product first."
-msgstr ""
-
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:241
-msgid "\"Lumise - Product Designer Tool\" plugin compatibility"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:25
@@ -928,14 +943,13 @@ msgstr ""
 msgid "Variations"
 msgstr ""
 
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:172
+msgid "Compatibility Options"
+msgstr ""
+
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:177
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:180
 msgid "Sticky Add To Cart Bar For WooCommerce"
-msgstr ""
-
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:178
-#, php-format
-msgid "%s plugin compatibility."
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-reports.php:25
@@ -984,86 +998,86 @@ msgstr[1] ""
 msgid "Tools"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:46
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:47
 msgid "Settings Tools"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:47
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:85
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:48
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:86
 #, php-format
 msgid "Check the %s box and save changes to run the tool."
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:49
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:50
 msgid "Please note that there is no undo for these tools."
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:54
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:55
 msgid "Delete per product settings"
-msgstr ""
-
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:56
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:66
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:114
-msgid "Delete"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:57
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:67
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:115
+msgid "Delete"
+msgstr ""
+
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:58
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:68
 #, php-format
 msgid "Will delete all %s product price by quantity settings."
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:58
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:59
 msgid "per product"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:64
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:65
 msgid "Delete per term settings"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:68
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:69
 #, php-format
 msgid "%s and %s"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:69
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:70
 msgid "per product category"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:70
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:71
 msgid "per product tag"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:84
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:85
 msgid "User Role Tools"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:91
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:92
 msgid "Add role"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:93
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:94
 msgid "Add"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:94
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:95
 msgid ""
 "Custom role's capabilities will be the same as WooCommerce \"Customer\" user "
 "role."
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:100
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:101
 #, php-format
 msgid "Role ID, e.g.: %s"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:106
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:107
 #, php-format
 msgid "Role display name, e.g.: %s"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:112
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-tools.php:113
 msgid "Delete roles"
 msgstr ""
 

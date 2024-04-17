@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Core Class
  *
- * @version 3.6.2
+ * @version 3.7.0
  * @since   1.0.0
  *
  * @author  Algoritmika Ltd.
@@ -260,27 +260,73 @@ class Alg_WC_Wholesale_Pricing_Core {
 	}
 
 	/**
+	 * maybe_convert_currency.
+	 *
+	 * @version 3.7.0
+	 * @since   3.7.0
+	 */
+	function maybe_convert_currency( $discount, $discount_type ) {
+
+		if ( ! in_array( $discount_type, array( 'price_directly', 'fixed' ) ) ) {
+			// No changes
+			return $discount;
+		}
+
+		// WooCommerce Multilingual (WPML)
+		if ( 'yes' === get_option( 'alg_wc_wholesale_pricing_wpml_wcml', 'yes' ) ) {
+			global $woocommerce_wpml;
+			if (
+				$woocommerce_wpml &&
+				function_exists( 'wcml_is_multi_currency_on' ) &&
+				wcml_is_multi_currency_on() &&
+				( $multi_currency = $woocommerce_wpml->get_multi_currency() ) &&
+				! empty( $multi_currency->prices ) &&
+				is_callable( array( $multi_currency->prices, 'convert_price_amount' ) )
+			) {
+				return $multi_currency->prices->convert_price_amount( $discount );
+			}
+		}
+
+		// No changes
+		return $discount;
+
+	}
+
+	/**
 	 * get_wholesale_price.
 	 *
-	 * @version 2.6.1
+	 * @version 3.7.0
 	 * @since   1.0.0
 	 *
 	 * @todo    [!] (dev) `if ( '' === $price && 'price_directly' !== $discount_type ) { return $price; }` || `if ( ! is_numeric( $price ) && 'price_directly' !== $discount_type ) { return $price; }`
 	 */
 	function get_wholesale_price( $price, $quantity, $product_id ) {
+
 		if ( false !== ( $discount = $this->get_discount_by_quantity( $quantity, $product_id ) ) ) {
+
 			$discount_type = $this->get_discount_type( $product_id, $quantity );
+
+			$discount = $this->maybe_convert_currency( $discount, $discount_type );
+
 			switch ( $discount_type ) {
+
 				case 'price_directly':
 					return $discount;
+
 				case 'percent':
 					return $price * ( 1.0 - ( $discount / 100.0 ) );
+
 				default: // 'fixed'
-					$discounted_price = $price - $discount;
-					return ( $discounted_price >= 0 ) ? $discounted_price : 0;
+					$discounted_price = ( $price - $discount );
+					return ( $discounted_price >= 0 ? $discounted_price : 0 );
+
 			}
+
 		}
+
+		// No changes
 		return $price;
+
 	}
 
 	/**

@@ -2,8 +2,8 @@
 Contributors: wpcodefactory, algoritmika, anbinder, karzin, omardabbas, kousikmukherjeeli
 Tags: woocommerce, product price by quantity, price by quantity, dynamic product pricing, dynamic pricing
 Requires at least: 4.4
-Tested up to: 6.4
-Stable tag: 3.6.2
+Tested up to: 6.5
+Stable tag: 3.7.0
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -24,6 +24,7 @@ Set WooCommerce product prices depending on quantity in cart.
 * If you want to display prices table on frontend, use `[alg_wc_ppq_table]` and/or `[alg_wc_product_ppq_table]` **shortcodes**.
 * The plugin also has option to **display price by quantity in real time**, i.e., when customer changes product quantity on single product page.
 * You can also optionally use **formulas** and **custom product fields** in level "Min quantity" and "Discount" options.
+* **Multi-currency** support (WooCommerce Multilingual (WPML)).
 * The plugin is **"High-Performance Order Storage (HPOS)"** compatible.
 * And more...
 
@@ -48,6 +49,12 @@ With [Product Price by Quantity for WooCommerce Pro](https://wpfactory.com/item/
 3. Start by visiting plugin settings at "WooCommerce > Settings > Product Price by Quantity".
 
 == Changelog ==
+
+= 3.7.0 - 17/04/2024 =
+* Dev - Compatibility - "WooCommerce Multilingual" (WPML) plugin compatibility added.
+* Dev - Dropdown - Code refactoring.
+* Dev - Admin settings rearranged - "Compatibility" section added (options moved from the "General > Compatibility Options" subsection).
+* Tested up to: 6.5.
 
 = 3.6.2 - 28/03/2024 =
 * Dev - Developers - `alg_wc_ppq_discount_by_quantity` filter added.

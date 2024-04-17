@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Shortcodes
  *
- * @version 3.6.1
+ * @version 3.7.0
  * @since   1.0.0
  *
  * @author  Algoritmika Ltd.
@@ -497,7 +497,7 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	/**
 	 * get_product_price.
 	 *
-	 * @version 3.1.0
+	 * @version 3.7.0
 	 * @since   1.1.2
 	 *
 	 * @todo    [!] (fix) Variable: per variation enabled
@@ -507,6 +507,8 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 		if ( ! $product->get_price() ) {
 			return '';
 		}
+
+		$discount = $this->get_core()->maybe_convert_currency( $discount, $discount_type );
 
 		foreach ( array( '', '_incl_tax', '_excl_tax' ) as $tax_display ) {
 
@@ -531,19 +533,23 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 				$min_original = $min;
 				$max_original = $max;
 				switch ( $discount_type ) {
+
 					case 'price_directly':
 						$min  = ( $min_product ? $price_func( $min_product, array( 'price' => $discount ) ) : false );
 						$max  = ( $max_product ? $price_func( $max_product, array( 'price' => $discount ) ) : false );
 						break;
+
 					case 'fixed':
 						$min  = ( $min_product ? $price_func( $min_product, array( 'price' => ( $min_product->get_price() - $discount ) ) ) : false );
 						$max  = ( $max_product ? $price_func( $max_product, array( 'price' => ( $max_product->get_price() - $discount ) ) ) : false );
 						break;
+
 					default: // 'percent'
 						$coef = 1.0 - ( $discount / 100.0 );
 						$min  = $min * $coef;
 						$max  = $max * $coef;
 						break;
+
 				}
 				$price                = $this->format_price_range( $min,                 $max,                 $do_hide_currency );
 				$price_original       = $this->format_price_range( $min_original,        $max_original,        $do_hide_currency );
@@ -556,16 +562,20 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 				$_price          = $price_func( $product );
 				$_price_original = $_price;
 				switch ( $discount_type ) {
+
 					case 'price_directly':
 						$_price = $price_func( $product, array( 'price' => $discount ) );
 						break;
+
 					case 'fixed':
 						$_price = $price_func( $product, array( 'price' => ( $product->get_price() - $discount ) ) );
 						break;
+
 					default: // 'percent'
 						$coef   = 1.0 - ( $discount / 100.0 );
 						$_price = $_price * $coef;
 						break;
+
 				}
 				$price                = $this->format_price( $_price,                 $do_hide_currency );
 				$price_original       = $this->format_price( $_price_original,        $do_hide_currency );

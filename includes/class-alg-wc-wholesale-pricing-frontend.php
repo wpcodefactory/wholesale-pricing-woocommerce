@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Frontend Class
  *
- * @version 3.6.0
+ * @version 3.7.0
  * @since   2.0.0
  *
  * @author  Algoritmika Ltd.
@@ -64,7 +64,7 @@ class Alg_WC_Wholesale_Pricing_Frontend {
 	/**
 	 * ajax_price_display_by_qty.
 	 *
-	 * @version 3.4.2
+	 * @version 3.7.0
 	 * @since   1.3.0
 	 *
 	 * @todo    (dev) grouped products
@@ -74,27 +74,43 @@ class Alg_WC_Wholesale_Pricing_Frontend {
 	 * @todo    (dev) other pages (e.g. cart)
 	 */
 	function ajax_price_display_by_qty() {
-		if ( isset( $_POST['alg_wc_wholesale_pricing_qty'] ) && '' !== $_POST['alg_wc_wholesale_pricing_qty'] && ! empty( $_POST['alg_wc_wholesale_pricing_id'] ) ) {
+
+		if (
+			isset( $_POST['alg_wc_wholesale_pricing_qty'] ) &&
+			'' !== $_POST['alg_wc_wholesale_pricing_qty'] &&
+			! empty( $_POST['alg_wc_wholesale_pricing_id'] )
+		) {
+
 			$quantity    = floatval( $_POST['alg_wc_wholesale_pricing_qty'] );
 			$_product_id = intval( $_POST['alg_wc_wholesale_pricing_id'] );
 			$product     = wc_get_product( $_product_id );
 			$product_id  = $this->get_core()->get_product_id( $product );
+
 			if ( $product_id ) {
+
 				// Get placeholders
 				$old_price_single = wc_get_price_to_display( $product );
-				$discount         = ( $this->get_core()->is_enabled( $product_id ) ? $this->get_core()->get_discount_by_quantity( $quantity, $product_id ) : 0 );
+				$discount         = ( $this->get_core()->is_enabled( $product_id ) ?
+					$this->get_core()->get_discount_by_quantity( $quantity, $product_id ) : 0 );
 				$discount_type    = $this->get_core()->get_discount_type( $product_id, $quantity );
 				if ( false !== $discount ) {
+
+					$discount = $this->get_core()->maybe_convert_currency( $discount, $discount_type );
+
 					switch ( $discount_type ) {
+
 						case 'price_directly':
 							$new_price_single = wc_get_price_to_display( $product, array( 'price' => $discount ) );
 							break;
+
 						case 'percent':
 							$new_price_single = wc_get_price_to_display( $product ) * ( 1 - $discount / 100 );
 							break;
+
 						default: // 'fixed'
 							$new_price_single = wc_get_price_to_display( $product, array( 'price' => ( $product->get_price() - $discount ) ) );
 							break;
+
 					}
 				} else {
 					$new_price_single = $old_price_single;
@@ -108,10 +124,12 @@ class Alg_WC_Wholesale_Pricing_Frontend {
 					'total_quantity'   => false,
 					'product'          => $product,
 				) );
+
 				// Handle deprecated placeholders
 				$placeholders['%price_single%'] = $placeholders['%old_price_single%'];
 				$placeholders['%price%']        = $placeholders['%old_price_total%'];
 				$placeholders['%new_price%']    = $placeholders['%new_price_total%'];
+
 				// Final message
 				$template = ( $old_price_single != $new_price_single ?
 					get_option( 'alg_wc_wholesale_pricing_price_by_qty_display_template',
@@ -119,12 +137,31 @@ class Alg_WC_Wholesale_Pricing_Frontend {
 							sprintf( __( 'You save: %s', 'wholesale-pricing-woocommerce' ), '<span style="color:red">%discount_percent%%</span>' ) ) :
 					get_option( 'alg_wc_wholesale_pricing_price_by_qty_display_template_zero',
 						sprintf( __( '%s for %s pcs.', 'wholesale-pricing-woocommerce' ), '%old_price_total%', '%qty%' ) ) );
+
+				// Do shortcode
 				$template = do_shortcode( $template );
-				echo apply_filters( 'alg_wc_wholesale_pricing_ajax_price_display_by_qty', str_replace( array_keys( $placeholders ), $placeholders, $template ),
-					array( 'placeholders' => $placeholders, 'template' => $template, 'product_id' => $product_id, 'quantity' => $quantity, 'discount' => $discount ) );
+
+				// Placeholders
+				$result = str_replace( array_keys( $placeholders ), $placeholders, $template );
+
+				// Apply filters
+				echo apply_filters( 'alg_wc_wholesale_pricing_ajax_price_display_by_qty', $result,
+					array(
+						'placeholders' => $placeholders,
+						'template'     => $template,
+						'product_id'   => $product_id,
+						'quantity'     => $quantity,
+						'discount'     => $discount,
+					)
+				);
+
 			}
+
 		}
+
+		// Exit
 		die();
+
 	}
 
 	/**
@@ -256,14 +293,20 @@ class Alg_WC_Wholesale_Pricing_Frontend {
 	 * @todo    (dev) deprecate?
 	 */
 	function get_discount_value_placeholder( $old_price_single, $discount, $discount_type ) {
+
 		switch ( $discount_type ) {
+
 			case 'price_directly':
 				return wc_price( $old_price_single - $discount );
+
 			case 'percent':
 				return $discount . '%';
+
 			default: // 'fixed'
 				return wc_price( $discount );
+
 		}
+
 	}
 
 	/**
