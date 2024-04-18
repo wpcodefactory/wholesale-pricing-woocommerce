@@ -8,7 +8,7 @@ Author: WPFactory
 Author URI: https://wpfactory.com
 Text Domain: wholesale-pricing-woocommerce
 Domain Path: /langs
-WC tested up to: 8.7
+WC tested up to: 8.8
 */
 
 defined( 'ABSPATH' ) || exit;

@@ -50,10 +50,11 @@ With [Product Price by Quantity for WooCommerce Pro](https://wpfactory.com/item/
 
 == Changelog ==
 
-= 3.7.0 - 17/04/2024 =
-* Dev - Compatibility - "WooCommerce Multilingual" (WPML) plugin compatibility added.
+= 3.7.0 - 18/04/2024 =
+* Dev - Compatibility - "WooCommerce Multilingual" (WPML) plugin compatibility option added.
 * Dev - Dropdown - Code refactoring.
 * Dev - Admin settings rearranged - "Compatibility" section added (options moved from the "General > Compatibility Options" subsection).
+* WC tested up to: 8.8.
 * Tested up to: 6.5.
 
 = 3.6.2 - 28/03/2024 =

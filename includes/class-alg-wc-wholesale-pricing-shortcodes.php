@@ -148,7 +148,7 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	/**
 	 * product_wholesale_pricing_table.
 	 *
-	 * @version 3.6.1
+	 * @version 3.7.0
 	 * @since   1.0.0
 	 *
 	 * @todo    (dev) [!] `use_variation`
@@ -254,26 +254,52 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 			$i++;
 
 			// Hide if zero quantity
-			if ( 'yes' === $atts['hide_if_zero_quantity'] && 0 == $price_level['quantity'] ) {
+			if (
+				'yes' === $atts['hide_if_zero_quantity'] &&
+				0 == $price_level['quantity']
+			) {
 				continue;
 			}
 
 			// Hide if insufficient quantity
-			if ( 'yes' === $atts['hide_if_insufficient_quantity'] && $product->get_manage_stock() && $product->get_stock_quantity() < $price_level['quantity'] ) {
+			if (
+				'yes' === $atts['hide_if_insufficient_quantity'] &&
+				$product->get_manage_stock() &&
+				$product->get_stock_quantity() < $price_level['quantity']
+			) {
 				continue;
 			}
 
 			// Discount type
 			$discount_type = $this->get_core()->get_discount_type( $product_id, $price_level['quantity'] );
 
-			// Discount amounts
-			$original_price           = $product->get_price();
-			$discount_amount          = ( 'fixed' === $discount_type ? $price_level['discount'] :
-				( ! empty( $original_price ) ? ( $original_price - alg_wc_wholesale_pricing()->core->get_wholesale_price( $original_price, $price_level['quantity'], $product_id ) ) : 0 ) );
-			$discount_percent         = ( 'percent' === $discount_type ? $price_level['discount'] :
-				( ! empty( $original_price ) ? round( ( $discount_amount / $original_price * 100 ), 2 ) : 0 ) );
-			$discount_percent_rounded = round( ( 'percent' === $discount_type ? $price_level['discount'] :
-				( ! empty( $original_price ) ? ( $discount_amount / $original_price * 100 ) : 0 ) ) );
+			// Original price
+			$original_price = $product->get_price();
+
+			// Discount amount
+			$discount_amount = ( 'fixed' === $discount_type ?
+				$this->get_core()->maybe_convert_currency( $price_level['discount'], $discount_type ) :
+				( ! empty( $original_price ) ?
+					( $original_price - alg_wc_wholesale_pricing()->core->get_wholesale_price( $original_price, $price_level['quantity'], $product_id ) ) :
+					0
+				)
+			);
+
+			// Discount percent (and rounded percent)
+			$discount_percent = ( 'percent' === $discount_type ?
+				$price_level['discount'] :
+				( ! empty( $original_price ) ?
+					round( ( $discount_amount / $original_price * 100 ), 2 ) :
+					0
+				)
+			);
+			$discount_percent_rounded = round( ( 'percent' === $discount_type ?
+				$price_level['discount'] :
+				( ! empty( $original_price ) ?
+					( $discount_amount / $original_price * 100 ) :
+					0
+				)
+			) );
 
 			// Quantity row & Placeholders
 			$level_max_qty = ( isset( $price_levels[ $i + 1 ]['quantity'] ) ) ?
@@ -281,7 +307,7 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 			$placeholders  = apply_filters( 'alg_wc_product_ppq_table_placeholders', array(
 				'%level_min_qty%'                  => $this->format_qty( $price_level['quantity'], $atts ),
 				'%level_max_qty%'                  => $this->format_qty( $level_max_qty, $atts ),
-				'%level_discount%'                 => $price_level['discount'],
+				'%level_discount%'                 => $this->get_core()->maybe_convert_currency( $price_level['discount'], $discount_type ),
 				'%level_discount_amount%'          => $discount_amount,
 				'%level_discount_amount_price%'    => wc_price( $discount_amount ),
 				'%level_discount_percent%'         => $discount_percent,

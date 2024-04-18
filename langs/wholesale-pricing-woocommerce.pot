@@ -27,20 +27,20 @@ msgstr ""
 msgid "Recalculate"
 msgstr ""
 
-#: includes/class-alg-wc-wholesale-pricing-core.php:597
+#: includes/class-alg-wc-wholesale-pricing-core.php:625
 msgid "Guest"
 msgstr ""
 
-#: includes/class-alg-wc-wholesale-pricing-frontend.php:136
-#: includes/class-alg-wc-wholesale-pricing-frontend.php:139
+#: includes/class-alg-wc-wholesale-pricing-frontend.php:138
+#: includes/class-alg-wc-wholesale-pricing-frontend.php:141
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:92
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:110
 #, php-format
 msgid "%s for %s pcs."
 msgstr ""
 
-#: includes/class-alg-wc-wholesale-pricing-frontend.php:137
-#: includes/class-alg-wc-wholesale-pricing-frontend.php:320
+#: includes/class-alg-wc-wholesale-pricing-frontend.php:139
+#: includes/class-alg-wc-wholesale-pricing-frontend.php:334
 #: includes/pro/class-alg-wc-wholesale-pricing-pro-frontend.php:185
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:110
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:129
@@ -181,9 +181,9 @@ msgid "All products"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-all-products.php:55
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:47
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:58
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:71
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:48
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:59
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:72
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-dropdown.php:51
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-dropdown.php:119
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:75
@@ -299,38 +299,38 @@ msgid "Excluded products"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:25
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:41
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:42
 msgid "Compatibility"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:46
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:47
 msgid "\"WooCommerce Multilingual\" (WPML) plugin"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:48
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:49
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:178
 #, php-format
 msgid "%s plugin compatibility."
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:50
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:51
 msgid "\"WooCommerce Multilingual\" (WPML)"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:57
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:58
 msgid "WCFM plugin"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:64
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:65
 msgid "New product notification"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:66
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:67
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:207
 msgid "Please save the product first."
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:70
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:71
 msgid "\"Lumise - Product Designer Tool\" plugin"
 msgstr ""
 

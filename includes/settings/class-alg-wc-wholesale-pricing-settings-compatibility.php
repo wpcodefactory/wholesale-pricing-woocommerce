@@ -32,6 +32,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Compatibility extends Alg_WC_Wholesale_P
 	 * @version 3.7.0
 	 * @since   3.7.0
 	 *
+	 * @todo    (dev) `alg_wc_wholesale_pricing_wpml_wcml`: default to `yes`?
 	 * @todo    (desc) `alg_wc_wholesale_pricing_wpml_wcml`: better desc, e.g., "... for the 'Fixed' and 'Price directly' discounts..."
 	 * @todo    (desc) add links to all plugins, e.g., WCFM
 	 */
@@ -50,7 +51,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Compatibility extends Alg_WC_Wholesale_P
 						__( '"WooCommerce Multilingual" (WPML)', 'wholesale-pricing-woocommerce' ) .
 					'</a>' ),
 				'id'       => 'alg_wc_wholesale_pricing_wpml_wcml',
-				'default'  => 'yes',
+				'default'  => 'no',
 				'type'     => 'checkbox',
 			),
 			array(

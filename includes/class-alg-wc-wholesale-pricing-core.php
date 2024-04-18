@@ -260,6 +260,34 @@ class Alg_WC_Wholesale_Pricing_Core {
 	}
 
 	/**
+	 * get_client_currency.
+	 *
+	 * @version 3.7.0
+	 * @since   3.7.0
+	 */
+	function get_client_currency() {
+
+		// WooCommerce Multilingual (WPML)
+		if ( 'yes' === get_option( 'alg_wc_wholesale_pricing_wpml_wcml', 'no' ) ) {
+			global $woocommerce_wpml;
+			if (
+				$woocommerce_wpml &&
+				function_exists( 'wcml_is_multi_currency_on' ) &&
+				wcml_is_multi_currency_on() &&
+				( $multi_currency = $woocommerce_wpml->get_multi_currency() ) &&
+				is_callable( array( $multi_currency, 'get_client_currency' ) ) &&
+				( $currency = $multi_currency->get_client_currency() )
+			) {
+				return $currency;
+			}
+		}
+
+		// Default
+		return '';
+
+	}
+
+	/**
 	 * maybe_convert_currency.
 	 *
 	 * @version 3.7.0
@@ -273,7 +301,7 @@ class Alg_WC_Wholesale_Pricing_Core {
 		}
 
 		// WooCommerce Multilingual (WPML)
-		if ( 'yes' === get_option( 'alg_wc_wholesale_pricing_wpml_wcml', 'yes' ) ) {
+		if ( 'yes' === get_option( 'alg_wc_wholesale_pricing_wpml_wcml', 'no' ) ) {
 			global $woocommerce_wpml;
 			if (
 				$woocommerce_wpml &&
