@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - General Section Settings
  *
- * @version 3.7.0
+ * @version 3.7.1
  * @since   1.0.0
  *
  * @author  Algoritmika Ltd.
@@ -29,7 +29,7 @@ class Alg_WC_Wholesale_Pricing_Settings_General extends Alg_WC_Wholesale_Pricing
 	/**
 	 * get_settings.
 	 *
-	 * @version 3.7.0
+	 * @version 3.7.1
 	 * @since   1.0.0
 	 *
 	 * @todo    (desc) `alg_wc_wholesale_pricing_add_order_discount`: better desc

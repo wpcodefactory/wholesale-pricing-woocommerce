@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Price Display by Qty Section Settings
  *
- * @version 3.3.2
+ * @version 3.7.1
  * @since   1.3.0
  *
  * @author  Algoritmika Ltd.
@@ -29,7 +29,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Price_Display_By_Qty extends Alg_WC_Whol
 	/**
 	 * get_settings.
 	 *
-	 * @version 3.3.2
+	 * @version 3.7.1
 	 * @since   1.3.0
 	 *
 	 * @todo    (dev) Price identifier: store in array?

@@ -53,7 +53,8 @@ With [Product Price by Quantity for WooCommerce Pro](https://wpfactory.com/item/
 = 3.7.1 - 13/05/2024 =
 * Fix - General - Admin recalculate order - Ensuring that prices exclude tax.
 * Fix - General - Admin recalculate order - Disabling the button for new orders.
-* WooCommerce added to the "Requires Plugins".
+* Dev - Admin settings descriptions updated.
+* WooCommerce added to the "Requires Plugins" (plugin header).
 
 = 3.7.0 - 18/04/2024 =
 * Dev - Compatibility - "WooCommerce Multilingual" (WPML) plugin compatibility option added.
