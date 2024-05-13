@@ -82,7 +82,7 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	 *
 	 * @todo    [!] (dev) `shortcode_atts`: `alg_wc_wholesale_pricing_table` to `alg_wc_ppq_table`?
 	 * @todo    [!] (dev) `alg_wc_wholesale_pricing_discount_type` option + `alg_wc_wholesale_pricing_get_discount_type` filter?
-	 * @todo    (dev) add all applicable atts from `product_wholesale_pricing_table()`, e.g. `table_heading_type` etc.
+	 * @todo    (dev) add all applicable atts from `product_wholesale_pricing_table()`, e.g., `table_heading_type` etc.
 	 */
 	function wholesale_pricing_table( $atts ) {
 		// Shortcode atts
@@ -156,7 +156,7 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	 * @todo    (dev) [!] `apply_filters`: `alg_wc_product_wholesale_pricing_table_heading_format` to `alg_wc_product_ppq_table_heading_format`?
 	 * @todo    (dev) [!] check if price `is_numeric()`?
 	 * @todo    (dev) `extra_column_before`, `extra_column_after`
-	 * @todo    (dev) `columns_styles`: different styles for different elements, i.e. `explode( '|', $atts['columns_styles'] )`
+	 * @todo    (dev) `columns_styles`: different styles for different elements, i.e., `explode( '|', $atts['columns_styles'] )`
 	 * @todo    (dev) "add to cart" (min qty) link/button
 	 * @todo    (dev) variations (when `product_id` is not set in atts) (same in `product_wholesale_pricing_data()`)
 	 * @todo    (dev) new atts: `html_before_rows` and `html_after_rows`

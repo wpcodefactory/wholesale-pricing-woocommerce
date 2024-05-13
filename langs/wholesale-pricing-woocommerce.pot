@@ -1,14 +1,14 @@
-#: includes/class-alg-wc-wholesale-pricing-admin.php:45
+#: includes/class-alg-wc-wholesale-pricing-admin.php:48
 msgid "Nonce verification failed. Please try again."
 msgstr ""
 
-#: includes/class-alg-wc-wholesale-pricing-admin.php:63
-#: includes/class-alg-wc-wholesale-pricing-admin.php:153
+#: includes/class-alg-wc-wholesale-pricing-admin.php:74
+#: includes/class-alg-wc-wholesale-pricing-admin.php:217
 msgid "Order recalculated."
 msgstr ""
 
-#: includes/class-alg-wc-wholesale-pricing-admin.php:76
-#: includes/class-alg-wc-wholesale-pricing-admin.php:152
+#: includes/class-alg-wc-wholesale-pricing-admin.php:88
+#: includes/class-alg-wc-wholesale-pricing-admin.php:216
 #: includes/pro/settings/class-alg-wc-wholesale-pricing-settings-per-term.php:46
 #: includes/settings/class-alg-wc-settings-wholesale-pricing.php:25
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:49
@@ -19,12 +19,16 @@ msgstr ""
 msgid "Product Price by Quantity"
 msgstr ""
 
-#: includes/class-alg-wc-wholesale-pricing-admin.php:99
-msgid "There is no undo for this action. Are you sure?"
+#: includes/class-alg-wc-wholesale-pricing-admin.php:106
+msgid "Recalculate"
 msgstr ""
 
-#: includes/class-alg-wc-wholesale-pricing-admin.php:100
-msgid "Recalculate"
+#: includes/class-alg-wc-wholesale-pricing-admin.php:118
+msgid "Create the order first."
+msgstr ""
+
+#: includes/class-alg-wc-wholesale-pricing-admin.php:131
+msgid "There is no undo for this action. Are you sure?"
 msgstr ""
 
 #: includes/class-alg-wc-wholesale-pricing-core.php:625
@@ -477,7 +481,7 @@ msgstr ""
 #, php-format
 msgid ""
 "Round calculated product wholesale price according to the \"%s\" option (i."
-"e. %s)."
+"e., %s)."
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:143
@@ -497,7 +501,7 @@ msgid "Total cart quantity"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:159
-msgid "Group by product parent (e.g. for variations)"
+msgid "Group by product parent (e.g., for variations)"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:159
@@ -532,7 +536,7 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:178
 msgid ""
-"Process formula and shortcodes in discount table values (i.e. in \"Min "
+"Process formula and shortcodes in discount table values (i.e., in \"Min "
 "quantity #X\" and \"Discount #X\" fields)."
 msgstr ""
 
@@ -855,7 +859,7 @@ msgstr ""
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:45
 msgid ""
 "This section allows you to display product price by quantity in real time, i."
-"e. when customer changes product quantity on single product page."
+"e., when customer changes product quantity on single product page."
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:50
@@ -923,7 +927,7 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:143
 msgid ""
-"Enable this if you are using non-standard quantity input (e.g. dropdown), "
+"Enable this if you are using non-standard quantity input (e.g., dropdown), "
 "and having issues with the price display by quantity."
 msgstr ""
 

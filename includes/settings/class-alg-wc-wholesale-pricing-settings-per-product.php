@@ -60,7 +60,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 	 * @version 2.0.0
 	 * @since   2.0.0
 	 *
-	 * @todo    (dev) admin notice, e.g. "Options have been reset successfully."
+	 * @todo    (dev) admin notice, e.g., "Options have been reset successfully."
 	 */
 	function admin_action_reset() {
 		if ( ! empty( $_GET['alg_wc_wholesale_pricing_reset_variation'] ) || ! empty( $_GET['alg_wc_wholesale_pricing_reset'] ) ) {
@@ -92,7 +92,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 	 * @since   2.0.0
 	 *
 	 * @todo    (dev) reset -> copy: zero becomes empty
-	 * @todo    (dev) admin notice, e.g. "Variation has been copied successfully."
+	 * @todo    (dev) admin notice, e.g., "Variation has been copied successfully."
 	 */
 	function admin_action_copy_variation() {
 		if ( ! empty( $_GET['alg_wc_wholesale_pricing_copy_variation'] ) ) {

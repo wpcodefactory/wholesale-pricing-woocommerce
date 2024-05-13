@@ -70,8 +70,8 @@ class Alg_WC_Wholesale_Pricing_Frontend {
 	 * @todo    (dev) grouped products
 	 * @todo    (dev) variable products (range)
 	 * @todo    (dev) do not display for qty=1
-	 * @todo    (dev) add option to disable "price by qty" on initial screen (i.e. before qty input was changed)
-	 * @todo    (dev) other pages (e.g. cart)
+	 * @todo    (dev) add option to disable "price by qty" on initial screen (i.e., before qty input was changed)
+	 * @todo    (dev) other pages (e.g., cart)
 	 */
 	function ajax_price_display_by_qty() {
 

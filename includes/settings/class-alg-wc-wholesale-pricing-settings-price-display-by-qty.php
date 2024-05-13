@@ -42,7 +42,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Price_Display_By_Qty extends Alg_WC_Whol
 		$price_by_qty_display_settings = array(
 			array(
 				'title'    => __( 'Price Display by Quantity', 'wholesale-pricing-woocommerce' ),
-				'desc'     => __( 'This section allows you to display product price by quantity in real time, i.e. when customer changes product quantity on single product page.', 'wholesale-pricing-woocommerce' ),
+				'desc'     => __( 'This section allows you to display product price by quantity in real time, i.e., when customer changes product quantity on single product page.', 'wholesale-pricing-woocommerce' ),
 				'type'     => 'title',
 				'id'       => 'alg_wc_wholesale_pricing_price_by_qty_display_options',
 			),
@@ -140,7 +140,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Price_Display_By_Qty extends Alg_WC_Whol
 			array(
 				'title'    => __( 'Force standard quantity input', 'wholesale-pricing-woocommerce' ),
 				'desc'     => __( 'Enable', 'wholesale-pricing-woocommerce' ),
-				'desc_tip' => __( 'Enable this if you are using non-standard quantity input (e.g. dropdown), and having issues with the price display by quantity.', 'wholesale-pricing-woocommerce' ),
+				'desc_tip' => __( 'Enable this if you are using non-standard quantity input (e.g., dropdown), and having issues with the price display by quantity.', 'wholesale-pricing-woocommerce' ),
 				'id'       => 'alg_wc_wholesale_pricing_price_by_qty_standard_qty_input',
 				'default'  => 'no',
 				'type'     => 'checkbox',

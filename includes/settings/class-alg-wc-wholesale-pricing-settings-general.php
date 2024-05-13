@@ -139,7 +139,7 @@ class Alg_WC_Wholesale_Pricing_Settings_General extends Alg_WC_Wholesale_Pricing
 			),
 			array(
 				'title'    => __( 'Rounding', 'wholesale-pricing-woocommerce' ),
-				'desc_tip' => sprintf( __( 'Round calculated product wholesale price according to the "%s" option (i.e. %s).', 'wholesale-pricing-woocommerce' ),
+				'desc_tip' => sprintf( __( 'Round calculated product wholesale price according to the "%s" option (i.e., %s).', 'wholesale-pricing-woocommerce' ),
 					'<a target="_blank" href="' . admin_url( 'admin.php?page=wc-settings' ) . '">' . __( 'Number of decimals', 'wholesale-pricing-woocommerce' ) . '</a>',
 					'<code>' . get_option( 'woocommerce_price_num_decimals', 2 ) . '</code>' ),
 				'desc'     => __( 'Enable', 'wholesale-pricing-woocommerce' ),
@@ -156,12 +156,12 @@ class Alg_WC_Wholesale_Pricing_Settings_General extends Alg_WC_Wholesale_Pricing
 				'options'  => array(
 					'no'           => __( 'Single product quantity', 'wholesale-pricing-woocommerce' ),
 					'yes'          => __( 'Total cart quantity', 'wholesale-pricing-woocommerce' ),
-					'_parent'      => __( 'Group by product parent (e.g. for variations)', 'wholesale-pricing-woocommerce' ) . apply_filters( 'alg_wc_wholesale_pricing_settings', ' [' . __( 'Pro only', 'wholesale-pricing-woocommerce' ) . ']' ),
+					'_parent'      => __( 'Group by product parent (e.g., for variations)', 'wholesale-pricing-woocommerce' ) . apply_filters( 'alg_wc_wholesale_pricing_settings', ' [' . __( 'Pro only', 'wholesale-pricing-woocommerce' ) . ']' ),
 					'_product_cat' => __( 'Group by product category', 'wholesale-pricing-woocommerce' ) . apply_filters( 'alg_wc_wholesale_pricing_settings', ' [' . __( 'Pro only', 'wholesale-pricing-woocommerce' ) . ']' ),
 					'_product_tag' => __( 'Group by product tag', 'wholesale-pricing-woocommerce' ) . apply_filters( 'alg_wc_wholesale_pricing_settings', ' [' . __( 'Pro only', 'wholesale-pricing-woocommerce' ) . ']' ),
 				),
 				'desc'     => apply_filters( 'alg_wc_wholesale_pricing_settings', sprintf(
-					'For some options (e.g. "%s") you will need <a target="_blank" href="%s">Product Price by Quantity for WooCommerce Pro</a> plugin.',
+					'For some options (e.g., "%s") you will need <a target="_blank" href="%s">Product Price by Quantity for WooCommerce Pro</a> plugin.',
 						__( 'Group by product parent', 'wholesale-pricing-woocommerce' ),
 						'https://wpfactory.com/item/wholesale-pricing-woocommerce/' ) )
 			),
@@ -175,7 +175,7 @@ class Alg_WC_Wholesale_Pricing_Settings_General extends Alg_WC_Wholesale_Pricing
 			),
 			array(
 				'title'    => __( 'Formula and shortcodes', 'wholesale-pricing-woocommerce' ),
-				'desc_tip' => __( 'Process formula and shortcodes in discount table values (i.e. in "Min quantity #X" and "Discount #X" fields).', 'wholesale-pricing-woocommerce' ),
+				'desc_tip' => __( 'Process formula and shortcodes in discount table values (i.e., in "Min quantity #X" and "Discount #X" fields).', 'wholesale-pricing-woocommerce' ),
 				'desc'     => __( 'Enable', 'wholesale-pricing-woocommerce' ),
 				'id'       => 'alg_wc_wholesale_pricing_process_formula',
 				'default'  => 'no',

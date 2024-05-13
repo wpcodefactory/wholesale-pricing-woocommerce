@@ -445,8 +445,8 @@ class Alg_WC_Wholesale_Pricing_Core {
 	 * @param   int $product_id Product ID.
 	 * @param   int|false $quantity Quantity. Optional. Used only for `alg_wc_wholesale_pricing_get_discount_type` filter.
 	 *
-	 * @todo    (dev) `is_enabled_all_products()` (i.e. for `get_option( $key, 'percent' )`)
-	 * @todo    (dev) add `$type` as function param (i.e. check if `is_enabled...()` in advance)
+	 * @todo    (dev) `is_enabled_all_products()` (i.e., for `get_option( $key, 'percent' )`)
+	 * @todo    (dev) add `$type` as function param (i.e., check if `is_enabled...()` in advance)
 	 */
 	function get_discount_type( $product_id, $quantity = false ) {
 		$key = 'alg_wc_wholesale_pricing_discount_type';
@@ -633,7 +633,7 @@ class Alg_WC_Wholesale_Pricing_Core {
 	 * @version 2.6.2
 	 * @since   2.0.0
 	 *
-	 * @todo    (dev) multiple user roles, i.e. not only the first one
+	 * @todo    (dev) multiple user roles, i.e., not only the first one
 	 */
 	function get_current_user_role( $user = false ) {
 		if ( ! isset( $this->current_user_role ) ) {

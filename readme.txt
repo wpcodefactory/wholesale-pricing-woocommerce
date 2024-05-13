@@ -3,7 +3,7 @@ Contributors: wpcodefactory, algoritmika, anbinder, karzin, omardabbas, kousikmu
 Tags: woocommerce, product price by quantity, price by quantity, dynamic product pricing, dynamic pricing
 Requires at least: 4.4
 Tested up to: 6.5
-Stable tag: 3.7.0
+Stable tag: 3.7.1
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -49,6 +49,11 @@ With [Product Price by Quantity for WooCommerce Pro](https://wpfactory.com/item/
 3. Start by visiting plugin settings at "WooCommerce > Settings > Product Price by Quantity".
 
 == Changelog ==
+
+= 3.7.1 - 13/05/2024 =
+* Fix - General - Admin recalculate order - Ensuring that prices exclude tax.
+* Fix - General - Admin recalculate order - Disabling the button for new orders.
+* WooCommerce added to the "Requires Plugins".
 
 = 3.7.0 - 18/04/2024 =
 * Dev - Compatibility - "WooCommerce Multilingual" (WPML) plugin compatibility option added.
@@ -327,7 +332,7 @@ With [Product Price by Quantity for WooCommerce Pro](https://wpfactory.com/item/
 * Dev - General - "Dropdown" options added.
 
 = 2.3.0 - 13/04/2021 =
-* Dev - General - Quantity calculation - "Group by product parent (e.g. for variations)" option added.
+* Dev - General - Quantity calculation - "Group by product parent (e.g., for variations)" option added.
 * Dev - General - Quantity calculation - "Group by product category" option added.
 * Dev - General - Quantity calculation - "Group by product tag" option added.
 * Dev - General - "Total cart quantity" option redone as select (was checkbox); renamed to "Quantity calculation".
@@ -346,7 +351,7 @@ With [Product Price by Quantity for WooCommerce Pro](https://wpfactory.com/item/
 * Dev - Info - Discount Pricing Table - "Template for variable products" option added.
 * Dev - Shortcodes - `[alg_wc_product_wholesale_pricing_data]` - Min level quantity is now passed to the `price` function, so now `%old_price_total%` and `%new_price_total%` placeholders are correctly processed in the `price_format` attribute.
 * Dev - Localization - `load_plugin_textdomain()` function moved to the `init` action.
-* Dev - Settings - Restyled and descriptions updated, e.g. "Info > Single Product Page" renamed to "Info > Discount Pricing Table", etc.
+* Dev - Settings - Restyled and descriptions updated, e.g., "Info > Single Product Page" renamed to "Info > Discount Pricing Table", etc.
 * WC tested up to: 5.0.
 
 = 2.2.3 - 29/12/2020 =
@@ -362,7 +367,7 @@ With [Product Price by Quantity for WooCommerce Pro](https://wpfactory.com/item/
 * Dev - Shortcodes - `[alg_wc_product_wholesale_pricing_table]` - Initializing all variables now.
 
 = 2.2.0 - 25/10/2020 =
-* Dev - Price Display by Quantity - `quantity_pq_dropdown` - Timer removed (also for `table.variations select`); `input` event removed; getting value from the element itself now (i.e. instead of from the original `quantity` field); standard qty input event handler removed.
+* Dev - Price Display by Quantity - `quantity_pq_dropdown` - Timer removed (also for `table.variations select`); `input` event removed; getting value from the element itself now (i.e., instead of from the original `quantity` field); standard qty input event handler removed.
 * Dev - Shortcodes - `[alg_wc_product_wholesale_pricing_table]` - New attributes added: `add_total_min_qty_price_row` and `total_min_qty_price_row_format`; `extra_row_before` and `extra_row_after`; `table_heading_type`; `columns_styles`; `table_class`.
 * Dev - Info - Single product pages - Template for non-variable products - Admin settings description updated.
 * WC tested up to: 4.6.
@@ -405,7 +410,7 @@ With [Product Price by Quantity for WooCommerce Pro](https://wpfactory.com/item/
 
 = 1.4.1 - 19/06/2020 =
 * Fix - Advanced - Products to exclude - Bug fixed.
-* Dev - Price Display by Quantity - Checking if product price by quantity is enabled for the product now (e.g. "Products to include/exclude" option).
+* Dev - Price Display by Quantity - Checking if product price by quantity is enabled for the product now (e.g., "Products to include/exclude" option).
 * Dev - Advanced - Products to include/exclude - Product ID info added to the dropdown.
 * Dev - Reset Settings - Description updated.
 * Tested up to: 5.4.
