@@ -1,54 +1,185 @@
-=== Product Price by Quantity for WooCommerce ===
+=== Quantity Dynamic Pricing & Bulk Discounts for WooCommerce ===
 Contributors: wpcodefactory, algoritmika, anbinder, karzin, omardabbas, kousikmukherjeeli
 Tags: woocommerce, product price by quantity, price by quantity, dynamic product pricing, dynamic pricing
 Requires at least: 4.4
 Tested up to: 6.5
-Stable tag: 3.7.1
+Stable tag: 3.7.2
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
-Set WooCommerce product prices depending on quantity in cart.
+Unlock advanced dynamic/tiered pricing strategies with quantity-based discounts. Optimize bulk pricing for increased savings and customer satisfaction
 
 == Description ==
 
-**Product Price by Quantity for WooCommerce** plugin lets you set WooCommerce product pricing rules, when product price depends on product **quantity in cart**.
+> “EXCELLENT PLUGIN AND TOP SUPPORT: The plugin has the features I was looking for, great integration with WooCommerce and easy and flexible configuration. I asked for support for some variations: professional and precise response and quick solution. Fully satisfied. TOP!” – ⭐⭐⭐⭐⭐ [gio61](https://wordpress.org/support/topic/excellent-plugin-and-top-support-4/)
 
-### &#9989; Main Features ###
+[Main Page](https://wpfactory.com/item/product-price-by-quantity-for-woocommerce/?utm_source=wporg&utm_medium=organic&utm_campaign=readme "Main Page") | [Demo](https://dynamicpricing.instawp.xyz/ "Demo") | [Support Forum](https://wpfactory.com/support/item/product-price-by-quantity-for-woocommerce/?utm_source=wporg&utm_medium=organic&utm_campaign=readme "Support Forum") | [Documentation & How to](https://wpfactory.com/docs/product-price-by-quantity-for-woocommerce/?utm_source=wporg&utm_medium=organic&utm_campaign=readme "Documentation & How to")
 
-* You can implement popular **"buy more pay less"** pricing, as well as less common **"buy more pay more"** pricing.
-* Pricing rules can be set **for all products**, or on **per product basis**.
-* You can use **total cart quantity** or **product quantity**.
-* Optionally you can set to apply wholesale discount only **if no other cart discounts were applied**.
-* Discounts can be set as **percent** from the original price, **fixed** discount, or set **price directly** on per product basis.
-* Additionally you can set different product price by quantity options for different **user roles**. Also, the plugin includes tool for creating custom user roles.
-* If you want to display prices table on frontend, use `[alg_wc_ppq_table]` and/or `[alg_wc_product_ppq_table]` **shortcodes**.
-* The plugin also has option to **display price by quantity in real time**, i.e., when customer changes product quantity on single product page.
-* You can also optionally use **formulas** and **custom product fields** in level "Min quantity" and "Discount" options.
-* **Multi-currency** support (WooCommerce Multilingual (WPML)).
-* The plugin is **"High-Performance Order Storage (HPOS)"** compatible.
-* And more...
 
-### &#127942; Premium Version ###
+Introducing Quantity Dynamic Pricing & Bulk Discounts for WooCommerce plugin, the game-changer your store needs.
+Tired of manual price adjustments? Our plugin empowers you to effortlessly implement quantity discounts, tiered/volume pricing, and dynamic pricing strategies with ease.
 
-With [Product Price by Quantity for WooCommerce Pro](https://wpfactory.com/item/wholesale-pricing-woocommerce/) you can:
+Picture this: You've got a range of products in your store, each offering different price points depending on the quantity purchased. But managing these bulk discounts by coupons or -worse- manually  can be a headache, leading to inconsistencies and missed opportunities. That's where our plugin steps in.
 
-* Set pricing rules per **product category**, per **product tag** or per **product variation**.
-* Automatically display **discount pricing table on single product pages**.
-* Replace standard quantity input on frontend with a **dropdown**.
-* And more...
+Whether you prefer to base discounts on total cart quantity or individual product quantity, our plugin caters to your needs. Plus, you have the option to apply wholesale discounts only when no other cart discounts are present. Choose from a range of discount types, including percentage discounts, fixed discounts, or set prices per product, and much more.
 
-### &#128472; Feedback ###
+## 🚀 Main Features: FREE Version##
 
-* We are open to your suggestions and feedback. Thank you for using or trying out one of our plugins!
-* [Visit plugin site](https://wpfactory.com/item/wholesale-pricing-woocommerce/).
+### 🚀 Flexible Dynamic Pricing Strategies ###
+
+Implement popular "buy more pay less" or less common "buy more pay more" pricing strategies.
+For example, offer discounts for purchasing multiple units of a product.
+
+### 🚀 Customizable Pricing Rules: By Product or at Once ###
+
+Exercise granular control over pricing rules, allowing you to set rules for all products or customize them on a per-product basis for maximum flexibility.
+
+### 🚀 Cart vs. Product Quantity Discount ###
+
+Determine whether discounts should be based on total cart quantity or individual product quantity, ensuring discounts are applied according to your preferred criteria.
+For example, offer a $5 discount per unit for Product A or a 10% discount on the total cart quantity exceeding 10 units.
+
+### 🚀 Select When to Apply Discount ###
+
+Decide whether quantity discounts & dynamic prices should only apply when no other cart discounts are present to prevent conflicting discount scenarios and/or mis-using your promotions.
+
+### 🚀 Multiple Discounts Types ###
+
+Choose from a variety of discounting methods, including percentage discounts, fixed discounts, or direct price adjustments per product, to suit your pricing strategy.
+
+### 🚀 Apply Discounts by User Role ###
+
+Tailor pricing options based on user roles, enabling you to create custom pricing structures for different user segments and enhance customer segmentation strategies.
+
+### 🚀 Show Tiered Prices Table on Product Page ###
+
+The free version allows displaying price tables on the frontend using simple shortcodes like `[alg_wc_ppq_table]` and `[alg_wc_product_ppq_table]`, so that you can provide transparent pricing information to your customers for informed purchasing decisions.
+
+### 🚀 Show Saving & Discounts for Products in Cart ###
+
+Show discount pricing information alongside each cart item, you can also utilize placeholders like `discount_percent`, `new_price_single`, and `old_price_single` to provide detailed insights into discounts applied to each item in the cart.
+
+### 🚀 Show Total Price by Quantity in Real-Time ###
+
+Instantly showcase the “Total Price by Quantity” on the product page and make prices clear based on the chosen quantity, you can also select to show the dynamic price instead/after/before the default standard price.
+For example, on a $10 product where you sell it at $9 for quantities 20 & above, when a customer select quantity of 15, it shows $150 for 15 %unit%, and when they go 20, it shows $180 for 20 %unit%.
+
+### 🚀 WCFM & WPML Compatible ###
+
+* Multi-currency support with WordPress Multilingual (WPML) plugin, enabling you to display prices in multiple currencies to cater to an international customer base.
+* Compatible with WCFM Marketplace to allow vendors to create tiered pricing strategies.
+* High-Performance Order Storage (HPOS) compatible
+
+### 🚀 Admin Tools ###
+
+**Delete All Settings:**
+The plugin has a small tool where you can delete all "per product" settings & values for your entire store, as well as deleting plugin values of product categories & tags.
+
+**Reports:**
+In a simple & organized view, you can see all dynamic prices you've applied to your products, product categories, or tags.
+
+
+> “Amazing plugin and Great Support: I recommend this plugin, do what it has to do, and more! The support is great, they also listen to any improvement request and deploy great updates!” – ⭐⭐⭐⭐⭐ [jhdezc](https://wordpress.org/support/topic/amazing-plugin-and-great-support-22/)
+
+> “Great and very useful for WCFM: This plugin is great and very useful, and the support is greater. Thanks for adding WCFM.” – ⭐⭐⭐⭐⭐  [mamunag8](https://wordpress.org/support/topic/great-and-very-useful-for-wcfm/)
+
+## 🏆 Do More: PRO Version##
+
+We have more, if you want to go further, you can get the premium version of [Quantity Dynamic Pricing & Bulk Discounts for WooCommerce](https://wpfactory.com/item/product-price-by-quantity-for-woocommerce/?utm_source=wporg&utm_medium=organic&utm_campaign=readme) plugin.
+
+### 🏆 Dynamic Pricing by Category or Tag ###
+
+Implement dynamic pricing strategies tailored to specific product categories or tags, saving you the effort of doing it manually by product, this becomes very useful when you want to optimize bulk quantity discounts for targeted groups of products.
+
+### 🏆 Define Tiered Pricing by Variation ###
+
+Go further in defining price tiers and set them on variation level for variable products, very useful when you can offer more discounts for specific variations.
+
+### 🏆 Add Tiered Pricing Table to Product & Shop Pages ###
+
+If you don't like working with shortcodes, you can use the built-in option to show the tiered pricing table in product page, select from different positions like before/in/after product summary, or before/after product.
+
+You can also add the table to your shop/categories pages.
+
+### 🏆 Category & Tag Combined Quantities for Dynamic Pricing ###
+
+Enable dynamic pricing calculations by counting the total quantity of products within a designated category/tag, a smart promotional strategy to offer discounts based on combined purchases across multiple products in the category or tag.
+
+### 🏆 Replace Standard Price to Highlight Discount ###
+
+Change standard WooCommerce product price display into discounted options to make text more compelling to customers, so instead of showing $7, you can say "From $5.00 for 10 items" to incentivize bulk purchases.
+Applicable to product & shop pages.
+
+### 🏆 Change Quantity Input Field to a Dropdown ###
+
+Replace the traditional input or +/- quantity fields with a clear dropdown menu which includes shortoodes, so customers can see prices & select quantities directly with a click.
+
+> “My favorite volume discounts plugin, and I've tried most on the market. Love that I can build out the discounts right from the product edit page. Also, Tom has been super responsive on tweaks and improvements.” – ⭐⭐⭐⭐⭐ [Scott](https://wpfactory.com/item/product-price-by-quantity-for-woocommerce/?utm_source=wporg&utm_medium=organic&utm_campaign=readme)
+
+> “Works well! Being able to us negative % is what drew me to this plugin. My theme was having issues with some of the display options but Tom with support had helpful and quick responses.” – ⭐⭐⭐⭐⭐ [Karla Jordan](https://wpfactory.com/item/product-price-by-quantity-for-woocommerce/?utm_source=wporg&utm_medium=organic&utm_campaign=readme)
+
+> “I highly recommend this plugin. It helps me a lot, and thanks to Tom who did some updates for me, the plugin has become a really important part of our site.” – ⭐⭐⭐⭐⭐ [Wojciech](https://wpfactory.com/item/product-price-by-quantity-for-woocommerce/?utm_source=wporg&utm_medium=organic&utm_campaign=readme)
+
+> “Perfect support: I’ve been looking days to find the right plugin and I can say that I enjoy using this one, it does exactly what I need and Tom the developer is always here to listen at our needs and improve the plugin or respond to mails within 24h.” – ⭐⭐⭐⭐⭐ [alexsandros](https://wordpress.org/support/topic/perfect-support-117/)
+
+___
+## 💯 Why WPFactory?##
+
+* **Experience You Can Trust:** Over a decade in the business
+* **Wide Plugin Selection:** Offering 65+ unique and powerful plugins
+* **Highly-Rated Support:** Backed by hundreds of 5-star reviews
+* **Expert Team:** Dedicated developers and technical support at your service
+
+___
+## What's Next? Discover More Plugins by WPFactory ##
+
+WPFactory has a diverse range of plugins tailored to enhance your experience:
+
+* [**EAN, UPC, ISBN Generator: Product Barcode Inventory for WooCommerce**](https://wpfactory.com/item/ean-barcodes-woocommerce/?utm_source=wporg&utm_medium=organic&utm_campaign=readme "**EAN, UPC, ISBN Generator: Product Barcode Inventory for WooCommerce***"): Manage GTINs (EAN, UPC, ISBN, etc.) effortlessly in WooCommerce! Create, save, search, and display EANs easily, with admin tools for bulk actions.
+ (**[Free version](https://wordpress.org/plugins/ean-for-woocommerce/ "Free version")**)
+
+* [**Wishlist for WooCommerce: Multi Wishlists per Customer**](https://wpfactory.com/item/wish-list-woocommerce/?utm_source=wporg&utm_medium=organic&utm_campaign=readme "**Wishlist for WooCommerce: Multi Wishlists per Customer**"): Increase loyalty & sales by allowing customers to add products to wishlist, create multiple wishlists, save them, share them with friends & family on your WooCommerce store (**[Free version](https://wordpress.org/plugins/wish-list-for-woocommerce/ "Free version")**)
+
+* [**Name Your Price: Make a Price Offer for WooCommerce**](https://wpfactory.com/item/price-offers-for-woocommerce/?utm_source=wporg&utm_medium=organic&utm_campaign=readme "*Name Your Price: Make a Price Offer for WooCommerce**"): Allow customers to propose their own prices for your products, open a negotiation-driven shopping experience with options to accept, reject, or counter-offer. (**[Free version](https://wordpress.org/plugins/price-offerings-for-woocommerce/ "Free version")**)
+
+* [**Additional Custom Emails for WooCommerce**](https://wpfactory.com/item/custom-emails-for-woocommerce/?utm_source=wporg&utm_medium=organic&utm_campaign=readme "**Additional Custom Emails for WooCommerce**"): Define & customize more emails based on triggers, choose from multiple recipient options, personalize content, and send emails manually. (**[Free version](https://wordpress.org/plugins/custom-emails-for-woocommerce/ "Free version")**)
+
+* [**Automated Order Status Controller for WooCommerce**](https://wpfactory.com/item/order-status-rules-for-woocommerce/?utm_source=wporg&utm_medium=organic&utm_campaign=readme "**Automated Order Status Controller for WooCommerce**"): Change order statuses programmatically based on a wide range of conditions, like time intervals, user roles and more! (**[Free version](https://wordpress.org/plugins/order-status-rules-for-woocommerce/ "Free version")**)
+
+* [**Custom Order Status for WooCommerce**](https://wpfactory.com/item/order-status-for-woocommerce/?utm_source=wporg&utm_medium=organic&utm_campaign=readme "**Custom Order Status for WooCommerce**"): Create & manage unlimited number of custom statuses, to reflect your business desires & needs. (**[Free version](https://wordpress.org/plugins/order-status-for-woocommerce/ "Free version")**)
+
+* [**Free Shipping Amount Label & Progress Bar for WooCommerce**](https://wpfactory.com/item/amount-left-free-shipping-woocommerce/?utm_source=wporg&utm_medium=organic&utm_campaign=readme "**Free Shipping Amount Label & Progress Bar for WooCommerce**"): Encourage higher spending by offering free shipping based on amount, with a progress bar for customers. (**[Free version](https://wordpress.org/plugins/amount-left-free-shipping-woocommerce/ "Free version")**)
 
 == Installation ==
 
-1. Upload the entire plugin folder to the `/wp-content/plugins/` directory.
-2. Activate the plugin through the "Plugins" menu in WordPress.
-3. Start by visiting plugin settings at "WooCommerce > Settings > Product Price by Quantity".
+**Follow these simplified steps to get your plugin up and running:**
+
+**From the WordPress Admin Panel:**
+1. Navigate to “Plugins” > “Add New”.
+2. Use the search bar and find the plugin using the exact name.
+3. Click “Install Now” for the desired plugin.
+4. Once the installation is finished, and click “Activate”.
+
+**Manual Installation Using FTP:**
+1. Download the desired plugin from WordPress.org.
+2. Using your preferred FTP client, upload the entire plugin folder to the /wp-content/plugins/ directory of your WordPress installation.
+3. Go to “Plugins” > “Installed Plugins” in your dashboard and click “Activate”.
+
+**Manual download & upload from the WordPress Admin Panel:**
+1. Download the desired plugin in a ZIP format.
+2. On your site, navigate to “Plugins” > “Add New” and click the “Upload Plugin” button.
+3. Choose the downloaded plugin file and click “Install Now.”
+4. After the installation is complete, click “Activate”.
+
+**Post-Activation:**
+Once activated, access the plugin's settings by navigating to “WooCommerce > Settings” and look for the relevant tab.
+
 
 == Changelog ==
+
+= 3.7.2 - 22/05/2024 =
+* WC tested up to: 8.9.
+* Readme.txt - Plugin description updated.
 
 = 3.7.1 - 13/05/2024 =
 * Fix - General - Admin recalculate order - Ensuring that prices exclude tax.
