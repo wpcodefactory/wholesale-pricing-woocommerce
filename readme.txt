@@ -1,9 +1,9 @@
-=== Quantity Dynamic Pricing & Bulk Discounts for WooCommerce ===
+=== Quantity Dynamic Pricing & Bulk Discounts for WooCommerce Pro ===
 Contributors: wpcodefactory, algoritmika, anbinder, karzin, omardabbas, kousikmukherjeeli
 Tags: woocommerce, product price by quantity, price by quantity, dynamic product pricing, dynamic pricing
 Requires at least: 4.4
-Tested up to: 6.5
-Stable tag: 3.7.2
+Tested up to: 6.6
+Stable tag: 3.7.3
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -176,6 +176,10 @@ Once activated, access the plugin's settings by navigating to “WooCommerce > S
 
 
 == Changelog ==
+
+= 3.7.3 - 31/07/2024 =
+* WC tested up to: 9.1.
+* Tested up to: 6.6.
 
 = 3.7.2 - 22/05/2024 =
 * WC tested up to: 8.9.
