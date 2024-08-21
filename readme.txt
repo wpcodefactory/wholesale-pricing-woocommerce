@@ -3,7 +3,7 @@ Contributors: wpcodefactory, algoritmika, anbinder, karzin, omardabbas, kousikmu
 Tags: woocommerce, product price by quantity, price by quantity, dynamic product pricing, dynamic pricing
 Requires at least: 4.4
 Tested up to: 6.6
-Stable tag: 3.7.3
+Stable tag: 3.7.4
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -176,6 +176,10 @@ Once activated, access the plugin's settings by navigating to “WooCommerce > S
 
 
 == Changelog ==
+
+= 3.7.4 - 21/08/2024 =
+* Dev - Developers - `alg_wc_ppq_price_display_by_qty_is_product` filter added.
+* Dev - Developers - `alg_wc_ppq_price_display_by_qty_product_id` filter added.
 
 = 3.7.3 - 31/07/2024 =
 * WC tested up to: 9.1.
