@@ -35,16 +35,16 @@ msgstr ""
 msgid "Guest"
 msgstr ""
 
-#: includes/class-alg-wc-wholesale-pricing-frontend.php:138
-#: includes/class-alg-wc-wholesale-pricing-frontend.php:141
+#: includes/class-alg-wc-wholesale-pricing-frontend.php:139
+#: includes/class-alg-wc-wholesale-pricing-frontend.php:150
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:92
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:110
 #, php-format
 msgid "%s for %s pcs."
 msgstr ""
 
-#: includes/class-alg-wc-wholesale-pricing-frontend.php:139
-#: includes/class-alg-wc-wholesale-pricing-frontend.php:339
+#: includes/class-alg-wc-wholesale-pricing-frontend.php:144
+#: includes/class-alg-wc-wholesale-pricing-frontend.php:358
 #: includes/pro/class-alg-wc-wholesale-pricing-pro-frontend.php:185
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:110
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-info.php:129

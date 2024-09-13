@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Frontend Class
  *
- * @version 3.7.4
+ * @version 3.7.5
  * @since   2.0.0
  *
  * @author  Algoritmika Ltd.
@@ -64,7 +64,7 @@ class Alg_WC_Wholesale_Pricing_Frontend {
 	/**
 	 * ajax_price_display_by_qty.
 	 *
-	 * @version 3.7.0
+	 * @version 3.7.5
 	 * @since   1.3.0
 	 *
 	 * @todo    (dev) grouped products
@@ -135,10 +135,29 @@ class Alg_WC_Wholesale_Pricing_Frontend {
 				// Final message
 				$template = ( $old_price_single != $new_price_single ?
 					get_option( 'alg_wc_wholesale_pricing_price_by_qty_display_template',
-						sprintf( __( '%s for %s pcs.', 'wholesale-pricing-woocommerce' ), '<del>%old_price_total%</del> %new_price_total%', '%qty%' ) . ' ' .
-							sprintf( __( 'You save: %s', 'wholesale-pricing-woocommerce' ), '<span style="color:red">%discount_percent%%</span>' ) ) :
+						sprintf(
+							__( '%s for %s pcs.', 'wholesale-pricing-woocommerce' ),
+							'<del>%old_price_total%</del> %new_price_total%',
+							'%qty%'
+						) . ' ' .
+						sprintf(
+							__( 'You save: %s', 'wholesale-pricing-woocommerce' ),
+							'<span style="color:red">%discount_percent%%</span>'
+						)
+					) :
 					get_option( 'alg_wc_wholesale_pricing_price_by_qty_display_template_zero',
-						sprintf( __( '%s for %s pcs.', 'wholesale-pricing-woocommerce' ), '%old_price_total%', '%qty%' ) ) );
+						sprintf(
+							__( '%s for %s pcs.', 'wholesale-pricing-woocommerce' ),
+							'%old_price_total%',
+							'%qty%'
+						)
+					)
+				);
+
+				// Empty template fallback
+				if ( '' === $template ) {
+					$template = $product->get_price_html();
+				}
 
 				// Do shortcode
 				$template = do_shortcode( $template );
