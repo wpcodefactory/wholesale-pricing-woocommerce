@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Hooks Class
  *
- * @version 3.6.0
+ * @version 3.7.7
  * @since   2.0.0
  *
  * @author  Algoritmika Ltd.
@@ -94,7 +94,7 @@ class Alg_WC_Wholesale_Pricing_Hooks {
 	/**
 	 * calculate_totals.
 	 *
-	 * @version 3.0.0
+	 * @version 3.7.7
 	 * @since   1.0.0
 	 */
 	function calculate_totals( $cart ) {
@@ -114,7 +114,7 @@ class Alg_WC_Wholesale_Pricing_Hooks {
 			// If other discount was applied in cart...
 			if ( 'yes' === get_option( 'alg_wc_wholesale_pricing_apply_only_if_no_other_discounts', 'no' ) ) {
 				if ( $cart->get_total_discount() > 0 || sizeof( $cart->applied_coupons ) > 0 ) {
-					break;
+					continue;
 				}
 			}
 
