@@ -3,7 +3,7 @@ Contributors: wpcodefactory, algoritmika, anbinder, karzin, omardabbas, kousikmu
 Tags: woocommerce, product price by quantity, price by quantity, dynamic product pricing, dynamic pricing
 Requires at least: 4.4
 Tested up to: 6.6
-Stable tag: 3.7.7
+Stable tag: 3.7.8
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -175,6 +175,9 @@ WPFactory has a diverse range of plugins tailored to enhance your experience:
 Once activated, access the plugin's settings by navigating to “WooCommerce > Settings” and look for the relevant tab.
 
 == Changelog ==
+
+= 3.7.8 - 22/09/2024 =
+* Fix - Quantity calculation - Group by product category/tag - All product categories/tags must match now.
 
 = 3.7.7 - 17/09/2024 =
 * Fix - Other cart discounts - Discounts were reset for the first cart item only. This is fixed now.
