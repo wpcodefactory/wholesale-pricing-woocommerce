@@ -117,7 +117,10 @@ final class Alg_WC_Wholesale_Pricing {
 	 */
 	function wc_declare_compatibility() {
 		if ( class_exists( '\Automattic\WooCommerce\Utilities\FeaturesUtil' ) ) {
-			$files = ( defined( 'ALG_WC_WHOLESALE_PRICING_FILE_FREE' ) ? array( ALG_WC_WHOLESALE_PRICING_FILE, ALG_WC_WHOLESALE_PRICING_FILE_FREE ) : array( ALG_WC_WHOLESALE_PRICING_FILE ) );
+			$files = ( defined( 'ALG_WC_WHOLESALE_PRICING_FILE_FREE' ) ?
+				array( ALG_WC_WHOLESALE_PRICING_FILE, ALG_WC_WHOLESALE_PRICING_FILE_FREE ) :
+				array( ALG_WC_WHOLESALE_PRICING_FILE )
+			);
 			foreach ( $files as $file ) {
 				\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', $file, true );
 			}
