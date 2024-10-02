@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Admin Class
  *
- * @version 3.7.1
+ * @version 3.8.1
  * @since   2.6.2
  *
  * @author  Algoritmika Ltd.
@@ -96,7 +96,7 @@ class Alg_WC_Wholesale_Pricing_Admin {
 	/*
 	 * create_order_meta_box.
 	 *
-	 * @version 3.7.1
+	 * @version 3.8.1
 	 * @since   2.6.2
 	 *
 	 * @todo    (desc) better desc?
@@ -137,7 +137,7 @@ class Alg_WC_Wholesale_Pricing_Admin {
 				'_wpnonce_alg_wc_wholesale_pricing'             => wp_create_nonce( 'recalculate' ),
 			) );
 			$button = '<a' .
-					' href="' . $url . '"' .
+					' href="' . esc_url( $url ) . '"' .
 					' class="button"' .
 					$confirmation .
 				'>' . $button_text . '</a>';

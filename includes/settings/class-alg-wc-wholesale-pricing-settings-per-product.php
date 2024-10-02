@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Per Product Settings
  *
- * @version 3.0.0
+ * @version 3.8.1
  * @since   1.0.0
  *
  * @author  Algoritmika Ltd.
@@ -119,7 +119,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 	/**
 	 * get_admin_action_link.
 	 *
-	 * @version 2.0.0
+	 * @version 3.8.1
 	 * @since   2.0.0
 	 */
 	function get_admin_action_link( $action, $product_id, $link_text, $extra_confirm_text = '', $tag = 'span' ) {
@@ -129,7 +129,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 			$confirm_text .= ' ' . $extra_confirm_text;
 		}
 		return '<' . $tag. ' style="color:orange;font-size:smaller;font-weight:normal;">' .
-			'[' . '<a style="color:orange;" href="' . $url . '"' . ' onclick="return confirm(\'' . $confirm_text . '\')"' . '>' . $link_text . '</a>' . ']' .
+			'[' . '<a style="color:orange;" href="' . esc_url( $url ) . '"' . ' onclick="return confirm(\'' . $confirm_text . '\')"' . '>' . $link_text . '</a>' . ']' .
 		'</' . $tag. '>';
 	}
 
