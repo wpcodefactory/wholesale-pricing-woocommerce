@@ -9,6 +9,8 @@ msgstr ""
 
 #: includes/class-alg-wc-wholesale-pricing-admin.php:88
 #: includes/class-alg-wc-wholesale-pricing-admin.php:216
+#: includes/class-alg-wc-wholesale-pricing.php:236
+#: includes/class-alg-wc-wholesale-pricing.php:237
 #: includes/pro/settings/class-alg-wc-wholesale-pricing-settings-per-term.php:46
 #: includes/settings/class-alg-wc-settings-wholesale-pricing.php:25
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:49
@@ -97,12 +99,12 @@ msgstr ""
 msgid "%s product price by quantity settings: %d records deleted."
 msgstr ""
 
-#: includes/class-alg-wc-wholesale-pricing.php:168
+#: includes/class-alg-wc-wholesale-pricing.php:188
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:68
 msgid "Settings"
 msgstr ""
 
-#: includes/class-alg-wc-wholesale-pricing.php:171
+#: includes/class-alg-wc-wholesale-pricing.php:192
 msgid "Go Pro"
 msgstr ""
 

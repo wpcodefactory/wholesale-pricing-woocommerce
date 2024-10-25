@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Main Class
  *
- * @version 3.6.0
+ * @version 3.9.0
  * @since   1.0.0
  *
  * @author  Algoritmika Ltd.
@@ -65,7 +65,7 @@ final class Alg_WC_Wholesale_Pricing {
 	/**
 	 * Alg_WC_Wholesale_Pricing Constructor.
 	 *
-	 * @version 3.5.2
+	 * @version 3.9.0
 	 * @since   1.0.0
 	 *
 	 * @access  public
@@ -77,6 +77,11 @@ final class Alg_WC_Wholesale_Pricing {
 			return;
 		}
 
+		// Load libs
+		if ( is_admin() ) {
+			require_once plugin_dir_path( ALG_WC_WHOLESALE_PRICING_FILE ) . 'vendor/autoload.php';
+		}
+
 		// Set up localisation
 		add_action( 'init', array( $this, 'localize' ) );
 
@@ -85,7 +90,7 @@ final class Alg_WC_Wholesale_Pricing {
 
 		// Pro
 		if ( 'wholesale-pricing-woocommerce-pro.php' === basename( ALG_WC_WHOLESALE_PRICING_FILE ) ) {
-			$this->pro = require_once( 'pro/class-alg-wc-wholesale-pricing-pro.php' );
+			$this->pro = require_once plugin_dir_path( __FILE__ ) . 'pro/class-alg-wc-wholesale-pricing-pro.php';
 		}
 
 		// Include required files
@@ -104,7 +109,11 @@ final class Alg_WC_Wholesale_Pricing {
 	 * @since   2.2.4
 	 */
 	function localize() {
-		load_plugin_textdomain( 'wholesale-pricing-woocommerce', false, dirname( plugin_basename( ALG_WC_WHOLESALE_PRICING_FILE ) ) . '/langs/' );
+		load_plugin_textdomain(
+			'wholesale-pricing-woocommerce',
+			false,
+			dirname( plugin_basename( ALG_WC_WHOLESALE_PRICING_FILE ) ) . '/langs/'
+		);
 	}
 
 	/**
@@ -130,34 +139,44 @@ final class Alg_WC_Wholesale_Pricing {
 	/**
 	 * Include required core files used in admin and on the frontend.
 	 *
-	 * @version 2.5.0
+	 * @version 3.9.0
 	 * @since   1.0.0
 	 */
 	function includes() {
-		$this->core = require_once( 'class-alg-wc-wholesale-pricing-core.php' );
+		$this->core = require_once plugin_dir_path( __FILE__ ) . 'class-alg-wc-wholesale-pricing-core.php';
 	}
 
 	/**
 	 * admin.
 	 *
-	 * @version 2.5.0
+	 * @version 3.9.0
 	 * @since   1.1.0
 	 */
 	function admin() {
+
 		// Action links
 		add_filter( 'plugin_action_links_' . plugin_basename( ALG_WC_WHOLESALE_PRICING_FILE ), array( $this, 'action_links' ) );
+
+		// "Recommendations" page
+		$this->add_cross_selling_library();
+
+		// WC Settings tab as WPFactory submenu item
+		$this->move_wc_settings_tab_to_wpfactory_menu();
+
 		// Settings
 		add_filter( 'woocommerce_get_settings_pages', array( $this, 'add_woocommerce_settings_tab' ) );
+
 		// Version update
 		if ( get_option( 'alg_wc_wholesale_pricing_version', '' ) !== $this->version ) {
 			add_action( 'admin_init', array( $this, 'version_updated' ) );
 		}
+
 	}
 
 	/**
 	 * Show action links on the plugin screen.
 	 *
-	 * @version 2.5.0
+	 * @version 3.9.0
 	 * @since   1.0.0
 	 *
 	 * @param   mixed $links
@@ -165,22 +184,69 @@ final class Alg_WC_Wholesale_Pricing {
 	 */
 	function action_links( $links ) {
 		$custom_links = array();
-		$custom_links[] = '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=alg_wc_wholesale_pricing' ) . '">' . __( 'Settings', 'woocommerce' ) . '</a>';
+		$custom_links[] = '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=alg_wc_wholesale_pricing' ) . '">' .
+			__( 'Settings', 'wholesale-pricing-woocommerce' ) .
+		'</a>';
 		if ( 'wholesale-pricing-woocommerce.php' === basename( ALG_WC_WHOLESALE_PRICING_FILE ) ) {
 			$custom_links[] = '<a style="color: green; font-weight: bold;" href="https://wpfactory.com/item/wholesale-pricing-woocommerce/">' .
-				__( 'Go Pro', 'wholesale-pricing-woocommerce' ) . '</a>';
+				__( 'Go Pro', 'wholesale-pricing-woocommerce' ) .
+			'</a>';
 		}
 		return array_merge( $custom_links, $links );
 	}
 
 	/**
+	 * add_cross_selling_library.
+	 *
+	 * @version 3.9.0
+	 * @since   3.9.0
+	 */
+	function add_cross_selling_library() {
+
+		if ( ! class_exists( '\WPFactory\WPFactory_Cross_Selling\WPFactory_Cross_Selling' ) ) {
+			return;
+		}
+
+		$cross_selling = new \WPFactory\WPFactory_Cross_Selling\WPFactory_Cross_Selling();
+		$cross_selling->setup( array( 'plugin_file_path' => ALG_WC_WHOLESALE_PRICING_FILE ) );
+		$cross_selling->init();
+
+	}
+
+	/**
+	 * move_wc_settings_tab_to_wpfactory_menu.
+	 *
+	 * @version 3.9.0
+	 * @since   3.9.0
+	 */
+	function move_wc_settings_tab_to_wpfactory_menu() {
+
+		if ( ! class_exists( '\WPFactory\WPFactory_Admin_Menu\WPFactory_Admin_Menu' ) ) {
+			return;
+		}
+
+		$wpfactory_admin_menu = \WPFactory\WPFactory_Admin_Menu\WPFactory_Admin_Menu::get_instance();
+
+		if ( ! method_exists( $wpfactory_admin_menu, 'move_wc_settings_tab_to_wpfactory_menu' ) ) {
+			return;
+		}
+
+		$wpfactory_admin_menu->move_wc_settings_tab_to_wpfactory_menu( array(
+			'wc_settings_tab_id' => 'alg_wc_wholesale_pricing',
+			'menu_title'         => __( 'Product Price by Quantity', 'wholesale-pricing-woocommerce' ),
+			'page_title'         => __( 'Product Price by Quantity', 'wholesale-pricing-woocommerce' ),
+		) );
+
+	}
+
+	/**
 	 * Add "Product Price by Quantity" settings tab to WooCommerce settings.
 	 *
-	 * @version 2.5.0
+	 * @version 3.9.0
 	 * @since   1.0.0
 	 */
 	function add_woocommerce_settings_tab( $settings ) {
-		$settings[] = require_once( 'settings/class-alg-wc-settings-wholesale-pricing.php' );
+		$settings[] = require_once plugin_dir_path( __FILE__ ) . 'settings/class-alg-wc-settings-wholesale-pricing.php';
 		return $settings;
 	}
 
