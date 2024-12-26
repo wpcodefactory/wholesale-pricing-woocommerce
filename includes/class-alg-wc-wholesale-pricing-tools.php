@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Tools Class
  *
- * @version 3.5.0
+ * @version 4.0.0
  * @since   2.6.0
  *
  * @author  Algoritmika Ltd.
@@ -73,7 +73,13 @@ class Alg_WC_Wholesale_Pricing_Tools {
 		}
 		update_option( 'alg_wc_wholesale_pricing_tool_remove_role_id', array() );
 		update_option( 'alg_wc_wholesale_pricing_tool_roles', $roles );
-		$this->add_message( sprintf( esc_html__( 'Roles removed: %s', 'wholesale-pricing-woocommerce' ), implode( ', ', $removed_roles ) ) );
+		$this->add_message(
+			sprintf(
+				/* Translators: %s: Role list. */
+				esc_html__( 'Roles removed: %s', 'wholesale-pricing-woocommerce' ),
+				implode( ', ', $removed_roles )
+			)
+		);
 	}
 
 	/**
@@ -86,7 +92,7 @@ class Alg_WC_Wholesale_Pricing_Tools {
 	 *
 	 * @todo    (dev) Role ID: check for duplicates?
 	 * @todo    (dev) Role ID: allow empty (autogenerate from the "Role display name")?
-	 * @todo    (dev) [!] Role ID: sanitize?
+	 * @todo    (dev) Role ID: sanitize?
 	 * @todo    (dev) Role ID and name: limitations, e.g., (leading) numbers, length, etc.?
 	 */
 	function add_role() {
@@ -104,7 +110,13 @@ class Alg_WC_Wholesale_Pricing_Tools {
 					$roles[] = $role;
 					update_option( 'alg_wc_wholesale_pricing_tool_roles', $roles );
 
-					$this->add_message( sprintf( esc_html__( '"%s" user role successfully added.', 'wholesale-pricing-woocommerce' ), $display_name ) );
+					$this->add_message(
+						sprintf(
+							/* Translators: %s: Role name. */
+							esc_html__( '"%s" user role successfully added.', 'wholesale-pricing-woocommerce' ),
+							$display_name
+						)
+					);
 
 				} else {
 					$this->add_error( esc_html__( 'Error: Something went wrong. Check for duplicated role ID.', 'wholesale-pricing-woocommerce' ) );
@@ -120,16 +132,27 @@ class Alg_WC_Wholesale_Pricing_Tools {
 	/**
 	 * delete_meta.
 	 *
-	 * @version 3.0.0
+	 * @version 4.0.0
 	 * @since   2.6.0
 	 */
 	function delete_meta( $product_or_term ) {
 		global $wpdb;
 		$table = ( 'product' === $product_or_term ? $wpdb->postmeta : $wpdb->termmeta );
-		$res   = $wpdb->query( "DELETE FROM {$table} WHERE meta_key LIKE '_alg_wc_wholesale_pricing%'" );
+		$res   = $wpdb->query( "DELETE FROM {$table} WHERE meta_key LIKE '_alg_wc_wholesale_pricing%'" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
 		if ( method_exists( 'WC_Admin_Settings', 'add_message' ) ) {
-			$title = ( 'product' === $product_or_term ? __( 'Per product', 'wholesale-pricing-woocommerce' ) : __( 'Per product category and per product tag', 'wholesale-pricing-woocommerce' ) );
-			WC_Admin_Settings::add_message( sprintf( __( '%s product price by quantity settings: %d records deleted.', 'wholesale-pricing-woocommerce' ), $title, $res ) );
+			$title = (
+				'product' === $product_or_term ?
+				__( 'Per product', 'wholesale-pricing-woocommerce' ) :
+				__( 'Per product category and per product tag', 'wholesale-pricing-woocommerce' )
+			);
+			WC_Admin_Settings::add_message(
+				sprintf(
+					/* Translators: %1$s: Settings title, %2$d: Number of records. */
+					__( '%1$s settings: %2$d records deleted.', 'wholesale-pricing-woocommerce' ),
+					$title,
+					$res
+				)
+			);
 		}
 	}
 

@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Per Product Settings
  *
- * @version 3.8.1
+ * @version 4.0.0
  * @since   1.0.0
  *
  * @author  Algoritmika Ltd.
@@ -20,7 +20,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 	 * @version 2.2.5
 	 * @since   1.0.0
 	 *
-	 * @todo    [!] (feature) Dokan (check my EAN plugin)
+	 * @todo    (feature) Dokan (check my EAN plugin)
 	 * @todo    (dev) admin actions: copy (and maybe reset) user role (same in global "User roles" settings)
 	 */
 	function __construct() {
@@ -38,7 +38,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 	/**
 	 * validate_admin_action.
 	 *
-	 * @version 2.0.0
+	 * @version 4.0.0
 	 * @since   2.0.0
 	 */
 	function validate_admin_action( $action ) {
@@ -46,7 +46,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 		if (
 			! in_array( $pagenow, array( 'post.php', 'post-new.php' ) ) ||
 			! current_user_can( 'manage_woocommerce' ) ||
-			! isset( $_GET['_wpnonce'] ) || ! wp_verify_nonce( $_GET['_wpnonce'], $action ) ||
+			! isset( $_GET['_wpnonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), $action ) ||
 			! isset( $_GET['post'] ) || ! ( $product = wc_get_product( intval( $_GET['post'] ) ) )
 		) {
 			return false;
@@ -57,19 +57,33 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 	/**
 	 * admin_action_reset.
 	 *
-	 * @version 2.0.0
+	 * @version 4.0.0
 	 * @since   2.0.0
 	 *
 	 * @todo    (dev) admin notice, e.g., "Options have been reset successfully."
 	 */
 	function admin_action_reset() {
-		if ( ! empty( $_GET['alg_wc_wholesale_pricing_reset_variation'] ) || ! empty( $_GET['alg_wc_wholesale_pricing_reset'] ) ) {
-			$action = ( ! empty( $_GET['alg_wc_wholesale_pricing_reset_variation'] ) ? 'alg_wc_wholesale_pricing_reset_variation' : 'alg_wc_wholesale_pricing_reset' );
-			if ( ! ( $product = $this->validate_admin_action( $action ) ) ) {
-				wp_die( __( 'Something went wrong...', 'wholesale-pricing-woocommerce' ) );
+		if (
+			! empty( $_GET['alg_wc_wholesale_pricing_reset_variation'] ) ||
+			! empty( $_GET['alg_wc_wholesale_pricing_reset'] )
+		) {
+			$action = (
+				! empty( $_GET['alg_wc_wholesale_pricing_reset_variation'] ) ?
+				'alg_wc_wholesale_pricing_reset_variation' :
+				'alg_wc_wholesale_pricing_reset'
+			);
+			if (
+				! isset( $_GET[ $action ] ) ||
+				! ( $product = $this->validate_admin_action( $action ) )
+			) {
+				wp_die( esc_html__( 'Something went wrong...', 'wholesale-pricing-woocommerce' ) );
 			}
 			$product_id  = intval( $_GET[ $action ] );
-			$product_ids = ( 'alg_wc_wholesale_pricing_reset_variation' === $action ? array( $product_id ) : array_merge( array( $product_id ), $product->get_children() ) );
+			$product_ids = (
+				'alg_wc_wholesale_pricing_reset_variation' === $action ?
+				array( $product_id ) :
+				array_merge( array( $product_id ), $product->get_children() )
+			);
 			foreach ( $product_ids as $product_id ) {
 				$key    = '_alg_wc_wholesale_pricing_';
 				$length = strlen( $key );
@@ -88,7 +102,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 	/**
 	 * admin_action_copy_variation.
 	 *
-	 * @version 2.0.0
+	 * @version 4.0.0
 	 * @since   2.0.0
 	 *
 	 * @todo    (dev) reset -> copy: zero becomes empty
@@ -97,8 +111,11 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 	function admin_action_copy_variation() {
 		if ( ! empty( $_GET['alg_wc_wholesale_pricing_copy_variation'] ) ) {
 			$action = 'alg_wc_wholesale_pricing_copy_variation';
-			if ( ! ( $product = $this->validate_admin_action( $action ) ) ) {
-				wp_die( __( 'Something went wrong...', 'wholesale-pricing-woocommerce' ) );
+			if (
+				! isset( $_GET[ $action ] ) ||
+				! ( $product = $this->validate_admin_action( $action ) )
+			) {
+				wp_die( esc_html__( 'Something went wrong...', 'wholesale-pricing-woocommerce' ) );
 			}
 			$product_id = intval( $_GET[ $action ] );
 			$options    = $this->get_options( 'product', $product_id );
@@ -186,14 +203,14 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 	 * @version 3.0.0
 	 * @since   2.2.5
 	 *
-	 * @todo    [!] (dev) customizable tab title
-	 * @todo    [!] (dev) better icon
-	 * @todo    [!] (dev) new product: better solution
-	 * @todo    [!] (dev) JS (then disable *all* tooltips)
-	 * @todo    [!] (dev) better styling
-	 * @todo    [!] (dev) "reset all", "reset variation", etc.
-	 * @todo    [!] (dev) `wcfm_is_vendor()`?
-	 * @todo    [!] (dev) `'wcmarketplace' === wcfm_is_marketplace()`
+	 * @todo    (dev) customizable tab title
+	 * @todo    (dev) better icon
+	 * @todo    (dev) new product: better solution
+	 * @todo    (dev) JS (then disable *all* tooltips)
+	 * @todo    (dev) better styling
+	 * @todo    (dev) "reset all", "reset variation", etc.
+	 * @todo    (dev) `wcfm_is_vendor()`?
+	 * @todo    (dev) `'wcmarketplace' === wcfm_is_marketplace()`
 	 * @todo    (feature) translation shortcode?
 	 */
 	function wcfm_wholesale_product_settings( $product_id, $product_type = '', $wcfm_is_translated_product = false, $wcfm_wpml_edit_disable_element = '' ) {
@@ -216,9 +233,9 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 	 * @version 2.2.5
 	 * @since   2.2.5
 	 *
-	 * @todo    [!] (dev) `alg_wc_wholesale_pricing_save_post`
-	 * @todo    [!] (dev) `global $WCFM`
-	 * @todo    [!] (dev) `'wcmarketplace' === wcfm_is_marketplace()`
+	 * @todo    (dev) `alg_wc_wholesale_pricing_save_post`
+	 * @todo    (dev) `global $WCFM`
+	 * @todo    (dev) `'wcmarketplace' === wcfm_is_marketplace()`
 	 */
 	function wcfm_wholesale_product_settings_update( $new_product_id, $wcfm_products_manage_form_data ) {
 		$this->save_options( $new_product_id, $wcfm_products_manage_form_data );
@@ -251,7 +268,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 	 * @version 2.2.5
 	 * @since   2.2.5
 	 *
-	 * @todo    [!] (dev) code refactoring
+	 * @todo    (dev) code refactoring
 	 * @todo    (dev) placeholder for textarea
 	 */
 	function get_field_html( $option, $product_id ) {
@@ -378,7 +395,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 	 * @version 2.2.5
 	 * @since   1.0.0
 	 *
-	 * @todo    [!] (dev) `$do_add_variation_title`: better solution
+	 * @todo    (dev) `$do_add_variation_title`: better solution
 	 * @todo    (dev) per variation: add Pro desc?
 	 * @todo    (dev) restyle
 	 * @todo    (dev) Copy variation: JS

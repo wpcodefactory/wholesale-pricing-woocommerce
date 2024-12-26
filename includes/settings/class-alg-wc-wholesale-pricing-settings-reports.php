@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Reports Section Settings
  *
- * @version 2.6.4
+ * @version 4.0.0
  * @since   2.6.3
  *
  * @author  Algoritmika Ltd.
@@ -29,7 +29,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Reports extends Alg_WC_Wholesale_Pricing
 	/**
 	 * get_report.
 	 *
-	 * @version 2.6.4
+	 * @version 4.0.0
 	 * @since   2.6.3
 	 *
 	 * @see     https://developer.wordpress.org/reference/functions/get_terms/
@@ -65,7 +65,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Reports extends Alg_WC_Wholesale_Pricing
 			return '<p>' . __( 'No items found.', 'wholesale-pricing-woocommerce' ) . '</p>';
 		} else {
 			// Items loop
-			require_once( 'class-alg-wc-wholesale-pricing-settings-per-item.php' );
+			require_once plugin_dir_path( __FILE__ ) . 'class-alg-wc-wholesale-pricing-settings-per-item.php';
 			$columns = array( '___#', '__item_id', '__item_title' );
 			$data    = array();
 			$i       = 1;
@@ -145,7 +145,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Reports extends Alg_WC_Wholesale_Pricing
 	/**
 	 * get_settings.
 	 *
-	 * @version 2.6.3
+	 * @version 4.0.0
 	 * @since   2.6.3
 	 *
 	 * @todo    (dev) nonce, `manage_woocommerce`, etc.?
@@ -160,7 +160,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Reports extends Alg_WC_Wholesale_Pricing
 				'<a href="' . admin_url( $url . 'product_tag' ) . '">' . __( 'Product tags', 'wholesale-pricing-woocommerce' )       . '</a>',
 			) ) . '</p>';
 		if ( isset( $_REQUEST['report'] ) ) {
-			$report = wc_clean( $_REQUEST['report'] );
+			$report = sanitize_text_field( wp_unslash( $_REQUEST['report'] ) );
 			$report = $this->get_report( $report );
 		} else {
 			$report = '';

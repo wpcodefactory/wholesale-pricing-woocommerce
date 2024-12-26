@@ -42,8 +42,8 @@ class Alg_WC_Wholesale_Pricing_Hooks {
 	 * @version 3.0.0
 	 * @since   3.0.0
 	 *
-	 * @todo    [!] (dev) use `$product->get_price()` instead of `wc_get_price_excluding_tax()`?
-	 * @todo    [!] (dev) make this enabled by default?
+	 * @todo    (dev) use `$product->get_price()` instead of `wc_get_price_excluding_tax()`?
+	 * @todo    (dev) make this enabled by default?
 	 */
 	function set_order_item_subtotals( $order_id, $posted_data, $order ) {
 		if ( 'yes' === get_option( 'alg_wc_wholesale_pricing_add_order_discount', 'no' ) ) {

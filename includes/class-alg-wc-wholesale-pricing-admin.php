@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Admin Class
  *
- * @version 3.8.1
+ * @version 4.0.0
  * @since   2.6.2
  *
  * @author  Algoritmika Ltd.
@@ -34,7 +34,7 @@ class Alg_WC_Wholesale_Pricing_Admin {
 	/*
 	 * recalculate_order_action.
 	 *
-	 * @version 2.6.2
+	 * @version 4.0.0
 	 * @since   2.6.2
 	 *
 	 * @todo    (dev) better notices (i.e., errors)
@@ -43,9 +43,9 @@ class Alg_WC_Wholesale_Pricing_Admin {
 		if ( ! empty( $_GET['alg_wc_wholesale_pricing_recalculate_order_id'] ) ) {
 			if (
 				! isset( $_REQUEST['_wpnonce_alg_wc_wholesale_pricing'] ) ||
-				! wp_verify_nonce( $_REQUEST['_wpnonce_alg_wc_wholesale_pricing'], 'recalculate' )
+				! wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['_wpnonce_alg_wc_wholesale_pricing'] ) ), 'recalculate' )
 			) {
-				wp_die( __( 'Nonce verification failed. Please try again.', 'wholesale-pricing-woocommerce' ) );
+				wp_die( esc_html__( 'Nonce verification failed. Please try again.', 'wholesale-pricing-woocommerce' ) );
 			}
 			if (
 				current_user_can( 'manage_woocommerce' ) &&
@@ -65,13 +65,13 @@ class Alg_WC_Wholesale_Pricing_Admin {
 	/*
 	 * order_recalculated_notice.
 	 *
-	 * @version 2.6.2
+	 * @version 4.0.0
 	 * @since   2.6.2
 	 */
 	function order_recalculated_notice() {
-		if ( isset( $_REQUEST['alg_wc_wholesale_pricing_order_recalculated'] ) ) {
+		if ( isset( $_REQUEST['alg_wc_wholesale_pricing_order_recalculated'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			echo '<div class="notice notice-success is-dismissible"><p>' .
-				__( 'Order recalculated.', 'wholesale-pricing-woocommerce' ) .
+				esc_html__( 'Order recalculated.', 'wholesale-pricing-woocommerce' ) .
 			'</p></div>';
 		}
 	}

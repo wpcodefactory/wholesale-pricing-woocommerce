@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Frontend Class
  *
- * @version 3.7.5
+ * @version 4.0.0
  * @since   2.0.0
  *
  * @author  Algoritmika Ltd.
@@ -64,7 +64,7 @@ class Alg_WC_Wholesale_Pricing_Frontend {
 	/**
 	 * ajax_price_display_by_qty.
 	 *
-	 * @version 3.7.5
+	 * @version 4.0.0
 	 * @since   1.3.0
 	 *
 	 * @todo    (dev) grouped products
@@ -136,18 +136,21 @@ class Alg_WC_Wholesale_Pricing_Frontend {
 				$template = ( $old_price_single != $new_price_single ?
 					get_option( 'alg_wc_wholesale_pricing_price_by_qty_display_template',
 						sprintf(
-							__( '%s for %s pcs.', 'wholesale-pricing-woocommerce' ),
+							/* Translators: %1$s: Old price total placeholder, %2$s: Quantity placeholder. */
+							__( '%1$s for %2$s pcs.', 'wholesale-pricing-woocommerce' ),
 							'<del>%old_price_total%</del> %new_price_total%',
 							'%qty%'
 						) . ' ' .
 						sprintf(
+							/* Translators: %s: Discount percent placeholder. */
 							__( 'You save: %s', 'wholesale-pricing-woocommerce' ),
 							'<span style="color:red">%discount_percent%%</span>'
 						)
 					) :
 					get_option( 'alg_wc_wholesale_pricing_price_by_qty_display_template_zero',
 						sprintf(
-							__( '%s for %s pcs.', 'wholesale-pricing-woocommerce' ),
+							/* Translators: %1$s: Old price total placeholder, %2$s: Quantity placeholder. */
+							__( '%1$s for %2$s pcs.', 'wholesale-pricing-woocommerce' ),
 							'%old_price_total%',
 							'%qty%'
 						)
@@ -354,8 +357,14 @@ class Alg_WC_Wholesale_Pricing_Frontend {
 	 * @since   2.0.0
 	 */
 	function add_discount_info_to_cart_page_item_price( $price_html, $cart_item, $cart_item_key ) {
-		$template = get_option( 'alg_wc_wholesale_pricing_show_info_on_cart_format', '<del>%old_price_single%</del> %new_price_single%<br>' .
-			sprintf( __( 'You save: %s', 'wholesale-pricing-woocommerce' ), '<span style="color:red">%discount_percent%%</span>' ) );
+		$template = get_option( 'alg_wc_wholesale_pricing_show_info_on_cart_format',
+			'<del>%old_price_single%</del> %new_price_single%<br>' .
+			sprintf(
+				/* Translators: %s: Discount percent placeholder. */
+				__( 'You save: %s', 'wholesale-pricing-woocommerce' ),
+				'<span style="color:red">%discount_percent%%</span>'
+			)
+		);
 		$template = do_shortcode( $template );
 		return $this->add_discount_info_to_cart_page( $price_html, $cart_item, $cart_item_key, $template );
 	}

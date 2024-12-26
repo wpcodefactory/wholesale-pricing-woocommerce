@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Settings
  *
- * @version 3.7.0
+ * @version 4.0.0
  * @since   1.0.0
  *
  * @author  Algoritmika Ltd.
@@ -17,24 +17,27 @@ class Alg_WC_Settings_Wholesale_Pricing extends WC_Settings_Page {
 	/**
 	 * Constructor.
 	 *
-	 * @version 3.7.0
+	 * @version 4.0.0
 	 * @since   1.0.0
 	 */
 	function __construct() {
+
 		$this->id    = 'alg_wc_wholesale_pricing';
 		$this->label = __( 'Product Price by Quantity', 'wholesale-pricing-woocommerce' );
 		parent::__construct();
+
 		// Sections
-		require_once( 'class-alg-wc-wholesale-pricing-settings-section.php' );
-		require_once( 'class-alg-wc-wholesale-pricing-settings-general.php' );
-		require_once( 'class-alg-wc-wholesale-pricing-settings-all-products.php' );
-		require_once( 'class-alg-wc-wholesale-pricing-settings-user-roles.php' );
-		require_once( 'class-alg-wc-wholesale-pricing-settings-info.php' );
-		require_once( 'class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php' );
-		require_once( 'class-alg-wc-wholesale-pricing-settings-dropdown.php' );
-		require_once( 'class-alg-wc-wholesale-pricing-settings-compatibility.php' );
-		require_once( 'class-alg-wc-wholesale-pricing-settings-tools.php' );
-		require_once( 'class-alg-wc-wholesale-pricing-settings-reports.php' );
+		require_once plugin_dir_path( __FILE__ ) . 'class-alg-wc-wholesale-pricing-settings-section.php';
+		require_once plugin_dir_path( __FILE__ ) . 'class-alg-wc-wholesale-pricing-settings-general.php';
+		require_once plugin_dir_path( __FILE__ ) . 'class-alg-wc-wholesale-pricing-settings-all-products.php';
+		require_once plugin_dir_path( __FILE__ ) . 'class-alg-wc-wholesale-pricing-settings-user-roles.php';
+		require_once plugin_dir_path( __FILE__ ) . 'class-alg-wc-wholesale-pricing-settings-info.php';
+		require_once plugin_dir_path( __FILE__ ) . 'class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php';
+		require_once plugin_dir_path( __FILE__ ) . 'class-alg-wc-wholesale-pricing-settings-dropdown.php';
+		require_once plugin_dir_path( __FILE__ ) . 'class-alg-wc-wholesale-pricing-settings-compatibility.php';
+		require_once plugin_dir_path( __FILE__ ) . 'class-alg-wc-wholesale-pricing-settings-tools.php';
+		require_once plugin_dir_path( __FILE__ ) . 'class-alg-wc-wholesale-pricing-settings-reports.php';
+
 	}
 
 	/**
@@ -88,12 +91,13 @@ class Alg_WC_Settings_Wholesale_Pricing extends WC_Settings_Page {
 	/**
 	 * admin_notice_settings_reset.
 	 *
-	 * @version 1.1.2
+	 * @version 4.0.0
 	 * @since   1.1.2
 	 */
 	function admin_notice_settings_reset() {
 		echo '<div class="notice notice-warning is-dismissible"><p><strong>' .
-			__( 'Your settings have been reset.', 'wholesale-pricing-woocommerce' ) . '</strong></p></div>';
+			esc_html__( 'Your settings have been reset.', 'wholesale-pricing-woocommerce' ) .
+		'</strong></p></div>';
 	}
 
 	/**

@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Info Section Settings
  *
- * @version 3.6.0
+ * @version 4.0.0
  * @since   2.0.0
  *
  * @author  Algoritmika Ltd.
@@ -52,7 +52,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Info extends Alg_WC_Wholesale_Pricing_Se
 	/**
 	 * get_settings.
 	 *
-	 * @version 3.6.0
+	 * @version 4.0.0
 	 * @since   2.0.0
 	 *
 	 * @todo    (desc) `alg_wc_wholesale_pricing_info_on_single_product_hide_variable`: better desc?
@@ -115,7 +115,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Info extends Alg_WC_Wholesale_Pricing_Se
 				'title'    => __( 'Item subtotal', 'wholesale-pricing-woocommerce' ),
 				'desc'     => __( 'Show', 'wholesale-pricing-woocommerce' ),
 				'desc_tip' => apply_filters( 'alg_wc_wholesale_pricing_settings', sprintf(
-					'You will need <a target="_blank" href="%s">Product Price by Quantity for WooCommerce Pro</a> plugin to enable this option.',
+					'You will need <a target="_blank" href="%s">Price by Quantity & Bulk Quantity Discounts for WooCommerce Pro</a> plugin to enable this option.',
 						'https://wpfactory.com/item/wholesale-pricing-woocommerce/' ) ),
 				'id'       => 'alg_wc_wholesale_pricing_show_info_on_cart_subtotal',
 				'default'  => 'no',
@@ -145,7 +145,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Info extends Alg_WC_Wholesale_Pricing_Se
 				'title'    => __( 'Cart & checkout totals', 'wholesale-pricing-woocommerce' ),
 				'desc'     => __( 'Show', 'wholesale-pricing-woocommerce' ),
 				'desc_tip' => apply_filters( 'alg_wc_wholesale_pricing_settings', sprintf(
-					'You will need <a target="_blank" href="%s">Product Price by Quantity for WooCommerce Pro</a> plugin to enable this option.',
+					'You will need <a target="_blank" href="%s">Price by Quantity & Bulk Quantity Discounts for WooCommerce Pro</a> plugin to enable this option.',
 						'https://wpfactory.com/item/wholesale-pricing-woocommerce/' ) ),
 				'id'       => 'alg_wc_wholesale_pricing_info_cart_totals_enabled',
 				'default'  => 'no',
@@ -195,7 +195,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Info extends Alg_WC_Wholesale_Pricing_Se
 				'title'    => __( 'Single product page', 'wholesale-pricing-woocommerce' ),
 				'desc'     => __( 'Show', 'wholesale-pricing-woocommerce' ),
 				'desc_tip' => apply_filters( 'alg_wc_wholesale_pricing_settings', sprintf(
-					'You will need <a target="_blank" href="%s">Product Price by Quantity for WooCommerce Pro</a> plugin to enable this option.',
+					'You will need <a target="_blank" href="%s">Price by Quantity & Bulk Quantity Discounts for WooCommerce Pro</a> plugin to enable this option.',
 						'https://wpfactory.com/item/wholesale-pricing-woocommerce/' ) ),
 				'id'       => 'alg_wc_wholesale_pricing_show_info_on_single_product_page',
 				'default'  => 'no',
@@ -262,7 +262,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Info extends Alg_WC_Wholesale_Pricing_Se
 				'title'    => __( 'Shop page', 'wholesale-pricing-woocommerce' ),
 				'desc'     => __( 'Show', 'wholesale-pricing-woocommerce' ),
 				'desc_tip' => apply_filters( 'alg_wc_wholesale_pricing_settings', sprintf(
-					'You will need <a target="_blank" href="%s">Product Price by Quantity for WooCommerce Pro</a> plugin to enable this option.',
+					'You will need <a target="_blank" href="%s">Price by Quantity & Bulk Quantity Discounts for WooCommerce Pro</a> plugin to enable this option.',
 						'https://wpfactory.com/item/wholesale-pricing-woocommerce/' ) ),
 				'id'       => 'alg_wc_wholesale_pricing_show_info_loop',
 				'default'  => 'no',
@@ -314,7 +314,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Info extends Alg_WC_Wholesale_Pricing_Se
 				'title'    => __( 'Single product page', 'wholesale-pricing-woocommerce' ),
 				'desc'     => __( 'Replace', 'wholesale-pricing-woocommerce' ),
 				'desc_tip' => apply_filters( 'alg_wc_wholesale_pricing_settings', sprintf(
-					'You will need <a target="_blank" href="%s">Product Price by Quantity for WooCommerce Pro</a> plugin to enable this option.',
+					'You will need <a target="_blank" href="%s">Price by Quantity & Bulk Quantity Discounts for WooCommerce Pro</a> plugin to enable this option.',
 						'https://wpfactory.com/item/wholesale-pricing-woocommerce/' ) ),
 				'id'       => 'alg_wc_wholesale_pricing_replace_price_on_single_enabled',
 				'default'  => 'no',
@@ -334,7 +334,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Info extends Alg_WC_Wholesale_Pricing_Se
 				'title'    => __( 'Shop page', 'wholesale-pricing-woocommerce' ),
 				'desc'     => __( 'Replace', 'wholesale-pricing-woocommerce' ),
 				'desc_tip' => apply_filters( 'alg_wc_wholesale_pricing_settings', sprintf(
-					'You will need <a target="_blank" href="%s">Product Price by Quantity for WooCommerce Pro</a> plugin to enable this option.',
+					'You will need <a target="_blank" href="%s">Price by Quantity & Bulk Quantity Discounts for WooCommerce Pro</a> plugin to enable this option.',
 						'https://wpfactory.com/item/wholesale-pricing-woocommerce/' ) ),
 				'id'       => 'alg_wc_wholesale_pricing_replace_price_on_loop_enabled',
 				'default'  => 'no',

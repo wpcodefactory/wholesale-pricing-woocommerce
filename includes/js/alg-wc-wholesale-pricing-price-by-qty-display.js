@@ -89,8 +89,8 @@ jQuery( document ).ready( function () {
 	 * @version 3.2.1
 	 * @since   1.3.0
 	 *
-	 * @todo    [!] (dev) Variation hide: before/after: hide instead of setting it to empty string?
-	 * @todo    [!] (dev) use `jQuery( this )` (instead of `jQuery( '[name="' + element_name + '"]' )`) where possible?
+	 * @todo    (dev) Variation hide: before/after: hide instead of setting it to empty string?
+	 * @todo    (dev) use `jQuery( this )` (instead of `jQuery( '[name="' + element_name + '"]' )`) where possible?
 	 * @todo    (dev) find better solution for `do_force_standard_qty_input`
 	 * @todo    (dev) customizable quantity events: `cut copy paste keyup keydown`
 	 * @todo    (dev) customizable elements (e.g., `quantity_pq_dropdown`)

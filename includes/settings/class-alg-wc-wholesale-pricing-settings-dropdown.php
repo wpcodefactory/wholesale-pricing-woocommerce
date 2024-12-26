@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Dropdown Section Settings
  *
- * @version 3.4.0
+ * @version 4.0.0
  * @since   2.4.2
  *
  * @author  Algoritmika Ltd.
@@ -29,10 +29,10 @@ class Alg_WC_Wholesale_Pricing_Settings_Dropdown extends Alg_WC_Wholesale_Pricin
 	/**
 	 * get_settings.
 	 *
-	 * @version 3.4.0
+	 * @version 4.0.0
 	 * @since   2.4.2
 	 *
-	 * @todo    [!] (dev) `alg_wc_wholesale_pricing_dropdown_filter_values`: default to `yes`?
+	 * @todo    (dev) `alg_wc_wholesale_pricing_dropdown_filter_values`: default to `yes`?
 	 * @todo    (dev) `alg_wc_wholesale_pricing_dropdown_label_template`: add "pcs." to the default value?
 	 * @todo    (desc) Before/After: better title/desc?
 	 * @todo    (desc) better section desc?
@@ -50,7 +50,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Dropdown extends Alg_WC_Wholesale_Pricin
 				'title'    => __( 'Dropdown', 'wholesale-pricing-woocommerce' ),
 				'desc'     => '<strong>' . __( 'Enable', 'wholesale-pricing-woocommerce' ) . '</strong>',
 				'desc_tip' => apply_filters( 'alg_wc_wholesale_pricing_settings', sprintf(
-					'You will need <a target="_blank" href="%s">Product Price by Quantity for WooCommerce Pro</a> plugin to enable this section.',
+					'You will need <a target="_blank" href="%s">Price by Quantity & Bulk Quantity Discounts for WooCommerce Pro</a> plugin to enable this section.',
 						'https://wpfactory.com/item/wholesale-pricing-woocommerce/' ) ),
 				'id'       => 'alg_wc_wholesale_pricing_dropdown_enabled',
 				'default'  => 'no',

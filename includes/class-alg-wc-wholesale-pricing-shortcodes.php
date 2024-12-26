@@ -80,14 +80,18 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	 * @version 3.3.0
 	 * @since   1.0.0
 	 *
-	 * @todo    [!] (dev) `shortcode_atts`: `alg_wc_wholesale_pricing_table` to `alg_wc_ppq_table`?
-	 * @todo    [!] (dev) `alg_wc_wholesale_pricing_discount_type` option + `alg_wc_wholesale_pricing_get_discount_type` filter?
+	 * @todo    (dev) `shortcode_atts`: `alg_wc_wholesale_pricing_table` to `alg_wc_ppq_table`?
+	 * @todo    (dev) `alg_wc_wholesale_pricing_discount_type` option + `alg_wc_wholesale_pricing_get_discount_type` filter?
 	 * @todo    (dev) add all applicable atts from `product_wholesale_pricing_table()`, e.g., `table_heading_type` etc.
 	 */
 	function wholesale_pricing_table( $atts ) {
 		// Shortcode atts
 		$atts = shortcode_atts( array(
-			'heading_format'        => sprintf( __( 'from %s pcs.', 'wholesale-pricing-woocommerce' ), '%level_min_qty%' ),
+			'heading_format'        => sprintf(
+				/* Translators: %s: Level min quantity placeholder. */
+				__( 'from %s pcs.', 'wholesale-pricing-woocommerce' ),
+				'%level_min_qty%'
+			),
 			'before_level_max_qty'  => '-',
 			'last_level_max_qty'    => '+',
 			'hide_if_zero_quantity' => 'no',
@@ -151,10 +155,10 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	 * @version 3.7.0
 	 * @since   1.0.0
 	 *
-	 * @todo    (dev) [!] `use_variation`
-	 * @todo    (dev) [!] `shortcode_atts`: `alg_wc_product_wholesale_pricing_table` to `alg_wc_product_ppq_table`?
-	 * @todo    (dev) [!] `apply_filters`: `alg_wc_product_wholesale_pricing_table_heading_format` to `alg_wc_product_ppq_table_heading_format`?
-	 * @todo    (dev) [!] check if price `is_numeric()`?
+	 * @todo    (dev) `use_variation`
+	 * @todo    (dev) `shortcode_atts`: `alg_wc_product_wholesale_pricing_table` to `alg_wc_product_ppq_table`?
+	 * @todo    (dev) `apply_filters`: `alg_wc_product_wholesale_pricing_table_heading_format` to `alg_wc_product_ppq_table_heading_format`?
+	 * @todo    (dev) check if price `is_numeric()`?
 	 * @todo    (dev) `extra_column_before`, `extra_column_after`
 	 * @todo    (dev) `columns_styles`: different styles for different elements, i.e., `explode( '|', $atts['columns_styles'] )`
 	 * @todo    (dev) "add to cart" (min qty) link/button
@@ -166,7 +170,11 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 		// Shortcode atts
 		$atts = shortcode_atts( array(
 			'product_id'                     => 0,
-			'heading_format'                 => sprintf( __( 'from %s pcs.', 'wholesale-pricing-woocommerce' ), '%level_min_qty%' ),
+			'heading_format'                 => sprintf(
+				/* Translators: %s: Level min quantity placeholder. */
+				__( 'from %s pcs.', 'wholesale-pricing-woocommerce' ),
+				'%level_min_qty%'
+			),
 			'heading_format_singular'        => '',
 			'before_level_max_qty'           => '-',
 			'last_level_max_qty'             => '+',
@@ -412,7 +420,7 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	 * @version 2.7.0
 	 * @since   1.1.2
 	 *
-	 * @todo    [!] (dev) `shortcode_atts`: `alg_wc_wholesale_pricing_data` to `alg_wc_ppq_data`?
+	 * @todo    (dev) `shortcode_atts`: `alg_wc_wholesale_pricing_data` to `alg_wc_ppq_data`?
 	 */
 	function wholesale_pricing_data( $atts ) {
 		$atts = shortcode_atts( array(
@@ -432,7 +440,7 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	 * @version 3.2.0
 	 * @since   1.1.2
 	 *
-	 * @todo    [!] (dev) `shortcode_atts`: `alg_wc_product_wholesale_pricing_data` to `alg_wc_product_ppq_data`?
+	 * @todo    (dev) `shortcode_atts`: `alg_wc_product_wholesale_pricing_data` to `alg_wc_product_ppq_data`?
 	 * @todo    (dev) `price_for_qty`? (now can be done with `price_format="<del>%old_price_total%</del> %new_price_total%"`)
 	 */
 	function product_wholesale_pricing_data( $atts ) {
@@ -526,7 +534,7 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	 * @version 3.7.0
 	 * @since   1.1.2
 	 *
-	 * @todo    [!] (fix) Variable: per variation enabled
+	 * @todo    (fix) Variable: per variation enabled
 	 */
 	function get_product_price( $product, $discount_type, $discount, $hide_currency, $price_format, $qty = 1 ) {
 

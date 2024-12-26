@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Core Class
  *
- * @version 3.7.0
+ * @version 4.0.0
  * @since   1.0.0
  *
  * @author  Algoritmika Ltd.
@@ -65,7 +65,7 @@ class Alg_WC_Wholesale_Pricing_Core {
 	/**
 	 * Constructor.
 	 *
-	 * @version 3.0.0
+	 * @version 4.0.0
 	 * @since   1.0.0
 	 *
 	 * @todo    (dev) update link: `https://wpfactory.com/item/wholesale-pricing-woocommerce/`
@@ -85,10 +85,10 @@ class Alg_WC_Wholesale_Pricing_Core {
 			$this->is_children = ( 'yes' === get_option( 'alg_wc_wholesale_pricing_product_children', 'no' ) );
 
 			// Shortcodes
-			$this->shortcodes = require_once( 'class-alg-wc-wholesale-pricing-shortcodes.php' );
+			$this->shortcodes = require_once plugin_dir_path( __FILE__ ) . 'class-alg-wc-wholesale-pricing-shortcodes.php';
 
 			// Frontend
-			$this->frontend = require_once( 'class-alg-wc-wholesale-pricing-frontend.php' );
+			$this->frontend = require_once plugin_dir_path( __FILE__ ) . 'class-alg-wc-wholesale-pricing-frontend.php';
 
 			// Formula (discount table values)
 			$this->do_process_formula     = ( 'yes' === get_option( 'alg_wc_wholesale_pricing_process_formula', 'no' ) );
@@ -99,13 +99,13 @@ class Alg_WC_Wholesale_Pricing_Core {
 			}
 
 			// Per product settings
-			require_once( 'settings/class-alg-wc-wholesale-pricing-settings-per-item.php' );
+			require_once plugin_dir_path( __FILE__ ) . 'settings/class-alg-wc-wholesale-pricing-settings-per-item.php';
 			if ( 'yes' === get_option( 'alg_wc_wholesale_pricing_per_product_enabled', 'yes' ) ) {
-				require_once( 'settings/class-alg-wc-wholesale-pricing-settings-per-product.php' );
+				require_once plugin_dir_path( __FILE__ ) . 'settings/class-alg-wc-wholesale-pricing-settings-per-product.php';
 			}
 
 			// Hooks
-			require_once( 'class-alg-wc-wholesale-pricing-hooks.php' );
+			require_once plugin_dir_path( __FILE__ ) . 'class-alg-wc-wholesale-pricing-hooks.php';
 
 			// Compatibility
 			if ( 'yes' === get_option( 'alg_wc_wholesale_pricing_lumise_enabled', 'no' ) ) {
@@ -115,7 +115,7 @@ class Alg_WC_Wholesale_Pricing_Core {
 
 			// Admin stuff
 			if ( is_admin() ) {
-				require_once( 'class-alg-wc-wholesale-pricing-admin.php' );
+				require_once plugin_dir_path( __FILE__ ) . 'class-alg-wc-wholesale-pricing-admin.php';
 			}
 
 		}
@@ -124,7 +124,7 @@ class Alg_WC_Wholesale_Pricing_Core {
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts' ) );
 
 		// Tools
-		require_once( 'class-alg-wc-wholesale-pricing-tools.php' );
+		require_once plugin_dir_path( __FILE__ ) . 'class-alg-wc-wholesale-pricing-tools.php';
 
 		// Core loaded
 		do_action( 'alg_wc_wholesale_pricing_core_loaded', $this );
@@ -217,7 +217,7 @@ class Alg_WC_Wholesale_Pricing_Core {
 	 */
 	function maybe_process_formula( $value ) {
 		if ( $this->do_process_formula ) {
-			require_once( WC()->plugin_path() . '/includes/libraries/class-wc-eval-math.php' );
+			require_once WC()->plugin_path() . '/includes/libraries/class-wc-eval-math.php';
 			return WC_Eval_Math::evaluate( do_shortcode( $value ) );
 		} else {
 			return $value;
@@ -326,7 +326,7 @@ class Alg_WC_Wholesale_Pricing_Core {
 	 * @version 3.7.0
 	 * @since   1.0.0
 	 *
-	 * @todo    [!] (dev) `if ( '' === $price && 'price_directly' !== $discount_type ) { return $price; }` || `if ( ! is_numeric( $price ) && 'price_directly' !== $discount_type ) { return $price; }`
+	 * @todo    (dev) `if ( '' === $price && 'price_directly' !== $discount_type ) { return $price; }` || `if ( ! is_numeric( $price ) && 'price_directly' !== $discount_type ) { return $price; }`
 	 */
 	function get_wholesale_price( $price, $quantity, $product_id ) {
 
