@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Frontend Class
  *
- * @version 4.0.0
+ * @version 4.0.1
  * @since   2.0.0
  *
  * @author  Algoritmika Ltd.
@@ -233,7 +233,7 @@ class Alg_WC_Wholesale_Pricing_Frontend {
 	/**
 	 * get_placeholders.
 	 *
-	 * @version 3.7.0
+	 * @version 4.0.1
 	 * @since   2.0.0
 	 *
 	 * @todo    (dev) handle deprecated placeholders here
@@ -273,48 +273,118 @@ class Alg_WC_Wholesale_Pricing_Frontend {
 		), $args );
 
 		// Vars
-		$discount_single  = ( $args['old_price_single'] - $args['new_price_single'] );
-		$discount_percent = ( 0 != $args['old_price_single'] ? round( ( $discount_single / $args['old_price_single'] * 100 ), 2 ) : 0 );
-		$total_quantity   = ( $args['total_quantity'] ? $args['total_quantity'] : $args['quantity'] );
-		$discount         = ( false !== $args['discount'] ? $args['discount'] : 0 );
+		$discount_single = ( $args['old_price_single'] - $args['new_price_single'] );
+		$discount_percent = (
+			0 != $args['old_price_single'] ?
+			round( ( $discount_single / $args['old_price_single'] * 100 ), 2 ) :
+			0
+		);
+		$total_quantity = (
+			$args['total_quantity'] ?
+			$args['total_quantity'] :
+			$args['quantity']
+		);
+		$discount = (
+			false !== $args['discount'] ?
+			$args['discount'] :
+			0
+		);
+		$formatted_new_price_single = number_format(
+			$args['new_price_single'],
+			wc_get_price_decimals(),
+			'.',
+			''
+		);
 
 		// Placeholders
 		$placeholders = array(
-			'%old_price_single%'    => wc_price( $args['old_price_single'],
-				array( 'currency' => $args['currency'] ) ),
-			'%old_price_total%'     => wc_price( $args['old_price_single'] * $args['quantity'],
-				array( 'currency' => $args['currency'] ) ),
-			'%new_price_single%'    => wc_price( $args['new_price_single'],
-				array( 'currency' => $args['currency'] ) ),
-			'%new_price_total%'     => wc_price( $args['new_price_single'] * $args['quantity'],
-				array( 'currency' => $args['currency'] ) ),
+			'%old_price_single%'    => wc_price(
+				$args['old_price_single'],
+				array( 'currency' => $args['currency'] )
+			),
+			'%old_price_total%'     => wc_price(
+				$args['old_price_single'] * $args['quantity'],
+				array( 'currency' => $args['currency'] )
+			),
+			'%new_price_single%'    => wc_price(
+				$args['new_price_single'],
+				array( 'currency' => $args['currency'] )
+			),
+			'%new_price_total%'     => wc_price(
+				$formatted_new_price_single * $args['quantity'],
+				array( 'currency' => $args['currency'] )
+			),
 			'%discount_percent%'    => $discount_percent,
-			'%discount_single%'     => wc_price( $discount_single,
-				array( 'currency' => $args['currency'] ) ),
-			'%discount_total%'      => wc_price( $discount_single * $args['quantity'],
-				array( 'currency' => $args['currency'] ) ),
+			'%discount_single%'     => wc_price(
+				$discount_single,
+				array( 'currency' => $args['currency'] )
+			),
+			'%discount_total%'      => wc_price(
+				$discount_single * $args['quantity'],
+				array( 'currency' => $args['currency'] )
+			),
 			'%qty%'                 => $args['quantity'],
 			'%quantity%'            => $args['quantity'],
 			'%qty_total%'           => $total_quantity,
 			'%quantity_total%'      => $total_quantity,
-			'%discount_value%'      => $this->get_discount_value_placeholder( $args['old_price_single'], $discount, $args['discount_type'] ),
+			'%discount_value%'      => $this->get_discount_value_placeholder(
+				$args['old_price_single'],
+				$discount,
+				$args['discount_type']
+			),
 		);
 
 		// "Tax display" placeholders
 		if ( $args['product'] ) {
 			foreach ( array( '_incl_tax', '_excl_tax' ) as $tax_display ) {
-				$func = ( '_incl_tax' === $tax_display ? 'wc_get_price_including_tax' : 'wc_get_price_excluding_tax' );
+				$func = (
+					'_incl_tax' === $tax_display ?
+					'wc_get_price_including_tax' :
+					'wc_get_price_excluding_tax'
+				);
 
 				// Placeholders
 				$placeholders = array_merge( $placeholders, array(
-					'%old_price_single' . $tax_display . '%' => wc_price( $func( $args['product'],
-						array( 'price' => $args['old_price_single'], 'qty' => 1, 'currency' => $args['currency'] ) ) ),
-					'%old_price_total'  . $tax_display . '%' => wc_price( $func( $args['product'],
-						array( 'price' => $args['old_price_single'], 'qty' => $args['quantity'], 'currency' => $args['currency'] ) ) ),
-					'%new_price_single' . $tax_display . '%' => wc_price( $func( $args['product'],
-						array( 'price' => $args['new_price_single'], 'qty' => 1, 'currency' => $args['currency'] ) ) ),
-					'%new_price_total'  . $tax_display . '%' => wc_price( $func( $args['product'],
-						array( 'price' => $args['new_price_single'], 'qty' => $args['quantity'], 'currency' => $args['currency'] ) ) ),
+					'%old_price_single' . $tax_display . '%' => wc_price(
+						$func(
+							$args['product'],
+							array(
+								'price'    => $args['old_price_single'],
+								'qty'      => 1,
+								'currency' => $args['currency'],
+							)
+						)
+					),
+					'%old_price_total'  . $tax_display . '%' => wc_price(
+						$func(
+							$args['product'],
+							array(
+								'price'    => $args['old_price_single'],
+								'qty'      => $args['quantity'],
+								'currency' => $args['currency'],
+							)
+						)
+					),
+					'%new_price_single' . $tax_display . '%' => wc_price(
+						$func(
+							$args['product'],
+							array(
+								'price'    => $args['new_price_single'],
+								'qty'      => 1,
+								'currency' => $args['currency'],
+							)
+						)
+					),
+					'%new_price_total'  . $tax_display . '%' => wc_price(
+						$func(
+							$args['product'],
+							array(
+								'price'    => $args['new_price_single'],
+								'qty'      => $args['quantity'],
+								'currency' => $args['currency'],
+							)
+						)
+					),
 				) );
 
 			}
