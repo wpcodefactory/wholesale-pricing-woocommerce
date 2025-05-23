@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: Price by Quantity & Bulk Quantity Discounts for WooCommerce 4.0.1\n"
+"Project-Id-Version: Price by Quantity & Bulk Quantity Discounts for WooCommerce 4.0.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wholesale-pricing-woocommerce\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-04-08T13:52:32+00:00\n"
+"POT-Creation-Date: 2025-05-23T14:44:27+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: wholesale-pricing-woocommerce\n"
@@ -57,8 +57,8 @@ msgstr ""
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:49
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:54
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-per-item.php:135
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:162
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:219
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:169
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:230
 msgid "Product Price by Quantity"
 msgstr ""
 
@@ -308,6 +308,7 @@ msgstr ""
 
 #. Translators: %d: Product ID.
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-all-products.php:135
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:473
 msgid "Product #%d"
 msgstr ""
 
@@ -351,7 +352,7 @@ msgid "New product notification"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:67
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:224
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:241
 msgid "Please save the product first."
 msgstr ""
 
@@ -799,36 +800,36 @@ msgstr ""
 msgid "Are you sure?"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:180
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:189
 msgid "Reset all"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:181
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:190
 msgid "This will reset all wholesale settings fields to their default values."
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:426
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:492
 msgid "Copy variation"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:427
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:493
 msgid "This will copy all wholesale settings fields from the current variation to all other variations."
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:428
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:494
 msgid "Please note that you need to UPDATE the product before copying the variation."
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:429
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:495
 msgid "Reset variation"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:430
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:496
 msgid "This will reset all wholesale settings fields for the current variation to their default values."
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:432
-msgid "Regular pricing: %s"
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:500
+msgid "Regular pricing:"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:25

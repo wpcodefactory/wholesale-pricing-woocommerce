@@ -3,12 +3,12 @@
 Plugin Name: Price by Quantity & Bulk Quantity Discounts for WooCommerce
 Plugin URI: https://wpfactory.com/item/wholesale-pricing-woocommerce/
 Description: Set WooCommerce product prices depending on quantity in cart.
-Version: 4.0.1
+Version: 4.0.2
 Author: WPFactory
 Author URI: https://wpfactory.com
 Text Domain: wholesale-pricing-woocommerce
 Domain Path: /langs
-WC tested up to: 9.7
+WC tested up to: 9.8
 Requires Plugins: woocommerce
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
@@ -33,7 +33,7 @@ if ( 'wholesale-pricing-woocommerce.php' === basename( __FILE__ ) ) {
 	}
 }
 
-defined( 'ALG_WC_WHOLESALE_PRICING_VERSION' ) || define( 'ALG_WC_WHOLESALE_PRICING_VERSION', '4.0.1' );
+defined( 'ALG_WC_WHOLESALE_PRICING_VERSION' ) || define( 'ALG_WC_WHOLESALE_PRICING_VERSION', '4.0.2' );
 
 defined( 'ALG_WC_WHOLESALE_PRICING_FILE' ) || define( 'ALG_WC_WHOLESALE_PRICING_FILE', __FILE__ );
 

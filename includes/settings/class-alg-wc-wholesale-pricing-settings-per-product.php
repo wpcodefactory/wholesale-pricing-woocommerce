@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Per Product Settings
  *
- * @version 4.0.0
+ * @version 4.0.2
  * @since   1.0.0
  *
  * @author  Algoritmika Ltd.
@@ -145,9 +145,16 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 		if ( '' !== $extra_confirm_text ) {
 			$confirm_text .= ' ' . $extra_confirm_text;
 		}
-		return '<' . $tag. ' style="color:orange;font-size:smaller;font-weight:normal;">' .
-			'[' . '<a style="color:orange;" href="' . esc_url( $url ) . '"' . ' onclick="return confirm(\'' . $confirm_text . '\')"' . '>' . $link_text . '</a>' . ']' .
-		'</' . $tag. '>';
+
+		return (
+			'<' . $tag . ' style="color:#ffa500;font-size:smaller;font-weight:normal;">' .
+				'[' .
+					'<a style="color:#ffa500;" href="' . esc_url( $url ) . '"' . ' onclick="return confirm(\'' . $confirm_text . '\')"' . '>' .
+						$link_text .
+					'</a>' .
+				']' .
+			'</' . $tag . '>'
+		);
 	}
 
 	/**
@@ -175,10 +182,14 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 	 */
 	function display_wholesale_pricing_metabox() {
 		$product_id = get_the_ID();
-		$html  = '';
-		$html .= $this->get_options_table( $product_id, 'widefat striped' );
-		$html .= $this->get_admin_action_link( 'alg_wc_wholesale_pricing_reset', $product_id, __( 'Reset all', 'wholesale-pricing-woocommerce' ),
-			__( 'This will reset all wholesale settings fields to their default values.', 'wholesale-pricing-woocommerce' ), 'p' );
+		$html = $this->get_options_table( $product_id, 'widefat striped' );
+		$html .= $this->get_admin_action_link(
+			'alg_wc_wholesale_pricing_reset',
+			$product_id,
+			__( 'Reset all', 'wholesale-pricing-woocommerce' ),
+			__( 'This will reset all wholesale settings fields to their default values.', 'wholesale-pricing-woocommerce' ),
+			'p'
+		);
 		$html .= '<input type="hidden" name="alg_wc_wholesale_pricing_save_post" value="alg_wc_wholesale_pricing_save_post">';
 		echo $html;
 	}
@@ -214,14 +225,22 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 	 * @todo    (feature) translation shortcode?
 	 */
 	function wcfm_wholesale_product_settings( $product_id, $product_type = '', $wcfm_is_translated_product = false, $wcfm_wpml_edit_disable_element = '' ) {
-		$html  = '';
-		$html .= '<div class="page_collapsible products_manage_alg_wc_wh_pr simple variable grouped external booking" id="wcfm_products_manage_form_alg_wc_wh_pr_head">' .
-			'<label class="wcfmfa fa-server"></label>' . __( 'Product Price by Quantity', 'wholesale-pricing-woocommerce' ) . '<span></span>' . '</div>';
-		$html .= '<div class="wcfm-container simple variable external grouped booking">' . '<div id="wcfm_products_manage_form_alg_wc_wh_pr_expander" class="wcfm-content">';
+		$html = '<div class="page_collapsible products_manage_alg_wc_wh_pr simple variable grouped external booking" id="wcfm_products_manage_form_alg_wc_wh_pr_head">' .
+			'<label class="wcfmfa fa-server"></label>' .
+			__( 'Product Price by Quantity', 'wholesale-pricing-woocommerce' ) .
+			'<span></span>' .
+		'</div>' .
+		'<div class="wcfm-container simple variable external grouped booking">' .
+			'<div id="wcfm_products_manage_form_alg_wc_wh_pr_expander" class="wcfm-content">';
 		if ( $product_id ) {
 			$html .= $this->get_options_table( $product_id, '', 'title_only', 'wcfm' );
 		} else {
-			$html .= do_shortcode( get_option( 'alg_wc_wholesale_pricing_wcfm_new_product_notification', __( 'Please save the product first.', 'wholesale-pricing-woocommerce' ) ) );
+			$html .= do_shortcode(
+				get_option(
+					'alg_wc_wholesale_pricing_wcfm_new_product_notification',
+					__( 'Please save the product first.', 'wholesale-pricing-woocommerce' )
+				)
+			);
 		}
 		$html .= '</div>' . '</div>' . '<div class="wcfm_clearfix"></div>';
 		echo $html;
@@ -244,7 +263,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 	/**
 	 * save_options.
 	 *
-	 * @version 2.2.5
+	 * @version 4.0.2
 	 * @since   2.2.5
 	 */
 	function save_options( $product_id, $data ) {
@@ -254,9 +273,13 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 			}
 			$is_enabled = ( isset( $option['enabled'] ) && 'no' === $option['enabled'] ) ? false : true;
 			if ( $is_enabled ) {
-				$option_value  = ( isset( $data[ $option['name'] ] ) ? sanitize_text_field( $data[ $option['name'] ] ) : $option['default'] );
-				$_post_id      = ( isset( $option['product_id'] )    ? $option['product_id']                           : $product_id );
-				$_meta_name    = ( isset( $option['meta_name'] )     ? $option['meta_name']                            : '_' . $option['name'] );
+				$option_value = (
+					isset( $data[ $option['name'] ] ) ?
+					sanitize_text_field( $data[ $option['name'] ] ) :
+					$option['default']
+				);
+				$_post_id     = ( $option['product_id'] ?? $product_id );
+				$_meta_name   = ( $option['meta_name'] ?? '_' . $option['name'] );
 				update_post_meta( $_post_id, $_meta_name, $option_value );
 			}
 		}
@@ -348,7 +371,10 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 	function get_tooltip_html( $content, $tooltip_type = 'wc' ) {
 		switch ( $tooltip_type ) {
 			case 'wcfm':
-				return sprintf( '<span class="img_tip wcfmfa fa-question" data-tip="%s"></span>', wp_kses_post ( $content ) );
+				return sprintf(
+					'<span class="img_tip wcfmfa fa-question" data-tip="%s"></span>',
+					wp_kses_post( $content )
+				);
 			default: // 'wc'
 				return wc_help_tip( $content, true );
 		}
@@ -364,35 +390,55 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 	 * @todo    (dev) make settings look the same everywhere
 	 */
 	function get_options_table( $product_id, $table_class = '', $do_add_variation_title = true, $tooltip_type = 'wc' ) {
-		$html  = '';
-		$html .= '<table class="' . $table_class . '">';
+		$html = '<table class="' . $table_class . '">';
 		foreach ( $this->get_product_options( $product_id, $do_add_variation_title ) as $option ) {
 			$is_enabled = ( isset( $option['enabled'] ) && 'no' === $option['enabled'] ) ? false : true;
 			if ( $is_enabled ) {
 				if ( 'title' === $option['type'] ) {
 					$color = ( isset( $option['background-color'] ) ? 'background-color:' . $option['background-color'] . ';' : '' );
-					$html .= '<tr>';
-					$html .= '<th colspan="3" style="text-align:left;font-weight:bold;' . $color . '">' . $option['title'] . '</th>';
-					$html .= '</tr>';
+					$html .= '<tr>' .
+						'<th colspan="3" style="text-align:left;font-weight:bold;' . $color . '">' .
+							$option['title'] .
+						'</th>' .
+					'</tr>';
 				} else {
-					$html .= '<tr>';
-					$html .= '<th style="text-align:left;width:25%;">' . $option['title'] . ( ! empty( $option['tooltip'] ) ?
-						$this->get_tooltip_html( $option['tooltip'], $tooltip_type ) : '' ) . '</th>';
-					$html .= ( ! empty( $option['desc'] ) ? '<td style="font-style:italic;width:25%;">' . $option['desc'] . '</td>' : '' );
-					$html .= '<td style="width:' . ( ! empty( $option['desc'] ) ? '50' : '75' ). '%;">' .
-						$this->get_field_html( $option, $product_id ) . ( ! empty( $option['description'] ) ? '<p>' . $option['description'] . '</p>' : '' ) . '</td>';
-					$html .= '</tr>';
+					$html .= '<tr>' .
+						'<th style="text-align:left;width:25%;">' .
+							$option['title'] .
+							(
+								! empty( $option['tooltip'] ) ?
+								$this->get_tooltip_html( $option['tooltip'], $tooltip_type ) :
+								''
+							) .
+						'</th>' .
+						(
+							! empty( $option['desc'] ) ?
+							'<td style="font-style:italic;width:25%;">' .
+								$option['desc'] .
+							'</td>' :
+							''
+						) .
+						'<td style="width:' . ( ! empty( $option['desc'] ) ? '50' : '75' ) . '%;">' .
+							$this->get_field_html( $option, $product_id ) .
+							(
+								! empty( $option['description'] ) ?
+								'<p>' . $option['description'] . '</p>' :
+								''
+							) .
+						'</td>' .
+					'</tr>';
 				}
 			}
 		}
 		$html .= '</table>';
+
 		return $html;
 	}
 
 	/**
 	 * get_product_options.
 	 *
-	 * @version 2.2.5
+	 * @version 4.0.2
 	 * @since   1.0.0
 	 *
 	 * @todo    (dev) `$do_add_variation_title`: better solution
@@ -401,25 +447,45 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 	 * @todo    (dev) Copy variation: JS
 	 */
 	function get_product_options( $product_id, $do_add_variation_title = true ) {
+
 		// Get products
 		$product = wc_get_product( $product_id );
 		if ( ! $product ) {
 			return array();
 		}
-		$product_ids = apply_filters( 'alg_wc_wholesale_pricing_get_product_options_product_ids', array( $product_id ), $product );
+		$product_ids = apply_filters(
+			'alg_wc_wholesale_pricing_get_product_options_product_ids',
+			array( $product_id ),
+			$product
+		);
+
 		// Get options
 		$options = array();
 		foreach ( $product_ids as $product_id ) {
 			if ( ! empty( $do_add_variation_title ) && count( $product_ids ) > 1 ) {
 				// Variation title and actions
 				$product = wc_get_product( $product_id );
-				$title   = '<span style="color:white;">' . get_the_title( $product_id ) . ' (#' . $product_id . ')' . '</span>';
+
+				$title = sprintf(
+					'<span style="color:#ffffff;" title="%1$s">%2$s</span>',
+					sprintf(
+						/* Translators: %d: Product ID. */
+						esc_attr__( 'Product #%d', 'wholesale-pricing-woocommerce' ),
+						$product_id
+					),
+					apply_filters(
+						'alg_wc_wholesale_pricing_variation_title',
+						$product->get_formatted_name(),
+						$product
+					)
+				);
+
 				if ( 'title_only' === $do_add_variation_title ) {
 					$options = array_merge( $options, array(
 						array(
-							'type'              => 'title',
-							'background-color'  => '#7f54b3',
-							'title'             => $title,
+							'type'             => 'title',
+							'background-color' => '#7f54b3',
+							'title'            => $title,
 						),
 					) );
 				} else {
@@ -428,13 +494,18 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 						__( 'Please note that you need to UPDATE the product before copying the variation.', 'wholesale-pricing-woocommerce' ) );
 					$reset   = $this->get_admin_action_link( 'alg_wc_wholesale_pricing_reset_variation', $product_id, __( 'Reset variation', 'wholesale-pricing-woocommerce' ),
 						__( 'This will reset all wholesale settings fields for the current variation to their default values.', 'wholesale-pricing-woocommerce' ) );
-					$pricing = '<span style="color:white;float:right;font-size:smaller;font-weight:normal;font-style:italic;">' .
-						sprintf( __( 'Regular pricing: %s', 'wholesale-pricing-woocommerce' ), $product->get_price_html() ) . '</span>';
+
+					$pricing = sprintf(
+						'<span style="color:#ffffff;float:right;font-size:smaller;font-weight:normal;font-style:italic;">%s %s</span>',
+						__( 'Regular pricing:', 'wholesale-pricing-woocommerce' ),
+						$product->get_price_html()
+					);
+
 					$options = array_merge( $options, array(
 						array(
-							'type'              => 'title',
-							'background-color'  => '#7f54b3',
-							'title'             => $title . ' ' . $copy . ' ' . $reset . $pricing,
+							'type'             => 'title',
+							'background-color' => '#7f54b3',
+							'title'            => $title . ' ' . $copy . ' ' . $reset . $pricing,
 						),
 					) );
 				}
@@ -442,6 +513,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 			// Options
 			$options = array_merge( $options, $this->get_options( 'product', $product_id ) );
 		}
+
 		return $options;
 	}
 
