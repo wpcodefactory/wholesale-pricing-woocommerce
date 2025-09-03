@@ -1,9 +1,9 @@
 === Price by Quantity & Bulk Quantity Discounts for WooCommerce ===
-Contributors: wpcodefactory, algoritmika, anbinder, karzin, omardabbas, aegkr
+Contributors: wpcodefactory, anbinder, karzin, omardabbas, aegkr
 Tags: woocommerce, product price by quantity, price by quantity, dynamic product pricing, dynamic pricing
 Requires at least: 4.4
 Tested up to: 6.8
-Stable tag: 4.0.2
+Stable tag: 4.0.3
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -175,6 +175,10 @@ WPFactory has a diverse range of plugins tailored to enhance your experience:
 Once activated, access the plugin's settings by navigating to “WooCommerce > Settings” and look for the relevant tab.
 
 == Changelog ==
+
+= 4.0.3 - 03/09/2025 =
+* Fix - Admin recalculate order - HPOS compatibility.
+* WC tested up to: 10.1.
 
 = 4.0.2 - 23/05/2025 =
 * Dev - Per Product Settings - Variation product titles - Using formatted name.

@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Admin Class
  *
- * @version 4.0.0
+ * @version 4.0.3
  * @since   2.6.2
  *
  * @author  Algoritmika Ltd.
@@ -26,12 +26,12 @@ class Alg_WC_Wholesale_Pricing_Admin {
 		// Order "Recalculate" meta box
 		if ( 'yes' === get_option( 'alg_wc_wholesale_pricing_admin_recalculate_order', 'yes' ) ) {
 			add_action( 'add_meta_boxes', array( $this, 'add_order_meta_box' ), 10, 2 );
-			add_action( 'admin_init',     array( $this, 'recalculate_order_action' ) );
-			add_action( 'admin_notices',  array( $this, 'order_recalculated_notice' ) );
+			add_action( 'admin_init', array( $this, 'recalculate_order_action' ) );
+			add_action( 'admin_notices', array( $this, 'order_recalculated_notice' ) );
 		}
 	}
 
-	/*
+	/**
 	 * recalculate_order_action.
 	 *
 	 * @version 4.0.0
@@ -43,7 +43,10 @@ class Alg_WC_Wholesale_Pricing_Admin {
 		if ( ! empty( $_GET['alg_wc_wholesale_pricing_recalculate_order_id'] ) ) {
 			if (
 				! isset( $_REQUEST['_wpnonce_alg_wc_wholesale_pricing'] ) ||
-				! wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['_wpnonce_alg_wc_wholesale_pricing'] ) ), 'recalculate' )
+				! wp_verify_nonce(
+					sanitize_text_field( wp_unslash( $_REQUEST['_wpnonce_alg_wc_wholesale_pricing'] ) ),
+					'recalculate'
+				)
 			) {
 				wp_die( esc_html__( 'Nonce verification failed. Please try again.', 'wholesale-pricing-woocommerce' ) );
 			}
@@ -62,7 +65,7 @@ class Alg_WC_Wholesale_Pricing_Admin {
 		}
 	}
 
-	/*
+	/**
 	 * order_recalculated_notice.
 	 *
 	 * @version 4.0.0
@@ -76,32 +79,36 @@ class Alg_WC_Wholesale_Pricing_Admin {
 		}
 	}
 
-	/*
+	/**
 	 * add_order_meta_box.
 	 *
-	 * @version 3.0.0
+	 * @version 4.0.3
 	 * @since   2.6.2
 	 */
-	function add_order_meta_box( $post_type, $post ) {
+	function add_order_meta_box( $post_type, $post_or_order ) {
 		add_meta_box(
 			'alg-wc-wholesale_pricing-meta-box',
 			__( 'Product Price by Quantity', 'wholesale-pricing-woocommerce' ),
 			array( $this, 'create_order_meta_box' ),
-			'shop_order',
+			wc_get_page_screen_id( 'shop-order' ),
 			'side',
 			'default'
 		);
 	}
 
-	/*
+	/**
 	 * create_order_meta_box.
 	 *
-	 * @version 3.8.1
+	 * @version 4.0.3
 	 * @since   2.6.2
 	 *
 	 * @todo    (desc) better desc?
 	 */
-	function create_order_meta_box( $post ) {
+	function create_order_meta_box( $post_or_order ) {
+
+		if ( ! ( $order = wc_get_order( $post_or_order ) ) ) {
+			return;
+		}
 
 		$button_text = esc_html__( 'Recalculate', 'wholesale-pricing-woocommerce' );
 
@@ -109,38 +116,54 @@ class Alg_WC_Wholesale_Pricing_Admin {
 			function_exists( 'get_current_screen' ) &&
 			( $current_screen = get_current_screen() ) &&
 			! empty( $current_screen->id ) &&
-			! empty( $current_screen->action ) &&
-			'shop_order' === $current_screen->id &&
-			'add'        === $current_screen->action
+			(
+				'shop_order' === $current_screen->id &&
+				! empty( $current_screen->action ) &&
+				'add' === $current_screen->action
+			) ||
+			(
+				'woocommerce_page_wc-orders' === $current_screen->id &&
+				! empty( $_GET['action'] ) &&
+				'new' === sanitize_text_field( wp_unslash( $_GET['action'] ) )
+			)
 		) {
 
 			// New order (button disabled)
 			$notice = esc_attr__( 'Create the order first.', 'wholesale-pricing-woocommerce' );
-			$button = '<button' .
+			$button = (
+				'<button' .
 					' type="button"' .
 					' class="button"' .
 					' title="' . $notice . '"' .
 					' disabled' .
-				'>' . $button_text . '</button>';
+				'>' .
+					$button_text .
+				'</button>'
+			);
 
 		} else {
 
 			// Edit order
-			$confirmation = ( 'yes' === get_option( 'alg_wc_wholesale_pricing_admin_recalculate_order_confirm', 'yes' ) ?
+			$confirmation = (
+				'yes' === get_option( 'alg_wc_wholesale_pricing_admin_recalculate_order_confirm', 'yes' ) ?
 				' onclick="return confirm(\'' .
 					__( 'There is no undo for this action. Are you sure?', 'wholesale-pricing-woocommerce' ) .
 				'\');"' :
 				''
 			);
 			$url = add_query_arg( array(
-				'alg_wc_wholesale_pricing_recalculate_order_id' => $post->ID,
+				'alg_wc_wholesale_pricing_recalculate_order_id' => $order->get_id(),
 				'_wpnonce_alg_wc_wholesale_pricing'             => wp_create_nonce( 'recalculate' ),
 			) );
-			$button = '<a' .
+			$button = (
+				'<a' .
 					' href="' . esc_url( $url ) . '"' .
 					' class="button"' .
 					$confirmation .
-				'>' . $button_text . '</a>';
+				'>' .
+					$button_text .
+				'</a>'
+			);
 
 		}
 
@@ -171,7 +194,11 @@ class Alg_WC_Wholesale_Pricing_Admin {
 
 		// Recalculate items
 		foreach ( $order->get_items() as $item ) {
-			$product_id = ( ! empty( $item['variation_id'] ) ? $item['variation_id'] : $item['product_id'] );
+			$product_id = (
+				! empty( $item['variation_id'] ) ?
+				$item['variation_id'] :
+				$item['product_id']
+			);
 			if ( ( $product = wc_get_product( $product_id ) ) ) {
 
 				$is_changed   = false;
@@ -213,8 +240,10 @@ class Alg_WC_Wholesale_Pricing_Admin {
 		// Calculate totals and save order
 		$order->calculate_totals();
 		if ( 'yes' === get_option( 'alg_wc_wholesale_pricing_admin_recalculate_order_note', 'yes' ) ) {
-			$order->add_order_note( __( 'Product Price by Quantity', 'wholesale-pricing-woocommerce' ) . ': ' .
-				__( 'Order recalculated.', 'wholesale-pricing-woocommerce' ) );
+			$order->add_order_note(
+				__( 'Product Price by Quantity', 'wholesale-pricing-woocommerce' ) . ': ' .
+				__( 'Order recalculated.', 'wholesale-pricing-woocommerce' )
+			);
 		}
 		$order->save();
 
