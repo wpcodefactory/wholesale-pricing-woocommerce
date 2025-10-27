@@ -2,14 +2,14 @@
 # This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: Price by Quantity & Bulk Quantity Discounts for WooCommerce 4.0.3\n"
+"Project-Id-Version: Price by Quantity & Bulk Quantity Discounts for WooCommerce 4.0.4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wholesale-pricing-woocommerce\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-09-03T08:03:25+00:00\n"
+"POT-Creation-Date: 2025-10-27T15:53:49+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: wholesale-pricing-woocommerce\n"
@@ -74,7 +74,7 @@ msgstr ""
 msgid "There is no undo for this action. Are you sure?"
 msgstr ""
 
-#: includes/class-alg-wc-wholesale-pricing-core.php:625
+#: includes/class-alg-wc-wholesale-pricing-core.php:629
 msgid "Guest"
 msgstr ""
 
@@ -96,8 +96,8 @@ msgid "You save: %s"
 msgstr ""
 
 #. Translators: %s: Level min quantity placeholder.
-#: includes/class-alg-wc-wholesale-pricing-shortcodes.php:92
-#: includes/class-alg-wc-wholesale-pricing-shortcodes.php:175
+#: includes/class-alg-wc-wholesale-pricing-shortcodes.php:135
+#: includes/class-alg-wc-wholesale-pricing-shortcodes.php:236
 #: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:109
 #: includes/pro/class-alg-wc-wholesale-pricing-pro-shortcodes.php:326
 msgid "from %s pcs."

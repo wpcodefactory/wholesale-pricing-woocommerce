@@ -193,7 +193,11 @@ class Alg_WC_Wholesale_Pricing_Core {
 	 * @since   1.4.0
 	 */
 	function product_meta_shortcode( $atts, $content = '' ) {
-		return ( empty( $atts['key'] ) || empty( $this->product_id_for_formula ) ? 0 : get_post_meta( $this->product_id_for_formula, $atts['key'], true ) );
+		return (
+			empty( $atts['key'] ) || empty( $this->product_id_for_formula ) ?
+			0 :
+			get_post_meta( $this->product_id_for_formula, $atts['key'], true )
+		);
 	}
 
 	/**

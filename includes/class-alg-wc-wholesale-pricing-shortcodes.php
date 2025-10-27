@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Shortcodes
  *
- * @version 3.7.0
+ * @version 4.0.4
  * @since   1.0.0
  *
  * @author  Algoritmika Ltd.
@@ -31,15 +31,20 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	 * @todo    (dev) `[alg_wc_term_wholesale_pricing_table]` and `[alg_wc_term_wholesale_pricing_data]`
 	 */
 	function __construct() {
-		add_shortcode( 'alg_wc_wholesale_pricing_table',         array( $this, 'wholesale_pricing_table' ) );
-		add_shortcode( 'alg_wc_ppq_table',                       array( $this, 'wholesale_pricing_table' ) );
+
+		add_shortcode( 'alg_wc_wholesale_pricing_table', array( $this, 'wholesale_pricing_table' ) );
+		add_shortcode( 'alg_wc_ppq_table',               array( $this, 'wholesale_pricing_table' ) );
+
 		add_shortcode( 'alg_wc_product_wholesale_pricing_table', array( $this, 'product_wholesale_pricing_table' ) );
 		add_shortcode( 'alg_wc_product_ppq_table',               array( $this, 'product_wholesale_pricing_table' ) );
-		add_shortcode( 'alg_wc_wholesale_pricing_data',          array( $this, 'wholesale_pricing_data' ) );
-		add_shortcode( 'alg_wc_ppq_data',                        array( $this, 'wholesale_pricing_data' ) );
-		add_shortcode( 'alg_wc_product_wholesale_pricing_data',  array( $this, 'product_wholesale_pricing_data' ) );
-		add_shortcode( 'alg_wc_product_ppq_data',                array( $this, 'product_wholesale_pricing_data' ) );
-		add_shortcode( 'alg_wc_ppq_translate',                   array( $this, 'translate' ) );
+
+		add_shortcode( 'alg_wc_wholesale_pricing_data', array( $this, 'wholesale_pricing_data' ) );
+		add_shortcode( 'alg_wc_ppq_data',               array( $this, 'wholesale_pricing_data' ) );
+
+		add_shortcode( 'alg_wc_product_wholesale_pricing_data', array( $this, 'product_wholesale_pricing_data' ) );
+		add_shortcode( 'alg_wc_product_ppq_data',               array( $this, 'product_wholesale_pricing_data' ) );
+
+		add_shortcode( 'alg_wc_ppq_translate', array( $this, 'translate' ) );
 	}
 
 	/**
@@ -58,26 +63,63 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	/**
 	 * translate.
 	 *
-	 * @version 3.3.0
+	 * @version 4.0.4
 	 * @since   3.3.0
 	 */
 	function translate( $atts, $content = '' ) {
+
 		// E.g.: `[alg_wc_ppq_translate lang="EN,DE" lang_text="Text for EN & DE" not_lang_text="Text for other languages"]`
-		if ( isset( $atts['lang_text'] ) && isset( $atts['not_lang_text'] ) && ! empty( $atts['lang'] ) ) {
-			return ( ! defined( 'ICL_LANGUAGE_CODE' ) || ! in_array( strtolower( ICL_LANGUAGE_CODE ), array_map( 'trim', explode( ',', strtolower( $atts['lang'] ) ) ) ) ) ?
-				$atts['not_lang_text'] : $atts['lang_text'];
+		if (
+			isset( $atts['lang_text'], $atts['not_lang_text'] ) &&
+			! empty( $atts['lang'] )
+		) {
+			return (
+				(
+					! defined( 'ICL_LANGUAGE_CODE' ) ||
+					! in_array(
+						strtolower( ICL_LANGUAGE_CODE ),
+						array_map( 'trim', explode( ',', strtolower( $atts['lang'] ) ) )
+					)
+				) ?
+				wp_kses_post( $atts['not_lang_text'] ) :
+				wp_kses_post( $atts['lang_text'] )
+			);
 		}
+
 		// E.g.: `[alg_wc_ppq_translate lang="EN,DE"]Text for EN & DE[/alg_wc_ppq_translate][alg_wc_ppq_translate not_lang="EN,DE"]Text for other languages[/alg_wc_ppq_translate]`
 		return (
-			( ! empty( $atts['lang'] )     && ( ! defined( 'ICL_LANGUAGE_CODE' ) || ! in_array( strtolower( ICL_LANGUAGE_CODE ), array_map( 'trim', explode( ',', strtolower( $atts['lang'] ) ) ) ) ) ) ||
-			( ! empty( $atts['not_lang'] ) &&     defined( 'ICL_LANGUAGE_CODE' ) &&   in_array( strtolower( ICL_LANGUAGE_CODE ), array_map( 'trim', explode( ',', strtolower( $atts['not_lang'] ) ) ) ) )
-		) ? '' : $content;
+			(
+				(
+					! empty( $atts['lang'] ) &&
+					(
+						! defined( 'ICL_LANGUAGE_CODE' ) ||
+						! in_array(
+							strtolower( ICL_LANGUAGE_CODE ),
+							array_map( 'trim', explode( ',', strtolower( $atts['lang'] ) ) )
+						)
+					)
+				) ||
+				(
+					! empty( $atts['not_lang'] ) &&
+					(
+						defined( 'ICL_LANGUAGE_CODE' ) &&
+						in_array(
+							strtolower( ICL_LANGUAGE_CODE ),
+							array_map( 'trim', explode( ',', strtolower( $atts['not_lang'] ) ) )
+						)
+					)
+				)
+			) ?
+			'' :
+			wp_kses_post( $content )
+		);
+
 	}
 
 	/**
 	 * wholesale_pricing_table (global only).
 	 *
-	 * @version 3.3.0
+	 * @version 4.0.4
 	 * @since   1.0.0
 	 *
 	 * @todo    (dev) `shortcode_atts`: `alg_wc_wholesale_pricing_table` to `alg_wc_ppq_table`?
@@ -85,6 +127,7 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	 * @todo    (dev) add all applicable atts from `product_wholesale_pricing_table()`, e.g., `table_heading_type` etc.
 	 */
 	function wholesale_pricing_table( $atts ) {
+
 		// Shortcode atts
 		$atts = shortcode_atts( array(
 			'heading_format'        => sprintf(
@@ -100,18 +143,23 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 			'before'                => '',
 			'after'                 => '',
 		), $atts, 'alg_wc_wholesale_pricing_table' );
+
 		// Get levels data
 		$price_levels = $this->get_core()->get_levels_data( 0, 'all', 'asc' );
+
 		// Form table data
 		$data_qty       = array();
 		$data_discount  = array();
 		$columns_styles = array();
 		$i              = -1;
 		foreach ( $price_levels as $price_level ) {
+
 			$i++;
+
 			if ( 0 == $price_level['quantity'] && 'yes' === $atts['hide_if_zero_quantity'] ) {
 				continue;
 			}
+
 			// Quantity row
 			$level_max_qty = ( isset( $price_levels[ $i + 1 ]['quantity'] ) ) ?
 				$atts['before_level_max_qty'] . ( $price_levels[ $i + 1 ]['quantity'] - 1 ) : $atts['last_level_max_qty'];
@@ -120,13 +168,17 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 				'%level_max_qty%' => $this->format_qty( $level_max_qty, $atts ),
 			);
 			$data_qty[]    = str_replace( array_keys( $placeholders ), $placeholders, $atts['heading_format'] );
+
 			// Discount row
 			$data_discount[]  = ( 'fixed' === get_option( 'alg_wc_wholesale_pricing_discount_type', 'percent' ) )
 				? '-' . wc_price( $price_level['discount'] ) : '-' . $price_level['discount'] . '%';
+
 			// Column style
 			$columns_styles[] = 'text-align: center;';
+
 		}
 		$table_rows = array( $data_qty, $data_discount );
+
 		// Maybe switch rows and columns
 		if ( 'vertical' === $atts['table_format'] ) {
 			$table_rows_modified = array();
@@ -137,22 +189,31 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 			}
 			$table_rows = $table_rows_modified;
 		}
+
 		// Get table HTML
 		if ( ! empty( $table_rows ) ) {
-			return $atts['before'] . $this->get_table_html( $table_rows, array(
-				'table_class'        => 'alg_wc_ppq_table alg_wc_wholesale_pricing_table',
-				'columns_styles'     => $columns_styles,
-				'table_heading_type' => $atts['table_format'],
-			) ) . $atts['after'];
+			return (
+				wp_kses_post( $atts['before'] ) .
+				$this->get_table_html(
+					$table_rows,
+						array(
+						'table_class'        => 'alg_wc_ppq_table alg_wc_wholesale_pricing_table',
+						'columns_styles'     => $columns_styles,
+						'table_heading_type' => $atts['table_format'],
+					)
+				) .
+				wp_kses_post( $atts['after'] )
+			);
 		} else {
 			return '';
 		}
+
 	}
 
 	/**
 	 * product_wholesale_pricing_table.
 	 *
-	 * @version 3.7.0
+	 * @version 4.0.4
 	 * @since   1.0.0
 	 *
 	 * @todo    (dev) `use_variation`
@@ -399,15 +460,30 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 
 		// Get table HTML
 		if ( ! empty( $table_rows ) ) {
-			return $atts['before'] . $this->get_table_html( $table_rows, array(
-				'table_class'        => implode( ' ', array(
-					'alg_wc_product_ppq_table alg_wc_product_wholesale_pricing_table',
-					( 0 != $atts['product_id'] ? 'alg_wc_whpr_with_product_id' : 'alg_wc_whpr_no_product_id' ),
-					$atts['table_class'] ) ),
-				'table_style'        => $atts['table_style'],
-				'columns_styles'     => $columns_styles,
-				'table_heading_type' => ( '' !== $atts['table_heading_type'] ? $atts['table_heading_type'] : $atts['table_format'] ),
-			) ) . $atts['after'];
+			return (
+				wp_kses_post( $atts['before'] ) .
+				$this->get_table_html(
+					$table_rows,
+					array(
+						'table_class'        => implode(
+							' ',
+							array(
+								'alg_wc_product_ppq_table alg_wc_product_wholesale_pricing_table',
+								( 0 != $atts['product_id'] ? 'alg_wc_whpr_with_product_id' : 'alg_wc_whpr_no_product_id' ),
+								$atts['table_class']
+							)
+						),
+						'table_style'        => $atts['table_style'],
+						'columns_styles'     => $columns_styles,
+						'table_heading_type' => (
+							'' !== $atts['table_heading_type'] ?
+							$atts['table_heading_type'] :
+							$atts['table_format']
+						),
+					)
+				) .
+				wp_kses_post( $atts['after'] )
+			);
 		} else {
 			return '';
 		}
@@ -417,27 +493,39 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	/**
 	 * wholesale_pricing_data (global only).
 	 *
-	 * @version 2.7.0
+	 * @version 4.0.4
 	 * @since   1.1.2
 	 *
 	 * @todo    (dev) `shortcode_atts`: `alg_wc_wholesale_pricing_data` to `alg_wc_ppq_data`?
 	 */
 	function wholesale_pricing_data( $atts ) {
+
 		$atts = shortcode_atts( array(
 			'field'     => 'discount', // or 'quantity'
 			'level_num' => 'last',     // or actual level num
 			'before'    => '',
 			'after'     => '',
 		), $atts, 'alg_wc_wholesale_pricing_data' );
+
 		$price_levels = $this->get_core()->get_levels_data( 0, 'all', 'asc' );
 		$level_num    = ( 'last' === $atts['level_num'] ? count( $price_levels ) : $atts['level_num'] ) - 1;
-		return ( isset( $price_levels[ $level_num ][ $atts['field'] ] ) ? $atts['before'] . $price_levels[ $level_num ][ $atts['field'] ] . $atts['after'] : '' );
+
+		return (
+			isset( $price_levels[ $level_num ][ $atts['field'] ] ) ?
+			(
+				wp_kses_post( $atts['before'] ) .
+				$price_levels[ $level_num ][ $atts['field'] ] .
+				wp_kses_post( $atts['after'] )
+			) :
+			''
+		);
+
 	}
 
 	/**
 	 * product_wholesale_pricing_data.
 	 *
-	 * @version 3.2.0
+	 * @version 4.0.4
 	 * @since   1.1.2
 	 *
 	 * @todo    (dev) `shortcode_atts`: `alg_wc_product_wholesale_pricing_data` to `alg_wc_product_ppq_data`?
@@ -513,13 +601,25 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 
 				case 'quantity':
 				case 'discount':
-					return ( isset( $price_levels[ $level_num ][ $atts['field'] ] ) ? $atts['before'] . $price_levels[ $level_num ][ $atts['field'] ] . $atts['after'] : '' );
+					return (
+						isset( $price_levels[ $level_num ][ $atts['field'] ] ) ?
+						(
+							wp_kses_post( $atts['before'] ) .
+							$price_levels[ $level_num ][ $atts['field'] ] .
+							wp_kses_post( $atts['after'] )
+						) :
+						''
+					);
 
 				default: // 'price':
 					$qty   = ( isset( $price_levels[ $level_num ]['quantity'] ) ? $price_levels[ $level_num ]['quantity'] : 1 );
 					$type  = $this->get_core()->get_discount_type( $product_id, $qty );
 					$price = $this->get_product_price( $product, $type, $price_levels[ $level_num ]['discount'], $atts['hide_currency'], $atts['price_format'], $qty );
-					return $atts['before'] . $price . $atts['after'];
+					return (
+						wp_kses_post( $atts['before'] ) .
+						$price .
+						wp_kses_post( $atts['after'] )
+					);
 
 			}
 		} else {
@@ -643,7 +743,11 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	 * @since   3.3.0
 	 */
 	function format_qty( $qty, $atts ) {
-		return ( '' != $atts['qty_thousand_sep'] && is_numeric( $qty ) ? number_format( floatval( $qty ), 0, '.', $atts['qty_thousand_sep'] ) : $qty );
+		return (
+			'' != $atts['qty_thousand_sep'] && is_numeric( $qty ) ?
+			number_format( floatval( $qty ), 0, '.', $atts['qty_thousand_sep'] ) :
+			$qty
+		);
 	}
 
 	/**
@@ -663,17 +767,25 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	 * @since   2.2.0
 	 */
 	function format_price_range( $min, $max, $do_hide_currency ) {
-		return ( $min != $max ? sprintf( '%s-%s', $this->format_price( $min, $do_hide_currency ), $this->format_price( $max, $do_hide_currency ) ) :
-			$this->format_price( $min, $do_hide_currency ) );
+		return (
+			$min != $max ?
+			sprintf(
+				'%s-%s',
+				$this->format_price( $min, $do_hide_currency ),
+				$this->format_price( $max, $do_hide_currency )
+			) :
+			$this->format_price( $min, $do_hide_currency )
+		);
 	}
 
 	/**
 	 * get_table_html.
 	 *
-	 * @version 2.8.1
+	 * @version 4.0.4
 	 * @since   1.0.0
 	 */
 	function get_table_html( $data, $args = array() ) {
+
 		$args = array_merge( array(
 			'table_class'        => '',
 			'table_style'        => '',
@@ -682,28 +794,80 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 			'columns_classes'    => array(),
 			'columns_styles'     => array(),
 		), $args );
-		$args['table_class'] = ( '' == $args['table_class'] ) ? '' : ' class="' . $args['table_class'] . '"';
-		$args['table_style'] = ( '' == $args['table_style'] ) ? '' : ' style="' . $args['table_style'] . '"';
-		$args['row_styles']  = ( '' == $args['row_styles'] )  ? '' : ' style="' . $args['row_styles']  . '"';
+
+		$args['table_class'] = (
+			'' == $args['table_class'] ?
+			'' :
+			' class="' . esc_attr( $args['table_class'] ) . '"'
+		);
+		$args['table_style'] = (
+			'' == $args['table_style'] ?
+			'' :
+			' style="' . esc_attr( $args['table_style'] ) . '"'
+		);
+		$args['row_styles']  = (
+			'' == $args['row_styles'] ?
+			'' :
+			' style="' . esc_attr( $args['row_styles'] ) . '"'
+		);
+
 		$rows = '';
+
 		foreach( $data as $row_number => $row ) {
+
 			$columns = '';
+
 			foreach( $row as $column_number => $value ) {
-				$th_or_td     = ( ( 0 === $row_number && 'horizontal' === $args['table_heading_type'] ) || ( 0 === $column_number && 'vertical' === $args['table_heading_type'] ) ) ?
-					'th' : 'td';
-				$column_class = ( ! empty( $args['columns_classes'] ) && isset( $args['columns_classes'][ $column_number ] ) ) ?
-					' class="' . $args['columns_classes'][ $column_number ] . '"' : '';
-				$column_style = ( ! empty( $args['columns_styles'] )  && isset( $args['columns_styles'][ $column_number ] ) )  ?
-					' style="' . $args['columns_styles'][ $column_number ]  . '"' : '';
+
+				$th_or_td     = (
+					(
+						( 0 === $row_number    && 'horizontal' === $args['table_heading_type'] ) ||
+						( 0 === $column_number && 'vertical'   === $args['table_heading_type'] )
+					) ?
+					'th' :
+					'td'
+				);
+				$column_class = (
+					(
+						! empty( $args['columns_classes'] ) &&
+						isset( $args['columns_classes'][ $column_number ] )
+					) ?
+					' class="' . $args['columns_classes'][ $column_number ] . '"' :
+					''
+				);
+				$column_style = (
+					(
+						! empty( $args['columns_styles'] ) &&
+						isset( $args['columns_styles'][ $column_number ] )
+					) ?
+					' style="' . $args['columns_styles'][ $column_number ] . '"' :
+					''
+				);
+
 				$columns .= '<' . $th_or_td . $column_class . $column_style . '>';
 				$columns .= $value;
 				$columns .= '</' . $th_or_td . '>';
+
 			}
+
 			if ( ! empty( $columns ) ) {
 				$rows .= '<tr' . $args['row_styles'] . '>' . $columns . '</tr>';
 			}
+
 		}
-		return ( ! empty( $rows ) ? '<table' . $args['table_class'] . $args['table_style'] . '>' . '<tbody>' . $rows . '</tbody>' . '</table>' : '' );
+
+		return (
+			! empty( $rows ) ?
+			(
+				'<table' . $args['table_class'] . $args['table_style'] . '>' .
+					'<tbody>' .
+						$rows .
+					'</tbody>' .
+				'</table>'
+			) :
+			''
+		);
+
 	}
 
 }

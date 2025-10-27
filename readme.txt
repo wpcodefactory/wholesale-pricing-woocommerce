@@ -3,7 +3,7 @@ Contributors: wpcodefactory, anbinder, karzin, omardabbas, aegkr
 Tags: woocommerce, product price by quantity, price by quantity, dynamic product pricing, dynamic pricing
 Requires at least: 4.4
 Tested up to: 6.8
-Stable tag: 4.0.3
+Stable tag: 4.0.4
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -175,6 +175,13 @@ WPFactory has a diverse range of plugins tailored to enhance your experience:
 Once activated, access the plugin's settings by navigating to “WooCommerce > Settings” and look for the relevant tab.
 
 == Changelog ==
+
+= 4.0.4 - 27/10/2025 =
+* Fix - Security - Shortcodes - Output escaped.
+* Dev - WPFactory Admin Menu - Library updated (to v1.0.8).
+* Dev - WPFactory Recommendations - Library updated (to v1.0.6).
+* Dev - Coding standards improved.
+* WC tested up to: 10.3.
 
 = 4.0.3 - 03/09/2025 =
 * Fix - Admin recalculate order - HPOS compatibility.
