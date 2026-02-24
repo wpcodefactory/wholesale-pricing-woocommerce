@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Compatibility Section Settings
  *
- * @version 3.7.0
+ * @version 4.0.5
  * @since   3.7.0
  *
  * @author  Algoritmika Ltd.
@@ -29,7 +29,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Compatibility extends Alg_WC_Wholesale_P
 	/**
 	 * get_settings.
 	 *
-	 * @version 3.7.0
+	 * @version 4.0.5
 	 * @since   3.7.0
 	 *
 	 * @todo    (dev) `alg_wc_wholesale_pricing_wpml_wcml`: default to `yes`?
@@ -46,10 +46,13 @@ class Alg_WC_Wholesale_Pricing_Settings_Compatibility extends Alg_WC_Wholesale_P
 			array(
 				'title'    => __( '"WooCommerce Multilingual" (WPML) plugin', 'wholesale-pricing-woocommerce' ),
 				'desc'     => __( 'Enable', 'wholesale-pricing-woocommerce' ),
-				'desc_tip' => sprintf( __( '%s plugin compatibility.', 'wholesale-pricing-woocommerce' ),
+				'desc_tip' => sprintf(
+					/* Translators: %s: Plugin link. */
+					__( '%s plugin compatibility.', 'wholesale-pricing-woocommerce' ),
 					'<a href="https://wordpress.org/plugins/woocommerce-multilingual/" target="_blank">' .
 						__( '"WooCommerce Multilingual" (WPML)', 'wholesale-pricing-woocommerce' ) .
-					'</a>' ),
+					'</a>'
+				),
 				'id'       => 'alg_wc_wholesale_pricing_wpml_wcml',
 				'default'  => 'no',
 				'type'     => 'checkbox',
@@ -71,6 +74,20 @@ class Alg_WC_Wholesale_Pricing_Settings_Compatibility extends Alg_WC_Wholesale_P
 				'title'    => __( '"Lumise - Product Designer Tool" plugin', 'wholesale-pricing-woocommerce' ),
 				'desc'     => __( 'Enable', 'wholesale-pricing-woocommerce' ),
 				'id'       => 'alg_wc_wholesale_pricing_lumise_enabled',
+				'default'  => 'no',
+				'type'     => 'checkbox',
+			),
+			array(
+				'title'    => __( 'Product Bundles for WooCommerce plugin', 'wholesale-pricing-woocommerce' ),
+				'desc'     => __( 'Enable', 'wholesale-pricing-woocommerce' ),
+				'desc_tip' => sprintf(
+					/* Translators: %s: Plugin link. */
+					__( '%s plugin compatibility.', 'wholesale-pricing-woocommerce' ),
+					'<a href="https://woocommerce.com/products/product-bundles/" target="_blank">' .
+					__( 'Product Bundles for WooCommerce', 'wholesale-pricing-woocommerce' ) .
+					'</a>'
+				),
+				'id'       => 'alg_wc_wholesale_pricing_wpb',
 				'default'  => 'no',
 				'type'     => 'checkbox',
 			),

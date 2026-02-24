@@ -1,15 +1,15 @@
-# Copyright (C) 2025 WPFactory
+# Copyright (C) 2026 WPFactory
 # This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: Price by Quantity & Bulk Quantity Discounts for WooCommerce 4.0.4\n"
+"Project-Id-Version: Price by Quantity & Bulk Quantity Discounts for WooCommerce 4.0.5\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wholesale-pricing-woocommerce\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-10-27T15:53:49+00:00\n"
+"POT-Creation-Date: 2026-02-24T15:40:58+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: wholesale-pricing-woocommerce\n"
@@ -213,8 +213,9 @@ msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-all-products.php:58
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:48
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:59
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:72
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:62
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:75
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:82
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-dropdown.php:51
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-dropdown.php:119
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-general.php:75
@@ -334,30 +335,40 @@ msgstr ""
 msgid "\"WooCommerce Multilingual\" (WPML) plugin"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:49
+#. Translators: %s: Plugin link.
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:51
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:85
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-price-display-by-qty.php:178
 msgid "%s plugin compatibility."
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:51
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:53
 msgid "\"WooCommerce Multilingual\" (WPML)"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:58
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:61
 msgid "WCFM plugin"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:65
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:68
 msgid "New product notification"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:67
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:70
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:241
 msgid "Please save the product first."
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:71
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:74
 msgid "\"Lumise - Product Designer Tool\" plugin"
+msgstr ""
+
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:81
+msgid "Product Bundles for WooCommerce plugin"
+msgstr ""
+
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:87
+msgid "Product Bundles for WooCommerce"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-dropdown.php:25
