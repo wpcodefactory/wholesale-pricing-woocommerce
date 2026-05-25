@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Frontend Class
  *
- * @version 4.0.1
+ * @version 4.0.6
  * @since   2.0.0
  *
  * @author  Algoritmika Ltd.
@@ -32,16 +32,30 @@ class Alg_WC_Wholesale_Pricing_Frontend {
 
 		// Cart items: Item price
 		if ( 'yes' === get_option( 'alg_wc_wholesale_pricing_show_info_on_cart', 'no' ) ) {
-			add_filter( 'woocommerce_cart_item_price', array( $this, 'add_discount_info_to_cart_page_item_price' ), PHP_INT_MAX, 3 );
+			add_filter(
+				'woocommerce_cart_item_price',
+				array( $this, 'add_discount_info_to_cart_page_item_price' ),
+				PHP_INT_MAX,
+				3
+			);
 		}
 
 		// Price display by quantity
 		if ( 'yes' === get_option( 'alg_wc_wholesale_pricing_price_by_qty_display_enabled', 'no' ) ) {
 			// AJAX
-			add_action( 'wp_ajax_'        . 'alg_wc_wholesale_pricing_price_by_qty_display', array( $this, 'ajax_price_display_by_qty' ) );
-			add_action( 'wp_ajax_nopriv_' . 'alg_wc_wholesale_pricing_price_by_qty_display', array( $this, 'ajax_price_display_by_qty' ) );
+			add_action(
+				'wp_ajax_'        . 'alg_wc_wholesale_pricing_price_by_qty_display',
+				array( $this, 'ajax_price_display_by_qty' )
+			);
+			add_action(
+				'wp_ajax_nopriv_' . 'alg_wc_wholesale_pricing_price_by_qty_display',
+				array( $this, 'ajax_price_display_by_qty' )
+			);
 			// Scripts
-			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts_price_display_by_qty' ) );
+			add_action(
+				'wp_enqueue_scripts',
+				array( $this, 'enqueue_scripts_price_display_by_qty' )
+			);
 		}
 
 	}
@@ -92,7 +106,10 @@ class Alg_WC_Wholesale_Pricing_Frontend {
 				$discount         = ( $this->get_core()->is_enabled( $product_id ) ?
 					$this->get_core()->get_discount_by_quantity( $quantity, $product_id ) : 0 );
 				$discount_type    = $this->get_core()->get_discount_type( $product_id, $quantity );
-				$old_price_single = $this->get_core()->maybe_convert_currency( wc_get_price_to_display( $product ), $discount_type );
+				$old_price_single = $this->get_core()->maybe_convert_currency(
+					wc_get_price_to_display( $product ),
+					$discount_type
+				);
 				if ( false !== $discount ) {
 
 					$discount = $this->get_core()->maybe_convert_currency( $discount, $discount_type );
@@ -108,7 +125,9 @@ class Alg_WC_Wholesale_Pricing_Frontend {
 							break;
 
 						default: // 'fixed'
-							$new_price_single = ( $this->get_core()->maybe_convert_currency( $product->get_price(), $discount_type ) - $discount );
+							$new_price_single = (
+								$this->get_core()->maybe_convert_currency( $product->get_price(), $discount_type ) - $discount
+							);
 							$new_price_single = wc_get_price_to_display( $product, array( 'price' => $new_price_single ) );
 							break;
 
@@ -205,7 +224,8 @@ class Alg_WC_Wholesale_Pricing_Frontend {
 			)
 		) {
 			$min_suffix = ( defined( 'WP_DEBUG' ) && true === WP_DEBUG ? '' : '.min' );
-			wp_enqueue_script(  'alg-wc-wholesale-pricing-price-by-qty-display',
+			wp_enqueue_script(
+				'alg-wc-wholesale-pricing-price-by-qty-display',
 				trailingslashit( alg_wc_wholesale_pricing()->plugin_url() ) . 'includes/js/alg-wc-wholesale-pricing-price-by-qty-display' . $min_suffix . '.js',
 				array( 'jquery' ),
 				alg_wc_wholesale_pricing()->version,
@@ -233,7 +253,7 @@ class Alg_WC_Wholesale_Pricing_Frontend {
 	/**
 	 * get_placeholders.
 	 *
-	 * @version 4.0.1
+	 * @version 4.0.6
 	 * @since   2.0.0
 	 *
 	 * @todo    (dev) handle deprecated placeholders here
@@ -289,8 +309,8 @@ class Alg_WC_Wholesale_Pricing_Frontend {
 			$args['discount'] :
 			0
 		);
-		$formatted_new_price_single = number_format(
-			$args['new_price_single'],
+		$formatted_new_price_total = number_format(
+			$args['new_price_single'] * $args['quantity'],
 			wc_get_price_decimals(),
 			'.',
 			''
@@ -311,7 +331,7 @@ class Alg_WC_Wholesale_Pricing_Frontend {
 				array( 'currency' => $args['currency'] )
 			),
 			'%new_price_total%'     => wc_price(
-				$formatted_new_price_single * $args['quantity'],
+				$formatted_new_price_total,
 				array( 'currency' => $args['currency'] )
 			),
 			'%discount_percent%'    => $discount_percent,

@@ -2,7 +2,7 @@
 /**
  * Product Price by Quantity for WooCommerce - Hooks Class
  *
- * @version 4.0.5
+ * @version 4.0.6
  * @since   2.0.0
  *
  * @author  Algoritmika Ltd.
@@ -29,11 +29,34 @@ class Alg_WC_Wholesale_Pricing_Hooks {
 	 * @since   2.0.0
 	 */
 	function __construct() {
-		add_action( 'woocommerce_cart_loaded_from_session',    array( $this, 'cart_loaded_from_session' ), PHP_INT_MAX, 1 );
-		add_action( 'woocommerce_before_calculate_totals',     array( $this, 'calculate_totals' ),         PHP_INT_MAX, 1 );
-		add_filter( 'woocommerce_product_get_price',           array( $this, 'wholesale_price' ),          PHP_INT_MAX, 2 );
-		add_filter( 'woocommerce_product_variation_get_price', array( $this, 'wholesale_price' ),          PHP_INT_MAX, 2 );
-		add_action( 'woocommerce_checkout_order_processed',    array( $this, 'set_order_item_subtotals' ), PHP_INT_MAX, 3 );
+		add_action(
+			'woocommerce_cart_loaded_from_session',
+			array( $this, 'cart_loaded_from_session' ),
+			PHP_INT_MAX
+		);
+		add_action(
+			'woocommerce_before_calculate_totals',
+			array( $this, 'calculate_totals' ),
+			PHP_INT_MAX
+		);
+		add_filter(
+			'woocommerce_product_get_price',
+			array( $this, 'wholesale_price' ),
+			PHP_INT_MAX,
+			2
+		);
+		add_filter(
+			'woocommerce_product_variation_get_price',
+			array( $this, 'wholesale_price' ),
+			PHP_INT_MAX,
+			2
+		);
+		add_action(
+			'woocommerce_checkout_order_processed',
+			array( $this, 'set_order_item_subtotals' ),
+			PHP_INT_MAX,
+			3
+		);
 	}
 
 	/**
@@ -60,9 +83,27 @@ class Alg_WC_Wholesale_Pricing_Hooks {
 				}
 
 				if (
-					( is_callable( array( $item, 'set_subtotal' ) ) && is_callable( array( $item, 'get_total' ) ) ) &&
-					( $product = wc_get_product( ( ! empty( $item['variation_id'] ) ? $item['variation_id'] : $item['product_id'] ) ) ) &&
-					( ( $original_total = wc_get_price_excluding_tax( $product, array( 'qty' => $item['quantity'] ) ) ) != $item->get_total() )
+					(
+						is_callable( array( $item, 'set_subtotal' ) ) &&
+						is_callable( array( $item, 'get_total' ) )
+					) &&
+					(
+						$product = wc_get_product(
+							(
+								! empty( $item['variation_id'] ) ?
+								$item['variation_id'] :
+								$item['product_id']
+							)
+						)
+					) &&
+					(
+						(
+							$original_total = wc_get_price_excluding_tax(
+								$product,
+								array( 'qty' => $item['quantity'] )
+							)
+						) != $item->get_total()
+					)
 				) {
 					$item->set_subtotal( $original_total );
 					$item->save();
@@ -91,13 +132,13 @@ class Alg_WC_Wholesale_Pricing_Hooks {
 	/**
 	 * cart_loaded_from_session.
 	 *
-	 * @version 1.0.0
+	 * @version 4.0.6
 	 * @since   1.0.0
 	 */
 	function cart_loaded_from_session( $cart ) {
 		foreach ( $cart->cart_contents as $item_key => $item ) {
 			if ( array_key_exists( 'alg_wc_wholesale_pricing', $item ) ) {
-				$cart->cart_contents[ $item_key ]['data']->alg_wc_wholesale_pricing = $item['alg_wc_wholesale_pricing'];
+				$item['data']->update_meta_data( 'alg_wc_wholesale_pricing', $item['alg_wc_wholesale_pricing'] );
 			}
 		}
 	}
@@ -105,16 +146,16 @@ class Alg_WC_Wholesale_Pricing_Hooks {
 	/**
 	 * calculate_totals.
 	 *
-	 * @version 4.0.5
+	 * @version 4.0.6
 	 * @since   1.0.0
 	 */
 	function calculate_totals( $cart ) {
 		foreach ( $cart->cart_contents as $item_key => $item ) {
 
 			// Maybe reset previous values
-			if ( isset( $cart->cart_contents[ $item_key ]['data']->alg_wc_wholesale_pricing ) ) {
-				unset( $cart->cart_contents[ $item_key ]['data']->alg_wc_wholesale_pricing );
-			}
+			$product_data = $cart->cart_contents[ $item_key ]['data'];
+			$product_data->delete_meta_data( 'alg_wc_wholesale_pricing' );
+
 			if ( isset( $cart->cart_contents[ $item_key ]['alg_wc_wholesale_pricing'] ) ) {
 				unset( $cart->cart_contents[ $item_key ]['alg_wc_wholesale_pricing'] );
 			}
@@ -141,8 +182,15 @@ class Alg_WC_Wholesale_Pricing_Hooks {
 			if ( $product_id && $this->get_core()->is_enabled( $product_id ) ) {
 
 				// Prices
-				$_product_id = ( 0 != ( $variation_id = $cart->cart_contents[ $item_key ]['variation_id'] ) ? $variation_id : $product_id );
-				$_product_id = apply_filters( 'alg_wc_wholesale_pricing_calculate_totals_product_id', $_product_id, $cart->cart_contents[ $item_key ] );
+				$_product_id = ( 0 != ( $variation_id = $cart->cart_contents[ $item_key ]['variation_id'] ) ?
+					$variation_id :
+					$product_id
+				);
+				$_product_id = apply_filters(
+					'alg_wc_wholesale_pricing_calculate_totals_product_id',
+					$_product_id,
+					$cart->cart_contents[ $item_key ]
+				);
 				$product     = wc_get_product( $_product_id );
 				$price       = $product->get_price();
 				$price_old   = wc_get_price_to_display( $product ); // used for display only
@@ -154,10 +202,21 @@ class Alg_WC_Wholesale_Pricing_Hooks {
 
 						// Setting wholesale price
 						$alg_wc_wholesale_pricing = ( 'yes' === get_option( 'alg_wc_wholesale_pricing_round', 'yes' ) ?
-							round( $wholesale_price, get_option( 'woocommerce_price_num_decimals', 2 ) ) : $wholesale_price );
-						$alg_wc_wholesale_pricing = apply_filters( 'alg_wc_product_wholesale_pricing', $alg_wc_wholesale_pricing,
-							$cart->cart_contents[ $item_key ], $price, $quantity, $product_id );
-						$cart->cart_contents[ $item_key ]['data']->alg_wc_wholesale_pricing = $alg_wc_wholesale_pricing;
+							round( $wholesale_price, get_option( 'woocommerce_price_num_decimals', 2 ) ) :
+							$wholesale_price
+						);
+						$alg_wc_wholesale_pricing = apply_filters(
+							'alg_wc_product_wholesale_pricing',
+							$alg_wc_wholesale_pricing,
+							$cart->cart_contents[ $item_key ],
+							$price,
+							$quantity,
+							$product_id
+						);
+						$cart->cart_contents[ $item_key ]['data']->update_meta_data(
+							'alg_wc_wholesale_pricing',
+							$alg_wc_wholesale_pricing
+						);
 						$cart->cart_contents[ $item_key ]['alg_wc_wholesale_pricing']       = $alg_wc_wholesale_pricing;
 						$cart->cart_contents[ $item_key ]['alg_wc_wholesale_pricing_old']   = $price_old;
 
@@ -170,19 +229,17 @@ class Alg_WC_Wholesale_Pricing_Hooks {
 	/**
 	 * wholesale_price.
 	 *
-	 * @version 2.0.0
+	 * @version 4.0.6
 	 * @since   1.0.0
 	 */
 	function wholesale_price( $price, $_product ) {
+		$stored = $_product->get_meta( 'alg_wc_wholesale_pricing' );
+
 		return (
-			(
-				( $product_id = $this->get_core()->get_product_id( $_product ) ) &&
-				$this->get_core()->is_enabled( $product_id ) &&
-				isset( $_product->alg_wc_wholesale_pricing )
-			) ?
-			$_product->alg_wc_wholesale_pricing :
-			$price
-		);
+			'' !== $stored &&
+			( $product_id = $this->get_core()->get_product_id( $_product ) ) &&
+			$this->get_core()->is_enabled( $product_id )
+		) ? $stored : $price;
 	}
 
 }

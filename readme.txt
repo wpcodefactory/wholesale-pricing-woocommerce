@@ -2,8 +2,8 @@
 Contributors: wpcodefactory, anbinder, karzin, omardabbas, aegkr
 Tags: woocommerce, product price by quantity, price by quantity, dynamic product pricing, dynamic pricing
 Requires at least: 4.4
-Tested up to: 6.9
-Stable tag: 4.0.5
+Tested up to: 7.0
+Stable tag: 4.0.6
 License: GNU General Public License v3.0
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -175,6 +175,16 @@ WPFactory has a diverse range of plugins tailored to enhance your experience:
 Once activated, access the plugin's settings by navigating to “WooCommerce > Settings” and look for the relevant tab.
 
 == Changelog ==
+
+= 4.0.6 - 25/05/2026 =
+* Fix - Fixed incorrect price total display when using quantity-based discounts.
+* Dev - Fixed PHP 8.2 compatibility - "Creation of dynamic property is deprecated" notice.
+* Dev - WPFactory Cross-Selling - Library updated (to v1.1.1).
+* Dev - WPFactory Admin Menu - Library updated (to v1.1.1).
+* Dev - WPFactory Key Manager - Library updated (to v1.0.8).
+* Dev - Code refactoring.
+* Tested up to: 7.0.
+* WC tested up to: 10.7.
 
 = 4.0.5 - 24/02/2026 =
 * Dev - Compatibility - "Product Bundles for WooCommerce" plugin compatibility option added (defaults to `no`).
