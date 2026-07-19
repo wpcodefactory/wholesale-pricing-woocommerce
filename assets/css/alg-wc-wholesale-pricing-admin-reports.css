@@ -1,0 +1,12 @@
+/**
+ * Product Price by Quantity for WooCommerce - Admin Reports CSS
+ *
+ * @version 4.1.0
+ * @since   4.1.0
+ *
+ * @author  WPFactory
+ */
+
+.widefat td, .widefat th {
+	font-size: 12px;
+}

@@ -2,10 +2,10 @@
 /**
  * Product Price by Quantity for WooCommerce - Per Product Settings
  *
- * @version 4.0.2
+ * @version 4.1.0
  * @since   1.0.0
  *
- * @author  Algoritmika Ltd.
+ * @author  WPFactory
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -64,21 +64,21 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 	 */
 	function admin_action_reset() {
 		if (
-			! empty( $_GET['alg_wc_wholesale_pricing_reset_variation'] ) ||
-			! empty( $_GET['alg_wc_wholesale_pricing_reset'] )
+			! empty( $_GET['alg_wc_wholesale_pricing_reset_variation'] ) || // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Nonce verification is handled in `validate_admin_action()`.
+			! empty( $_GET['alg_wc_wholesale_pricing_reset'] ) // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Nonce verification is handled in `validate_admin_action()`.
 		) {
 			$action = (
-				! empty( $_GET['alg_wc_wholesale_pricing_reset_variation'] ) ?
+				! empty( $_GET['alg_wc_wholesale_pricing_reset_variation'] ) ? // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Nonce verification is handled in `validate_admin_action()`.
 				'alg_wc_wholesale_pricing_reset_variation' :
 				'alg_wc_wholesale_pricing_reset'
 			);
 			if (
-				! isset( $_GET[ $action ] ) ||
+				! isset( $_GET[ $action ] ) || // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Nonce verification is handled in `validate_admin_action()`.
 				! ( $product = $this->validate_admin_action( $action ) )
 			) {
 				wp_die( esc_html__( 'Something went wrong...', 'wholesale-pricing-woocommerce' ) );
 			}
-			$product_id  = intval( $_GET[ $action ] );
+			$product_id  = intval( $_GET[ $action ] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Nonce verification is handled in `validate_admin_action()`.
 			$product_ids = (
 				'alg_wc_wholesale_pricing_reset_variation' === $action ?
 				array( $product_id ) :
@@ -109,15 +109,15 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 	 * @todo    (dev) admin notice, e.g., "Variation has been copied successfully."
 	 */
 	function admin_action_copy_variation() {
-		if ( ! empty( $_GET['alg_wc_wholesale_pricing_copy_variation'] ) ) {
+		if ( ! empty( $_GET['alg_wc_wholesale_pricing_copy_variation'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Nonce verification is handled in `validate_admin_action()`.
 			$action = 'alg_wc_wholesale_pricing_copy_variation';
 			if (
-				! isset( $_GET[ $action ] ) ||
+				! isset( $_GET[ $action ] ) || // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Nonce verification is handled in `validate_admin_action()`.
 				! ( $product = $this->validate_admin_action( $action ) )
 			) {
 				wp_die( esc_html__( 'Something went wrong...', 'wholesale-pricing-woocommerce' ) );
 			}
-			$product_id = intval( $_GET[ $action ] );
+			$product_id = intval( $_GET[ $action ] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Nonce verification is handled in `validate_admin_action()`.
 			$options    = $this->get_options( 'product', $product_id );
 			foreach ( $product->get_children() as $child_id ) {
 				foreach ( $options as $option ) {
@@ -177,41 +177,52 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 	/**
 	 * display_wholesale_pricing_metabox.
 	 *
-	 * @version 2.2.5
+	 * @version 4.1.0
 	 * @since   1.0.0
 	 */
 	function display_wholesale_pricing_metabox() {
-		$product_id = get_the_ID();
-		$html = $this->get_options_table( $product_id, 'widefat striped' );
-		$html .= $this->get_admin_action_link(
+		$product_id        = get_the_ID();
+		$options_table     = $this->get_options_table( $product_id, 'widefat striped' );
+		$admin_action_link = $this->get_admin_action_link(
 			'alg_wc_wholesale_pricing_reset',
 			$product_id,
 			__( 'Reset all', 'wholesale-pricing-woocommerce' ),
 			__( 'This will reset all wholesale settings fields to their default values.', 'wholesale-pricing-woocommerce' ),
 			'p'
 		);
-		$html .= '<input type="hidden" name="alg_wc_wholesale_pricing_save_post" value="alg_wc_wholesale_pricing_save_post">';
-		echo $html;
+
+		echo wp_kses(
+			$options_table . $admin_action_link,
+			$this->get_allowed_settings_html()
+		);
+		?><input type="hidden" name="alg_wc_wholesale_pricing_save_post" value="alg_wc_wholesale_pricing_save_post"><?php
+		wp_nonce_field(
+			'alg_wc_wholesale_pricing_save_post',
+			'_alg_wc_wholesale_pricing_save_post_nonce'
+		);
 	}
 
 	/**
 	 * save_wholesale_pricing_meta_box.
 	 *
-	 * @version 2.2.5
+	 * @version 4.1.0
 	 * @since   1.0.0
 	 */
 	function save_wholesale_pricing_meta_box( $post_id, $post ) {
-		if ( ! isset( $_POST[ 'alg_wc_wholesale_pricing_save_post' ] ) ) {
+		if ( ! isset( $_POST[ 'alg_wc_wholesale_pricing_save_post' ] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verification is handled in `save_options()`.
 			// Check that we are saving with current metabox displayed
 			return;
 		}
-		$this->save_options( $post_id, $_POST );
+		if ( ! current_user_can( 'manage_woocommerce' ) ) {
+			return;
+		}
+		$this->save_options( $post_id, $_POST ); // phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce verification is handled in `save_options()`.
 	}
 
 	/**
 	 * wcfm_wholesale_product_settings.
 	 *
-	 * @version 3.0.0
+	 * @version 4.1.0
 	 * @since   2.2.5
 	 *
 	 * @todo    (dev) customizable tab title
@@ -225,48 +236,75 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 	 * @todo    (feature) translation shortcode?
 	 */
 	function wcfm_wholesale_product_settings( $product_id, $product_type = '', $wcfm_is_translated_product = false, $wcfm_wpml_edit_disable_element = '' ) {
-		$html = '<div class="page_collapsible products_manage_alg_wc_wh_pr simple variable grouped external booking" id="wcfm_products_manage_form_alg_wc_wh_pr_head">' .
-			'<label class="wcfmfa fa-server"></label>' .
-			__( 'Product Price by Quantity', 'wholesale-pricing-woocommerce' ) .
-			'<span></span>' .
-		'</div>' .
-		'<div class="wcfm-container simple variable external grouped booking">' .
-			'<div id="wcfm_products_manage_form_alg_wc_wh_pr_expander" class="wcfm-content">';
-		if ( $product_id ) {
-			$html .= $this->get_options_table( $product_id, '', 'title_only', 'wcfm' );
-		} else {
-			$html .= do_shortcode(
-				get_option(
-					'alg_wc_wholesale_pricing_wcfm_new_product_notification',
-					__( 'Please save the product first.', 'wholesale-pricing-woocommerce' )
-				)
-			);
-		}
-		$html .= '</div>' . '</div>' . '<div class="wcfm_clearfix"></div>';
-		echo $html;
+		?>
+		<div class="page_collapsible products_manage_alg_wc_wh_pr simple variable grouped external booking" id="wcfm_products_manage_form_alg_wc_wh_pr_head">
+			<label class="wcfmfa fa-server"></label>
+			<?php esc_html_e( 'Product Price by Quantity', 'wholesale-pricing-woocommerce' ); ?>
+			<span></span>
+		</div>
+		<div class="wcfm-container simple variable external grouped booking">
+			<div id="wcfm_products_manage_form_alg_wc_wh_pr_expander" class="wcfm-content">
+				<?php
+				if ( $product_id ) {
+					$options_table = $this->get_options_table( $product_id, '', 'title_only', 'wcfm' );
+					echo wp_kses(
+						$options_table,
+						$this->get_allowed_settings_html()
+					);
+				} else {
+					echo wp_kses_post(
+						do_shortcode(
+							get_option(
+								'alg_wc_wholesale_pricing_wcfm_new_product_notification',
+								__( 'Please save the product first.', 'wholesale-pricing-woocommerce' )
+							)
+						)
+					);
+				}
+				?>
+			</div>
+		</div>
+		<div class="wcfm_clearfix"></div>
+		<?php
+		wp_nonce_field(
+			'alg_wc_wholesale_pricing_save_post',
+			'_alg_wc_wholesale_pricing_save_post_nonce'
+		);
 	}
 
 	/**
 	 * wcfm_wholesale_product_settings_update.
 	 *
-	 * @version 2.2.5
+	 * @version 4.1.0
 	 * @since   2.2.5
 	 *
-	 * @todo    (dev) `alg_wc_wholesale_pricing_save_post`
 	 * @todo    (dev) `global $WCFM`
 	 * @todo    (dev) `'wcmarketplace' === wcfm_is_marketplace()`
 	 */
 	function wcfm_wholesale_product_settings_update( $new_product_id, $wcfm_products_manage_form_data ) {
+		if ( ! current_user_can( 'edit_product', $new_product_id ) ) {
+			return;
+		}
 		$this->save_options( $new_product_id, $wcfm_products_manage_form_data );
 	}
 
 	/**
 	 * save_options.
 	 *
-	 * @version 4.0.2
+	 * @version 4.1.0
 	 * @since   2.2.5
 	 */
 	function save_options( $product_id, $data ) {
+		if (
+			! isset( $data['_alg_wc_wholesale_pricing_save_post_nonce'] ) ||
+			! wp_verify_nonce(
+				sanitize_text_field( wp_unslash( $data['_alg_wc_wholesale_pricing_save_post_nonce'] ) ),
+				'alg_wc_wholesale_pricing_save_post'
+			)
+		) {
+			return;
+		}
+
 		foreach ( $this->get_product_options( $product_id, false ) as $option ) {
 			if ( 'title' === $option['type'] ) {
 				continue;
@@ -275,7 +313,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 			if ( $is_enabled ) {
 				$option_value = (
 					isset( $data[ $option['name'] ] ) ?
-					sanitize_text_field( $data[ $option['name'] ] ) :
+					sanitize_text_field( wp_unslash( $data[ $option['name'] ] ) ) :
 					$option['default']
 				);
 				$_post_id     = ( $option['product_id'] ?? $product_id );

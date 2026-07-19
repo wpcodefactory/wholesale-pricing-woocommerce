@@ -2,10 +2,10 @@
 /**
  * Product Price by Quantity for WooCommerce - Reports Section Settings
  *
- * @version 4.0.0
+ * @version 4.1.0
  * @since   2.6.3
  *
- * @author  Algoritmika Ltd.
+ * @author  WPFactory
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -17,13 +17,17 @@ class Alg_WC_Wholesale_Pricing_Settings_Reports extends Alg_WC_Wholesale_Pricing
 	/**
 	 * Constructor.
 	 *
-	 * @version 2.6.3
+	 * @version 4.1.0
 	 * @since   2.6.3
 	 */
 	function __construct() {
 		$this->id   = 'reports';
 		$this->desc = __( 'Reports', 'wholesale-pricing-woocommerce' );
+
 		parent::__construct();
+
+		// Style
+		add_action( 'admin_enqueue_scripts', array( $this, 'add_style' ) );
 	}
 
 	/**
@@ -133,38 +137,57 @@ class Alg_WC_Wholesale_Pricing_Settings_Reports extends Alg_WC_Wholesale_Pricing
 	/**
 	 * add_style.
 	 *
-	 * @version 2.6.3
+	 * @version 4.1.0
 	 * @since   2.6.3
 	 *
 	 * @todo    (dev) better styling?
 	 */
-	function add_style() {
-		echo '<style>.widefat td, .widefat th { font-size: 12px; } </style>';
+	function add_style( $hook_suffix ) {
+		if (
+			'woocommerce_page_wc-settings' !== $hook_suffix ||
+			! isset( $_GET['tab'], $_GET['section'], $_GET['report'] ) || // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			'alg_wc_wholesale_pricing' !== sanitize_text_field( wp_unslash( $_GET['tab'] ) ) || // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			'reports' !== sanitize_text_field( wp_unslash( $_GET['section'] ) ) // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		) {
+			return;
+		}
+
+		$min_suffix = ( defined( 'WP_DEBUG' ) && true === WP_DEBUG ? '' : '.min' );
+		wp_enqueue_style(
+			'alg-wc-wholesale-pricing-admin-reports',
+			alg_wc_wholesale_pricing()->plugin_url() . '/assets/css/alg-wc-wholesale-pricing-admin-reports' . $min_suffix . '.css',
+			array(),
+			alg_wc_wholesale_pricing()->version
+		);
 	}
 
 	/**
 	 * get_settings.
 	 *
-	 * @version 4.0.0
+	 * @version 4.1.0
 	 * @since   2.6.3
 	 *
-	 * @todo    (dev) nonce, `manage_woocommerce`, etc.?
+	 * @todo    (dev) `manage_woocommerce`, etc.?
 	 */
 	function get_settings() {
-		add_action( 'admin_footer', array( $this, 'add_style' ) );
-		$GLOBALS['hide_save_button'] = true;
+		$GLOBALS['hide_save_button'] = true; // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+
+		// Menu
 		$url  = 'admin.php?page=wc-settings&tab=alg_wc_wholesale_pricing&section=reports&report=';
 		$menu = '<p>' . implode( ' | ', array(
 				'<a href="' . admin_url( $url . 'product' )     . '">' . __( 'Products', 'wholesale-pricing-woocommerce' )           . '</a>',
 				'<a href="' . admin_url( $url . 'product_cat' ) . '">' . __( 'Product categories', 'wholesale-pricing-woocommerce' ) . '</a>',
 				'<a href="' . admin_url( $url . 'product_tag' ) . '">' . __( 'Product tags', 'wholesale-pricing-woocommerce' )       . '</a>',
 			) ) . '</p>';
-		if ( isset( $_REQUEST['report'] ) ) {
-			$report = sanitize_text_field( wp_unslash( $_REQUEST['report'] ) );
+
+		// Report
+		if ( isset( $_REQUEST['report'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$report = sanitize_text_field( wp_unslash( $_REQUEST['report'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$report = $this->get_report( $report );
 		} else {
 			$report = '';
 		}
+
 		return array(
 			array(
 				'title'    => __( 'Item Settings Reports', 'wholesale-pricing-woocommerce' ),

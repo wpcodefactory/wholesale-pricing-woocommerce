@@ -5,7 +5,7 @@
  * @version 4.0.0
  * @since   2.6.0
  *
- * @author  Algoritmika Ltd.
+ * @author  WPFactory
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -138,7 +138,7 @@ class Alg_WC_Wholesale_Pricing_Tools {
 	function delete_meta( $product_or_term ) {
 		global $wpdb;
 		$table = ( 'product' === $product_or_term ? $wpdb->postmeta : $wpdb->termmeta );
-		$res   = $wpdb->query( "DELETE FROM {$table} WHERE meta_key LIKE '_alg_wc_wholesale_pricing%'" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
+		$res   = $wpdb->query( "DELETE FROM {$table} WHERE meta_key LIKE '_alg_wc_wholesale_pricing%'" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 		if ( method_exists( 'WC_Admin_Settings', 'add_message' ) ) {
 			$title = (
 				'product' === $product_or_term ?

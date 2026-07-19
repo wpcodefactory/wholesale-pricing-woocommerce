@@ -2,10 +2,10 @@
 /**
  * Product Price by Quantity for WooCommerce - Core Class
  *
- * @version 4.0.0
+ * @version 4.1.0
  * @since   1.0.0
  *
- * @author  Algoritmika Ltd.
+ * @author  WPFactory
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -13,14 +13,6 @@ defined( 'ABSPATH' ) || exit;
 if ( ! class_exists( 'Alg_WC_Wholesale_Pricing_Core' ) ) :
 
 class Alg_WC_Wholesale_Pricing_Core {
-
-	/**
-	 * is_children.
-	 *
-	 * @version 3.6.0
-	 * @since   3.6.0
-	 */
-	public $is_children;
 
 	/**
 	 * shortcodes.
@@ -65,59 +57,53 @@ class Alg_WC_Wholesale_Pricing_Core {
 	/**
 	 * Constructor.
 	 *
-	 * @version 4.0.0
+	 * @version 4.1.0
 	 * @since   1.0.0
 	 *
-	 * @todo    (dev) update link: `https://wpfactory.com/item/wholesale-pricing-woocommerce/`
 	 * @todo    (dev) user roles: separate "Discount type", and maybe "Enable" ("all products", "per term", "per product")
 	 * @todo    (dev) add `[alg_wc_wh_pr_product_qty]` shortcode?
 	 * @todo    (dev) decimal min quantity?
-	 * @todo    (dev) remove `$this->is_children`
 	 * @todo    (dev) remove `$this->do_process_formula`
 	 * @todo    (dev) `$product->apply_changes()`
-	 * @todo    (dev) `$this->is_children`: rename to `is_per_variation`?
 	 */
 	function __construct() {
 
-		if ( 'yes' === get_option( 'alg_wc_wholesale_pricing_enabled', 'yes' ) ) {
+		// Shortcodes
+		$this->shortcodes = require_once plugin_dir_path( __FILE__ ) . 'class-alg-wc-wholesale-pricing-shortcodes.php';
 
-			// Options
-			$this->is_children = ( 'yes' === get_option( 'alg_wc_wholesale_pricing_product_children', 'no' ) );
+		// Frontend
+		$this->frontend = require_once plugin_dir_path( __FILE__ ) . 'class-alg-wc-wholesale-pricing-frontend.php';
 
-			// Shortcodes
-			$this->shortcodes = require_once plugin_dir_path( __FILE__ ) . 'class-alg-wc-wholesale-pricing-shortcodes.php';
+		// Formula (discount table values)
+		$this->do_process_formula     = ( 'yes' === get_option( 'alg_wc_wholesale_pricing_process_formula', 'no' ) );
+		$this->product_id_for_formula = false;
+		if ( $this->do_process_formula ) {
+			add_shortcode( 'alg_wc_wh_pr_product_meta', array( $this, 'product_meta_shortcode' ) );
+			add_shortcode( 'alg_wc_ppq_product_meta',   array( $this, 'product_meta_shortcode' ) );
+		}
 
-			// Frontend
-			$this->frontend = require_once plugin_dir_path( __FILE__ ) . 'class-alg-wc-wholesale-pricing-frontend.php';
+		// Per product settings
+		require_once plugin_dir_path( __FILE__ ) . 'settings/class-alg-wc-wholesale-pricing-settings-per-item.php';
+		if ( 'yes' === get_option( 'alg_wc_wholesale_pricing_per_product_enabled', 'yes' ) ) {
+			require_once plugin_dir_path( __FILE__ ) . 'settings/class-alg-wc-wholesale-pricing-settings-per-product.php';
+		}
 
-			// Formula (discount table values)
-			$this->do_process_formula     = ( 'yes' === get_option( 'alg_wc_wholesale_pricing_process_formula', 'no' ) );
-			$this->product_id_for_formula = false;
-			if ( $this->do_process_formula ) {
-				add_shortcode( 'alg_wc_wh_pr_product_meta', array( $this, 'product_meta_shortcode' ) );
-				add_shortcode( 'alg_wc_ppq_product_meta',   array( $this, 'product_meta_shortcode' ) );
-			}
+		// Hooks
+		require_once plugin_dir_path( __FILE__ ) . 'class-alg-wc-wholesale-pricing-hooks.php';
 
-			// Per product settings
-			require_once plugin_dir_path( __FILE__ ) . 'settings/class-alg-wc-wholesale-pricing-settings-per-item.php';
-			if ( 'yes' === get_option( 'alg_wc_wholesale_pricing_per_product_enabled', 'yes' ) ) {
-				require_once plugin_dir_path( __FILE__ ) . 'settings/class-alg-wc-wholesale-pricing-settings-per-product.php';
-			}
+		// "Lumise - Product Designer Tool" plugin compatibility
+		if ( 'yes' === get_option( 'alg_wc_wholesale_pricing_lumise_enabled', 'no' ) ) {
+			add_filter(
+				'alg_wc_wholesale_pricing_calculate_totals_product_id',
+				array( $this, 'lumise_calculate_totals_product_id' ),
+				10,
+				2
+			);
+		}
 
-			// Hooks
-			require_once plugin_dir_path( __FILE__ ) . 'class-alg-wc-wholesale-pricing-hooks.php';
-
-			// Compatibility
-			if ( 'yes' === get_option( 'alg_wc_wholesale_pricing_lumise_enabled', 'no' ) ) {
-				add_filter( 'alg_wc_wholesale_pricing_get_item_product_id',         array( $this, 'lumise_get_item_product_id' ), 10, 2 );
-				add_filter( 'alg_wc_wholesale_pricing_calculate_totals_product_id', array( $this, 'lumise_calculate_totals_product_id' ), 10, 2 );
-			}
-
-			// Admin stuff
-			if ( is_admin() ) {
-				require_once plugin_dir_path( __FILE__ ) . 'class-alg-wc-wholesale-pricing-admin.php';
-			}
-
+		// Admin stuff
+		if ( is_admin() ) {
+			require_once plugin_dir_path( __FILE__ ) . 'class-alg-wc-wholesale-pricing-admin.php';
 		}
 
 		// Admin scripts
@@ -134,16 +120,22 @@ class Alg_WC_Wholesale_Pricing_Core {
 	/**
 	 * admin_scripts.
 	 *
-	 * @version 2.3.0
+	 * @version 4.1.0
 	 * @since   2.3.0
 	 */
 	function admin_scripts( $hook ) {
-		if ( 'woocommerce_page_wc-settings' != $hook || ! isset( $_GET['tab'] ) || 'alg_wc_wholesale_pricing' != $_GET['tab'] || ! apply_filters( 'alg_wc_wholesale_pricing_settings', true ) ) {
+		if (
+			'woocommerce_page_wc-settings' !== $hook ||
+			! isset( $_GET['tab'] ) || // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			'alg_wc_wholesale_pricing' !== $_GET['tab'] || // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			! apply_filters( 'alg_wc_wholesale_pricing_settings', true )
+		) {
 			return;
 		}
 		$min_suffix = ( defined( 'WP_DEBUG' ) && true === WP_DEBUG ? '' : '.min' );
-		wp_enqueue_script( 'alg-wc-wholesale-pricing-admin',
-			trailingslashit( alg_wc_wholesale_pricing()->plugin_url() ) . 'includes/js/alg-wc-wholesale-pricing-admin' . $min_suffix . '.js',
+		wp_enqueue_script(
+			'alg-wc-wholesale-pricing-admin',
+			alg_wc_wholesale_pricing()->plugin_url() . '/assets/js/alg-wc-wholesale-pricing-admin' . $min_suffix . '.js',
 			array( 'jquery' ),
 			alg_wc_wholesale_pricing()->version,
 			true
@@ -157,7 +149,11 @@ class Alg_WC_Wholesale_Pricing_Core {
 	 * @since   2.1.0
 	 */
 	function lumise_get_variation_id( $item ) {
-		if ( isset( $item['lumise_data'] ) && isset( $item['lumise_data']['product_id'] ) && false !== strpos( $item['lumise_data']['product_id'], 'variable:' ) ) {
+		if (
+			isset( $item['lumise_data'] ) &&
+			isset( $item['lumise_data']['product_id'] ) &&
+			false !== strpos( $item['lumise_data']['product_id'], 'variable:' )
+		) {
 			$variation_id = explode( ':', $item['lumise_data']['product_id'] );
 			if ( 2 == count( $variation_id ) ) {
 				return $variation_id[1];
@@ -167,36 +163,32 @@ class Alg_WC_Wholesale_Pricing_Core {
 	}
 
 	/**
-	 * lumise_get_item_product_id.
-	 *
-	 * @version 2.1.0
-	 * @since   2.1.0
-	 */
-	function lumise_get_item_product_id( $product_id, $item ) {
-		return ( $this->is_children && 0 != ( $variation_id = $this->lumise_get_variation_id( $item ) ) ? $variation_id : $product_id );
-	}
-
-	/**
 	 * lumise_calculate_totals_product_id.
 	 *
 	 * @version 2.1.0
 	 * @since   2.1.0
 	 */
 	function lumise_calculate_totals_product_id( $product_id, $item ) {
-		return ( 0 != ( $variation_id = $this->lumise_get_variation_id( $item ) ) ? $variation_id : $product_id );
+		return (
+			0 != ( $variation_id = $this->lumise_get_variation_id( $item ) ) ?
+			$variation_id :
+			$product_id
+		);
 	}
 
 	/**
 	 * product_meta_shortcode.
 	 *
-	 * @version 1.4.0
+	 * @version 4.1.0
 	 * @since   1.4.0
+	 *
+	 * @todo    (v4.1.0) replace `wp_kses_post()` with, e.g., `floatval()`?
 	 */
 	function product_meta_shortcode( $atts, $content = '' ) {
 		return (
 			empty( $atts['key'] ) || empty( $this->product_id_for_formula ) ?
 			0 :
-			get_post_meta( $this->product_id_for_formula, $atts['key'], true )
+			wp_kses_post( get_post_meta( $this->product_id_for_formula, $atts['key'], true ) )
 		);
 	}
 
@@ -235,32 +227,48 @@ class Alg_WC_Wholesale_Pricing_Core {
 	 * @since   1.0.0
 	 */
 	function get_total_quantity( $cart, $item ) {
-		$qty = ( 'yes' === get_option( 'alg_wc_wholesale_pricing_use_total_cart_quantity', 'no' ) ? $cart->cart_contents_count : $item['quantity'] );
+		$qty = (
+			'yes' === get_option( 'alg_wc_wholesale_pricing_use_total_cart_quantity', 'no' ) ?
+			$cart->cart_contents_count :
+			$item['quantity']
+		);
 		return apply_filters( 'alg_wc_wholesale_pricing_get_total_quantity', $qty, $cart, $item );
 	}
 
 	/**
 	 * get_item_product_id.
 	 *
-	 * @version 2.1.0
+	 * @version 4.1.0
 	 * @since   2.0.0
 	 */
 	function get_item_product_id( $item ) {
-		$product_id = ( $this->is_children && ! empty( $item['variation_id'] ) ? $item['variation_id'] : $item['product_id'] );
-		return apply_filters( 'alg_wc_wholesale_pricing_get_item_product_id', $product_id, $item );
+		return apply_filters(
+			'alg_wc_wholesale_pricing_get_item_product_id',
+			$item['product_id'],
+			$item
+		);
 	}
 
 	/**
 	 * get_product_id.
 	 *
-	 * @version 2.0.0
+	 * @version 4.1.0
 	 * @since   2.0.0
 	 */
 	function get_product_id( $product ) {
 		if ( ! $product ) {
 			return false;
 		}
-		return ( $this->is_children || 0 == $product->get_parent_id() ? $product->get_id() : $product->get_parent_id() );
+		$product_id = (
+			0 == $product->get_parent_id() ?
+			$product->get_id() :
+			$product->get_parent_id()
+		);
+		return apply_filters(
+			'alg_wc_wholesale_pricing_get_product_id',
+			$product_id,
+			$product
+		);
 	}
 
 	/**
@@ -381,7 +389,11 @@ class Alg_WC_Wholesale_Pricing_Core {
 	 * @todo    (dev) cache results
 	 */
 	function is_enabled( $product_id ) {
-		return ( $this->is_enabled_per_product( $product_id ) || $this->is_enabled_per_term( $product_id ) || $this->is_enabled_all_products( $product_id ) );
+		return (
+			$this->is_enabled_per_product( $product_id ) ||
+			$this->is_enabled_per_term( $product_id ) ||
+			$this->is_enabled_all_products( $product_id )
+		);
 	}
 
 	/**
@@ -412,19 +424,21 @@ class Alg_WC_Wholesale_Pricing_Core {
 	/**
 	 * is_enabled_per_product.
 	 *
-	 * @version 3.4.0
+	 * @version 4.1.0
 	 * @since   1.0.0
 	 *
-	 * @todo    (dev) `$this->is_children`: `... && ( $children = get_children( $product_id ) ) && ! empty( $children )`
 	 * @todo    (dev) cache results
 	 */
 	function is_enabled_per_product( $product_id ) {
 		if ( 'yes' === get_option( 'alg_wc_wholesale_pricing_per_product_enabled', 'yes' ) ) {
-			return ( $this->is_children && ( $product = wc_get_product( $product_id ) ) && $product->is_type( 'variable' ) ? false :
-				(
-					( 'yes' === get_post_meta( $product_id, '_' . 'alg_wc_wholesale_pricing_per_product_enabled', true ) ) &&
-					$this->has_levels( 'per_product', $product_id )
-				)
+			$is_enabled = (
+				( 'yes' === get_post_meta( $product_id, '_' . 'alg_wc_wholesale_pricing_per_product_enabled', true ) ) &&
+				$this->has_levels( 'per_product', $product_id )
+			);
+			return apply_filters(
+				'alg_wc_wholesale_pricing_is_enabled_per_product',
+				$is_enabled,
+				$product_id
 			);
 		}
 		return false;
@@ -626,8 +640,13 @@ class Alg_WC_Wholesale_Pricing_Core {
 	 */
 	function get_user_roles_options() {
 		global $wp_roles;
-		$all_roles = array_merge( array( 'guest' => array( 'name' => __( 'Guest', 'wholesale-pricing-woocommerce' ), 'capabilities' => array() ) ),
-			apply_filters( 'editable_roles', ( isset( $wp_roles ) && is_object( $wp_roles ) ? $wp_roles->roles : array() ) ) );
+		$all_roles = array_merge(
+			array( 'guest' => array( 'name' => __( 'Guest', 'wholesale-pricing-woocommerce' ), 'capabilities' => array() ) ),
+			apply_filters(
+				'editable_roles', // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
+				( isset( $wp_roles ) && is_object( $wp_roles ) ? $wp_roles->roles : array() )
+			)
+		);
 		return wp_list_pluck( $all_roles, 'name' );
 	}
 

@@ -2,10 +2,10 @@
 /**
  * Product Price by Quantity for WooCommerce - Info Section Settings
  *
- * @version 4.0.0
+ * @version 4.1.0
  * @since   2.0.0
  *
- * @author  Algoritmika Ltd.
+ * @author  WPFactory
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -52,7 +52,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Info extends Alg_WC_Wholesale_Pricing_Se
 	/**
 	 * get_settings.
 	 *
-	 * @version 4.0.0
+	 * @version 4.1.0
 	 * @since   2.0.0
 	 *
 	 * @todo    (desc) `alg_wc_wholesale_pricing_info_on_single_product_hide_variable`: better desc?
@@ -75,26 +75,25 @@ class Alg_WC_Wholesale_Pricing_Settings_Info extends Alg_WC_Wholesale_Pricing_Se
 				'id'       => 'alg_wc_wholesale_pricing_info_cart_options',
 				'desc'     => __( 'Show discount pricing info in cart.', 'wholesale-pricing-woocommerce' ) . '<br>' .
 					$this->get_placeholders_desc( array(
-							'%qty%',
-							'%qty_total%',
-							'%old_price_single%',
-							'%old_price_total%',
-							'%new_price_single%',
-							'%new_price_total%',
-							'%discount_value%',
-							'%discount_percent%',
-							'%discount_single%',
-							'%discount_total%',
-							'%old_price_single_incl_tax%',
-							'%old_price_single_excl_tax%',
-							'%old_price_total_incl_tax%',
-							'%old_price_total_excl_tax%',
-							'%new_price_single_incl_tax%',
-							'%new_price_single_excl_tax%',
-							'%new_price_total_incl_tax%',
-							'%new_price_total_excl_tax%',
-						)
-					),
+						'%qty%',
+						'%qty_total%',
+						'%old_price_single%',
+						'%old_price_total%',
+						'%new_price_single%',
+						'%new_price_total%',
+						'%discount_value%',
+						'%discount_percent%',
+						'%discount_single%',
+						'%discount_total%',
+						'%old_price_single_incl_tax%',
+						'%old_price_single_excl_tax%',
+						'%old_price_total_incl_tax%',
+						'%old_price_total_excl_tax%',
+						'%new_price_single_incl_tax%',
+						'%new_price_single_excl_tax%',
+						'%new_price_total_incl_tax%',
+						'%new_price_total_excl_tax%',
+					) ),
 			),
 			array(
 				'title'    => __( 'Item price', 'wholesale-pricing-woocommerce' ),
@@ -107,7 +106,11 @@ class Alg_WC_Wholesale_Pricing_Settings_Info extends Alg_WC_Wholesale_Pricing_Se
 				'desc'     => __( 'Template', 'wholesale-pricing-woocommerce' ),
 				'id'       => 'alg_wc_wholesale_pricing_show_info_on_cart_format',
 				'default'  => '<del>%old_price_single%</del> %new_price_single%<br>' .
-					sprintf( __( 'You save: %s', 'wholesale-pricing-woocommerce' ), '<span style="color:red">%discount_percent%%</span>' ),
+					sprintf(
+						/* Translators: %s: Discount placeholder. */
+						__( 'You save: %s', 'wholesale-pricing-woocommerce' ),
+						'<span style="color:red">%discount_percent%%</span>'
+					),
 				'type'     => 'textarea',
 				'css'      => 'width:100%;',
 			),
@@ -126,7 +129,11 @@ class Alg_WC_Wholesale_Pricing_Settings_Info extends Alg_WC_Wholesale_Pricing_Se
 				'desc'     => __( 'Template', 'wholesale-pricing-woocommerce' ),
 				'id'       => 'alg_wc_wholesale_pricing_show_info_on_cart_format_subtotal',
 				'default'  => '<del>%old_price_total%</del> %new_price_total%<br>' .
-					sprintf( __( 'You save: %s', 'wholesale-pricing-woocommerce' ), '<span style="color:red">%discount_total%</span>' ),
+					sprintf(
+						/* Translators: %s: Discount placeholder. */
+						__( 'You save: %s', 'wholesale-pricing-woocommerce' ),
+						'<span style="color:red">%discount_total%</span>'
+					),
 				'type'     => 'textarea',
 				'css'      => 'width:100%;',
 			),
@@ -181,14 +188,16 @@ class Alg_WC_Wholesale_Pricing_Settings_Info extends Alg_WC_Wholesale_Pricing_Se
 				'type'     => 'title',
 				'id'       => 'alg_wc_wholesale_pricing_info_options',
 				'desc'     => __( 'Show discount pricing table on single product and shop pages.', 'wholesale-pricing-woocommerce' ) . '<br>' .
-					sprintf( __( 'You can also display product price by quantity info anywhere on your site with %s <a target="_blank" href="%s">shortcodes</a>.', 'wholesale-pricing-woocommerce' ),
+					sprintf(
+						/* Translators: %1$s: Shortcode list, %2$s: URL. */
+						__( 'You can also display product price by quantity info anywhere on your site with %1$s <a target="_blank" href="%2$s">shortcodes</a>.', 'wholesale-pricing-woocommerce' ),
 						'<code>' . implode( '</code>, <code>', array(
 							'[alg_wc_ppq_table]',
 							'[alg_wc_product_ppq_table]',
 							'[alg_wc_ppq_data]',
 							'[alg_wc_product_ppq_data]',
 						) ) . '</code>',
-						'https://wpfactory.com/item/wholesale-pricing-woocommerce/#shortcodes'
+						'https://wpfactory.com/item/wholesale-pricing-woocommerce/'
 					),
 			),
 			array(
@@ -225,8 +234,13 @@ class Alg_WC_Wholesale_Pricing_Settings_Info extends Alg_WC_Wholesale_Pricing_Se
 			),
 			array(
 				'desc'     => __( 'Template for <strong>non-variable products</strong>', 'wholesale-pricing-woocommerce' ) . '<br>' .
-					sprintf( __( 'E.g.: %s', 'wholesale-pricing-woocommerce' ),
-						'<code>' . esc_html( '[alg_wc_product_ppq_table table_format="vertical" heading_format="from %level_min_qty% pcs." price_row_format="%new_price_single%"]' ) . '</code>' ),
+					sprintf(
+						/* Translators: %s: Example. */
+						__( 'E.g.: %s', 'wholesale-pricing-woocommerce' ),
+						'<code>' .
+							esc_html( '[alg_wc_product_ppq_table table_format="vertical" heading_format="from %level_min_qty% pcs." price_row_format="%new_price_single%"]' ) .
+						'</code>'
+					),
 				'id'       => 'alg_wc_wholesale_pricing_info_on_single_product',
 				'default'  => '[alg_wc_product_ppq_table]',
 				'type'     => 'textarea',
@@ -234,8 +248,13 @@ class Alg_WC_Wholesale_Pricing_Settings_Info extends Alg_WC_Wholesale_Pricing_Se
 			),
 			array(
 				'desc'     => __( 'Template for <strong>variable products</strong>', 'wholesale-pricing-woocommerce' ) . '<br>' .
-					sprintf( __( 'E.g.: %s', 'wholesale-pricing-woocommerce' ),
-						'<code>' . esc_html( '[alg_wc_product_ppq_table table_format="vertical" heading_format="from %level_min_qty% pcs." price_row_format="%new_price_single%"]' ) . '</code>' ),
+					sprintf(
+						/* Translators: %s: Example. */
+						__( 'E.g.: %s', 'wholesale-pricing-woocommerce' ),
+						'<code>' .
+							esc_html( '[alg_wc_product_ppq_table table_format="vertical" heading_format="from %level_min_qty% pcs." price_row_format="%new_price_single%"]' ) .
+						'</code>'
+					),
 				'id'       => 'alg_wc_wholesale_pricing_info_on_single_product_variable',
 				'default'  => '',
 				'type'     => 'textarea',
@@ -243,9 +262,19 @@ class Alg_WC_Wholesale_Pricing_Settings_Info extends Alg_WC_Wholesale_Pricing_Se
 			),
 			array(
 				'desc'     => __( 'Template for <strong>variations</strong>', 'wholesale-pricing-woocommerce' ) . '<br>' .
-					sprintf( __( 'Available placeholders: %s.', 'wholesale-pricing-woocommerce' ), '<code>%variation_id%</code>' ) . '<br>' .
-					sprintf( __( 'E.g.: %s', 'wholesale-pricing-woocommerce' ),
-						'<code>' . esc_html( '[alg_wc_product_ppq_table product_id="%variation_id%" table_format="horizontal" price_row_format="<del>%old_price_single%</del> %new_price_single%"]' ) . '</code>' ),
+					sprintf(
+						/* Translators: %s: Placeholder list. */
+						__( 'Available placeholders: %s.', 'wholesale-pricing-woocommerce' ),
+						'<code>%variation_id%</code>'
+					) .
+					'<br>' .
+					sprintf(
+						/* Translators: %s: Example. */
+						__( 'E.g.: %s', 'wholesale-pricing-woocommerce' ),
+						'<code>' .
+							esc_html( '[alg_wc_product_ppq_table product_id="%variation_id%" table_format="horizontal" price_row_format="<del>%old_price_single%</del> %new_price_single%"]' ) .
+						'</code>'
+					),
 				'id'       => 'alg_wc_wholesale_pricing_info_on_single_product_variation',
 				'default'  => '[alg_wc_product_ppq_table product_id="%variation_id%"]',
 				'type'     => 'textarea',
@@ -292,8 +321,13 @@ class Alg_WC_Wholesale_Pricing_Settings_Info extends Alg_WC_Wholesale_Pricing_Se
 			),
 			array(
 				'desc'     => __( 'Template', 'wholesale-pricing-woocommerce' ) . '<br>' .
-					sprintf( __( 'E.g.: %s', 'wholesale-pricing-woocommerce' ),
-						'<code>' . esc_html( '[alg_wc_product_ppq_table table_format="vertical" heading_format="from %level_min_qty% pcs." price_row_format="%new_price_single%"]' ) . '</code>' ),
+					sprintf(
+						/* Translators: %s: Example. */
+						__( 'E.g.: %s', 'wholesale-pricing-woocommerce' ),
+						'<code>' .
+							esc_html( '[alg_wc_product_ppq_table table_format="vertical" heading_format="from %level_min_qty% pcs." price_row_format="%new_price_single%"]' ) .
+						'</code>'
+					),
 				'id'       => 'alg_wc_wholesale_pricing_info_loop',
 				'default'  => '[alg_wc_product_ppq_table]',
 				'type'     => 'textarea',
@@ -305,8 +339,12 @@ class Alg_WC_Wholesale_Pricing_Settings_Info extends Alg_WC_Wholesale_Pricing_Se
 			),
 			array(
 				'title'    => __( 'Replace Price', 'wholesale-pricing-woocommerce' ),
-				'desc'     => sprintf( __( 'Replace standard product price display (for example: %s) to a discounted one (for example: %s)', 'wholesale-pricing-woocommerce' ),
-					'<code>' . __( '$7,00', 'wholesale-pricing-woocommerce' ) . '</code>', '<code>' . __( 'From $5,00 for 10 pcs.', 'wholesale-pricing-woocommerce' ) . '</code>' ),
+				'desc'     => sprintf(
+					/* Translators: %1$s: Example, %2$s: Example. */
+					__( 'Replace standard product price display (for example: %1$s) to a discounted one (for example: %2$s)', 'wholesale-pricing-woocommerce' ),
+					'<code>' . __( '$7,00', 'wholesale-pricing-woocommerce' ) . '</code>',
+					'<code>' . __( 'From $5,00 for 10 pcs.', 'wholesale-pricing-woocommerce' ) . '</code>'
+				),
 				'type'     => 'title',
 				'id'       => 'alg_wc_wholesale_pricing_replace_price_options',
 			),

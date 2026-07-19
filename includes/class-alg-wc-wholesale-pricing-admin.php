@@ -2,10 +2,10 @@
 /**
  * Product Price by Quantity for WooCommerce - Admin Class
  *
- * @version 4.0.3
+ * @version 4.1.0
  * @since   2.6.2
  *
- * @author  Algoritmika Ltd.
+ * @author  WPFactory
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -99,23 +99,22 @@ class Alg_WC_Wholesale_Pricing_Admin {
 	/**
 	 * create_order_meta_box.
 	 *
-	 * @version 4.0.3
+	 * @version 4.1.0
 	 * @since   2.6.2
 	 *
 	 * @todo    (desc) better desc?
 	 */
 	function create_order_meta_box( $post_or_order ) {
 
-		if ( ! ( $order = wc_get_order( $post_or_order ) ) ) {
+		if (
+			! function_exists( 'get_current_screen' ) ||
+			! ( $current_screen = get_current_screen() ) ||
+			empty( $current_screen->id )
+		) {
 			return;
 		}
 
-		$button_text = esc_html__( 'Recalculate', 'wholesale-pricing-woocommerce' );
-
 		if (
-			function_exists( 'get_current_screen' ) &&
-			( $current_screen = get_current_screen() ) &&
-			! empty( $current_screen->id ) &&
 			(
 				'shop_order' === $current_screen->id &&
 				! empty( $current_screen->action ) &&
@@ -123,52 +122,57 @@ class Alg_WC_Wholesale_Pricing_Admin {
 			) ||
 			(
 				'woocommerce_page_wc-orders' === $current_screen->id &&
-				! empty( $_GET['action'] ) &&
-				'new' === sanitize_text_field( wp_unslash( $_GET['action'] ) )
+				! empty( $_GET['action'] ) && // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				'new' === sanitize_text_field( wp_unslash( $_GET['action'] ) ) // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			)
 		) {
 
 			// New order (button disabled)
-			$notice = esc_attr__( 'Create the order first.', 'wholesale-pricing-woocommerce' );
-			$button = (
-				'<button' .
-					' type="button"' .
-					' class="button"' .
-					' title="' . $notice . '"' .
-					' disabled' .
-				'>' .
-					$button_text .
-				'</button>'
-			);
+			?>
+			<p>
+				<button
+					type="button"
+					class="button"
+					title="<?php esc_attr_e( 'Create the order first.', 'wholesale-pricing-woocommerce' ); ?>"
+					disabled
+				>
+					<?php esc_html_e( 'Recalculate', 'wholesale-pricing-woocommerce' ); ?>
+				</button>
+			</p>
+			<?php
 
 		} else {
 
 			// Edit order
-			$confirmation = (
-				'yes' === get_option( 'alg_wc_wholesale_pricing_admin_recalculate_order_confirm', 'yes' ) ?
-				' onclick="return confirm(\'' .
-					__( 'There is no undo for this action. Are you sure?', 'wholesale-pricing-woocommerce' ) .
-				'\');"' :
-				''
-			);
+			if ( ! ( $order = wc_get_order( $post_or_order ) ) ) {
+				return;
+			}
+
+			$do_require_confirmation = ( 'yes' === get_option( 'alg_wc_wholesale_pricing_admin_recalculate_order_confirm', 'yes' ) );
+			if ( $do_require_confirmation ) {
+				$confirmation = __( 'There is no undo for this action. Are you sure?', 'wholesale-pricing-woocommerce' );
+			}
+
 			$url = add_query_arg( array(
 				'alg_wc_wholesale_pricing_recalculate_order_id' => $order->get_id(),
 				'_wpnonce_alg_wc_wholesale_pricing'             => wp_create_nonce( 'recalculate' ),
 			) );
-			$button = (
-				'<a' .
-					' href="' . esc_url( $url ) . '"' .
-					' class="button"' .
-					$confirmation .
-				'>' .
-					$button_text .
-				'</a>'
-			);
+
+			?>
+			<p>
+				<a
+					href="<?php echo esc_url( $url ); ?>"
+					class="button"
+					<?php if ( $do_require_confirmation ) { ?>
+						onclick="return confirm('<?php echo esc_js( $confirmation ); ?>');"
+					<?php } ?>
+				>
+					<?php esc_html_e( 'Recalculate', 'wholesale-pricing-woocommerce' ); ?>
+				</a>
+			</p>
+			<?php
 
 		}
-
-		// Output
-		echo "<p>{$button}</p>";
 
 	}
 

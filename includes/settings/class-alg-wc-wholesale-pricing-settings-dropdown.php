@@ -5,7 +5,7 @@
  * @version 4.0.0
  * @since   2.4.2
  *
- * @author  Algoritmika Ltd.
+ * @author  WPFactory
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -85,31 +85,59 @@ class Alg_WC_Wholesale_Pricing_Settings_Dropdown extends Alg_WC_Wholesale_Pricin
 			),
 			array(
 				'title'    => __( 'Dropdown class', 'wholesale-pricing-woocommerce' ),
-				'desc_tip' => sprintf( __( 'HTML class for the %s element.', 'wholesale-pricing-woocommerce' ), '`select`' ),
+				'desc_tip' => sprintf(
+					/* Translators: %s: "select". */
+					__( 'HTML class for the %s element.', 'wholesale-pricing-woocommerce' ),
+					'`select`'
+				),
 				'id'       => 'alg_wc_wholesale_pricing_dropdown_class',
 				'default'  => 'qty',
 				'type'     => 'text',
 			),
 			array(
 				'title'    => __( 'Dropdown style', 'wholesale-pricing-woocommerce' ),
-				'desc_tip' => sprintf( __( 'HTML style for the %s element.', 'wholesale-pricing-woocommerce' ), '`select`' ),
-				'desc'     => sprintf( __( 'E.g.: %s', 'wholesale-pricing-woocommerce' ), '<code>min-width:100px;</code>' ),
+				'desc_tip' => sprintf(
+					/* Translators: %s: "select". */
+					__( 'HTML style for the %s element.', 'wholesale-pricing-woocommerce' ),
+					'`select`'
+				),
+				'desc'     => sprintf(
+					/* Translators: %s: Example. */
+					__( 'E.g.: %s', 'wholesale-pricing-woocommerce' ),
+					'<code>min-width:100px;</code>'
+				),
 				'id'       => 'alg_wc_wholesale_pricing_dropdown_style',
 				'default'  => '',
 				'type'     => 'text',
 			),
 			array(
 				'title'    => __( 'HTML before', 'wholesale-pricing-woocommerce' ),
-				'desc_tip' => sprintf( __( 'Optional HTML outputted before the %s element.', 'wholesale-pricing-woocommerce' ), '`select`' ),
-				'desc'     => sprintf( __( 'E.g.: %s', 'wholesale-pricing-woocommerce' ), '<code>' . esc_html( '<table><tbody><tr><th>Quantity</th><td>' ) . '</code>' ),
+				'desc_tip' => sprintf(
+					/* Translators: %s: "select". */
+					__( 'Optional HTML outputted before the %s element.', 'wholesale-pricing-woocommerce' ),
+					'`select`'
+				),
+				'desc'     => sprintf(
+					/* Translators: %s: Example. */
+					__( 'E.g.: %s', 'wholesale-pricing-woocommerce' ),
+					'<code>' . esc_html( '<table><tbody><tr><th>Quantity</th><td>' ) . '</code>'
+				),
 				'id'       => 'alg_wc_wholesale_pricing_dropdown_before',
 				'default'  => '',
 				'type'     => 'textarea',
 			),
 			array(
 				'title'    => __( 'HTML after', 'wholesale-pricing-woocommerce' ),
-				'desc_tip' => sprintf( __( 'Optional HTML outputted after the %s element.', 'wholesale-pricing-woocommerce' ), '`select`' ),
-				'desc'     => sprintf( __( 'E.g.: %s', 'wholesale-pricing-woocommerce' ), '<code>' . esc_html( '</td></tr></tbody></table>' ) . '</code>' ),
+				'desc_tip' => sprintf(
+					/* Translators: %s: "select". */
+					__( 'Optional HTML outputted after the %s element.', 'wholesale-pricing-woocommerce' ),
+					'`select`'
+				),
+				'desc'     => sprintf(
+					/* Translators: %s: Example. */
+					__( 'E.g.: %s', 'wholesale-pricing-woocommerce' ),
+					'<code>' . esc_html( '</td></tr></tbody></table>' ) . '</code>'
+				),
 				'id'       => 'alg_wc_wholesale_pricing_dropdown_after',
 				'default'  => '',
 				'type'     => 'textarea',
@@ -125,7 +153,11 @@ class Alg_WC_Wholesale_Pricing_Settings_Dropdown extends Alg_WC_Wholesale_Pricin
 			array(
 				'title'    => __( 'Custom dropdown values', 'wholesale-pricing-woocommerce' ),
 				'desc_tip' => __( 'By default, the plugin will automatically add product\'s level min quantities to the dropdown, however, you can override it with your own values here.', 'wholesale-pricing-woocommerce' ),
-				'desc'     => sprintf( __( 'Comma-separated list of quantities, e.g.: %s', 'wholesale-pricing-woocommerce' ), '<code>1,2,3,5,10,15,20</code>' ),
+				'desc'     => sprintf(
+					/* Translators: %s: Example. */
+					__( 'Comma-separated list of quantities, e.g.: %s', 'wholesale-pricing-woocommerce' ),
+					'<code>1,2,3,5,10,15,20</code>'
+				),
 				'id'       => 'alg_wc_wholesale_pricing_dropdown_custom_values',
 				'default'  => '',
 				'type'     => 'text',

@@ -5,7 +5,7 @@
  * @version 4.0.6
  * @since   2.0.0
  *
- * @author  Algoritmika Ltd.
+ * @author  WPFactory
  */
 
 defined( 'ABSPATH' ) || exit;

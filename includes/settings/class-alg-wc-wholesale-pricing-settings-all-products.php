@@ -2,10 +2,10 @@
 /**
  * Product Price by Quantity for WooCommerce - All Products Section Settings
  *
- * @version 3.0.0
+ * @version 4.1.0
  * @since   1.2.0
  *
- * @author  Algoritmika Ltd.
+ * @author  WPFactory
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -29,7 +29,7 @@ class Alg_WC_Wholesale_Pricing_Settings_All_Products extends Alg_WC_Wholesale_Pr
 	/**
 	 * get_settings.
 	 *
-	 * @version 3.0.0
+	 * @version 4.1.0
 	 * @since   1.2.0
 	 *
 	 * @todo    (dev) save settings (levels data?) in array, i.e., `alg_wc_wholesale_pricing_level_min_qty[$i]` etc. (and same for "user roles" options, and "per product" and "per term" meta?)
@@ -153,7 +153,7 @@ class Alg_WC_Wholesale_Pricing_Settings_All_Products extends Alg_WC_Wholesale_Pr
 				'class'             => 'wc-product-search',
 				'options'           => $products['include'],
 				'custom_attributes' => array(
-					'data-placeholder' => esc_attr__( 'Search for a product&hellip;', 'woocommerce' ), // phpcs:ignore WordPress.WP.I18n.TextDomainMismatch
+					'data-placeholder' => esc_attr__( 'Search for a product&hellip;', 'wholesale-pricing-woocommerce' ),
 					'data-action'      => 'woocommerce_json_search_products_and_variations',
 				),
 			),
@@ -165,7 +165,7 @@ class Alg_WC_Wholesale_Pricing_Settings_All_Products extends Alg_WC_Wholesale_Pr
 				'class'             => 'wc-product-search',
 				'options'           => $products['exclude'],
 				'custom_attributes' => array(
-					'data-placeholder' => esc_attr__( 'Search for a product&hellip;', 'woocommerce' ), // phpcs:ignore WordPress.WP.I18n.TextDomainMismatch
+					'data-placeholder' => esc_attr__( 'Search for a product&hellip;', 'wholesale-pricing-woocommerce' ),
 					'data-action'      => 'woocommerce_json_search_products_and_variations',
 				),
 			),

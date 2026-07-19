@@ -2,10 +2,10 @@
 /**
  * Product Price by Quantity for WooCommerce - General Section Settings
  *
- * @version 4.0.0
+ * @version 4.1.0
  * @since   1.0.0
  *
- * @author  Algoritmika Ltd.
+ * @author  WPFactory
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -29,7 +29,7 @@ class Alg_WC_Wholesale_Pricing_Settings_General extends Alg_WC_Wholesale_Pricing
 	/**
 	 * get_settings.
 	 *
-	 * @version 4.0.0
+	 * @version 4.1.0
 	 * @since   1.0.0
 	 *
 	 * @todo    (desc) `alg_wc_wholesale_pricing_add_order_discount`: better desc
@@ -43,26 +43,6 @@ class Alg_WC_Wholesale_Pricing_Settings_General extends Alg_WC_Wholesale_Pricing
 	 * @todo    (desc) `alg_wc_wholesale_pricing_enable_options`: better description?
 	 */
 	function get_settings() {
-
-		$main_settings = array(
-			array(
-				'title'    => __( 'Product Price by Quantity', 'wholesale-pricing-woocommerce' ),
-				'type'     => 'title',
-				'id'       => 'alg_wc_wholesale_pricing_options',
-			),
-			array(
-				'title'    => __( 'Product Price by Quantity', 'wholesale-pricing-woocommerce' ),
-				'desc'     => '<strong>' . __( 'Enable plugin', 'wholesale-pricing-woocommerce' ) . '</strong>',
-				'id'       => 'alg_wc_wholesale_pricing_enabled',
-				'default'  => 'yes',
-				'type'     => 'checkbox',
-			),
-			array(
-				'type'     => 'sectionend',
-				'id'       => 'alg_wc_wholesale_pricing_options',
-			),
-		);
-
 		$enable_settings = array(
 			array(
 				'title'    => __( 'Settings', 'wholesale-pricing-woocommerce' ),
@@ -73,9 +53,13 @@ class Alg_WC_Wholesale_Pricing_Settings_General extends Alg_WC_Wholesale_Pricing
 			array(
 				'title'    => __( 'All products', 'wholesale-pricing-woocommerce' ),
 				'desc'     => __( 'Enable', 'wholesale-pricing-woocommerce' ),
-				'desc_tip' => sprintf( __( 'Settings are in the %s section.', 'wholesale-pricing-woocommerce' ),
+				'desc_tip' => sprintf(
+					/* Translators: %s: "All Products" section link. */
+					__( 'Settings are in the %s section.', 'wholesale-pricing-woocommerce' ),
 					'<a href="' . admin_url( 'admin.php?page=wc-settings&tab=alg_wc_wholesale_pricing&section=all_products' ) . '">' .
-						__( 'All Products', 'wholesale-pricing-woocommerce' ) . '</a>' ),
+						__( 'All Products', 'wholesale-pricing-woocommerce' ) .
+					'</a>'
+				),
 				'id'       => 'alg_wc_wholesale_pricing_all_products_enabled',
 				'default'  => 'yes',
 				'type'     => 'checkbox',
@@ -139,9 +123,14 @@ class Alg_WC_Wholesale_Pricing_Settings_General extends Alg_WC_Wholesale_Pricing
 			),
 			array(
 				'title'    => __( 'Rounding', 'wholesale-pricing-woocommerce' ),
-				'desc_tip' => sprintf( __( 'Round calculated product wholesale price according to the "%s" option (i.e., %s).', 'wholesale-pricing-woocommerce' ),
-					'<a target="_blank" href="' . admin_url( 'admin.php?page=wc-settings' ) . '">' . __( 'Number of decimals', 'wholesale-pricing-woocommerce' ) . '</a>',
-					'<code>' . get_option( 'woocommerce_price_num_decimals', 2 ) . '</code>' ),
+				'desc_tip' => sprintf(
+					/* Translators: %1$s: "Number of decimals" option link, %2$s: "Number of decimals" option value. */
+					__( 'Round calculated product wholesale price according to the "%1$s" option (i.e., %2$s).', 'wholesale-pricing-woocommerce' ),
+					'<a target="_blank" href="' . admin_url( 'admin.php?page=wc-settings' ) . '">' .
+						__( 'Number of decimals', 'wholesale-pricing-woocommerce' ) .
+					'</a>',
+					'<code>' . get_option( 'woocommerce_price_num_decimals', 2 ) . '</code>'
+				),
 				'desc'     => __( 'Enable', 'wholesale-pricing-woocommerce' ),
 				'id'       => 'alg_wc_wholesale_pricing_round',
 				'default'  => 'yes',
@@ -221,7 +210,10 @@ class Alg_WC_Wholesale_Pricing_Settings_General extends Alg_WC_Wholesale_Pricing
 			),
 		);
 
-		return array_merge( $main_settings, $enable_settings, $general_settings );
+		return array_merge(
+			$enable_settings,
+			$general_settings
+		);
 	}
 
 }

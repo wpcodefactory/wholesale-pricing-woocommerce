@@ -1,10 +1,10 @@
 /**
- * alg-wc-wholesale-pricing-price-by-qty-display.js
+ * Product Price by Quantity for WooCommerce - Price by Qty Display JS
  *
  * @version 3.2.1
  * @since   1.3.0
  *
- * @author  Algoritmika Ltd.
+ * @author  WPFactory
  */
 
 jQuery( document ).ready( function () {

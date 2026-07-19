@@ -5,7 +5,7 @@
  * @version 4.0.0
  * @since   1.0.0
  *
- * @author  Algoritmika Ltd.
+ * @author  WPFactory
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -48,25 +48,32 @@ class Alg_WC_Settings_Wholesale_Pricing extends WC_Settings_Page {
 	 */
 	function get_settings() {
 		global $current_section;
-		return array_merge( apply_filters( 'woocommerce_get_settings_' . $this->id . '_' . $current_section, array() ), ( 'reports' === $current_section ? array() : array(
-			array(
-				'title'     => __( 'Reset Settings', 'wholesale-pricing-woocommerce' ),
-				'type'      => 'title',
-				'id'        => $this->id . '_' . $current_section . '_reset_options',
-			),
-			array(
-				'title'     => __( 'Reset section settings', 'wholesale-pricing-woocommerce' ),
-				'desc'      => '<strong>' . __( 'Reset', 'wholesale-pricing-woocommerce' ) . '</strong>',
-				'desc_tip'  => __( 'Check the box and save changes to reset.', 'wholesale-pricing-woocommerce' ),
-				'id'        => $this->id . '_' . $current_section . '_reset',
-				'default'   => 'no',
-				'type'      => 'checkbox',
-			),
-			array(
-				'type'      => 'sectionend',
-				'id'        => $this->id . '_' . $current_section . '_reset_options',
-			),
-		) ) );
+		return array_merge(
+			apply_filters( 'woocommerce_get_settings_' . $this->id . '_' . $current_section, array() ), // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
+			(
+				'reports' === $current_section ?
+				array() :
+				array(
+					array(
+						'title'     => __( 'Reset Settings', 'wholesale-pricing-woocommerce' ),
+						'type'      => 'title',
+						'id'        => $this->id . '_' . $current_section . '_reset_options',
+					),
+					array(
+						'title'     => __( 'Reset section settings', 'wholesale-pricing-woocommerce' ),
+						'desc'      => '<strong>' . __( 'Reset', 'wholesale-pricing-woocommerce' ) . '</strong>',
+						'desc_tip'  => __( 'Check the box and save changes to reset.', 'wholesale-pricing-woocommerce' ),
+						'id'        => $this->id . '_' . $current_section . '_reset',
+						'default'   => 'no',
+						'type'      => 'checkbox',
+					),
+					array(
+						'type'      => 'sectionend',
+						'id'        => $this->id . '_' . $current_section . '_reset_options',
+					),
+				)
+			)
+		);
 	}
 
 	/**

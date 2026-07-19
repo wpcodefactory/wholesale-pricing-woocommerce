@@ -2,10 +2,10 @@
 /**
  * Product Price by Quantity for WooCommerce - Shortcodes
  *
- * @version 4.0.4
+ * @version 4.1.0
  * @since   1.0.0
  *
- * @author  Algoritmika Ltd.
+ * @author  WPFactory
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -31,19 +31,23 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	 * @todo    (dev) `[alg_wc_term_wholesale_pricing_table]` and `[alg_wc_term_wholesale_pricing_data]`
 	 */
 	function __construct() {
-
+		// Pricing table shortcode
 		add_shortcode( 'alg_wc_wholesale_pricing_table', array( $this, 'wholesale_pricing_table' ) );
 		add_shortcode( 'alg_wc_ppq_table',               array( $this, 'wholesale_pricing_table' ) );
 
+		// Product pricing table shortcode
 		add_shortcode( 'alg_wc_product_wholesale_pricing_table', array( $this, 'product_wholesale_pricing_table' ) );
 		add_shortcode( 'alg_wc_product_ppq_table',               array( $this, 'product_wholesale_pricing_table' ) );
 
+		// Pricing data shortcode
 		add_shortcode( 'alg_wc_wholesale_pricing_data', array( $this, 'wholesale_pricing_data' ) );
 		add_shortcode( 'alg_wc_ppq_data',               array( $this, 'wholesale_pricing_data' ) );
 
+		// Product pricing data shortcode
 		add_shortcode( 'alg_wc_product_wholesale_pricing_data', array( $this, 'product_wholesale_pricing_data' ) );
 		add_shortcode( 'alg_wc_product_ppq_data',               array( $this, 'product_wholesale_pricing_data' ) );
 
+		// Translation shortcode
 		add_shortcode( 'alg_wc_ppq_translate', array( $this, 'translate' ) );
 	}
 
@@ -58,6 +62,23 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 			$this->core = alg_wc_wholesale_pricing()->core;
 		}
 		return $this->core;
+	}
+
+	/**
+	 * get_allowed_shortcodes_html.
+	 *
+	 * @version 4.1.0
+	 * @since   4.1.0
+	 */
+	function get_allowed_shortcodes_html() {
+		$allowed_html = array_merge(
+			wp_kses_allowed_html( 'post' ),
+			array(
+				'bdi' => array(),
+			)
+		);
+		$allowed_html['span']['translate'] = true;
+		return $allowed_html;
 	}
 
 	/**
@@ -119,7 +140,7 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	/**
 	 * wholesale_pricing_table (global only).
 	 *
-	 * @version 4.0.4
+	 * @version 4.1.0
 	 * @since   1.0.0
 	 *
 	 * @todo    (dev) `shortcode_atts`: `alg_wc_wholesale_pricing_table` to `alg_wc_ppq_table`?
@@ -194,13 +215,16 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 		if ( ! empty( $table_rows ) ) {
 			return (
 				wp_kses_post( $atts['before'] ) .
-				$this->get_table_html(
-					$table_rows,
-						array(
-						'table_class'        => 'alg_wc_ppq_table alg_wc_wholesale_pricing_table',
-						'columns_styles'     => $columns_styles,
-						'table_heading_type' => $atts['table_format'],
-					)
+				wp_kses(
+					$this->get_table_html(
+						$table_rows,
+							array(
+							'table_class'        => 'alg_wc_ppq_table alg_wc_wholesale_pricing_table',
+							'columns_styles'     => $columns_styles,
+							'table_heading_type' => $atts['table_format'],
+						)
+					),
+					$this->get_allowed_shortcodes_html()
 				) .
 				wp_kses_post( $atts['after'] )
 			);
@@ -213,7 +237,7 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	/**
 	 * product_wholesale_pricing_table.
 	 *
-	 * @version 4.0.4
+	 * @version 4.1.0
 	 * @since   1.0.0
 	 *
 	 * @todo    (dev) `use_variation`
@@ -462,25 +486,28 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 		if ( ! empty( $table_rows ) ) {
 			return (
 				wp_kses_post( $atts['before'] ) .
-				$this->get_table_html(
-					$table_rows,
-					array(
-						'table_class'        => implode(
-							' ',
-							array(
-								'alg_wc_product_ppq_table alg_wc_product_wholesale_pricing_table',
-								( 0 != $atts['product_id'] ? 'alg_wc_whpr_with_product_id' : 'alg_wc_whpr_no_product_id' ),
-								$atts['table_class']
-							)
-						),
-						'table_style'        => $atts['table_style'],
-						'columns_styles'     => $columns_styles,
-						'table_heading_type' => (
-							'' !== $atts['table_heading_type'] ?
-							$atts['table_heading_type'] :
-							$atts['table_format']
-						),
-					)
+				wp_kses(
+					$this->get_table_html(
+						$table_rows,
+						array(
+							'table_class'        => implode(
+								' ',
+								array(
+									'alg_wc_product_ppq_table alg_wc_product_wholesale_pricing_table',
+									( 0 != $atts['product_id'] ? 'alg_wc_whpr_with_product_id' : 'alg_wc_whpr_no_product_id' ),
+									$atts['table_class']
+								)
+							),
+							'table_style'        => $atts['table_style'],
+							'columns_styles'     => $columns_styles,
+							'table_heading_type' => (
+								'' !== $atts['table_heading_type'] ?
+								$atts['table_heading_type'] :
+								$atts['table_format']
+							),
+						)
+					),
+					$this->get_allowed_shortcodes_html()
 				) .
 				wp_kses_post( $atts['after'] )
 			);
@@ -493,7 +520,7 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	/**
 	 * wholesale_pricing_data (global only).
 	 *
-	 * @version 4.0.4
+	 * @version 4.1.0
 	 * @since   1.1.2
 	 *
 	 * @todo    (dev) `shortcode_atts`: `alg_wc_wholesale_pricing_data` to `alg_wc_ppq_data`?
@@ -514,7 +541,10 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 			isset( $price_levels[ $level_num ][ $atts['field'] ] ) ?
 			(
 				wp_kses_post( $atts['before'] ) .
-				$price_levels[ $level_num ][ $atts['field'] ] .
+				wp_kses(
+					$price_levels[ $level_num ][ $atts['field'] ],
+					$this->get_allowed_shortcodes_html()
+				) .
 				wp_kses_post( $atts['after'] )
 			) :
 			''
@@ -525,7 +555,7 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 	/**
 	 * product_wholesale_pricing_data.
 	 *
-	 * @version 4.0.4
+	 * @version 4.1.0
 	 * @since   1.1.2
 	 *
 	 * @todo    (dev) `shortcode_atts`: `alg_wc_product_wholesale_pricing_data` to `alg_wc_product_ppq_data`?
@@ -605,7 +635,10 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 						isset( $price_levels[ $level_num ][ $atts['field'] ] ) ?
 						(
 							wp_kses_post( $atts['before'] ) .
-							$price_levels[ $level_num ][ $atts['field'] ] .
+							wp_kses(
+								$price_levels[ $level_num ][ $atts['field'] ],
+								$this->get_allowed_shortcodes_html()
+							) .
 							wp_kses_post( $atts['after'] )
 						) :
 						''
@@ -617,7 +650,10 @@ class Alg_WC_Wholesale_Pricing_Shortcodes {
 					$price = $this->get_product_price( $product, $type, $price_levels[ $level_num ]['discount'], $atts['hide_currency'], $atts['price_format'], $qty );
 					return (
 						wp_kses_post( $atts['before'] ) .
-						$price .
+						wp_kses(
+							$price,
+							$this->get_allowed_shortcodes_html()
+						) .
 						wp_kses_post( $atts['after'] )
 					);
 

@@ -2,10 +2,10 @@
 /**
  * Product Price by Quantity for WooCommerce - Per Item Settings
  *
- * @version 3.5.0
+ * @version 4.1.0
  * @since   2.0.0
  *
- * @author  Algoritmika Ltd.
+ * @author  WPFactory
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -22,6 +22,57 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Item {
 	 */
 	function __construct() {
 		return true;
+	}
+
+	/**
+	 * get_allowed_settings_html.
+	 *
+	 * @version 4.1.0
+	 * @since   4.1.0
+	 */
+	function get_allowed_settings_html() {
+		$allowed_html = array_merge(
+
+			wp_kses_allowed_html( 'post' ),
+
+			array(
+
+				'input' => array(
+					'type'        => true,
+					'id'          => true,
+					'name'        => true,
+					'style'       => true,
+					'class'       => true,
+					'value'       => true,
+					'min'         => true,
+					'max'         => true,
+					'step'        => true,
+					'placeholder' => true,
+				),
+
+				'select' => array(
+					'id'    => true,
+					'name'  => true,
+					'style' => true,
+				),
+
+				'option' => array(
+					'value'    => true,
+					'selected' => true,
+				),
+
+				'bdi' => array(),
+
+			)
+
+		);
+
+		$allowed_html['a']['onclick'] = true;
+
+		$allowed_html['span']['tabindex']  = true;
+		$allowed_html['span']['translate'] = true;
+
+		return $allowed_html;
 	}
 
 	/**

@@ -2,10 +2,10 @@
 /**
  * Product Price by Quantity for WooCommerce - Price Display by Qty Section Settings
  *
- * @version 3.7.1
+ * @version 4.1.0
  * @since   1.3.0
  *
- * @author  Algoritmika Ltd.
+ * @author  WPFactory
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -29,7 +29,7 @@ class Alg_WC_Wholesale_Pricing_Settings_Price_Display_By_Qty extends Alg_WC_Whol
 	/**
 	 * get_settings.
 	 *
-	 * @version 3.7.1
+	 * @version 4.1.0
 	 * @since   1.3.0
 	 *
 	 * @todo    (dev) Price identifier: store in array?
@@ -70,27 +70,38 @@ class Alg_WC_Wholesale_Pricing_Settings_Price_Display_By_Qty extends Alg_WC_Whol
 				'title'    => __( 'Template', 'wholesale-pricing-woocommerce' ),
 				'desc_tip' => __( 'Price display by quantity template for quantities with discount.', 'wholesale-pricing-woocommerce' ),
 				'desc'     => $this->get_placeholders_desc( array(
-						'%qty%',
-						'%old_price_single%',
-						'%old_price_total%',
-						'%new_price_single%',
-						'%new_price_total%',
-						'%discount_value%',
-						'%discount_percent%',
-						'%discount_single%',
-						'%discount_total%',
-						'%old_price_single_incl_tax%',
-						'%old_price_single_excl_tax%',
-						'%old_price_total_incl_tax%',
-						'%old_price_total_excl_tax%',
-						'%new_price_single_incl_tax%',
-						'%new_price_single_excl_tax%',
-						'%new_price_total_incl_tax%',
-						'%new_price_total_excl_tax%',
-					) ),
+					'%qty%',
+					'%old_price_single%',
+					'%old_price_total%',
+					'%new_price_single%',
+					'%new_price_total%',
+					'%discount_value%',
+					'%discount_percent%',
+					'%discount_single%',
+					'%discount_total%',
+					'%old_price_single_incl_tax%',
+					'%old_price_single_excl_tax%',
+					'%old_price_total_incl_tax%',
+					'%old_price_total_excl_tax%',
+					'%new_price_single_incl_tax%',
+					'%new_price_single_excl_tax%',
+					'%new_price_total_incl_tax%',
+					'%new_price_total_excl_tax%',
+				) ),
 				'id'       => 'alg_wc_wholesale_pricing_price_by_qty_display_template',
-				'default'  => sprintf( __( '%s for %s pcs.', 'wholesale-pricing-woocommerce' ), '<del>%old_price_total%</del> %new_price_total%', '%qty%' ) . ' ' .
-					sprintf( __( 'You save: %s', 'wholesale-pricing-woocommerce' ), '<span style="color:red">%discount_percent%%</span>' ),
+				'default'  => (
+					sprintf(
+						/* Translators: %1$s: Price placeholder, %2$s: Quantity placeholder. */
+						__( '%1$s for %2$s pcs.', 'wholesale-pricing-woocommerce' ),
+						'<del>%old_price_total%</del> %new_price_total%',
+						'%qty%'
+					) . ' ' .
+					sprintf(
+						/* Translators: %s: Discount placeholder. */
+						__( 'You save: %s', 'wholesale-pricing-woocommerce' ),
+						'<span style="color:red">%discount_percent%%</span>'
+					)
+				),
 				'type'     => 'textarea',
 				'css'      => 'width:100%;',
 			),
@@ -98,16 +109,21 @@ class Alg_WC_Wholesale_Pricing_Settings_Price_Display_By_Qty extends Alg_WC_Whol
 				'title'    => __( 'Template (no discount)', 'wholesale-pricing-woocommerce' ),
 				'desc_tip' => __( 'Price display by quantity template for quantities with no discount.', 'wholesale-pricing-woocommerce' ),
 				'desc'     => $this->get_placeholders_desc( array(
-						'%qty%',
-						'%old_price_single%',
-						'%old_price_total%',
-						'%old_price_single_incl_tax%',
-						'%old_price_single_excl_tax%',
-						'%old_price_total_incl_tax%',
-						'%old_price_total_excl_tax%',
-					) ),
+					'%qty%',
+					'%old_price_single%',
+					'%old_price_total%',
+					'%old_price_single_incl_tax%',
+					'%old_price_single_excl_tax%',
+					'%old_price_total_incl_tax%',
+					'%old_price_total_excl_tax%',
+				) ),
 				'id'       => 'alg_wc_wholesale_pricing_price_by_qty_display_template_zero',
-				'default'  => sprintf( __( '%s for %s pcs.', 'wholesale-pricing-woocommerce' ), '%old_price_total%', '%qty%' ),
+				'default'  => sprintf(
+					/* Translators: %1$s: Price placeholder, %2$s: Quantity placeholder. */
+					__( '%1$s for %2$s pcs.', 'wholesale-pricing-woocommerce' ),
+					'%old_price_total%',
+					'%qty%'
+				),
 				'type'     => 'textarea',
 				'css'      => 'width:100%;',
 			),
@@ -175,7 +191,9 @@ class Alg_WC_Wholesale_Pricing_Settings_Price_Display_By_Qty extends Alg_WC_Whol
 			),
 			array(
 				'title'    => __( 'Sticky Add To Cart Bar For WooCommerce', 'wholesale-pricing-woocommerce' ),
-				'desc_tip' => sprintf( __( '%s plugin compatibility.', 'wholesale-pricing-woocommerce' ),
+				'desc_tip' => sprintf(
+					/* Translators: %s: Plugin link. */
+					__( '%s plugin compatibility.', 'wholesale-pricing-woocommerce' ),
 					'<a href="https://wordpress.org/plugins/sticky-add-to-cart-bar-for-wc/" target="_blank">' .
 						__( 'Sticky Add To Cart Bar For WooCommerce', 'wholesale-pricing-woocommerce' ) .
 					'</a>'
