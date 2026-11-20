@@ -24,14 +24,42 @@ class Alg_WC_Wholesale_Pricing_Settings_Per_Product extends Alg_WC_Wholesale_Pri
 	 * @todo    (dev) admin actions: copy (and maybe reset) user role (same in global "User roles" settings)
 	 */
 	function __construct() {
-		add_action( 'add_meta_boxes',    array( $this, 'add_wholesale_pricing_metabox' ) );
-		add_action( 'save_post_product', array( $this, 'save_wholesale_pricing_meta_box' ), PHP_INT_MAX, 2 );
-		add_action( 'admin_init',        array( $this, 'admin_action_copy_variation' ) );
-		add_action( 'admin_init',        array( $this, 'admin_action_reset' ) );
+		// Meta box
+		add_action(
+			'add_meta_boxes',
+			array( $this, 'add_wholesale_pricing_metabox' )
+		);
+		add_action(
+			'save_post_product',
+			array( $this, 'save_wholesale_pricing_meta_box' ),
+			PHP_INT_MAX,
+			2
+		);
+
+		// Admin actions
+		add_action(
+			'admin_init',
+			array( $this, 'admin_action_copy_variation' )
+		);
+		add_action(
+			'admin_init',
+			array( $this, 'admin_action_reset' )
+		);
+
 		// WCFM
 		if ( 'yes' === get_option( 'alg_wc_wholesale_pricing_wcfm_enabled', 'no' ) ) {
-			add_action( 'after_wcfm_products_manage_tabs_content', array( $this, 'wcfm_wholesale_product_settings' ),        PHP_INT_MAX, 4 );
-			add_action( 'after_wcfm_products_manage_meta_save',    array( $this, 'wcfm_wholesale_product_settings_update' ), PHP_INT_MAX, 2 );
+			add_action(
+				'after_wcfm_products_manage_tabs_content',
+				array( $this, 'wcfm_wholesale_product_settings' ),
+				PHP_INT_MAX,
+				4
+			);
+			add_action(
+				'after_wcfm_products_manage_meta_save',
+				array( $this, 'wcfm_wholesale_product_settings_update' ),
+				PHP_INT_MAX,
+				2
+			);
 		}
 	}
 

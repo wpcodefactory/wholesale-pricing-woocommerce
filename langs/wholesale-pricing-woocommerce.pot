@@ -2,40 +2,35 @@
 # This file is distributed under the GNU General Public License v3.0.
 msgid ""
 msgstr ""
-"Project-Id-Version: Price by Quantity & Bulk Quantity Discounts for WooCommerce 4.1.0\n"
+"Project-Id-Version: wholesale-pricing-woocommerce 4.1.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wholesale-pricing-woocommerce\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-07-19T19:51:30+00:00\n"
+"POT-Creation-Date: 2026-11-20T19:27:56+01:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: wholesale-pricing-woocommerce\n"
 
 #. Plugin Name of the plugin
-#: wholesale-pricing-woocommerce.php
-msgid "Price by Quantity & Bulk Quantity Discounts for WooCommerce"
+msgid "Price by Quantity & Bulk Quantity Discounts for WooCommerce Pro"
 msgstr ""
 
 #. Plugin URI of the plugin
-#: wholesale-pricing-woocommerce.php
 msgid "https://wpfactory.com/item/wholesale-pricing-woocommerce/"
 msgstr ""
 
 #. Description of the plugin
-#: wholesale-pricing-woocommerce.php
 msgid "Set WooCommerce product prices depending on quantity in cart."
 msgstr ""
 
 #. Author of the plugin
-#: wholesale-pricing-woocommerce.php
 msgid "WPFactory"
 msgstr ""
 
 #. Author URI of the plugin
-#: wholesale-pricing-woocommerce.php
 msgid "https://wpfactory.com"
 msgstr ""
 
@@ -55,8 +50,8 @@ msgstr ""
 #: includes/pro/settings/class-alg-wc-wholesale-pricing-settings-per-term.php:48
 #: includes/settings/class-alg-wc-settings-wholesale-pricing.php:26
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-per-item.php:186
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:169
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:242
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:197
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:270
 msgid "Product Price by Quantity"
 msgstr ""
 
@@ -328,7 +323,7 @@ msgstr ""
 
 #. Translators: %d: Product ID.
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-all-products.php:135
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:511
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:539
 msgid "Product #%d"
 msgstr ""
 
@@ -379,7 +374,7 @@ msgid "New product notification"
 msgstr ""
 
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-compatibility.php:70
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:259
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:287
 msgid "Please save the product first."
 msgstr ""
 
@@ -831,45 +826,45 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:79
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:118
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:107
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:146
 #: includes/settings/class-alg-wc-wholesale-pricing-settings-reports.php:67
 msgid "Something went wrong..."
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:144
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:172
 msgid "Are you sure?"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:189
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:217
 msgid "Reset all"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:190
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:218
 msgid "This will reset all wholesale settings fields to their default values."
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:530
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:558
 msgid "Copy variation"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:531
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:559
 msgid "This will copy all wholesale settings fields from the current variation to all other variations."
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:532
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:560
 msgid "Please note that you need to UPDATE the product before copying the variation."
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:533
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:561
 msgid "Reset variation"
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:534
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:562
 msgid "This will reset all wholesale settings fields for the current variation to their default values."
 msgstr ""
 
-#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:538
+#: includes/settings/class-alg-wc-wholesale-pricing-settings-per-product.php:566
 msgid "Regular pricing:"
 msgstr ""
 
